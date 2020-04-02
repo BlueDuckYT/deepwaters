@@ -2,6 +2,7 @@ package bernie.software.world;
 
 import bernie.software.ModEventSubscriber;
 import bernie.software.biome.provider.DeepWatersSingleBiomeProvider;
+import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.world.gen.DeepWatersChunkGenerator;
 import bernie.software.world.gen.DeepWatersGenSettings;
@@ -40,7 +41,7 @@ public class DeepWatersDimension extends Dimension
 		deepWatersGenSettings.setDefaultFluid(Blocks.WATER.getDefaultState());
 		SingleBiomeProviderSettings settings = new SingleBiomeProviderSettings();
 
-		settings.setBiome(ModEventSubscriber.DefaultWaterBiomeInstance);
+		settings.setBiome(DeepWatersBiomes.default_water.get());
 		DeepWatersSingleBiomeProvider provider = new DeepWatersSingleBiomeProvider(settings);
 		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
 	}

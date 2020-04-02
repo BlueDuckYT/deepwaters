@@ -28,8 +28,8 @@ public class ModEventSubscriber
 
 	@ObjectHolder("deepwaters:deepwatersdimension")
 	public static final ModDimension DeepWatersDimension = null;
-	@ObjectHolder("deepwaters:defaultwaterbiome")
-	public static Biome DefaultWaterBiomeInstance = null;
+	//@ObjectHolder("deepwaters:defaultwaterbiome")
+	//public static  Biome DefaultWaterBiomeInstance = null;
 
 	@SubscribeEvent
 	public static void onDimensionRegistryEvent(final RegistryEvent.Register<ModDimension> event)
