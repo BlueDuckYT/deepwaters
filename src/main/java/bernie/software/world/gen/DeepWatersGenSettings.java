@@ -7,8 +7,7 @@ import net.minecraft.world.gen.GenerationSettings;
 public class DeepWatersGenSettings extends GenerationSettings
 {
 	public DeepWatersGenSettings() {
-		setDefaultBlock(DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState());
-		setDefaultFluid(Blocks.WATER.getDefaultState());
+
 	}
 
 	public int getBedrockFloorHeight() {
