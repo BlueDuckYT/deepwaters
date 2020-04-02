@@ -1,26 +1,16 @@
 package bernie.software;
 
-import bernie.software.biome.DefaultWaterBiome;
 import bernie.software.entity.KillerWiggler;
 import bernie.software.client.renderer.entity.KillerWigglerRenderer;
-import bernie.software.lists.BlockList;
-import bernie.software.lists.ItemList;
 import bernie.software.world.DeepWatersModDimension;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -63,6 +53,7 @@ public class ModEventSubscriber
 			}
 		});
 	}
+	/*
 	@SubscribeEvent
 	public static void onBiomeRegistryEvent(final RegistryEvent.Register<Biome> event)
 	{
@@ -70,6 +61,7 @@ public class ModEventSubscriber
 		event.getRegistry().register(DefaultWaterBiomeInstance);
 		BiomeDictionary.addTypes(DefaultWaterBiomeInstance, BiomeDictionary.Type.NETHER);
 	}
+	*/
 	@SubscribeEvent
 	public static void onEntityRegistryEvent(final RegistryEvent.Register<EntityType<?>> event)
 	{
@@ -77,7 +69,7 @@ public class ModEventSubscriber
 		event.getRegistry().register(entity.setRegistryName("deepwaters:killerwiggler"));
 
 	}
-
+	/*
 	@SubscribeEvent
 	public static void onBlockRegistryEvent(final RegistryEvent.Register<Block> event)
 	{
@@ -92,7 +84,7 @@ public class ModEventSubscriber
 		ItemList.OceanFloorItemBlockBlock.setRegistryName(BlockList.OceanFloorBlock.getRegistryName());
 		event.getRegistry().registerAll(ItemList.OceanFloorItemBlockBlock);
 	}
-
+	*/
 	public static ResourceLocation Location(String name)
 	{
 		return new ResourceLocation(DeepWatersMod.ModID, name);

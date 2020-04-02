@@ -1,6 +1,6 @@
 package bernie.software.surfacebuilder;
 
-import bernie.software.lists.BlockList;
+import bernie.software.registry.DeepWatersBlocks;
 import com.mojang.datafixers.Dynamic;
 import java.util.Random;
 import java.util.function.Function;
@@ -17,9 +17,9 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
 {
 	private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
-	private static final BlockState NETHERRACK = BlockList.OceanFloorBlock.getDefaultState();
-	private static final BlockState GRAVEL = BlockList.OceanFloorBlock.getDefaultState();
-	private static final BlockState SOUL_SAND = BlockList.OceanFloorBlock.getDefaultState();
+	private static final BlockState OCEAN_FLOOR = DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState();
+	private static final BlockState GRAVEL = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
+	private static final BlockState GRAVEL2 = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
 	protected long field_205552_a;
 	protected OctavesNoiseGenerator field_205553_b;
 
@@ -37,8 +37,8 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		int l = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		int i1 = -1;
-		BlockState blockstate = NETHERRACK;
-		BlockState blockstate1 = NETHERRACK;
+		BlockState blockstate = OCEAN_FLOOR;
+		BlockState blockstate1 = OCEAN_FLOOR;
 
 		for(int j1 = 127; j1 >= 0; --j1) {
 			blockpos$mutableblockpos.setPos(j, j1, k);
@@ -48,18 +48,18 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 					if (i1 == -1) {
 						if (l <= 0) {
 							blockstate = CAVE_AIR;
-							blockstate1 = NETHERRACK;
+							blockstate1 = OCEAN_FLOOR;
 						} else if (j1 >= i - 4 && j1 <= i + 1) {
-							blockstate = NETHERRACK;
-							blockstate1 = NETHERRACK;
+							blockstate = OCEAN_FLOOR;
+							blockstate1 = OCEAN_FLOOR;
 							if (flag1) {
 								blockstate = GRAVEL;
-								blockstate1 = NETHERRACK;
+								blockstate1 = OCEAN_FLOOR;
 							}
 
 							if (flag) {
-								blockstate = SOUL_SAND;
-								blockstate1 = SOUL_SAND;
+								blockstate = GRAVEL2;
+								blockstate1 = GRAVEL2;
 							}
 						}
 

@@ -1,7 +1,7 @@
 package bernie.software.world;
 
 import bernie.software.ModEventSubscriber;
-import bernie.software.lists.BlockList;
+import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.world.gen.DeepWatersChunkGenerator;
 import bernie.software.world.gen.DeepWatersGenSettings;
 import net.minecraft.block.Blocks;
@@ -32,8 +32,6 @@ public class DeepWatersDimension extends Dimension
 	public ChunkGenerator<?> createChunkGenerator()
 	{
 		DeepWatersGenSettings deepWatersGenSettings = new DeepWatersGenSettings();
-		deepWatersGenSettings.setDefaultBlock(BlockList.OceanFloorBlock.getDefaultState());
-		deepWatersGenSettings.setDefaultFluid(Blocks.WATER.getDefaultState());
 
 		SingleBiomeProviderSettings settings = new SingleBiomeProviderSettings();
 
