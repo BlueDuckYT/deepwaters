@@ -17,7 +17,7 @@ import net.minecraft.world.gen.surfacebuilders.NetherSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-public class    DefaultWaterBiome extends Biome
+public class DefaultWaterBiome extends Biome
 {
 	public DefaultWaterBiome()
 	{

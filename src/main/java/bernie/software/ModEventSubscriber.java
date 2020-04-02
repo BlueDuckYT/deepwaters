@@ -1,5 +1,7 @@
 package bernie.software;
 
+import bernie.software.client.renderer.entity.BlufferFishRenderer;
+import bernie.software.entity.BlufferFish;
 import bernie.software.entity.KillerWiggler;
 import bernie.software.client.renderer.entity.KillerWigglerRenderer;
 import bernie.software.world.DeepWatersModDimension;
@@ -24,14 +26,10 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModEventSubscriber
 {
 
-
-
 	@ObjectHolder("deepwaters:deepwatersdimension")
 	public static final ModDimension DeepWatersDimension = null;
 	@ObjectHolder("deepwaters:defaultwaterbiome")
-	public static  Biome DefaultWaterBiomeInstance = null;
-
-
+	public static Biome DefaultWaterBiomeInstance = null;
 
 	@SubscribeEvent
 	public static void onDimensionRegistryEvent(final RegistryEvent.Register<ModDimension> event)
@@ -52,6 +50,14 @@ public class ModEventSubscriber
 				return new KillerWigglerRenderer(manager);
 			}
 		});
+		RenderingRegistry.registerEntityRenderingHandler(BlufferFish.class, new IRenderFactory<BlufferFish>()
+		{
+			@Override
+			public EntityRenderer<? super BlufferFish> createRenderFor(EntityRendererManager manager)
+			{
+				return new BlufferFishRenderer(manager);
+			}
+		});
 	}
 	/*
 	@SubscribeEvent
@@ -65,9 +71,11 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void onEntityRegistryEvent(final RegistryEvent.Register<EntityType<?>> event)
 	{
-		EntityType<?> entity = EntityType.Builder.create(KillerWiggler::new, EntityClassification.MONSTER).size(10.387F, 2.4375F).build("entitymobtest");
-		event.getRegistry().register(entity.setRegistryName("deepwaters:killerwiggler"));
+		EntityType<?> killerWigglerEntityType = EntityType.Builder.create(KillerWiggler::new, EntityClassification.MONSTER).size(10.387F, 2.4375F).build("entitymobtest");
+		EntityType<?> blufferfishEntityType = EntityType.Builder.create(BlufferFish::new, EntityClassification.WATER_CREATURE).size(0.8125F, 0.5F).build("entitymobtest");
 
+		event.getRegistry().register(killerWigglerEntityType.setRegistryName(Location("killerwiggler")));
+		event.getRegistry().register(blufferfishEntityType.setRegistryName(Location("blufferfish")));
 	}
 	/*
 	@SubscribeEvent
