@@ -27,10 +27,10 @@ public class BlufferFishModel extends EntityModel<BlufferFish>
 		body.cubeList.add(new ModelBox(body, 0, 0, -4.0F, -7.0F, -4.0F, 8, 7, 8, 0.0F, false));
 
 		jaw = new RendererModel(this);
-		jaw.setRotationPoint(0.0F, -3.0F, -4.5F);
+		jaw.setRotationPoint(0.0F, 0.0F, -4.5F);
 		setRotationAngle(jaw, 0.1745F, 0.0F, 0.0F);
 		body.addChild(jaw);
-		jaw.cubeList.add(new ModelBox(jaw, 0, 15, -4.0F, -1.0456F, -1.0209F, 8, 4, 1, 0.0F, false));
+		jaw.cubeList.add(new ModelBox(jaw, 0, 15, -4.0F, -4.0F, -0.5F, 8, 4, 1, 0.0F, false));
 
 		leftfin = new RendererModel(this);
 		leftfin.setRotationPoint(4.0603F, 18.0F, -1.342F);
@@ -47,14 +47,6 @@ public class BlufferFishModel extends EntityModel<BlufferFish>
 		setRotationAngle(tail, -0.0873F, 0.0F, 0.0F);
 		tail.cubeList.add(new ModelBox(tail, 0, 0, 0.0F, 0.9886F, -0.7385F, 0, 4, 4, 0.0F, false));
 		tail.cubeList.add(new ModelBox(tail, 16, 18, 0.0F, -1.0114F, 3.2615F, 0, 8, 2, 0.0F, false));
-	}
-
-	@Override
-	public void render(BlufferFish entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		body.render(f5);
-		leftfin.render(f5);
-		rightfin.render(f5);
-		tail.render(f5);
 	}
 	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;

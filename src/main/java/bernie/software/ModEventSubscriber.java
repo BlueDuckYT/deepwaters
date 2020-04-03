@@ -2,10 +2,12 @@ package bernie.software;
 
 import bernie.software.client.renderer.entity.BlufferFishRenderer;
 import bernie.software.client.renderer.entity.ClamRenderer;
+import bernie.software.client.renderer.entity.StingrayRenderer;
 import bernie.software.entity.BlufferFish;
 import bernie.software.entity.Clam;
 import bernie.software.entity.KillerWiggler;
 import bernie.software.client.renderer.entity.KillerWigglerRenderer;
+import bernie.software.entity.Stingray;
 import bernie.software.world.DeepWatersModDimension;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -65,6 +67,14 @@ public class ModEventSubscriber {
 			public EntityRenderer<? super Clam> createRenderFor(EntityRendererManager manager)
 			{
 				return new ClamRenderer(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(Stingray.class, new IRenderFactory<Stingray>()
+		{
+			@Override
+			public EntityRenderer<? super Stingray> createRenderFor(EntityRendererManager manager)
+			{
+				return new StingrayRenderer(manager);
 			}
 		});
 	}
