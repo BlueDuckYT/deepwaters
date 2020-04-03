@@ -78,6 +78,12 @@ public class DeepWatersDimension extends Dimension
 	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
 		return new Vec3d((double)0.2F, (double)0.03F, (double)0.03F);
 	}
+
+	@Override
+	public float getCloudHeight() {
+		return 256;
+	}
+
 	protected void generateLightBrightnessTable() {
 		float f = 0.1F;
 
