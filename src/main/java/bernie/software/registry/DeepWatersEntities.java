@@ -15,11 +15,14 @@ public class DeepWatersEntities {
     public static final EntityType<KillerWiggler> killer_wiggler = EntityType.Builder.create(KillerWiggler::new, EntityClassification.MONSTER)
             .size(10.387F, 2.4375F).build("killer_wiggler");
     public static final EntityType<BlufferFish> blufferfish = EntityType.Builder.create(BlufferFish::new, EntityClassification.WATER_CREATURE)
-            .size(0.8125F, 0.5F).build("blufferfish");
+            .size(1.125F, 1F).build("blufferfish");
     public static final EntityType<Clam> clam = EntityType.Builder.create(Clam::new, EntityClassification.WATER_CREATURE)
-            .size(1,1).build("clam");
-
+            .size(1F,0.4F).build("clam");
+    public static final EntityType<Stingray> stingRay = EntityType.Builder.create(Stingray::new, EntityClassification.WATER_CREATURE)
+            .size(2.875F,0.3125F).build("stingray");
     public static final RegistryObject<EntityType<KillerWiggler>> KILLER_WIGGLER = ENTITIES.register("killer_wiggler", () -> killer_wiggler);
     public static final RegistryObject<EntityType<BlufferFish>> BLUFFERFISH = ENTITIES.register("blufferfish", () -> blufferfish);
     public static final RegistryObject<EntityType<Clam>> CLAM = ENTITIES.register("clam", () -> clam);
+    public static final RegistryObject<EntityType<Stingray>> STINGRAY = ENTITIES.register("stingray", () -> stingRay);
+
 }
