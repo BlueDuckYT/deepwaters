@@ -20,8 +20,8 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 	private static final BlockState MOSSY_OCEAN_FLOOR = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
 	private static final BlockState GRAVEL = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
 	private static final BlockState GRAVEL2 = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
-	protected long field_205552_a;
-	protected OctavesNoiseGenerator field_205553_b;
+	protected long seed;
+	protected OctavesNoiseGenerator randomNoiseGenerator;
 
 	public DefaultWaterSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51308_1_) {
 		super(p_i51308_1_);
@@ -32,8 +32,8 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		int j = x & 15;
 		int k = z & 15;
 		double d0 = 0.03125D;
-		boolean flag = this.field_205553_b.func_205563_a((double)x * 0.03125D, (double)z * 0.03125D, 0.0D) + random.nextDouble() * 0.2D > 0.0D;
-		boolean flag1 = this.field_205553_b.func_205563_a((double)x * 0.03125D, 109.0D, (double)z * 0.03125D) + random.nextDouble() * 0.2D > 0.0D;
+		boolean flag = this.randomNoiseGenerator.func_205563_a((double)x * 0.03125D, (double)z * 0.03125D, 0.0D) + random.nextDouble() * 0.2D > 0.0D;
+		boolean flag1 = this.randomNoiseGenerator.func_205563_a((double)x * 0.03125D, 109.0D, (double)z * 0.03125D) + random.nextDouble() * 0.2D > 0.0D;
 		int l = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		int i1 = -1;
@@ -86,10 +86,10 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 	}
 
 	public void setSeed(long seed) {
-		if (this.field_205552_a != seed || this.field_205553_b == null) {
-			this.field_205553_b = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4);
+		if (this.seed != seed || this.randomNoiseGenerator == null) {
+			this.randomNoiseGenerator = new OctavesNoiseGenerator(new SharedSeedRandom(seed), 4);
 		}
 
-		this.field_205552_a = seed;
+		this.seed = seed;
 	}
 }

@@ -3,6 +3,7 @@ package bernie.software.registry;
 import bernie.software.DeepWatersMod;
 import bernie.software.biome.DefaultWaterBiome;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.OceanBiome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

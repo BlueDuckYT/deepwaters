@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.biome.OceanBiome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*    ;
@@ -44,8 +45,9 @@ public class DefaultWaterBiome extends Biome
 		//this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature(Feature.NETHER_SPRING, new HellLavaConfig(true), Placement.COUNT_RANGE, new CountRangeConfig(16, 10, 20, 128)));
 
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.blufferfish, 100, 4, 30));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.clam, 30, 1, 4));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.killer_wiggler, 2, 1, 1));
 		//this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 1, 4, 4));
 	}
+
+
 }

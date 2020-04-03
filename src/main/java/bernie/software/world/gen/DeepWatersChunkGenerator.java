@@ -1,6 +1,10 @@
 package bernie.software.world.gen;
 
 import java.util.List;
+
+import bernie.software.block.DeepWatersBlock;
+import bernie.software.registry.DeepWatersBlocks;
+import bernie.software.registry.DeepWatersEntities;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
@@ -48,7 +52,7 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 
 			if (d0 < 4.0D) {
 				d0 = 4.0D - d0;
-				adouble[i] -= d0 * d0 * d0 * 10.0D;
+				//adouble[i] -= d0 * d0 * d0 * 10.0D;
 			}
 		}
 
@@ -56,21 +60,16 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 	}
 
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EntityClassification creatureType, BlockPos pos) {
-		if (creatureType == EntityClassification.MONSTER) {
-			if (Feature.NETHER_BRIDGE.isPositionInsideStructure(this.world, pos)) {
-				return Feature.NETHER_BRIDGE.getSpawnList();
-			}
 
-			if (Feature.NETHER_BRIDGE.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICKS) {
-				return Feature.NETHER_BRIDGE.getSpawnList();
-			}
+		if(world.getBlockState(pos.down()).getBlock() == DeepWatersBlocks.OCEAN_FLOOR.get())
+		{
+			Biome.SpawnListEntry clamEntry = new Biome.SpawnListEntry(DeepWatersEntities.clam, 300, 1, 4);
 		}
-
 		return super.getPossibleCreatures(creatureType, pos);
 	}
 
 	public int getGroundHeight() {
-		return this.world.getSeaLevel() + 1;
+		return this.world.getSeaLevel() + 5;
 	}
 
 	public int getMaxHeight() {
@@ -78,7 +77,7 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 	}
 
 	public int getSeaLevel() {
-		return 128;
+		return 256;
 	}
 
 }
