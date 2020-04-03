@@ -5,6 +5,7 @@ import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersRecipes;
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersBlocks;
+import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,8 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(DeepWatersMod.ModID)
-public class DeepWatersMod
-{
+public class DeepWatersMod {
 
 	public DeepWatersMod() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -28,6 +28,7 @@ public class DeepWatersMod
 		DeepWatersBiomes.BIOMES.register(bus);
 		DeepWatersBlocks.BLOCKS.register(bus);
 		DeepWatersItems.ITEMS.register(bus);
+		DeepWatersEntities.ENTITIES.register(bus);
 	}
 
 	public static final String ModID = "deepwaters";

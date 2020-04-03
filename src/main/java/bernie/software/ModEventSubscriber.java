@@ -25,11 +25,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModEventSubscriber
-{
-	public static EntityType<KillerWiggler> killerWigglerEntityType;
-	public static EntityType<BlufferFish> blufferfishEntityType;
-	public static EntityType<Clam> clamEntityType;
+public class ModEventSubscriber {
 
 	@ObjectHolder("deepwaters:deepwatersdimension")
 	public static final ModDimension DeepWatersDimension = null;
@@ -80,7 +76,7 @@ public class ModEventSubscriber
 		event.getRegistry().register(DefaultWaterBiomeInstance);
 		BiomeDictionary.addTypes(DefaultWaterBiomeInstance, BiomeDictionary.Type.NETHER);
 	}
-	*/
+
 	@SubscribeEvent
 	public static void onEntityRegistryEvent(final RegistryEvent.Register<EntityType<?>> event)
 	{
@@ -93,7 +89,7 @@ public class ModEventSubscriber
 		event.getRegistry().register(clamEntityType.setRegistryName(Location("clam")));
 
 	}
-	/*
+
 	@SubscribeEvent
 	public static void onBlockRegistryEvent(final RegistryEvent.Register<Block> event
 	{

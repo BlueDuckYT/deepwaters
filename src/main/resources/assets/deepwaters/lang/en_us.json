@@ -1,5 +1,6 @@
 {
-  "item.deepwaters.ocean_floor": "Ocean Floor Block",
-  "block.deepwaters.sunken_gravel": "Ocean Floor Block"
+  "block.deepwaters.mossy_ocean_floor": "Mossy Ocean Floor",
+  "block.deepwaters.ocean_floor": "Ocean Floor",
+  "block.deepwaters.sunken_gravel": "Sunken Gravel"
 
 }
