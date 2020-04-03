@@ -2,6 +2,7 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.block.DeepWatersBlock;
+import bernie.software.block.MossyOceanFloorBlock;
 import bernie.software.block.SunkenGravelBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -23,8 +24,9 @@ public class DeepWatersBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, DeepWatersMod.ModID);
 
+    public static final RegistryObject<Block> MOSSY_OCEAN_FLOOR = registerBlock("mossy_ocean_floor", MossyOceanFloorBlock::new);
     public static final RegistryObject<Block> OCEAN_FLOOR = registerBlock("ocean_floor", () -> new DeepWatersBlock(
-            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 0, ToolType.PICKAXE));
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 1, ToolType.PICKAXE));
     public static final RegistryObject<Block> SUNKEN_GRAVEL = registerBlock("sunken_gravel", SunkenGravelBlock::new);
 
 
