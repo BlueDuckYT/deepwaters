@@ -1,7 +1,5 @@
 package bernie.software.world.gen;
 
-import bernie.software.registry.DeepWatersBlocks;
-import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.GenerationSettings;
 
 public class DeepWatersGenSettings extends GenerationSettings

@@ -15,7 +15,7 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 	private final double[] field_222573_h = this.func_222572_j();
 
 	public DeepWatersChunkGenerator(World p_i48694_1_, BiomeProvider p_i48694_2_, DeepWatersGenSettings p_i48694_3_) {
-		super(p_i48694_1_, p_i48694_2_, 4, 8, 128, p_i48694_3_, false);
+		super(p_i48694_1_, p_i48694_2_, 2, 16, 256, p_i48694_3_, false);
 	}
 
 	protected void fillNoiseColumn(double[] noiseColumn, int noiseX, int noiseZ) {
