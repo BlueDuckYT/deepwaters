@@ -20,5 +20,6 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider {
     protected void registerStatesAndModels() {
         normalBlock(DeepWatersBlocks.OCEAN_FLOOR);
         normalBlock(DeepWatersBlocks.SUNKEN_GRAVEL);
+        grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
     }
 }

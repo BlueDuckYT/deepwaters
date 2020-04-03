@@ -17,7 +17,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
 {
 	private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
-	private static final BlockState OCEAN_FLOOR = DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState();
+	private static final BlockState MOSSY_OCEAN_FLOOR = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
 	private static final BlockState GRAVEL = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
 	private static final BlockState GRAVEL2 = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
 	protected long field_205552_a;
@@ -37,8 +37,8 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		int l = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		int i1 = -1;
-		BlockState blockstate = OCEAN_FLOOR;
-		BlockState blockstate1 = OCEAN_FLOOR;
+		BlockState blockstate = MOSSY_OCEAN_FLOOR;
+		BlockState blockstate1 = MOSSY_OCEAN_FLOOR;
 
 		for(int j1 = 127; j1 >= 0; --j1) {
 			blockpos$mutableblockpos.setPos(j, j1, k);
@@ -48,13 +48,13 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 					if (i1 == -1) {
 						if (l <= 0) {
 							blockstate = CAVE_AIR;
-							blockstate1 = OCEAN_FLOOR;
+							blockstate1 = MOSSY_OCEAN_FLOOR;
 						} else if (j1 >= i - 4 && j1 <= i + 1) {
-							blockstate = OCEAN_FLOOR;
-							blockstate1 = OCEAN_FLOOR;
+							blockstate = MOSSY_OCEAN_FLOOR;
+							blockstate1 = MOSSY_OCEAN_FLOOR;
 							if (flag1) {
 								blockstate = GRAVEL;
-								blockstate1 = OCEAN_FLOOR;
+								blockstate1 = MOSSY_OCEAN_FLOOR;
 							}
 
 							if (flag) {

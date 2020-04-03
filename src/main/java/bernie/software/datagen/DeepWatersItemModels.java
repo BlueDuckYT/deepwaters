@@ -20,5 +20,6 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider {
     protected void registerModels() {
         itemBlock(DeepWatersBlocks.OCEAN_FLOOR);
         itemBlock(DeepWatersBlocks.SUNKEN_GRAVEL);
+        itemBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR);
     }
 }
