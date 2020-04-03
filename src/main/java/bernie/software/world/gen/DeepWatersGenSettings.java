@@ -15,6 +15,6 @@ public class DeepWatersGenSettings extends GenerationSettings
 	}
 
 	public int getBedrockRoofHeight() {
-		return 256;
+		return 0;
 	}
 }

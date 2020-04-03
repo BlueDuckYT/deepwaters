@@ -10,12 +10,12 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.NoiseChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 
-public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenSettings>
+public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<DeepWatersGenSettings>
 {
 	private final double[] field_222573_h = this.func_222572_j();
 
 	public DeepWatersChunkGenerator(World p_i48694_1_, BiomeProvider p_i48694_2_, DeepWatersGenSettings p_i48694_3_) {
-		super(p_i48694_1_, p_i48694_2_, 4, 8, 128, p_i48694_3_, false);
+		super(p_i48694_1_, p_i48694_2_, 4, 8, 256, p_i48694_3_, false);
 	}
 
 	protected void fillNoiseColumn(double[] noiseColumn, int noiseX, int noiseZ) {
@@ -74,11 +74,11 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 	}
 
 	public int getMaxHeight() {
-		return 128;
+		return 256;
 	}
 
 	public int getSeaLevel() {
-		return 128;
+		return 256;
 	}
 
 }
