@@ -1,7 +1,9 @@
 package bernie.software;
 
 import bernie.software.client.renderer.entity.BlufferFishRenderer;
+import bernie.software.client.renderer.entity.ClamRenderer;
 import bernie.software.entity.BlufferFish;
+import bernie.software.entity.Clam;
 import bernie.software.entity.KillerWiggler;
 import bernie.software.client.renderer.entity.KillerWigglerRenderer;
 import bernie.software.world.DeepWatersModDimension;
@@ -25,6 +27,9 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber
 {
+	public static EntityType<?> killerWigglerEntityType;
+	public static EntityType<?> blufferfishEntityType;
+	public static EntityType<?> clamEntityType;
 
 	@ObjectHolder("deepwaters:deepwatersdimension")
 	public static final ModDimension DeepWatersDimension = null;
@@ -58,6 +63,14 @@ public class ModEventSubscriber
 				return new BlufferFishRenderer(manager);
 			}
 		});
+		RenderingRegistry.registerEntityRenderingHandler(Clam.class, new IRenderFactory<Clam>()
+		{
+			@Override
+			public EntityRenderer<? super Clam> createRenderFor(EntityRendererManager manager)
+			{
+				return new ClamRenderer(manager);
+			}
+		});
 	}
 	/*
 	@SubscribeEvent
@@ -71,15 +84,18 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void onEntityRegistryEvent(final RegistryEvent.Register<EntityType<?>> event)
 	{
-		EntityType<?> killerWigglerEntityType = EntityType.Builder.create(KillerWiggler::new, EntityClassification.MONSTER).size(10.387F, 2.4375F).build("entitymobtest");
-		EntityType<?> blufferfishEntityType = EntityType.Builder.create(BlufferFish::new, EntityClassification.WATER_CREATURE).size(0.8125F, 0.5F).build("entitymobtest");
+		killerWigglerEntityType = EntityType.Builder.create(KillerWiggler::new, EntityClassification.MONSTER).size(10.387F, 2.4375F).build("entitymobtest");
+		blufferfishEntityType = EntityType.Builder.create(BlufferFish::new, EntityClassification.WATER_CREATURE).size(0.8125F, 0.5F).build("blufferfish");
+		clamEntityType = EntityType.Builder.create(Clam::new, EntityClassification.WATER_CREATURE).size(1,1).build("clam");
 
 		event.getRegistry().register(killerWigglerEntityType.setRegistryName(Location("killerwiggler")));
 		event.getRegistry().register(blufferfishEntityType.setRegistryName(Location("blufferfish")));
+		event.getRegistry().register(clamEntityType.setRegistryName(Location("clam")));
+
 	}
 	/*
 	@SubscribeEvent
-	public static void onBlockRegistryEvent(final RegistryEvent.Register<Block> event)
+	public static void onBlockRegistryEvent(final RegistryEvent.Register<Block> event
 	{
 
 		event.getRegistry().registerAll(BlockList.OceanFloorBlock = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0F, 3.0F).sound(SoundType.STONE)).setRegistryName(Location("oceanfloorblock")));
