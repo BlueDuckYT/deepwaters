@@ -55,6 +55,13 @@ public class BlufferFishModel extends EntityModel<BlufferFish>
 	}
 
 	@Override
+	public void render(BlufferFish entity, float f, float f1, float f2, float f3, float f4, float f5) {
+		body.render(f5);
+		leftfin.render(f5);
+		rightfin.render(f5);
+		tail.render(f5);
+	}
+	@Override
 	public void setRotationAngles(BlufferFish entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
 		this.jaw.rotateAngleX = (float) abs((Math.sin(limbSwing * 1) * 0.5F));
@@ -63,7 +70,5 @@ public class BlufferFishModel extends EntityModel<BlufferFish>
 		this.rightfin.rotateAngleY = (float) (-1F * abs((Math.sin(limbSwing) * 1.5F)));
 		this.tail.rotateAngleY = (float) (Math.sin(limbSwing * 3) * 0.6F);
 		this.tail.rotateAngleZ = 0;
-
-
 	}
 }
