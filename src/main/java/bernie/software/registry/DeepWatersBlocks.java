@@ -2,9 +2,11 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.block.DeepWatersBlock;
+import bernie.software.block.DeepWatersOreBlock;
 import bernie.software.block.MossyOceanFloorBlock;
 import bernie.software.block.SunkenGravelBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.OreBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -27,6 +29,7 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> MOSSY_OCEAN_FLOOR = registerBlock("mossy_ocean_floor", MossyOceanFloorBlock::new);
     public static final RegistryObject<Block> OCEAN_FLOOR = registerBlock("ocean_floor", () -> new DeepWatersBlock(
             Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 1, ToolType.PICKAXE));
+    public static final RegistryObject<Block> SALT_ORE = registerBlock("salt_ore", () -> new DeepWatersOreBlock(2));
     public static final RegistryObject<Block> SUNKEN_GRAVEL = registerBlock("sunken_gravel", SunkenGravelBlock::new);
 
 

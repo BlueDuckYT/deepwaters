@@ -18,6 +18,7 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 {
 	private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
 	private static final BlockState MOSSY_OCEAN_FLOOR = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
+	private static final BlockState OCEAN_FLOOR = DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState();
 	private static final BlockState GRAVEL = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
 	private static final BlockState GRAVEL2 = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
 	protected long seed;
@@ -40,7 +41,7 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 		BlockState blockstate = MOSSY_OCEAN_FLOOR;
 		BlockState blockstate1 = MOSSY_OCEAN_FLOOR;
 
-		for(int j1 = 127; j1 >= 0; --j1) {
+		for(int j1 = 256; j1 >= 0; --j1) {
 			blockpos$mutableblockpos.setPos(j, j1, k);
 			BlockState blockstate2 = chunkIn.getBlockState(blockpos$mutableblockpos);
 			if (blockstate2.getBlock() != null && !blockstate2.isAir()) {
@@ -50,7 +51,7 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 							blockstate = CAVE_AIR;
 							blockstate1 = MOSSY_OCEAN_FLOOR;
 						} else if (j1 >= i - 4 && j1 <= i + 1) {
-							blockstate = MOSSY_OCEAN_FLOOR;
+							blockstate = OCEAN_FLOOR;
 							blockstate1 = MOSSY_OCEAN_FLOOR;
 							if (flag1) {
 								blockstate = GRAVEL;

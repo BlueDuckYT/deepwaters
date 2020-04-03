@@ -21,5 +21,6 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider {
         itemBlock(DeepWatersBlocks.OCEAN_FLOOR);
         itemBlock(DeepWatersBlocks.SUNKEN_GRAVEL);
         itemBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR);
+        itemBlock(DeepWatersBlocks.SALT_ORE);
     }
 }

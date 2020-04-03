@@ -17,6 +17,8 @@ import net.minecraft.world.biome.OceanBiome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*    ;
+import net.minecraft.world.gen.feature.structure.ShipwreckConfig;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.NetherSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -46,6 +48,13 @@ public class DefaultWaterBiome extends Biome
 
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.blufferfish, 100, 4, 30));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.killer_wiggler, 2, 1, 1));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.COD, 10, 3, 6));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.SALMON, 5, 2, 3));
+
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(48, 0.3D), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
+		DefaultBiomeFeatures.addKelp(this);
+		DefaultBiomeFeatures.addExtraKelp(this);
+
 		//this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 1, 4, 4));
 	}
 

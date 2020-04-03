@@ -16,7 +16,7 @@ import net.minecraft.world.lighting.LightEngine;
 import java.util.List;
 import java.util.Random;
 
-public abstract class DeepWatersGrassBlock extends SpreadableSnowyDirtBlock {
+public class DeepWatersGrassBlock extends SpreadableSnowyDirtBlock {
 
     protected DeepWatersGrassBlock(Properties properties) {
         super(properties);
