@@ -3,9 +3,7 @@ import bernie.software.entity.Clam;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
-
 import java.util.Random;
-
 import static java.lang.Math.abs;
 import static java.lang.Math.round;
 // Made with Blockbench

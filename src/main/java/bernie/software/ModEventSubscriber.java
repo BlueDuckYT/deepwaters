@@ -27,9 +27,9 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber
 {
-	public static EntityType<?> killerWigglerEntityType;
-	public static EntityType<?> blufferfishEntityType;
-	public static EntityType<?> clamEntityType;
+	public static EntityType<KillerWiggler> killerWigglerEntityType;
+	public static EntityType<BlufferFish> blufferfishEntityType;
+	public static EntityType<Clam> clamEntityType;
 
 	@ObjectHolder("deepwaters:deepwatersdimension")
 	public static final ModDimension DeepWatersDimension = null;
