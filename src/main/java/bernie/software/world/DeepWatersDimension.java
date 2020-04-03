@@ -119,7 +119,7 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public int getSeaLevel()
 	{
-		return 256;
+		return 512;
 	}
 
 }

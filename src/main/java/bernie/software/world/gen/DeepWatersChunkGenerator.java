@@ -10,7 +10,7 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.NoiseChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 
-public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenSettings>
+public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<DeepWatersGenSettings>
 {
 	private final double[] field_222573_h = this.func_222572_j();
 
