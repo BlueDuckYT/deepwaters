@@ -20,9 +20,12 @@ public class DeepWatersEntities {
             .size(1F,0.4F).build("clam");
     public static final EntityType<Stingray> stingRay = EntityType.Builder.create(Stingray::new, EntityClassification.WATER_CREATURE)
             .size(2.875F,0.3125F).build("stingray");
+    public static final EntityType<BabyKracken> babyKracken = EntityType.Builder.create(BabyKracken::new, EntityClassification.WATER_CREATURE)
+            .size(1F,2F).build("babykracken");
     public static final RegistryObject<EntityType<KillerWiggler>> KILLER_WIGGLER = ENTITIES.register("killer_wiggler", () -> killer_wiggler);
     public static final RegistryObject<EntityType<BlufferFish>> BLUFFERFISH = ENTITIES.register("blufferfish", () -> blufferfish);
     public static final RegistryObject<EntityType<Clam>> CLAM = ENTITIES.register("clam", () -> clam);
     public static final RegistryObject<EntityType<Stingray>> STINGRAY = ENTITIES.register("stingray", () -> stingRay);
+    public static final RegistryObject<EntityType<BabyKracken>> BABYKRACKEN = ENTITIES.register("babykracken", () -> babyKracken);
 
 }

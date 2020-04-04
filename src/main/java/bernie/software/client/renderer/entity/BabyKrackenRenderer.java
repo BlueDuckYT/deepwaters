@@ -1,9 +1,9 @@
 package bernie.software.client.renderer.entity;
 
+import bernie.software.client.renderer.model.BabyKrackenModel;
 import bernie.software.client.renderer.model.BlufferFishModel;
-import bernie.software.client.renderer.model.KillerWigglerModel;
+import bernie.software.entity.BabyKracken;
 import bernie.software.entity.BlufferFish;
-import bernie.software.entity.KillerWiggler;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -13,22 +13,22 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
-public class BlufferFishRenderer extends MobRenderer<BlufferFish, BlufferFishModel>
+public class BabyKrackenRenderer extends MobRenderer<BabyKracken, BabyKrackenModel>
 {
-	public BlufferFishRenderer(EntityRendererManager rendererManager)
+	public BabyKrackenRenderer(EntityRendererManager rendererManager)
 	{
-		super(rendererManager, new BlufferFishModel(), 0.5F);
+		super(rendererManager, new BabyKrackenModel(), 0.5F);
 	}
 
 	@Nullable
 	@Override
-	protected ResourceLocation getEntityTexture(BlufferFish entity)
+	protected ResourceLocation getEntityTexture(BabyKracken entity)
 	{
-		return new ResourceLocation("deepwaters" +  ":textures/model/entity/blufferfish.png");
+		return new ResourceLocation("deepwaters" +  ":textures/model/entity/babykracken.png");
 	}
 
 	@Override
-	protected void applyRotations(BlufferFish entityLiving, float ageInTicks, float rotationYaw, float partialTicks)
+	protected void applyRotations(BabyKracken entityLiving, float ageInTicks, float rotationYaw, float partialTicks)
 	{
 		super.applyRotations(entityLiving, ageInTicks, rotationYaw, partialTicks);
 	}
