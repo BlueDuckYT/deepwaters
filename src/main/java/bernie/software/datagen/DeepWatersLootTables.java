@@ -57,6 +57,8 @@ public class DeepWatersLootTables extends LootTableProvider {
                     LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.PEARL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))).acceptCondition(KilledByPlayer.builder())));
             this.registerLootTable(DeepWatersEntities.stingRay,
                     LootTable.builder());
+            this.registerLootTable(DeepWatersEntities.babyKracken,
+                    LootTable.builder());
         }
 
         @Override

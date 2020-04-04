@@ -1,28 +1,18 @@
 package bernie.software.biome;
 
-import bernie.software.ModEventSubscriber;
-import bernie.software.entity.BlufferFish;
-import bernie.software.entity.Clam;
 import bernie.software.registry.DeepWatersBiomeFeatures;
 import bernie.software.registry.DeepWatersEntities;
+import bernie.software.registry.DeepWatersWorldCarvers;
 import bernie.software.surfacebuilder.DefaultWaterSurfaceBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.biome.OceanBiome;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.carver.WorldCarver;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.*    ;
-import net.minecraft.world.gen.feature.structure.ShipwreckConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.*;
-import net.minecraft.world.gen.surfacebuilders.NetherSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class CoralFieldsBiome extends Biome
@@ -31,8 +21,6 @@ public class CoralFieldsBiome extends Biome
 	{
 
 		super((new Biome.Builder()).surfaceBuilder(new DefaultWaterSurfaceBuilder(SurfaceBuilderConfig::deserialize), new SurfaceBuilderConfig(Blocks.WATER.getDefaultState(), Blocks.WATER.getDefaultState() ,Blocks.WATER.getDefaultState())).precipitation(Biome.RainType.NONE).category(Category.OCEAN).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).waterColor(28111).waterFogColor(28111));
-
-		this.addCarver(GenerationStage.Carving.AIR, createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(0.4F)));
 
 		//this.addStructure(Feature.NETHER_BRIDGE, IFeatureConfig.NO_FEATURE_CONFIG);
 		//this.addCarver(GenerationStage.Carving.AIR, createCarver(WorldCarver.HELL_CAVE, new ProbabilityConfig(0.4F)));
@@ -56,9 +44,11 @@ public class CoralFieldsBiome extends Biome
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.SALMON, 100, 5, 30));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.babyKracken, 10, 1, 2));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(48, 0.3D), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SingleRandomFeature(new Feature[]{Feature.CORAL_TREE, Feature.CORAL_CLAW, Feature.CORAL_MUSHROOM}, new IFeatureConfig[]{IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG}), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
 		DefaultBiomeFeatures.addKelp(this);
 		DefaultBiomeFeatures.addExtraKelp(this);
 		DeepWatersBiomeFeatures.addDeepWatersOres(this);
+		DeepWatersBiomeFeatures.addCarvers(this);
 
 		//this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 1, 4, 4));
 	}
