@@ -1,4 +1,5 @@
-package bernie.software.client.renderer.model;// Made with Blockbench
+package bernie.software.client.renderer.model;
+// Made with Blockbench
 // Paste this code into your mod.
 // Make sure to generate all required imports
 
