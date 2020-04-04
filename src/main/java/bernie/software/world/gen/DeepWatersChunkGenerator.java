@@ -52,10 +52,11 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 			if (i > this.noiseSizeY() / 2) {
 				d0 = (double)(this.noiseSizeY() - 1 - i);
 			}
-
-			if (d0 < 4.0D) {
+			
+			// Mess around with this number cause apparently its magical
+			if (d0 < 1.0D) {
 				d0 = 4.0D - d0;
-				//adouble[i] -= d0 * d0 * d0 * 10.0D;
+				adouble[i] -= d0 * d0 * d0 * 10.0D;
 			}
 		}
 
