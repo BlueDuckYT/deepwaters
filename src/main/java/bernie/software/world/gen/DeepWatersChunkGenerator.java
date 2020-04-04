@@ -54,7 +54,7 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 			}
 			
 			// Mess around with this number cause apparently its magical
-			if (d0 < 1.0D) {
+			if (d0 < 2.0D) {
 				d0 = 4.0D - d0;
 				adouble[i] -= d0 * d0 * d0 * 10.0D;
 			}

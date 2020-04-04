@@ -1,6 +1,5 @@
 package bernie.software.world;
 
-import bernie.software.ModEventSubscriber;
 import bernie.software.biome.provider.DeepWatersSingleBiomeProvider;
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersBlocks;
@@ -16,7 +15,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.Chunk;
@@ -45,7 +43,7 @@ public class DeepWatersDimension extends Dimension
 		deepWatersGenSettings.setDefaultFluid(Blocks.WATER.getDefaultState());
 		SingleBiomeProviderSettings settings = new SingleBiomeProviderSettings();
 
-		settings.setBiome(DeepWatersBiomes.default_water.get());
+		settings.setBiome(DeepWatersBiomes.CoralFieldsBiome.get());
 		DeepWatersSingleBiomeProvider provider = new DeepWatersSingleBiomeProvider(settings);
 		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
 	}
