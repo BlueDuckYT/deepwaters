@@ -1,6 +1,15 @@
 {
   "block.deepwaters.mossy_ocean_floor": "Mossy Ocean Floor",
   "block.deepwaters.ocean_floor": "Ocean Floor",
-  "block.deepwaters.sunken_gravel": "Sunken Gravel"
+  "block.deepwaters.sunken_gravel": "Sunken Gravel",
+  "block.deepwaters.salt_ore": "Salt Ore",
+
+  "itemGroup.deepwaters.deepwaters_blocks": "Deep Waters Blocks",
+  "itemGroup.deepwaters.deepwaters_items": "Deep Waters Items",
+
+  "entity.deepwaters.killer_wiggler": "Killer Wiggler",
+  "entity.deepwaters.blufferfish": "Blufferfish",
+  "entity.deepwaters.clam": "Clam",
+  "entity.deepwaters.stingray": "Stingray"
 
 }

@@ -2,6 +2,7 @@ package bernie.software;
 
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
+import bernie.software.datagen.DeepWatersLootTables;
 import bernie.software.datagen.DeepWatersRecipes;
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersBlocks;
@@ -47,6 +48,6 @@ public class DeepWatersMod {
 		//generator.addProvider(new DeepWatersRecipes(generator));
 		generator.addProvider(new DeepWatersBlockStates(generator, event.getExistingFileHelper()));
 		generator.addProvider(new DeepWatersItemModels(generator, event.getExistingFileHelper()));
-
+		//generator.addProvider(new DeepWatersLootTables(generator));
 	}
 }

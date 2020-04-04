@@ -71,12 +71,12 @@ public class KillerWiggler extends MonsterEntity
 		this.goalSelector.addGoal(4, new KillerWigglerAttackGoal(this, 5, true));
 		this.goalSelector.addGoal(5, movetowardsrestrictiongoal);
 		this.goalSelector.addGoal(7, this.wander);
-		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 16.0F));
-		this.goalSelector.addGoal(8, new LookAtGoal(this, KillerWiggler.class, 12.0F, 0.01F));
 		this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
 		this.wander.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		movetowardsrestrictiongoal.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 30, true, false, new KillerWiggler.TargetPredicate(this)));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 2.0D, false));
+
 	}
 
 	protected void registerAttributes() {
