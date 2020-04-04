@@ -75,7 +75,7 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 	}
 
 	public int getGroundHeight() {
-		return this.world.getSeaLevel() + 5;
+		return this.world.getSeaLevel() + 1;
 	}
 
 	public int getMaxHeight() {

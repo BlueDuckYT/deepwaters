@@ -1,7 +1,9 @@
 package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
+import bernie.software.item.DeepWatersItem;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -9,5 +11,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class DeepWatersItems {
 
     public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, DeepWatersMod.ModID);
+
+    public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", DeepWatersItem::new);
+    public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", DeepWatersItem::new);
 
 }

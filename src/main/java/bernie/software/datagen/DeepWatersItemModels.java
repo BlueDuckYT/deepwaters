@@ -2,6 +2,7 @@ package bernie.software.datagen;
 
 import bernie.software.datagen.provider.DeepWatersItemModelProvider;
 import bernie.software.registry.DeepWatersBlocks;
+import bernie.software.registry.DeepWatersItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 
@@ -22,5 +23,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider {
         itemBlock(DeepWatersBlocks.SUNKEN_GRAVEL);
         itemBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR);
         itemBlock(DeepWatersBlocks.SALT_ORE);
+
+        normalItem(DeepWatersItems.SALT_CRYSTAL);
     }
 }

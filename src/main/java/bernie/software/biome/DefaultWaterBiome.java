@@ -3,6 +3,7 @@ package bernie.software.biome;
 import bernie.software.ModEventSubscriber;
 import bernie.software.entity.BlufferFish;
 import bernie.software.entity.Clam;
+import bernie.software.registry.DeepWatersBiomeFeatures;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.surfacebuilder.DefaultWaterSurfaceBuilder;
 import net.minecraft.block.Block;
@@ -57,6 +58,7 @@ public class DefaultWaterBiome extends Biome
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(48, 0.3D), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
 		DefaultBiomeFeatures.addKelp(this);
 		DefaultBiomeFeatures.addExtraKelp(this);
+		DeepWatersBiomeFeatures.addDeepWatersOres(this);
 
 		//this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 1, 4, 4));
 	}
