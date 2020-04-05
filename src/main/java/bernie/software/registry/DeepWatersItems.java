@@ -14,5 +14,7 @@ public class DeepWatersItems {
 
     public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", () -> new DeepWatersItem());
     public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
+    public static final RegistryObject<Item> SHARK_TOOTH = ITEMS.register("sharktooth", () -> new DeepWatersItem());
+    public static final RegistryObject<Item> PEAL_WAND = ITEMS.register("pearl_wand", () -> new DeepWatersItem());
 
 }

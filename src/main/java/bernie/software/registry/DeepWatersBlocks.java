@@ -32,6 +32,26 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> SALT_ORE = registerBlock("salt_ore", () -> new DeepWatersOreBlock(2));
     public static final RegistryObject<Block> SUNKEN_GRAVEL = registerBlock("sunken_gravel",() -> new SunkenGravelBlock());
 
+    public static final RegistryObject<Block> METALLIC_BLOCK_BLACK = registerBlock("metallic_block_black", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE));
+    public static final RegistryObject<Block> METALLIC_BLOCK_CYAN = registerBlock("metallic_block_cyan", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE));
+    public static final RegistryObject<Block> METALLIC_BLOCK_BLUE = registerBlock("metallic_block_blue", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE));
+    public static final RegistryObject<Block> METALLIC_BLOCK_ORANGE = registerBlock("metallic_block_orange", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE));
+    public static final RegistryObject<Block> LIMESTONE = registerBlock("limestone", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE));
+    public static final RegistryObject<Block> ORANGE_CORAL = registerBlock("orange_coral_block", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 1, ToolType.PICKAXE));
+    public static final RegistryObject<Block> RED_CORAL = registerBlock("red_coral_block", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 1, ToolType.PICKAXE));
+    public static final RegistryObject<Block> YELLOW_CORAL = registerBlock("yellow_coral_block", () -> new DeepWatersBlock(
+            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 1, ToolType.PICKAXE));
+    public static final RegistryObject<Block> MAGMATIC_ROCK = registerBlock("magmatic_rock", () -> new DeepWatersBlock(
+            Material.ROCK, -1F, -1F, SoundType.STONE, 8, ToolType.PICKAXE));
+
+
 
     private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
         RegistryObject<T> register = BLOCKS.register(name, block);

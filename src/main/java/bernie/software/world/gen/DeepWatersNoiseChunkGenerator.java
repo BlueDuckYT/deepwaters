@@ -1,5 +1,6 @@
 package bernie.software.world.gen;
 
+import bernie.software.registry.DeepWatersBlocks;
 import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectList;
@@ -218,7 +219,7 @@ public abstract class DeepWatersNoiseChunkGenerator<T extends GenerationSettings
 			if (l > 0) {
 				for(int i1 = l; i1 >= l - 4; --i1) {
 					if (i1 >= l - rand.nextInt(5)) {
-						chunkIn.setBlockState(blockpos$mutableblockpos.setPos(blockpos.getX(), i1, blockpos.getZ()), Blocks.BEDROCK.getDefaultState(), false);
+						chunkIn.setBlockState(blockpos$mutableblockpos.setPos(blockpos.getX(), i1, blockpos.getZ()), DeepWatersBlocks.MAGMATIC_ROCK.get().getDefaultState(), false);
 					}
 				}
 			}
@@ -226,7 +227,7 @@ public abstract class DeepWatersNoiseChunkGenerator<T extends GenerationSettings
 			if (k < 256) {
 				for(int j1 = k + 4; j1 >= k; --j1) {
 					if (j1 <= k + rand.nextInt(5)) {
-						chunkIn.setBlockState(blockpos$mutableblockpos.setPos(blockpos.getX(), j1, blockpos.getZ()), Blocks.BEDROCK.getDefaultState(), false);
+						chunkIn.setBlockState(blockpos$mutableblockpos.setPos(blockpos.getX(), j1, blockpos.getZ()), DeepWatersBlocks.MAGMATIC_ROCK.get().getDefaultState(), false);
 					}
 				}
 			}

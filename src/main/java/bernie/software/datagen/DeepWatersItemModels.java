@@ -23,7 +23,15 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider {
         itemBlock(DeepWatersBlocks.SUNKEN_GRAVEL);
         itemBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR);
         itemBlock(DeepWatersBlocks.SALT_ORE);
+        itemBlock(DeepWatersBlocks.METALLIC_BLOCK_BLACK);
+        itemBlock(DeepWatersBlocks.METALLIC_BLOCK_CYAN);
+        itemBlock(DeepWatersBlocks.METALLIC_BLOCK_ORANGE);
+        itemBlock(DeepWatersBlocks.LIMESTONE);
+        itemBlock(DeepWatersBlocks.MAGMATIC_ROCK);
 
         normalItem(DeepWatersItems.SALT_CRYSTAL);
+        normalItem(DeepWatersItems.SHARK_TOOTH);
+        normalItem(DeepWatersItems.PEAL_WAND);
+
     }
 }
