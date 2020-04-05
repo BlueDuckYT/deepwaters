@@ -16,6 +16,6 @@ public class DeepWatersBiomes {
             "coralfields", () -> new CoralFieldsBiome());
 
     public static void addBiomeTypes() {
-        BiomeDictionary.addTypes(CoralFieldsBiome.get(), BiomeDictionary.Type.NETHER);
+        BiomeDictionary.addTypes(CoralFieldsBiome.get(), BiomeDictionary.Type.OCEAN);
     }
 }

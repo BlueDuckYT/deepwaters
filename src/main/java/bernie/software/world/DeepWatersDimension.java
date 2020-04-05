@@ -127,7 +127,7 @@ public class DeepWatersDimension extends Dimension
 
 	@Override
 	public float getCloudHeight() {
-		return 256;
+		return 384;
 	}
 
 	protected void generateLightBrightnessTable() {
@@ -165,7 +165,7 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public int getSeaLevel()
 	{
-		return 512;
+		return 200;
 	}
 
 

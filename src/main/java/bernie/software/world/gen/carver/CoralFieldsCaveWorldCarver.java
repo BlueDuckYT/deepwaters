@@ -20,7 +20,7 @@ import net.minecraft.world.gen.feature.ProbabilityConfig;
 public class CoralFieldsCaveWorldCarver extends CaveWorldCarver
 {
 	public CoralFieldsCaveWorldCarver(Function<Dynamic<?>, ? extends ProbabilityConfig> p_i49927_1_) {
-		super(p_i49927_1_, 128);
+		super(p_i49927_1_, 200);
 		this.carvableBlocks = ImmutableSet.of(Blocks.WATER, DeepWatersBlocks.OCEAN_FLOOR.get(), DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get(), DeepWatersBlocks.SUNKEN_GRAVEL.get(), DeepWatersBlocks.SALT_ORE.get());
 		this.carvableFluids = ImmutableSet.of(Fluids.WATER);
 
