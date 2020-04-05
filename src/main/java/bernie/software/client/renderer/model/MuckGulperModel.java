@@ -94,12 +94,14 @@ public class MuckGulperModel extends EntityModel<MuckGulper> {
 
 		this.Tooth1.rotateAngleX = (float) (MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
 		this.Tooth2.rotateAngleX = (float) (-1 * MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
+		this.FinLeft.rotateAngleZ = (float) (MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
+		this.FinRight.rotateAngleZ = (float) (-1 * MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
+
 	}
 
 	@Override
 	public void setLivingAnimations(MuckGulper entityIn, float limbSwing, float limbSwingAmount, float partialTick)
 	{
 		this.Head.rotateAngleZ = (float) (MathHelper.sin(limbSwing) * 5);
-
 	}
 }

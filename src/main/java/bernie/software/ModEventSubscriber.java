@@ -59,6 +59,8 @@ public class ModEventSubscriber {
 		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(EntityType.SALMON, 100, 5, 30));
 		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 10, 1, 2));
 		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 300, 1, 2));
+		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(DeepWatersEntities.MUCK_GULPER.get(), 300, 1, 2));
+
 	}
 
 	@OnlyIn(Dist.CLIENT)

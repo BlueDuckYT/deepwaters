@@ -28,7 +28,6 @@ public class CoralFieldsBiome extends WaterBiomeBase
 		DeepWatersBiomeFeatures.addDeepWatersOres(this);
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
 		DefaultBiomeFeatures.addSparseOakTrees(this);
-		DeepWatersBiomeFeatures.addCarvers(this);
 
 	}
 
