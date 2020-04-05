@@ -2,12 +2,7 @@ package bernie.software;
 
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
-import bernie.software.datagen.DeepWatersLootTables;
-import bernie.software.datagen.DeepWatersRecipes;
-import bernie.software.registry.DeepWatersBiomes;
-import bernie.software.registry.DeepWatersBlocks;
-import bernie.software.registry.DeepWatersEntities;
-import bernie.software.registry.DeepWatersItems;
+import bernie.software.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -30,6 +25,7 @@ public class DeepWatersMod {
 		DeepWatersBlocks.BLOCKS.register(bus);
 		DeepWatersItems.ITEMS.register(bus);
 		DeepWatersEntities.ENTITIES.register(bus);
+		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
 	}
 
 	public static final String ModID = "deepwaters";

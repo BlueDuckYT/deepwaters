@@ -23,22 +23,31 @@ public class CoralFieldsCaveWorldCarver extends CaveWorldCarver
 		this.carvableFluids = ImmutableSet.of(Fluids.WATER);
 	}
 
+	@Override
 	protected int func_222724_a() {
 		return 10;
 	}
 
+	@Override
 	protected float generateCaveRadius(Random rand) {
 		return (rand.nextFloat() * 2.0F + rand.nextFloat()) * 2.0F;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 
 	protected double func_222725_b() {
 		return 5.0D;
 	}
 
+	@Override
 	protected int generateCaveStartY(Random p_222726_1_) {
 		return p_222726_1_.nextInt(this.maxHeight);
 	}
 
+	@Override
 	protected boolean carveBlock(IChunk chunkIn, BitSet carvingMask, Random rand, BlockPos.MutableBlockPos p_222703_4_, BlockPos.MutableBlockPos p_222703_5_, BlockPos.MutableBlockPos p_222703_6_, int p_222703_7_, int p_222703_8_, int p_222703_9_, int p_222703_10_, int p_222703_11_, int p_222703_12_, int p_222703_13_, int p_222703_14_, AtomicBoolean p_222703_15_) {
 		int i = p_222703_12_ | p_222703_14_ << 4 | p_222703_13_ << 8;
 		if (carvingMask.get(i)) {
