@@ -2,14 +2,20 @@
   "block.deepwaters.mossy_ocean_floor": "Mossy Ocean Floor",
   "block.deepwaters.ocean_floor": "Ocean Floor",
   "block.deepwaters.sunken_gravel": "Sunken Gravel",
-  "block.deepwaters.salt_ore": "Salt Ore",
+  "block.deepwaters.salt_ore": "Salt Crystal Ore",
+  "block.deepwaters.prismarine_crystal_ore": "Prismarine Crystal Ore",
+  "block.deepwaters.pearl_block": "Pearl Block",
+
+  "item.deepwaters.salt_crystal": "Salt Crystal",
+  "item.deepwaters.pearl": "Pearl",
 
   "itemGroup.deepwaters.deepwaters_blocks": "Deep Waters Blocks",
   "itemGroup.deepwaters.deepwaters_items": "Deep Waters Items",
 
-  "entity.deepwaters.killer_wiggler": "Killer Wiggler",
+  "entity.deepwaters.killerwiggler": "Killer Wiggler",
   "entity.deepwaters.blufferfish": "Blufferfish",
   "entity.deepwaters.clam": "Clam",
-  "entity.deepwaters.stingray": "Stingray"
+  "entity.deepwaters.stingray": "Stingray",
+  "entity.deepwaters.muckgulper": "Muck Gulper"
 
 }

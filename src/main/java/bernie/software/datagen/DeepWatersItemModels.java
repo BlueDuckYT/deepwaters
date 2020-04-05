@@ -23,7 +23,10 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider {
         itemBlock(DeepWatersBlocks.SUNKEN_GRAVEL);
         itemBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR);
         itemBlock(DeepWatersBlocks.SALT_ORE);
+        itemBlock(DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE);
+        itemBlock(DeepWatersBlocks.PEARL_BLOCK);
 
         normalItem(DeepWatersItems.SALT_CRYSTAL);
+        normalItem(DeepWatersItems.PEARL);
     }
 }

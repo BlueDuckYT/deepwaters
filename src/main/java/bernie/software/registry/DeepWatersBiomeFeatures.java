@@ -22,7 +22,8 @@ public class DeepWatersBiomeFeatures {
             "OCEAN_FLOOR", "ocean_floor", new BlockMatcher(DeepWatersBlocks.OCEAN_FLOOR.get()));
 
     public static void addDeepWatersOres(Biome biome) {
-        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OCEAN_FLOOR, DeepWatersBlocks.SALT_ORE.get().getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(8, 5,10,128)));
+        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OCEAN_FLOOR, DeepWatersBlocks.SALT_ORE.get().getDefaultState(), 17), Placement.COUNT_RANGE, new CountRangeConfig(20, 0,0,128)));
+        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OCEAN_FLOOR, DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get().getDefaultState(), 8), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0,200)));
     }
 
     public static void addSedimentDisks(Biome biomeIn) {

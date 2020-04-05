@@ -28,9 +28,12 @@ public class DeepWatersBlocks {
 
     public static final RegistryObject<Block> MOSSY_OCEAN_FLOOR = registerBlock("mossy_ocean_floor", () -> new MossyOceanFloorBlock());
     public static final RegistryObject<Block> OCEAN_FLOOR = registerBlock("ocean_floor", () -> new DeepWatersBlock(
-            Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 1, ToolType.PICKAXE));
-    public static final RegistryObject<Block> SALT_ORE = registerBlock("salt_ore", () -> new DeepWatersOreBlock(2));
+            Material.ROCK, 3.0F, 40.0F, SoundType.STONE, 1, ToolType.PICKAXE));
+    public static final RegistryObject<Block> SALT_ORE = registerBlock("salt_ore", () -> new DeepWatersOreBlock(1));
+    public static final RegistryObject<Block> PRISMARINE_CRYSTAL_ORE = registerBlock("prismarine_crystal_ore", () -> new DeepWatersOreBlock(2));
     public static final RegistryObject<Block> SUNKEN_GRAVEL = registerBlock("sunken_gravel",() -> new SunkenGravelBlock());
+    public static final RegistryObject<Block> PEARL_BLOCK = registerBlock("pearl_block", () -> new DeepWatersBlock(
+            Material.GLASS, 1.0F, 0F, SoundType.GLASS, 0, ToolType.PICKAXE));
 
 
     private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
