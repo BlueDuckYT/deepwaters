@@ -27,5 +27,7 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider {
         normalBlock(DeepWatersBlocks.METALLIC_BLOCK_ORANGE);
         normalBlock(DeepWatersBlocks.LIMESTONE);
         normalBlock(DeepWatersBlocks.MAGMATIC_ROCK);
+        normalBlock(DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE);
+        normalBlock(DeepWatersBlocks.PEARL_BLOCK);
     }
 }
