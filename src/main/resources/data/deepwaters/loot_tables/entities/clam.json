@@ -1,0 +1,28 @@
+{
+  "pools": [
+    {
+      "name": "salt",
+      "rolls": 1,
+      "entries": [{
+        "type": "item",
+        "name": "deepwaters:salt_crystal",
+        "functions": [
+          { "function": "set_count", "count": { "min": 0, "max": 3 } },
+          { "function": "looting_enchant", "count": { "min": 0, "max": 2 } }
+        ]
+      }]
+    },
+    {
+      "name": "pearl",
+      "rolls": 1,
+      "entries": [{
+        "type": "item",
+        "name": "deepwaters:pearl",
+        "functions": [
+          { "function": "set_count", "count": {"min": 0, "max": 1} }
+        ]
+      }
+      ]
+    }
+  ]
+}

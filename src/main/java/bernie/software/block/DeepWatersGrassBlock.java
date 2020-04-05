@@ -18,11 +18,11 @@ import java.util.Random;
 
 public class DeepWatersGrassBlock extends SpreadableSnowyDirtBlock {
 
-    protected DeepWatersGrassBlock(Properties properties) {
+    public DeepWatersGrassBlock(Properties properties) {
         super(properties);
     }
 
-    private static boolean func_220257_b(BlockState p_220257_0_, IWorldReader p_220257_1_, BlockPos p_220257_2_) {
+    public static boolean func_220257_b(BlockState p_220257_0_, IWorldReader p_220257_1_, BlockPos p_220257_2_) {
         BlockPos blockpos = p_220257_2_.up();
         BlockState blockstate = p_220257_1_.getBlockState(blockpos);
         if (blockstate.getBlock() == Blocks.SNOW && blockstate.get(SnowBlock.LAYERS) == 1) {
@@ -33,9 +33,8 @@ public class DeepWatersGrassBlock extends SpreadableSnowyDirtBlock {
         }
     }
 
-    private static boolean func_220256_c(BlockState p_220256_0_, IWorldReader p_220256_1_, BlockPos p_220256_2_) {
-        BlockPos blockpos = p_220256_2_.up();
-        return func_220257_b(p_220256_0_, p_220256_1_, p_220256_2_) && !p_220256_1_.getFluidState(blockpos).isTagged(FluidTags.WATER);
+    public static boolean func_220256_c(BlockState p_220256_0_, IWorldReader p_220256_1_, BlockPos p_220256_2_) {
+        return func_220257_b(p_220256_0_, p_220256_1_, p_220256_2_);
     }
 
     @Override
@@ -45,7 +44,7 @@ public class DeepWatersGrassBlock extends SpreadableSnowyDirtBlock {
             if (!func_220257_b(state, worldIn, pos)) {
                 worldIn.setBlockState(pos, DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState());
             } else {
-                if (worldIn.getLight(pos.up()) >= 9) {
+                if (worldIn.getLight(pos.up()) >= 0) {
                     BlockState blockstate = this.getDefaultState();
 
                     for(int i = 0; i < 4; ++i) {

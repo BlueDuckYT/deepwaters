@@ -14,7 +14,7 @@ import net.minecraft.world.gen.OctavesNoiseGenerator;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
+public class CoralFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig>
 {
 	private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
 	private static final BlockState MOSSY_OCEAN_FLOOR = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
@@ -24,7 +24,7 @@ public class DefaultWaterSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderCon
 	protected long seed;
 	protected OctavesNoiseGenerator randomNoiseGenerator;
 
-	public DefaultWaterSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51308_1_) {
+	public CoralFieldsSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51308_1_) {
 		super(p_i51308_1_);
 	}
 

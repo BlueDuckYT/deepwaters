@@ -2,6 +2,7 @@ package bernie.software;
 
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
+import bernie.software.datagen.DeepWatersLootTables;
 import bernie.software.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
