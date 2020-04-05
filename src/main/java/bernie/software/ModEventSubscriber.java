@@ -53,20 +53,18 @@ public class ModEventSubscriber {
 	{
 		CoralFieldsBiome biome = (CoralFieldsBiome) DeepWatersBiomes.CoralFieldsBiome.get();
 
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 150, 4, 30));
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 2, 1, 1));
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.STING_RAY.get(), 20, 1, 3));
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.COD, 100, 5, 30));
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.SALMON, 100, 5, 30));
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 10, 1, 2));
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 300, 1, 2));
+		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 150, 4, 30));
+		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 2, 1, 1));
+		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(EntityType.COD, 100, 5, 30));
+		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(EntityType.SALMON, 100, 5, 30));
+		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 10, 1, 2));
+		biome.addWeightedWaterCreatureSpawn(10, new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 300, 1, 2));
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void doClientStuff(final FMLClientSetupEvent event)
 	{
-
 		RenderingRegistry.registerEntityRenderingHandler(KillerWiggler.class, manager -> new KillerWigglerRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(BlufferFish.class, manager -> new BlufferFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(Clam.class, manager -> new ClamRenderer(manager));

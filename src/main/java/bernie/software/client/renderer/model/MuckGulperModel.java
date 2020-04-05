@@ -1,8 +1,10 @@
 package bernie.software.client.renderer.model;
+
 import bernie.software.entity.MuckGulper;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.util.math.MathHelper;
 // Made with Blockbench
 // Paste this code into your mod.
 // Make sure to generate all required imports
@@ -11,12 +13,12 @@ public class MuckGulperModel extends EntityModel<MuckGulper> {
 	private final RendererModel Body;
 	private final RendererModel Tail;
 	private final RendererModel Head;
-	private final RendererModel Tooth4;
-	private final RendererModel Tooth3;
-	private final RendererModel Tooth2;
-	private final RendererModel Tooth1;
 	private final RendererModel FinLeft;
 	private final RendererModel FinRight;
+	private final RendererModel Tooth1;
+	private final RendererModel Tooth2;
+	private final RendererModel Tooth3;
+	private final RendererModel Tooth4;
 
 	public MuckGulperModel() {
 		textureWidth = 25;
@@ -39,35 +41,31 @@ public class MuckGulperModel extends EntityModel<MuckGulper> {
 		Head.setRotationPoint(0.0F, 19.0F, -5.0F);
 		Head.cubeList.add(new ModelBox(Head, 0, 19, -2.0F, -2.0F, -2.0F, 4, 4, 2, 0.0F, false));
 
-		Tooth4 = new RendererModel(this);
-		Tooth4.setRotationPoint(1.0F, 0.0F, -2.0F);
-		Head.addChild(Tooth4);
-		Tooth4.cubeList.add(new ModelBox(Tooth4, 14, 21, 0.0F, -1.0F, -1.0F, 0, 2, 1, 0.0F, false));
-
-		Tooth3 = new RendererModel(this);
-		Tooth3.setRotationPoint(-1.0F, 0.0F, -2.0F);
-		Head.addChild(Tooth3);
-		Tooth3.cubeList.add(new ModelBox(Tooth3, 14, 21, 0.0F, -1.0F, -1.0F, 0, 2, 1, 0.0F, false));
-
-		Tooth2 = new RendererModel(this);
-		Tooth2.setRotationPoint(0.0F, -1.0F, -2.0F);
-		Head.addChild(Tooth2);
-		Tooth2.cubeList.add(new ModelBox(Tooth2, 12, 24, -1.0F, 0.0F, -1.0F, 2, 0, 1, 0.0F, false));
-
-		Tooth1 = new RendererModel(this);
-		Tooth1.setRotationPoint(0.0F, 1.0F, -2.0F);
-		Head.addChild(Tooth1);
-		Tooth1.cubeList.add(new ModelBox(Tooth1, 12, 24, -1.0F, 0.0F, -1.0F, 2, 0, 1, 0.0F, false));
-
 		FinLeft = new RendererModel(this);
 		FinLeft.setRotationPoint(1.0F, 19.0F, -3.0F);
 		FinLeft.cubeList.add(new ModelBox(FinLeft, 13, 21, 0.0F, 0.0F, -1.0F, 2, 0, 3, 0.0F, false));
-		FinLeft.cubeList.add(new ModelBox(FinLeft, 6, 11, 1.0F, 0.0F, 2.0F, 1, 0, 2, 0.0F, false));
+		FinLeft.cubeList.add(new ModelBox(FinLeft, 15, 10, 1.0F, 0.0F, 2.0F, 1, 0, 2, 0.0F, false));
 
 		FinRight = new RendererModel(this);
 		FinRight.setRotationPoint(-1.0F, 19.0F, -3.0F);
 		FinRight.cubeList.add(new ModelBox(FinRight, 13, 18, -2.0F, 0.0F, -1.0F, 2, 0, 3, 0.0F, false));
-		FinRight.cubeList.add(new ModelBox(FinRight, 5, 11, -2.0F, 0.0F, 2.0F, 1, 0, 2, 0.0F, false));
+		FinRight.cubeList.add(new ModelBox(FinRight, 15, 10, -2.0F, 0.0F, 2.0F, 1, 0, 2, 0.0F, false));
+
+		Tooth1 = new RendererModel(this);
+		Tooth1.setRotationPoint(0.0F, 20.0F, -7.0F);
+		Tooth1.cubeList.add(new ModelBox(Tooth1, 12, 24, -1.0F, 0.0F, -1.0F, 2, 0, 1, 0.0F, false));
+
+		Tooth2 = new RendererModel(this);
+		Tooth2.setRotationPoint(0.0F, 18.0F, -7.0F);
+		Tooth2.cubeList.add(new ModelBox(Tooth2, 12, 24, -1.0F, 0.0F, -1.0F, 2, 0, 1, 0.0F, false));
+
+		Tooth3 = new RendererModel(this);
+		Tooth3.setRotationPoint(-1.0F, 19.0F, -7.0F);
+		Tooth3.cubeList.add(new ModelBox(Tooth3, 14, 21, 0.0F, -1.0F, -1.0F, 0, 2, 1, 0.0F, false));
+
+		Tooth4 = new RendererModel(this);
+		Tooth4.setRotationPoint(1.0F, 19.0F, -7.0F);
+		Tooth4.cubeList.add(new ModelBox(Tooth4, 14, 21, 0.0F, -1.0F, -1.0F, 0, 2, 1, 0.0F, false));
 	}
 
 	@Override
@@ -77,6 +75,10 @@ public class MuckGulperModel extends EntityModel<MuckGulper> {
 		Head.render(f5);
 		FinLeft.render(f5);
 		FinRight.render(f5);
+		Tooth1.render(f5);
+		Tooth2.render(f5);
+		Tooth3.render(f5);
+		Tooth4.render(f5);
 	}
 	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
@@ -87,6 +89,17 @@ public class MuckGulperModel extends EntityModel<MuckGulper> {
 	@Override
 	public void setRotationAngles(MuckGulper entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
-		this.Head.rotateAngleY = 0;
+		this.Tooth4.rotateAngleY = (float) (MathHelper.sin((float) (limbSwing * 1.5)) * 0.5);
+		this.Tooth3.rotateAngleY = (float) (-1 * MathHelper.sin((float) (limbSwing * 1.5)) * 0.5);
+
+		this.Tooth1.rotateAngleX = (float) (MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
+		this.Tooth2.rotateAngleX = (float) (-1 * MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
+	}
+
+	@Override
+	public void setLivingAnimations(MuckGulper entityIn, float limbSwing, float limbSwingAmount, float partialTick)
+	{
+		this.Head.rotateAngleZ = (float) (MathHelper.sin(limbSwing) * 5);
+
 	}
 }

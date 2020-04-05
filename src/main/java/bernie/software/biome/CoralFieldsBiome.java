@@ -16,7 +16,7 @@ import net.minecraft.world.gen.feature.*    ;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-public class CoralFieldsBiome extends Biome
+public class CoralFieldsBiome extends WaterBiomeBase
 {
 	public CoralFieldsBiome()
 	{
@@ -49,16 +49,6 @@ public class CoralFieldsBiome extends Biome
 		//this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 1, 4, 4));
 	}
 
-	@Override
-	public void addSpawn(EntityClassification type, SpawnListEntry spawnListEntry)
-	{
-		super.addSpawn(type, spawnListEntry);
-	}
 
-	public void AddWorldCarver()
-	{
-		WorldCarver<ProbabilityConfig> carver = DeepWatersWorldCarvers.CORAL_CAVE_CARVER.get();
-		this.addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(0.4F)));
-	}
 
 }
