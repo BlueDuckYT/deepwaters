@@ -5,9 +5,16 @@
   "block.deepwaters.salt_ore": "Salt Crystal Ore",
   "block.deepwaters.prismarine_crystal_ore": "Prismarine Crystal Ore",
   "block.deepwaters.pearl_block": "Pearl Block",
+  "block.deepwaters.metallic_block_black": "Black Metallic Block",
+  "block.deepwaters.metallic_block_cyan": "Cyan Metallic Block",
+  "block.deepwaters.metallic_block_orange": "Orange Metallic Block",
+  "block.deepwaters.limestone": "Limestone",
+  "block.deepwaters.magmatic_rock": "Magmatic Rock",
 
   "item.deepwaters.salt_crystal": "Salt Crystal",
   "item.deepwaters.pearl": "Pearl",
+  "item.deepwaters.sharktooth": "Shark Tooth",
+  "item.deepwaters.pearl_wand": "Pearl Wand",
 
   "itemGroup.deepwaters.deepwaters_blocks": "Deep Waters Blocks",
   "itemGroup.deepwaters.deepwaters_items": "Deep Waters Items",
@@ -16,6 +23,7 @@
   "entity.deepwaters.blufferfish": "Blufferfish",
   "entity.deepwaters.clam": "Clam",
   "entity.deepwaters.stingray": "Stingray",
-  "entity.deepwaters.muckgulper": "Muck Gulper"
+  "entity.deepwaters.muckgulper": "Muck Gulper",
+  "entity.deepwaters.babykracken": "Baby Kracken"
 
 }

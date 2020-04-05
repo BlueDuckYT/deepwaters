@@ -53,7 +53,7 @@ public class ModEventSubscriber {
 	{
 		CoralFieldsBiome biome = (CoralFieldsBiome) DeepWatersBiomes.CoralFieldsBiome.get();
 
-		biome.addWeightedWaterCreatureSpawn(3, new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 150, 4, 30));
+		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 150, 4, 30));
 		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 2, 1, 1));
 		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(EntityType.COD, 100, 5, 30));
 		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(EntityType.SALMON, 100, 5, 30));
