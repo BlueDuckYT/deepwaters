@@ -1,5 +1,7 @@
 package bernie.software.world.gen.carver;
 
+import bernie.software.biome.CoralFieldsBiome;
+import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersBlocks;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.Dynamic;
@@ -21,6 +23,7 @@ public class CoralFieldsCaveWorldCarver extends CaveWorldCarver
 		super(p_i49927_1_, 128);
 		this.carvableBlocks = ImmutableSet.of(Blocks.WATER, DeepWatersBlocks.OCEAN_FLOOR.get(), DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get(), DeepWatersBlocks.SUNKEN_GRAVEL.get(), DeepWatersBlocks.SALT_ORE.get());
 		this.carvableFluids = ImmutableSet.of(Fluids.WATER);
+
 	}
 
 	@Override

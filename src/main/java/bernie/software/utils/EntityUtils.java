@@ -10,7 +10,7 @@ public class EntityUtils
 {
 	public static <T extends Entity> RegistryObject<EntityType<T>> BuildWaterEntity(EntityType.IFactory<T> entity, Class<T> entityClass, float width, float height)
 	{
-	    String name = entityClass.getClass().getSimpleName().toLowerCase();
+	    String name = entityClass.getSimpleName().toLowerCase();
 	    return DeepWatersEntities.ENTITIES.register(name, () -> EntityType.Builder.create(entity, EntityClassification.WATER_CREATURE)
 	            .size(width, height).build(name));
 	}
