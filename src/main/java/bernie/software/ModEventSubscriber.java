@@ -20,6 +20,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
+import javax.swing.text.DefaultEditorKit;
+
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber {
 
@@ -29,18 +31,20 @@ public class ModEventSubscriber {
 	@SubscribeEvent
 	public static void onDimensionRegistryEvent(final RegistryEvent.Register<ModDimension> event)
 	{
-		event.getRegistry().register(new DeepWatersModDimension().setRegistryName("deepwaters:deepwatersdimension"));
+		event.getRegistry().register(new DeepWatersModDimension().setRegistryName(Location("deepwatersdimension")));
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void doClientStuff(final FMLClientSetupEvent event)
 	{
+
 		RenderingRegistry.registerEntityRenderingHandler(KillerWiggler.class, manager -> new KillerWigglerRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(BlufferFish.class, manager -> new BlufferFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(Clam.class, manager -> new ClamRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(Stingray.class, manager -> new StingrayRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(BabyKracken.class, manager -> new BabyKrackenRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(MuckGulper.class, manager -> new MuckGulperRenderer(manager));
 	}
 
 	public static ResourceLocation Location(String name)

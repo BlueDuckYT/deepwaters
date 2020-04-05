@@ -49,13 +49,13 @@ public class DeepWatersLootTables extends LootTableProvider {
     public static class Entities extends EntityLootTables {
         @Override
         protected void addTables() {
-            this.registerLootTable(DeepWatersEntities.killer_wiggler,
+            this.registerLootTable(DeepWatersEntities.KILLER_WIGGLER.get(),
                     LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.DIAMOND).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))).acceptCondition(KilledByPlayer.builder())));
-            this.registerLootTable(DeepWatersEntities.blufferfish,
+            this.registerLootTable(DeepWatersEntities.BLUFFERFISH.get(),
                     LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.SALT_CRYSTAL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 3.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 2.0F)))).acceptCondition(KilledByPlayer.builder())));
-            this.registerLootTable(DeepWatersEntities.clam,
+            this.registerLootTable(DeepWatersEntities.CLAM.get(),
                     LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.PEARL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))).acceptCondition(KilledByPlayer.builder())));
-            this.registerLootTable(DeepWatersEntities.stingRay,
+            this.registerLootTable(DeepWatersEntities.STING_RAY.get(),
                     LootTable.builder());
         }
 

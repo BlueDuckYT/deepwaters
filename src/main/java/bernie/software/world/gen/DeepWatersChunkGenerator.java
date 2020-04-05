@@ -3,19 +3,14 @@ package bernie.software.world.gen;
 import java.util.ArrayList;
 import java.util.List;
 
-import bernie.software.block.DeepWatersBlock;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersEntities;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.NoiseChunkGenerator;
-import net.minecraft.world.gen.feature.Feature;
 
 public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<DeepWatersGenSettings>
 {
@@ -54,7 +49,7 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 			}
 			
 			// Mess around with this number cause apparently its magical
-			if (d0 < 2.0D) {
+			if (d0 < 1.0D) {
 				d0 = 4.0D - d0;
 				adouble[i] -= d0 * d0 * d0 * 10.0D;
 			}
@@ -69,7 +64,7 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 		if(block == DeepWatersBlocks.OCEAN_FLOOR.get())
 		{
 			List<Biome.SpawnListEntry> spawns = new ArrayList<Biome.SpawnListEntry>();
-			spawns.add(new Biome.SpawnListEntry(DeepWatersEntities.clam, 300, 1, 4));
+			spawns.add(new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 300, 1, 4));
 			return spawns;
 		}
 		return super.getPossibleCreatures(creatureType, pos);

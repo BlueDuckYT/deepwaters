@@ -1,28 +1,17 @@
 package bernie.software.biome;
 
-import bernie.software.ModEventSubscriber;
-import bernie.software.entity.BlufferFish;
-import bernie.software.entity.Clam;
 import bernie.software.registry.DeepWatersBiomeFeatures;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.surfacebuilder.DefaultWaterSurfaceBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.biome.OceanBiome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*    ;
-import net.minecraft.world.gen.feature.structure.ShipwreckConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.*;
-import net.minecraft.world.gen.surfacebuilders.NetherSurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class CoralFieldsBiome extends Biome
@@ -49,12 +38,15 @@ public class CoralFieldsBiome extends Biome
 		//this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, Blocks.MAGMA_BLOCK.getDefaultState(), 33), Placement.MAGMA, new FrequencyConfig(4)));
 		//this.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, createDecoratedFeature(Feature.NETHER_SPRING, new HellLavaConfig(true), Placement.COUNT_RANGE, new CountRangeConfig(16, 10, 20, 128)));
 
-		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.blufferfish, 150, 4, 30));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.killer_wiggler, 2, 1, 1));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.stingRay, 20, 1, 3));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 150, 4, 30));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 2, 1, 1));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.STING_RAY.get(), 20, 1, 3));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.COD, 100, 5, 30));
 		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.SALMON, 100, 5, 30));
-		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.babyKracken, 10, 1, 2));
+
+		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 10, 1, 2));
+		this.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 300, 1, 2));
+
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(48, 0.3D), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
 		DefaultBiomeFeatures.addKelp(this);
 		DefaultBiomeFeatures.addExtraKelp(this);

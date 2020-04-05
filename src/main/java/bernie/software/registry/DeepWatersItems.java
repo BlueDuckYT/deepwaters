@@ -12,7 +12,7 @@ public class DeepWatersItems {
 
     public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, DeepWatersMod.ModID);
 
-    public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", DeepWatersItem::new);
-    public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", DeepWatersItem::new);
+    public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", () -> new DeepWatersItem());
+    public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
 
 }
