@@ -14,9 +14,9 @@ public class WaterBiomeBase extends Biome
 		super(biomeBuilder);
 	}
 
-	public static EntityClassification WATER_PASSIVE = EntityClassification.create("water_passive", "WATER_PASSIVE", 200, true,false);
-	public static EntityClassification WATER_MONSTER = EntityClassification.create("water_monster", "WATER_MONSTER", 200, false,false);
-	public static EntityClassification WATER_LAND_PASSIVE = EntityClassification.create("water_land_passive", "WATER_LAND_PASSIVE", 200, true,true);
+	public static EntityClassification WATER_PASSIVE = EntityClassification.create("water_passive", "WATER_PASSIVE", 100, true,false);
+	public static EntityClassification WATER_MONSTER = EntityClassification.create("water_monster", "WATER_MONSTER", 100, false,false);
+	public static EntityClassification WATER_LAND_PASSIVE = EntityClassification.create("water_land_passive", "WATER_LAND_PASSIVE", 100, true,true);
 
 	@Override
 	public void addSpawn(EntityClassification type, SpawnListEntry spawnListEntry)
