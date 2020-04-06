@@ -1,5 +1,6 @@
 # Gradle
 
+
 # Build your Java project and run tests with Gradle using a Gradle wrapper script.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -26,3 +27,22 @@ steps:
   inputs:
     targetPath: '$(Pipeline.Workspace)/s/build/libs/'
     publishLocation: 'pipeline'
+
+- task: ado-discord-webhook@1
+  inputs:
+    channelId: '696827985453514783'
+    webhookKey: '696828133533548544'
+    messageType: 'embeds'
+    embeds: '{
+  "embed": {
+    "title": "Download the build here!",
+    "description": "New code has been pushed, check out the newest build!\n\n**Build ID: ${Build.BuildId}**\n\n**Commit ID: ${Build.SourceVersion}**",
+    "url": "${Build.BuildUri}/&view=artifacts&type=publishedArtifacts",
+    "color": 14361601,
+
+    "footer": {
+      "icon_url": "https://i.ibb.co/nCJ7RW6/wiggler-circle.png",
+      "text": "The Deep Waters Project"
+    }
+  }
+}'
