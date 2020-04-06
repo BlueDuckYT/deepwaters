@@ -28,20 +28,9 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/build/libs/'
     publishLocation: 'pipeline'
 
-- task: ado-discord-webhook@1
+- task: fizzcode-discordhook@1
   inputs:
-    channelId: '696828133533548544'
-    webhookKey: 'c2THSHw1v4x9Pmculi-WMIy6NEwxqkc28OcSanA83o7C6esOGVEkk7NHn9S2I8bAn133'
-    messageType: 'embeds'
-    embeds: |
-      [{
-      	"title": "Download the build here!",
-      	"description": "New code has been pushed, check out the newest build!\n\n**Build ID: ${Build.BuildId}**\n\n**Commit ID: ${Build.SourceVersion}**",
-      	"url": "${Build.BuildUri}/&view=artifacts&type=publishedArtifacts",
-      	"color": 14361601,
-      
-      	"footer": {
-      		"icon_url": "https://i.ibb.co/nCJ7RW6/wiggler-circle.png",
-      		"text": "The Deep Waters Project"
-      	}
-      }]
+    DiscordChannelID: '696828133533548544'
+    DiscordToken: 'c2THSHw1v4x9Pmculi-WMIy6NEwxqkc28OcSanA83o7C6esOGVEkk7NHn9S2I8bAn133'
+    Title: '$Build $(Build.BuildNumber) succeeded ($(Build.Reason))'
+    Message: 'Download the build here: ${Build.BuildUri}/&view=artifacts&type=publishedArtifacts'
