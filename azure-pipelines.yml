@@ -33,4 +33,4 @@ steps:
     DiscordChannelID: '696828133533548544'
     DiscordToken: 'c2THSHw1v4x9Pmculi-WMIy6NEwxqkc28OcSanA83o7C6esOGVEkk7NHn9S2I8bAn133'
     Title: 'New build created'
-    Message: 'Download the build here: https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildNumber)/&view=artifacts&type=publishedArtifacts'
+    Message: 'Download the build here: https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)/&view=artifacts&type=publishedArtifacts'
