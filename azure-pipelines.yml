@@ -32,5 +32,5 @@ steps:
   inputs:
     DiscordChannelID: '696828133533548544'
     DiscordToken: 'c2THSHw1v4x9Pmculi-WMIy6NEwxqkc28OcSanA83o7C6esOGVEkk7NHn9S2I8bAn133'
-    Title: 'New build created'
-    Message: 'Download the build here: https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts'
+    Title: 'New build: 1.1.$(Build.BuildId)'
+    Message: '**Commit: **$(Build.SourceVersionMessage)\n**Build Number: **$(Build.BuildId)\n**Build Reason: **$(Build.Reason)\n\nDownload the build here: https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts'
