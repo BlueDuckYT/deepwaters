@@ -1,0 +1,36 @@
+# Gradle
+
+
+# Build your Java project and run tests with Gradle using a Gradle wrapper script.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'build'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/build/libs/'
+    publishLocation: 'pipeline'
+
+- task: fizzcode-discordhook@1
+  inputs:
+    DiscordChannelID: '696828133533548544'
+    DiscordToken: 'c2THSHw1v4x9Pmculi-WMIy6NEwxqkc28OcSanA83o7C6esOGVEkk7NHn9S2I8bAn133'
+    Title: 'New build: 1.1.$(Build.BuildId)'
+    Message: '**Commit: **$(Build.SourceVersionMessage)\u200B**Build Number: **$(Build.BuildId)\u200B**Build Reason: **$(Build.Reason)\u200B\u200BDownload the build here: https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts'
