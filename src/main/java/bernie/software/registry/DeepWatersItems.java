@@ -20,9 +20,9 @@ public class DeepWatersItems {
     public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
     public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersItem());
 
-    public static final RegistryObject<SwordItem> PRISMARINE_SWORD = ITEMS.register("prismarine_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE));
-    public static final RegistryObject<PickaxeItem> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE));
-    public static final RegistryObject<AxeItem> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE));
+    //public static final RegistryObject<SwordItem> PRISMARINE_SWORD = ITEMS.register("prismarine_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE));
+    //public static final RegistryObject<PickaxeItem> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE));
+    //public static final RegistryObject<AxeItem> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE));
     public static final RegistryObject<ShovelItem> PRISMARINE_SHOVEl = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE));
 
 
