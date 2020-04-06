@@ -5,29 +5,20 @@ import bernie.software.client.renderer.entity.*;
 import bernie.software.entity.*;
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersEntities;
-import bernie.software.registry.DeepWatersWorldCarvers;
 import bernie.software.world.DeepWatersModDimension;
-import bernie.software.world.gen.carver.CoralFieldsCaveWorldCarver;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
-import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
-
-import javax.swing.text.DefaultEditorKit;
 
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber {
@@ -48,19 +39,21 @@ public class ModEventSubscriber {
 		biome.AddWorldCarver();
 	}
 
+	public static boolean coralBiomeSpawned = false;
 	@SubscribeEvent
 	public static void onEntityRegisterEvent(final RegistryEvent.Register<EntityType<?>> event)
 	{
 		CoralFieldsBiome biome = (CoralFieldsBiome) DeepWatersBiomes.CoralFieldsBiome.get();
-
-		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 150, 4, 30));
-		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 2, 1, 1));
-		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(EntityType.COD, 100, 5, 30));
-		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(EntityType.SALMON, 100, 5, 30));
-		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 10, 1, 2));
-		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 300, 1, 2));
-		biome.addWeightedWaterCreatureSpawn(30, new Biome.SpawnListEntry(DeepWatersEntities.MUCK_GULPER.get(), 300, 1, 2));
-
+		if(!coralBiomeSpawned) {
+			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 10, 4, 10));
+			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 1, 1, 1));
+			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(EntityType.SALMON, 10, 5, 10));
+			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 5, 1, 2));
+			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 12, 1, 2));
+			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.STING_RAY.get(), 8, 1, 4));
+			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.MUCK_GULPER.get(), 10, 1, 10));
+			coralBiomeSpawned = true;
+		}
 	}
 
 	@OnlyIn(Dist.CLIENT)

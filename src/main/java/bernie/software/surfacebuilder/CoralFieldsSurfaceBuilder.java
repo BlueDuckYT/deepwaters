@@ -1,14 +1,18 @@
 package bernie.software.surfacebuilder;
 
+import bernie.software.block.MossyOceanFloorBlock;
 import bernie.software.registry.DeepWatersBlocks;
 import com.mojang.datafixers.Dynamic;
 import java.util.Random;
 import java.util.function.Function;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.OceanBiome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.OctavesNoiseGenerator;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
@@ -38,8 +42,9 @@ public class CoralFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConf
 		int l = (int)(noise / 3.0D + 3.0D + random.nextDouble() * 0.25D);
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		int i1 = -1;
-		BlockState blockstate = MOSSY_OCEAN_FLOOR;
-		BlockState blockstate1 = MOSSY_OCEAN_FLOOR;
+		BlockState blockstate = OCEAN_FLOOR;
+		BlockState blockstate1 = OCEAN_FLOOR;
+		boolean aboveBlock = false;
 
 		for(int j1 = 256; j1 >= 0; --j1) {
 			blockpos$mutableblockpos.setPos(j, j1, k);
@@ -49,13 +54,39 @@ public class CoralFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConf
 					if (i1 == -1) {
 						if (l <= 0) {
 							blockstate = CAVE_AIR;
-							blockstate1 = MOSSY_OCEAN_FLOOR;
+							if(!aboveBlock)
+							{
+								blockstate1 = MOSSY_OCEAN_FLOOR;
+								aboveBlock = true;
+							}
+							else {
+								blockstate1 = OCEAN_FLOOR;
+								aboveBlock = false;
+
+							}
 						} else if (j1 >= i - 4 && j1 <= i + 1) {
 							blockstate = OCEAN_FLOOR;
-							blockstate1 = MOSSY_OCEAN_FLOOR;
+							if(!aboveBlock) {
+								blockstate1 = MOSSY_OCEAN_FLOOR;
+								aboveBlock = true;
+
+							}
+							else {
+								blockstate1 = OCEAN_FLOOR;
+								aboveBlock = false;
+
+							}
 							if (flag1) {
 								blockstate = GRAVEL;
-								blockstate1 = MOSSY_OCEAN_FLOOR;
+								if(!aboveBlock) {
+									blockstate1 = MOSSY_OCEAN_FLOOR;
+									aboveBlock = true;
+
+								}
+								else {
+									blockstate1 = OCEAN_FLOOR;
+									aboveBlock = false;
+								}
 							}
 
 							if (flag) {

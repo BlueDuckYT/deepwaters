@@ -3,6 +3,7 @@ import bernie.software.entity.BabyKracken;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.util.math.MathHelper;
 
 import static java.lang.Math.abs;
 // Made with Blockbench
@@ -192,50 +193,52 @@ public class BabyKrackenModel extends EntityModel<BabyKracken> {
 	@Override
 	public void setRotationAngles(BabyKracken entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
-		this.leg2.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg2part2.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing)) * 0.4);
-		this.leg2part3.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing)) * 0.5);
+		this.hexapus.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 
-		this.leg5.rotateAngleZ = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg5part2.rotateAngleZ = (float)(abs(Math.sin(limbSwing)) * 0.4);
-		this.leg5part3.rotateAngleZ = (float)(abs(Math.sin(limbSwing)) * 0.5);
+		this.leg2.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg2part2.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.4);
+		this.leg2part3.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.5);
 
-		this.leg8.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg8part2.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.4);
-		this.leg8part4.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.5);
+		this.leg5.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg5part2.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.4);
+		this.leg5part3.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.5);
 
-		this.leg7.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg7part2.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.4);
-		this.leg7part3.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.5);
+		this.leg8.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg8part2.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.4);
+		this.leg8part4.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.5);
+
+		this.leg7.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg7part2.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.4);
+		this.leg7part3.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.5);
 
 
-		this.leg1.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg1.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing )) * 0.3);
-		this.leg1part2.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg1part2.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg1part3.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg1part3.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing )) * 0.3);
+		this.leg1.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg1.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing )) * 0.3);
+		this.leg1part2.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg1part2.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg1part3.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg1part3.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing )) * 0.3);
 
-		this.leg4.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg4.rotateAngleZ = (float)(abs(Math.sin(limbSwing )) * 0.3);
-		this.leg4part2.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg4part2.rotateAngleZ = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg4part3.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg4part3.rotateAngleZ = (float)(abs(Math.sin(limbSwing )) * 0.3);
+		this.leg4.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg4.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing )) * 0.3);
+		this.leg4part2.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg4part2.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg4part3.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg4part3.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing )) * 0.3);
 
-		this.leg6.rotateAngleX = (float)(-1 *abs(Math.sin(limbSwing)) * 0.3);
-		this.leg6.rotateAngleZ = (float)(abs(Math.sin(limbSwing )) * 0.3);
-		this.leg6part2.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg6part2.rotateAngleZ = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg6part3.rotateAngleX = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg6part3.rotateAngleZ = (float)(abs(Math.sin(limbSwing )) * 0.3);
+		this.leg6.rotateAngleX = (float)(-1 *abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg6.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing )) * 0.3);
+		this.leg6part2.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg6part2.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg6part3.rotateAngleX = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg6part3.rotateAngleZ = (float)(abs(MathHelper.sin((float) limbSwing )) * 0.3);
 
-		this.leg3.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg3.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing )) * 0.3);
-		this.leg3part2.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg3part2.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing)) * 0.3);
-		this.leg3part3.rotateAngleX = (float)(abs(Math.sin(limbSwing)) * 0.3);
-		this.leg3part3.rotateAngleZ = (float)(-1 * abs(Math.sin(limbSwing )) * 0.3);
+		this.leg3.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg3.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing )) * 0.3);
+		this.leg3part2.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg3part2.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg3part3.rotateAngleX = (float)(abs(MathHelper.sin((float) limbSwing)) * 0.3);
+		this.leg3part3.rotateAngleZ = (float)(-1 * abs(MathHelper.sin((float) limbSwing )) * 0.3);
 
 
 

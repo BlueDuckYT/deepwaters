@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 import static java.lang.Math.abs;
 
@@ -65,11 +66,9 @@ public class BlufferFishModel extends EntityModel<BlufferFish>
 	@Override
 	public void setRotationAngles(BlufferFish entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
-		this.jaw.rotateAngleX = (float) abs((Math.sin(limbSwing * 1) * 0.5F));
-		//System.out.println(limbSwing);
-		this.leftfin.rotateAngleY = (float) abs((Math.sin(limbSwing) * 1.5F));
-		this.rightfin.rotateAngleY = (float) (-1F * abs((Math.sin(limbSwing) * 1.5F)));
-		this.tail.rotateAngleY = (float) (Math.sin(limbSwing * 3) * 0.6F);
-		this.tail.rotateAngleZ = 0;
+		this.jaw.rotateAngleX = (float) abs((MathHelper.sin((float) limbSwing * 1) * 0.5F));
+		this.leftfin.rotateAngleY = (float) abs((MathHelper.sin((float) limbSwing) * 1.5F));
+		this.rightfin.rotateAngleY = (float) (-1F * abs((MathHelper.sin((float) limbSwing) * 1.5F)));
+		this.tail.rotateAngleY = (float) (MathHelper.sin((float) limbSwing * 3) * 0.6F);
 	}
 }

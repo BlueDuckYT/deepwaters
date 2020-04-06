@@ -4,6 +4,7 @@ import bernie.software.entity.KillerWiggler;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.util.math.MathHelper;
 // Designed with Blockbench by pnamota/Sprint
 // Paste this code into your mod.
 // Make sure to generate all required imports
@@ -535,54 +536,43 @@ public class KillerWigglerModel extends EntityModel<KillerWiggler> {
 		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
 		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-		//this.center_claws_up.rotateAngleX = (float) (Math.sin(limbSwing) * 0.05F);
 
 		float limbSwingSpeed = 0.3F;
-		this.LL1.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-		this.LL2.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-		this.LL3.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-		this.LL4.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-		this.LL5.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-		this.LL6.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-		this.LL7.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-		this.LL8.rotateAngleY = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL1.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL2.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL3.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL4.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL5.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL6.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL7.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
-//		this.pt2_LL8.rotateAngleX = (float) Math.sin(limbSwing) * 0.5F;
+		this.LL1.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
+		this.LL2.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
+		this.LL3.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
+		this.LL4.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
+		this.LL5.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
+		this.LL6.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
+		this.LL7.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
+		this.LL8.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
 
+		this.RL1.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
+		this.RL2.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
+		this.RL3.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
+		this.RL4.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
+		this.RL5.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
+		this.RL6.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
+		this.RL7.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
+		this.RL8.rotateAngleY = (float) MathHelper.cos((float) limbSwing) * 0.5F;
 
+		this.tail_left.rotateAngleX = (float) (MathHelper.sin((float) limbSwing) * 0.5F);
+		this.tail_right.rotateAngleX = (float) (MathHelper.cos((float) limbSwing) * 0.5F);
 
-		this.RL1.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-		this.RL2.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-		this.RL3.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-		this.RL4.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-		this.RL5.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-		this.RL6.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-		this.RL7.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-		this.RL8.rotateAngleY = (float) Math.cos(limbSwing) * 0.5F;
-
-		this.tail_left.rotateAngleX = (float) (Math.sin(limbSwing) * 0.5F);
-		this.tail_right.rotateAngleX = (float) (Math.cos(limbSwing) * 0.5F);
-
-		this.right_claws_top.rotateAngleY = (float) (Math.cos(limbSwing) * 0.5F);
-		this.left_claws_bottom.rotateAngleY = (float) (Math.cos(limbSwing) * 0.5F);
-		this.right_claws_bottom.rotateAngleY = (float) (Math.sin(limbSwing) * 0.5F);
-		this.left_claws_top.rotateAngleY = (float) (Math.sin(limbSwing) * 0.5F);
+		this.right_claws_top.rotateAngleY = (float) (MathHelper.cos((float) limbSwing) * 0.5F);
+		this.left_claws_bottom.rotateAngleY = (float) (MathHelper.cos((float) limbSwing) * 0.5F);
+		this.right_claws_bottom.rotateAngleY = (float) (MathHelper.sin((float) limbSwing) * 0.5F);
+		this.left_claws_top.rotateAngleY = (float) (MathHelper.sin((float) limbSwing) * 0.5F);
 
 		float speedDivider = 4F;
 		float slowness = 4F;
-		this.all_except1.rotateAngleY = (float) Math.cos(limbSwing / slowness) * 0.1F / speedDivider;
-		this.all_except21.rotateAngleY = (float) Math.cos(limbSwing / slowness) * 0.2F / speedDivider;
-		this.all_except321.rotateAngleY = (float) Math.cos(limbSwing / slowness) * 0.3F / speedDivider;
-		this.all_except4321.rotateAngleY = (float) Math.cos(limbSwing / slowness) * 0.4F / speedDivider;
-		this.all_except54321.rotateAngleY = (float) Math.cos(limbSwing / slowness) * 0.6F / speedDivider;
-		this.all_except654321.rotateAngleY = (float) Math.cos(limbSwing / slowness) * 0.6F / speedDivider;
-		this.all_except7654321.rotateAngleY = (float) Math.cos(limbSwing / slowness) * 0.6F / speedDivider;
+		this.all_except1.rotateAngleY = (float) MathHelper.cos((float) limbSwing / slowness) * 0.1F / speedDivider;
+		this.all_except21.rotateAngleY = (float) MathHelper.cos((float) limbSwing / slowness) * 0.2F / speedDivider;
+		this.all_except321.rotateAngleY = (float) MathHelper.cos((float) limbSwing / slowness) * 0.3F / speedDivider;
+		this.all_except4321.rotateAngleY = (float) MathHelper.cos((float) limbSwing / slowness) * 0.4F / speedDivider;
+		this.all_except54321.rotateAngleY = (float) MathHelper.cos((float) limbSwing / slowness) * 0.6F / speedDivider;
+		this.all_except654321.rotateAngleY = (float) MathHelper.cos((float) limbSwing / slowness) * 0.6F / speedDivider;
+		this.all_except7654321.rotateAngleY = (float) MathHelper.cos((float) limbSwing / slowness) * 0.6F / speedDivider;
 
 	}
 

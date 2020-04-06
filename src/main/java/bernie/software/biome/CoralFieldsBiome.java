@@ -27,6 +27,7 @@ public class CoralFieldsBiome extends WaterBiomeBase
 		DefaultBiomeFeatures.addKelp(this);
 		DeepWatersBiomeFeatures.addDeepWatersOres(this);
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
+		DeepWatersBiomeFeatures.addStoneVariants(this);
 
 	}
 
@@ -36,5 +37,7 @@ public class CoralFieldsBiome extends WaterBiomeBase
 		WorldCarver<ProbabilityConfig> carver = DeepWatersWorldCarvers.CORAL_CAVE_CARVER.get();
 		this.addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(15F)));
 	}
+
+
 
 }

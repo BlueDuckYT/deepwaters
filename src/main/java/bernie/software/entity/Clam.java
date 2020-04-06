@@ -6,15 +6,13 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
-import net.minecraft.entity.passive.fish.SalmonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class Clam extends AbstractFishEntity
@@ -28,8 +26,6 @@ public class Clam extends AbstractFishEntity
 	protected void registerGoals()
 	{
 		this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 16.0F));
-
-
 	}
 
 	@Override
@@ -45,18 +41,13 @@ public class Clam extends AbstractFishEntity
 	}
 
 	@Override
-	public void travel(Vec3d p_213352_1_)
-	{
-
-	}
-
-	@Override
-	public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn)
-	{
-		if(world.getBlockState(new BlockPos(this).down()).getBlock() == DeepWatersBlocks.OCEAN_FLOOR.get())
+	public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
+		if(worldIn.getBlockState(pos.down()).getBlock() == DeepWatersBlocks.OCEAN_FLOOR.get())
 		{
-			return true;
+			return 10.0F;
 		}
-		return false;
+		else {
+			return -1.0F;
+		}
 	}
 }

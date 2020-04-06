@@ -14,24 +14,41 @@ public class WaterBiomeBase extends Biome
 		super(biomeBuilder);
 	}
 
+	EntityClassification WATER_PASSIVE = EntityClassification.create("water_passive", "WATER_PASSIVE", 15, true,false);
+	EntityClassification WATER_MONSTER = EntityClassification.create("water_monster", "WATER_MONSTER", 15, false,false);
+	EntityClassification WATER_LAND_PASSIVE = EntityClassification.create("water_land_passive", "WATER_LAND_PASSIVE", 15, true,true);
+
 	@Override
 	public void addSpawn(EntityClassification type, SpawnListEntry spawnListEntry)
 	{
 		super.addSpawn(type, spawnListEntry);
 	}
 
-	public void addWaterCreatureSpawn(SpawnListEntry spawnListEntry)
+	public void addWaterPassiveCreatureSpawn(SpawnListEntry spawnListEntry)
 	{
+		boolean animal = WATER_PASSIVE.getAnimal();
+		int maxNumberOfCreature = WATER_PASSIVE.getMaxNumberOfCreature();
+		boolean peacefulCreature1 = WATER_PASSIVE.getPeacefulCreature();
+
+		boolean animal1 = EntityClassification.WATER_CREATURE.getAnimal();
+		int maxNumberOfCreature1 = EntityClassification.WATER_CREATURE.getMaxNumberOfCreature();
+		boolean peacefulCreature = EntityClassification.WATER_CREATURE.getPeacefulCreature();
 		addSpawn(EntityClassification.WATER_CREATURE, spawnListEntry);
 	}
 
-	public void addWeightedWaterCreatureSpawn(int weight, SpawnListEntry spawnListEntry)
+
+
+	public void addWaterMonsterCreatureSpawn(SpawnListEntry spawnListEntry)
 	{
-		for(int i = 0; i < weight; i++)
-		{
-			addWaterCreatureSpawn(spawnListEntry);
-		}
+		addSpawn(WATER_MONSTER, spawnListEntry);
 	}
+
+
+	public void addWaterLandPassiveCreatureSpawn(SpawnListEntry spawnListEntry)
+	{
+		addSpawn(WATER_LAND_PASSIVE, spawnListEntry);
+	}
+
 
 	public void AddWorldCarver()
 	{

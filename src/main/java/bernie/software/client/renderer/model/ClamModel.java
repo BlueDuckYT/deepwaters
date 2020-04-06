@@ -3,6 +3,8 @@ import bernie.software.entity.Clam;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.util.math.MathHelper;
+
 import java.util.Random;
 import static java.lang.Math.abs;
 import static java.lang.Math.round;
@@ -60,7 +62,7 @@ public class ClamModel extends EntityModel<Clam> {
 		if(Chompin)
 		{
 			timeSpentChompin++;
-			this.top.rotateAngleX =  (float) (-1 * abs((Math.sin(ageInTicks * 0.2F) * 0.5F)));
+			this.top.rotateAngleX =  (float) (-1 * abs((MathHelper.sin((float) ageInTicks * 0.2F) * 0.5F)));
 		}
 		else {
 			this.top.rotateAngleX = 0;
@@ -72,7 +74,7 @@ public class ClamModel extends EntityModel<Clam> {
 			timeSpentChompin = 0;
 		}
 		else if(timeSpentChompin > currentChompLength){
-			this.top.rotateAngleX =  (float) (-1 * abs((Math.sin(ageInTicks * 0.2F) * 0.5F)));
+			this.top.rotateAngleX =  (float) (-1 * abs((MathHelper.sin((float) ageInTicks * 0.2F) * 0.5F)));
 		}
 
 	}
