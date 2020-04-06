@@ -31,7 +31,7 @@ steps:
 - task: ado-discord-webhook@1
   inputs:
     channelId: '696827985453514783'
-    webhookKey: '696828133533548544'
+    webhookKey: '696828133533548544/c2THSHw1v4x9Pmculi-WMIy6NEwxqkc28OcSanA83o7C6esOGVEkk7NHn9S2I8bAn133'
     messageType: 'embeds'
     embeds: '{
   "embed": {
