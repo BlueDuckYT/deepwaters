@@ -14,8 +14,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.0'
-group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'modid'
+group = 'bernie.software.deepwaters' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'deepwaters'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -81,12 +81,12 @@ minecraft {
                     source sourceSets.main
                 }
             }
-            sourceSets.main.resources {
-                srcDir 'src/generated/resources'
-            }
         }
     }
+}
 
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
 }
 
 dependencies {
@@ -120,11 +120,11 @@ jar {
     manifest {
         attributes([
             "Specification-Title": "deepwaters",
-            "Specification-Vendor": "deepwaterssareus",
+            "Specification-Vendor": "bernie.g",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"deepwaterssareus",
+            "Implementation-Vendor" :"bernie.g",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

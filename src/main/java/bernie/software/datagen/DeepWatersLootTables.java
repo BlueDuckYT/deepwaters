@@ -45,28 +45,13 @@ public class DeepWatersLootTables extends LootTableProvider {
         }
 
     }
-    /*
+
     public static class Entities extends EntityLootTables {
-        @Override
-        protected void addTables() {
-            this.registerLootTable(DeepWatersEntities.BLUFFERFISH.get(),
-                    LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.SALT_CRYSTAL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 3.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 2.0F)))).acceptCondition(KilledByPlayer.builder())));
-            this.registerLootTable(DeepWatersEntities.KILLER_WIGGLER.get(),
-                    LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(Items.DIAMOND).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))).acceptCondition(KilledByPlayer.builder())));
-            this.registerLootTable(DeepWatersEntities.CLAM.get(),
-                    LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.PEARL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 1.0F))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F)))).acceptCondition(KilledByPlayer.builder())));
-            this.registerLootTable(DeepWatersEntities.STING_RAY.get(),
-                    LootTable.builder());
-            this.registerLootTable(DeepWatersEntities.BABY_KRACKEN.get(),
-                    LootTable.builder());
-            this.registerLootTable(DeepWatersEntities.MUCK_GULPER.get(),
-                    LootTable.builder());
-        }
 
         @Override
         protected Iterable<EntityType<?>> getKnownEntities() {
             return DeepWatersEntities.ENTITIES.getEntries().stream().map(Supplier::get).collect(Collectors.toList());
         }
     }
-    */
+
 }
