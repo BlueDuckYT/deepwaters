@@ -23,6 +23,13 @@
   "item.deepwaters.prismarine_axe": "Prismarine Crystal Axe",
   "item.deepwaters.prismarine_shovel": "Prismarine Crystal Shovel",
 
+  "item.deepwaters.killer_wiggler_spawn_egg": "Killer Wiggler Spawn Egg",
+  "item.deepwaters.blufferfish_spawn_egg": "Blufferfish Spawn Egg",
+  "item.deepwaters.clam_spawn_egg": "Clam Spawn Egg",
+  "item.deepwaters.sting_ray_spawn_egg": "Stingray Spawn Egg",
+  "item.deepwaters.baby_kracken_spawn_egg": "Baby Kracken Spawn Egg",
+  "item.deepwaters.muck_gulper_spawn_egg": "Muck Gulper Spawn Egg",
+
   "itemGroup.deepwaters_blocks": "Deep Waters Blocks",
   "itemGroup.deepwaters_items": "Deep Waters Items",
 
