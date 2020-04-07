@@ -2,14 +2,12 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.item.DeepWatersItem;
-import bernie.software.item.DeepWatersSpawnEggItem;
 import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.item.tool.DeepWatersAxeItem;
 import bernie.software.item.tool.DeepWatersPickaxeItem;
 import bernie.software.item.tool.DeepWatersShovelItem;
 import bernie.software.item.tool.DeepWatersSwordItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ShovelItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
