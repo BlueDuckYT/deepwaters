@@ -43,5 +43,9 @@ public abstract class DeepWatersItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("item/" + item.get().getRegistryName().getPath()));
     }
 
+    public ItemModelBuilder spawnEgg(Supplier<? extends Item> item) {
+        return withExistingParent(item.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
+    }
+
 
 }

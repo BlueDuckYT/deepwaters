@@ -23,8 +23,8 @@
   "item.deepwaters.prismarine_axe": "Prismarine Axe",
   "item.deepwaters.prismarine_shovel": "Prismarine Shovel",
 
-  "itemGroup.deepwaters.deepwaters_blocks": "Deep Waters Blocks",
-  "itemGroup.deepwaters.deepwaters_items": "Deep Waters Items",
+  "itemGroup.deepwaters_blocks": "Deep Waters Blocks",
+  "itemGroup.deepwaters_items": "Deep Waters Items",
 
   "entity.deepwaters.killerwiggler": "Killer Wiggler",
   "entity.deepwaters.blufferfish": "Blufferfish",

@@ -42,5 +42,12 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider {
         toolItem(DeepWatersItems.PRISMARINE_PICKAXE);
         toolItem(DeepWatersItems.PRISMARINE_AXE);
         toolItem(DeepWatersItems.PRISMARINE_SHOVEL);
+
+        spawnEgg(DeepWatersItems.KILLER_WIGGLER_SPAWN_EGG);
+        spawnEgg(DeepWatersItems.BLUFFERFISH_SPAWN_EGG);
+        spawnEgg(DeepWatersItems.CLAM_SPAWN_EGG);
+        spawnEgg(DeepWatersItems.STING_RAY_SPAWN_EGG);
+        spawnEgg(DeepWatersItems.BABY_KRACKEN_SPAWN_EGG);
+        spawnEgg(DeepWatersItems.MUCK_GULPER_SPAWN_EGG);
     }
 }
