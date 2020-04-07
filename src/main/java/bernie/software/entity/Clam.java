@@ -41,12 +41,11 @@ public class Clam extends AbstractFishEntity
 	}
 
 	@Override
-	public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn) {
-		if(worldIn.getBlockState(pos.down()).getBlock() == DeepWatersBlocks.OCEAN_FLOOR.get())
-		{
+	public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn)
+	{
+		if (worldIn.getBlockState(pos.down()).getBlock() == DeepWatersBlocks.OCEAN_FLOOR.get()) {
 			return 10.0F;
-		}
-		else {
+		} else {
 			return -1.0F;
 		}
 	}
