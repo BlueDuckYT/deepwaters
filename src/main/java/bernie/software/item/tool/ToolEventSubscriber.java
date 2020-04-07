@@ -26,7 +26,7 @@ public class ToolEventSubscriber
 		Item item = player.getHeldItemMainhand().getItem();
 		if(item == DeepWatersItems.PRISMARINE_AXE.get() || item == DeepWatersItems.PRISMARINE_PICKAXE.get() || item == DeepWatersItems.PRISMARINE_SHOVEL.get())
 		{
-			event.setNewSpeed(10);
+			event.setNewSpeed(originalSpeed * 10);
 		}
 	}
 }

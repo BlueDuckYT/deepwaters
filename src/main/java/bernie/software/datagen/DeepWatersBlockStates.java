@@ -30,6 +30,7 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 	protected void registerStatesAndModels()
 	{
 		grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
+		normalBlock(DeepWatersBlocks.SALT_ORE);
 		for (RegistryObject<Block> block : NormalBlocks) {
 			normalBlock(block);
 		}
