@@ -8,6 +8,7 @@ import bernie.software.item.tool.SwordEventSubscriber;
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.world.DeepWatersModDimension;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -59,6 +60,7 @@ public class ModEventSubscriber
 		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 30, 4, 10));
 		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 1, 1, 1));
 		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(EntityType.SALMON, 30, 5, 10));
+		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.TROPICAL_FISH, 25, 8, 8));
 		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 2, 1, 2));
 		biome.addWaterLandPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 12, 1, 2));
 		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.STING_RAY.get(), 4, 1, 4));

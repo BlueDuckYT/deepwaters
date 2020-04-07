@@ -32,7 +32,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
 	public static final RegistryObject<Item> PRISMARINE_CHESTPLATE = ITEMS.register("prismarine_chestplate", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.CHEST));
 	public static final RegistryObject<Item> PRISMARINE_LEGGINGS = ITEMS.register("prismarine_leggings", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.LEGS));
-	public static final RegistryObject<Item> PRISMARINE_BOOTS = ITEMS.register("primarine_boots", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.FEET));
+	public static final RegistryObject<Item> PRISMARINE_BOOTS = ITEMS.register("prismarine_boots", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.FEET));
 
 
 	public static final RegistryObject<Item> SHARK_TOOTH = ITEMS.register("sharktooth", () -> new DeepWatersItem());
