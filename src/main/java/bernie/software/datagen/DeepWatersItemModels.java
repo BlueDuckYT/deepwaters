@@ -41,6 +41,10 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		normalItem(DeepWatersItems.PEARL);
 		normalItem(DeepWatersItems.PRISMARINE_INGOT);
 		normalItem(DeepWatersItems.PRISMARINE_NUGGET);
+		//normalItem(DeepWatersItems.PRISMARINE_HELMET);
+		//normalItem(DeepWatersItems.PRISMARINE_CHESTPLATE);
+		//normalItem(DeepWatersItems.PRISMARINE_LEGGINGS);
+		//normalItem(DeepWatersItems.PRISMARINE_BOOTS);
 
 		toolItem(DeepWatersItems.PRISMARINE_SWORD);
 		toolItem(DeepWatersItems.PRISMARINE_PICKAXE);
