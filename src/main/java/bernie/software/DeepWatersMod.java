@@ -46,6 +46,6 @@ public class DeepWatersMod {
 		generator.addProvider(new DeepWatersRecipes(generator));
 		generator.addProvider(new DeepWatersBlockStates(generator, event.getExistingFileHelper()));
 		generator.addProvider(new DeepWatersItemModels(generator, event.getExistingFileHelper()));
-		//generator.addProvider(new DeepWatersLootTables(generator));
+		generator.addProvider(new DeepWatersLootTables(generator));
 	}
 }
