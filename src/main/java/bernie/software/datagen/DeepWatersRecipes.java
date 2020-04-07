@@ -49,6 +49,27 @@ public class DeepWatersRecipes extends DeepWatersRecipeProvider
 		makeAxe(DeepWatersItems.PRISMARINE_AXE, DeepWatersItems.PRISMARINE_INGOT).build(consumer);
 		makeShovel(DeepWatersItems.PRISMARINE_SHOVEL, DeepWatersItems.PRISMARINE_INGOT).build(consumer);
 
+		smeltingRecipe(DeepWatersItems.PRISMARINE_INGOT.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), .7F).build(consumer, name("smelt_prismarine_ore"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_INGOT.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), .7F).build(consumer, name("blast_prismarine_ore"));
+
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_SWORD.get(), .1F).build(consumer, name("smelt_prismarine_sword"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_SWORD.get(), .1F).build(consumer, name("blast_prismarine_sword"));
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_PICKAXE.get(), .1F).build(consumer, name("smelt_prismarine_pickaxe"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_PICKAXE.get(), .1F).build(consumer, name("blast_prismarine_pickaxe"));
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_AXE.get(), .1F).build(consumer, name("smelt_prismarine_axe"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_AXE.get(), .1F).build(consumer, name("blast_prismarine_axe"));
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_SHOVEL.get(), .1F).build(consumer, name("smelt_prismarine_shovel"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_SHOVEL.get(), .1F).build(consumer, name("blast_prismarine_shovel"));
+
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_HELMET.get(), .1F).build(consumer, name("smelt_prismarine_helmet"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_HELMET.get(), .1F).build(consumer, name("blast_prismarine_helmet"));
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_CHESTPLATE.get(), .1F).build(consumer, name("smelt_prismarine_chestplate"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_CHESTPLATE.get(), .1F).build(consumer, name("blast_prismarine_chestplate"));
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_LEGGINGS.get(), .1F).build(consumer, name("smelt_prismarine_leggings"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_LEGGINGS.get(), .1F).build(consumer, name("blast_prismarine_leggings"));
+		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_BOOTS.get(), .1F).build(consumer, name("smelt_prismarine_boots"));
+		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_BOOTS.get(), .1F).build(consumer, name("blast_prismarine_boots"));
+
 		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.PRISMARINE_HELMET.get(), 1)
 				.patternLine("IBI")
 				.patternLine("B B")

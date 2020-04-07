@@ -1,11 +1,15 @@
 package bernie.software.datagen.provider;
 
 import net.minecraft.block.Block;
+import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
 
@@ -85,6 +89,24 @@ public class DeepWatersRecipeProvider extends ForgeRecipeProvider implements ICo
                 .key('#', materialIn.get())
                 .key('/', Items.STICK)
                 .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()));
+    }
+
+    public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {
+        return smeltingRecipe(result, ingredient, exp, 1);
+    }
+
+    public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp, int count) {
+        return CookingRecipeBuilder.smeltingRecipe(Ingredient.fromStacks(new ItemStack(ingredient, count)), result, exp, 200)
+                .addCriterion("has_" + ingredient.asItem().getRegistryName(), hasItem(ingredient));
+    }
+
+    public CookingRecipeBuilder blastingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {
+        return blastingRecipe(result, ingredient, exp, 1);
+    }
+
+    public CookingRecipeBuilder blastingRecipe(IItemProvider result, IItemProvider ingredient, float exp, int count) {
+        return CookingRecipeBuilder.blastingRecipe(Ingredient.fromStacks(new ItemStack(ingredient, count)), result, exp, 100)
+                .addCriterion("has_" + ingredient.asItem().getRegistryName(), hasItem(ingredient));
     }
 
 }
