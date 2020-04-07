@@ -18,7 +18,7 @@ public class DeepWatersRecipeProvider extends ForgeRecipeProvider implements ICo
     }
 
     public ShapedRecipeBuilder makeNuggetToIngot(Supplier<? extends Item> ingotOut, Supplier<? extends Item> nuggetIn) {
-        return ShapedRecipeBuilder.shapedRecipe(ingotOut.get(), 1)
+        return ShapedRecipeBuilder.shapedRecipe(ingotOut.get())
                 .patternLine("NNN")
                 .patternLine("NNN")
                 .patternLine("NNN")
@@ -42,8 +42,8 @@ public class DeepWatersRecipeProvider extends ForgeRecipeProvider implements ICo
     }
 
     public ShapelessRecipeBuilder makeBlockToIngot(Supplier<? extends Item> ingotOut, Supplier<? extends Block> blockIn) {
-        return ShapelessRecipeBuilder.shapelessRecipe(ingotOut.get())
-                .addIngredient(blockIn.get(), 9)
+        return ShapelessRecipeBuilder.shapelessRecipe(ingotOut.get(), 9)
+                .addIngredient(blockIn.get())
                 .addCriterion("has_" + blockIn.get().getRegistryName().getPath(), hasItem(blockIn.get()));
     }
 

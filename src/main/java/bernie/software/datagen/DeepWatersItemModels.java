@@ -33,8 +33,14 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider {
 
         normalItem(DeepWatersItems.SALT_CRYSTAL);
         normalItem(DeepWatersItems.SHARK_TOOTH);
-        normalItem(DeepWatersItems.PEAL_WAND);
-
+        toolItem(DeepWatersItems.PEAL_WAND);
         normalItem(DeepWatersItems.PEARL);
+        normalItem(DeepWatersItems.PRISMARINE_INGOT);
+        normalItem(DeepWatersItems.PRISMARINE_NUGGET);
+
+        toolItem(DeepWatersItems.PRISMARINE_SWORD);
+        toolItem(DeepWatersItems.PRISMARINE_PICKAXE);
+        toolItem(DeepWatersItems.PRISMARINE_AXE);
+        toolItem(DeepWatersItems.PRISMARINE_SHOVEL);
     }
 }

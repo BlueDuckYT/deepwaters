@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "deepwaters:prismarine_ingot"
+    }
+  ],
+  "result": {
+    "item": "deepwaters:prismarine_nugget",
+    "count": 9
+  }
+}

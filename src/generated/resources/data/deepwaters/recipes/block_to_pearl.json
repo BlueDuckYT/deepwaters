@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "deepwaters:pearl_block"
+    }
+  ],
+  "result": {
+    "item": "deepwaters:pearl",
+    "count": 9
+  }
+}

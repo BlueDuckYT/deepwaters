@@ -34,6 +34,8 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> SUNKEN_GRAVEL = registerBlock("sunken_gravel",() -> new SunkenGravelBlock());
     public static final RegistryObject<Block> PEARL_BLOCK = registerBlock("pearl_block", () -> new DeepWatersBlock(
             Material.GLASS, 1.0F, 0F, SoundType.GLASS, 0, ToolType.PICKAXE));
+    public static final RegistryObject<Block> PRISMARINE_BLOCK = registerBlock("prismarine_block", () -> new DeepWatersBlock(
+            Material.IRON, 5.0F, 6.0F, SoundType.METAL, 2, ToolType.PICKAXE));
 
     public static final RegistryObject<Block> METALLIC_BLOCK_BLACK = registerBlock("metallic_block_black", () -> new DeepWatersBlock(
             Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE));

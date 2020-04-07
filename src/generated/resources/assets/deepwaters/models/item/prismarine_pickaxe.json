@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "deepwaters:item/pearl_wand"
+    "layer0": "deepwaters:item/prismarine_pickaxe"
   }
 }
