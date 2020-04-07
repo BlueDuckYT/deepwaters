@@ -19,6 +19,7 @@
   "block.deepwaters.limestone": "Limestone",
   "block.deepwaters.magmatic_rock": "Magmatic Rock",
   "block.deepwaters.prismarine_block": "Prismarine Crystal Block",
+
   "item.deepwaters.salt_crystal": "Salt Crystal",
   "item.deepwaters.pearl": "Pearl",
   "item.deepwaters.sharktooth": "Shark Tooth",
@@ -29,18 +30,27 @@
   "item.deepwaters.prismarine_pickaxe": "Prismarine Crystal Pickaxe",
   "item.deepwaters.prismarine_axe": "Prismarine Crystal Axe",
   "item.deepwaters.prismarine_shovel": "Prismarine Crystal Shovel",
+
+  "item.deepwaters.prismarine_helmet": "Prismarine Helmet",
+  "item.deepwaters.prismarine_chestplate": "Prismarine Chestplate",
+  "item.deepwaters.prismarine_leggings": "Prismarine Leggings",
+  "item.deepwaters.prismarine_boots": "Prismarine Boots",
+
   "item.deepwaters.killer_wiggler_spawn_egg": "Killer Wiggler Spawn Egg",
   "item.deepwaters.blufferfish_spawn_egg": "Blufferfish Spawn Egg",
   "item.deepwaters.clam_spawn_egg": "Clam Spawn Egg",
   "item.deepwaters.sting_ray_spawn_egg": "Stingray Spawn Egg",
   "item.deepwaters.baby_kracken_spawn_egg": "Baby Kracken Spawn Egg",
   "item.deepwaters.muck_gulper_spawn_egg": "Muck Gulper Spawn Egg",
+
   "itemGroup.deepwaters_blocks": "Deep Waters Blocks",
   "itemGroup.deepwaters_items": "Deep Waters Items",
+
   "entity.deepwaters.killerwiggler": "Killer Wiggler",
   "entity.deepwaters.blufferfish": "Blufferfish",
   "entity.deepwaters.clam": "Clam",
   "entity.deepwaters.stingray": "Stingray",
   "entity.deepwaters.muckgulper": "Muck Gulper",
   "entity.deepwaters.babykracken": "Baby Kracken"
+
 }
