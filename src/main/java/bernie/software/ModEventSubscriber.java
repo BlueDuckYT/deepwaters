@@ -3,6 +3,7 @@ package bernie.software;
 import bernie.software.biome.CoralFieldsBiome;
 import bernie.software.client.renderer.entity.*;
 import bernie.software.entity.*;
+import bernie.software.item.tool.SwordEventSubscriber;
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.world.DeepWatersModDimension;
@@ -12,16 +13,19 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModEventSubscriber {
+public class ModEventSubscriber
+{
 
 	@ObjectHolder("deepwaters:deepwatersdimension")
 	public static final ModDimension DeepWatersDimension = null;
@@ -39,12 +43,19 @@ public class ModEventSubscriber {
 		biome.AddWorldCarver();
 	}
 
+	@SubscribeEvent
+	public static void onServerInit(final FMLCommonSetupEvent event)
+	{
+		MinecraftForge.EVENT_BUS.register(new SwordEventSubscriber());
+	}
+
 	public static boolean coralBiomeSpawned = false;
+
 	@SubscribeEvent
 	public static void onEntityRegisterEvent(final RegistryEvent.Register<EntityType<?>> event)
 	{
 		CoralFieldsBiome biome = (CoralFieldsBiome) DeepWatersBiomes.CoralFieldsBiome.get();
-		if(!coralBiomeSpawned) {
+		if (!coralBiomeSpawned) {
 			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 30, 4, 10));
 			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 1, 1, 1));
 			biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(EntityType.SALMON, 30, 5, 10));
