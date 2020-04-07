@@ -10,11 +10,18 @@
   "block.deepwaters.metallic_block_orange": "Orange Metallic Block",
   "block.deepwaters.limestone": "Limestone",
   "block.deepwaters.magmatic_rock": "Magmatic Rock",
+  "block.deepwaters.prismarine_block": "Prismarine Block",
 
   "item.deepwaters.salt_crystal": "Salt Crystal",
   "item.deepwaters.pearl": "Pearl",
   "item.deepwaters.sharktooth": "Shark Tooth",
   "item.deepwaters.pearl_wand": "Pearl Wand",
+  "item.deepwaters.prismarine_nugget": "Prismarine Nugget",
+  "item.deepwaters.prismarine_ingot": "Prismarine Ingot",
+  "item.deepwaters.prismarine_sword": "Prismarine Sword",
+  "item.deepwaters.prismarine_pickaxe": "Prismarine Pickaxe",
+  "item.deepwaters.prismarine_axe": "Prismarine Axe",
+  "item.deepwaters.prismarine_shovel": "Prismarine Shovel",
 
   "itemGroup.deepwaters.deepwaters_blocks": "Deep Waters Blocks",
   "itemGroup.deepwaters.deepwaters_items": "Deep Waters Items",
