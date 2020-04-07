@@ -23,8 +23,8 @@ public class CoralFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConf
 	private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
 	private static final BlockState MOSSY_OCEAN_FLOOR = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
 	private static final BlockState OCEAN_FLOOR = DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState();
+	private static final BlockState SAND = Blocks.SAND.getDefaultState();
 	private static final BlockState GRAVEL = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
-	private static final BlockState GRAVEL2 = DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState();
 	protected long seed;
 	protected OctavesNoiseGenerator randomNoiseGenerator;
 
@@ -90,8 +90,8 @@ public class CoralFieldsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConf
 							}
 
 							if (flag) {
-								blockstate = GRAVEL2;
-								blockstate1 = GRAVEL2;
+								blockstate = SAND;
+								blockstate1 = GRAVEL;
 							}
 						}
 

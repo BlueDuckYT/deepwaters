@@ -34,6 +34,8 @@ public class DeepWatersLootTables extends LootTableProvider {
         protected void addTables() {
             dropSelf(DeepWatersBlocks.OCEAN_FLOOR);
             dropSelf(DeepWatersBlocks.SUNKEN_GRAVEL);
+            dropSelf(DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE);
+
             dropWithSilk(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, DeepWatersBlocks.OCEAN_FLOOR);
 
             dropWithFortune(DeepWatersBlocks.SALT_ORE, DeepWatersItems.SALT_CRYSTAL);
@@ -47,6 +49,16 @@ public class DeepWatersLootTables extends LootTableProvider {
     }
 
     public static class Entities extends EntityLootTables {
+
+        @Override
+        protected void addTables() {
+            this.registerLootTable(DeepWatersEntities.KILLER_WIGGLER.get(), LootTable.builder());
+            this.registerLootTable(DeepWatersEntities.BLUFFERFISH.get(), LootTable.builder());
+            this.registerLootTable(DeepWatersEntities.CLAM.get(), LootTable.builder());
+            this.registerLootTable(DeepWatersEntities.STING_RAY.get(), LootTable.builder());
+            this.registerLootTable(DeepWatersEntities.BABY_KRACKEN.get(), LootTable.builder());
+            this.registerLootTable(DeepWatersEntities.MUCK_GULPER.get(), LootTable.builder());
+        }
 
         @Override
         protected Iterable<EntityType<?>> getKnownEntities() {
