@@ -2,32 +2,37 @@ package bernie.software.datagen;
 
 import bernie.software.datagen.provider.DeepWatersBlockStateProvider;
 import bernie.software.registry.DeepWatersBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.fml.RegistryObject;
 
-public class DeepWatersBlockStates extends DeepWatersBlockStateProvider {
+import java.util.ArrayList;
+import java.util.List;
 
-    public DeepWatersBlockStates(DataGenerator dataGenerator, ExistingFileHelper fileHelper) {
-        super(dataGenerator, fileHelper);
-    }
+public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
+{
 
-    @Override
-    public String getName() {
-        return "Deepwaters Block States";
-    }
+	public DeepWatersBlockStates(DataGenerator dataGenerator, ExistingFileHelper fileHelper)
+	{
+		super(dataGenerator, fileHelper);
+	}
 
-    @Override
-    protected void registerStatesAndModels() {
-        grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
-        normalBlock(DeepWatersBlocks.OCEAN_FLOOR);
-        normalBlock(DeepWatersBlocks.SUNKEN_GRAVEL);
-        normalBlock(DeepWatersBlocks.SALT_ORE);
-        normalBlock(DeepWatersBlocks.METALLIC_BLOCK_BLACK);
-        normalBlock(DeepWatersBlocks.METALLIC_BLOCK_CYAN);
-        normalBlock(DeepWatersBlocks.METALLIC_BLOCK_ORANGE);
-        normalBlock(DeepWatersBlocks.LIMESTONE);
-        normalBlock(DeepWatersBlocks.MAGMATIC_ROCK);
-        normalBlock(DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE);
-        normalBlock(DeepWatersBlocks.PEARL_BLOCK);
-    }
+	public static List<RegistryObject<Block>> NormalBlocks = new ArrayList<>();
+
+	@Override
+	public String getName()
+	{
+		return "Deepwaters Block States";
+	}
+
+	@Override
+	protected void registerStatesAndModels()
+	{
+		grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
+		for (RegistryObject<Block> block : NormalBlocks) {
+			normalBlock(block);
+		}
+
+	}
 }
