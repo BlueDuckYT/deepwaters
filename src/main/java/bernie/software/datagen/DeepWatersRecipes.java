@@ -33,9 +33,7 @@ public class DeepWatersRecipes extends DeepWatersRecipeProvider
 	protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
 	{
 		makeIngotToNugget(DeepWatersItems.PRISMARINE_NUGGET, DeepWatersItems.PRISMARINE_INGOT).build(consumer, name("prismarine_ingot_to_nugget"));
-
 		makeNuggetToIngot(DeepWatersItems.PRISMARINE_INGOT, DeepWatersItems.PRISMARINE_NUGGET).build(consumer, name("prismarine_nugget_to_ingot"));
-
 		makeIngotToBlock(DeepWatersBlocks.PEARL_BLOCK, DeepWatersItems.PEARL).build(consumer, name("pearl_to_block"));
 		//makeIngotToBlock(DeepWatersBlocks.PRISMARINE_BLOCK, DeepWatersItems.PRISMARINE_INGOT).build(consumer, name("prismarine_ingot_to_block"));
 
