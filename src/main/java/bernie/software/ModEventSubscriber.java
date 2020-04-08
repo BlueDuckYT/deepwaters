@@ -1,6 +1,6 @@
 package bernie.software;
 
-import bernie.software.biome.CoralFieldsBiome;
+import bernie.software.world.biome.CoralFieldsBiome;
 import bernie.software.client.renderer.entity.*;
 import bernie.software.entity.*;
 import bernie.software.item.ModdedSpawnEggItem;
@@ -9,19 +9,15 @@ import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.world.DeepWatersModDimension;
 import net.minecraft.entity.EntityClassification;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;

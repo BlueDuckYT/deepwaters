@@ -1,4 +1,4 @@
-package bernie.software.biome;
+package bernie.software.world.biome;
 
 import bernie.software.registry.DeepWatersWorldCarvers;
 import net.minecraft.entity.EntityClassification;
@@ -14,9 +14,9 @@ public class WaterBiomeBase extends Biome
 		super(biomeBuilder);
 	}
 
-	public static EntityClassification WATER_PASSIVE = EntityClassification.create("water_passive", "WATER_PASSIVE", 100, true,false);
-	public static EntityClassification WATER_MONSTER = EntityClassification.create("water_monster", "WATER_MONSTER", 100, false,false);
-	public static EntityClassification WATER_LAND_PASSIVE = EntityClassification.create("water_land_passive", "WATER_LAND_PASSIVE", 100, true,true);
+	public static EntityClassification WATER_PASSIVE = EntityClassification.create("water_passive", "WATER_PASSIVE", 100, true, false);
+	public static EntityClassification WATER_MONSTER = EntityClassification.create("water_monster", "WATER_MONSTER", 100, false, false);
+	public static EntityClassification WATER_LAND_PASSIVE = EntityClassification.create("water_land_passive", "WATER_LAND_PASSIVE", 100, true, true);
 
 	@Override
 	public void addSpawn(EntityClassification type, SpawnListEntry spawnListEntry)
@@ -35,7 +35,6 @@ public class WaterBiomeBase extends Biome
 		boolean peacefulCreature = EntityClassification.WATER_CREATURE.getPeacefulCreature();
 		addSpawn(WATER_PASSIVE, spawnListEntry);
 	}
-
 
 
 	public void addWaterMonsterCreatureSpawn(SpawnListEntry spawnListEntry)

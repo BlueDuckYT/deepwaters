@@ -1,7 +1,7 @@
 package bernie.software.world;
 
-import bernie.software.biome.provider.DeepWatersBiomeProvider;
-import bernie.software.biome.provider.DeepWatersBiomeProviderSettings;
+import bernie.software.world.biome.provider.DeepWatersBiomeProvider;
+import bernie.software.world.biome.provider.DeepWatersBiomeProviderSettings;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.world.gen.DeepWatersChunkGenerator;
 import bernie.software.world.gen.DeepWatersGenSettings;
@@ -21,6 +21,7 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -33,6 +34,7 @@ public class DeepWatersDimension extends Dimension
 	{
 		super(worldIn, typeIn);
 	}
+
 	@Override
 	public ChunkGenerator<?> createChunkGenerator()
 	{
@@ -41,7 +43,9 @@ public class DeepWatersDimension extends Dimension
 		deepWatersGenSettings.setDefaultBlock(oceanFloor);
 		deepWatersGenSettings.setDefaultFluid(Blocks.WATER.getDefaultState());
 		DeepWatersBiomeProviderSettings settings = new DeepWatersBiomeProviderSettings();
-
+		WorldInfo worldInfo = this.world.getWorldInfo();
+		settings.setWorldInfo(worldInfo);
+		long seed = worldInfo.getSeed();
 		DeepWatersBiomeProvider provider = new DeepWatersBiomeProvider(settings);
 		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
 	}
@@ -50,8 +54,8 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public BlockPos findSpawn(ChunkPos chunkPosIn, boolean checkValid)
 	{
-		for(int i = chunkPosIn.getXStart(); i <= chunkPosIn.getXEnd(); ++i) {
-			for(int j = chunkPosIn.getZStart(); j <= chunkPosIn.getZEnd(); ++j) {
+		for (int i = chunkPosIn.getXStart(); i <= chunkPosIn.getXEnd(); ++i) {
+			for (int j = chunkPosIn.getZStart(); j <= chunkPosIn.getZEnd(); ++j) {
 				BlockPos blockpos = this.findSpawn(i, j, checkValid);
 				if (blockpos != null) {
 					return blockpos;
@@ -79,7 +83,7 @@ public class DeepWatersDimension extends Dimension
 			} else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, posX & 15, posZ & 15) > chunk.getTopBlockY(Heightmap.Type.OCEAN_FLOOR, posX & 15, posZ & 15)) {
 				return null;
 			} else {
-				for(int j = i + 1; j >= 0; --j) {
+				for (int j = i + 1; j >= 0; --j) {
 					blockpos$mutableblockpos.setPos(posX, j, posZ);
 					BlockState blockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
 					if (!blockstate1.getFluidState().isEmpty()) {
@@ -123,9 +127,10 @@ public class DeepWatersDimension extends Dimension
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
+	public Vec3d getFogColor(float celestialAngle, float partialTicks)
+	{
 
-		float f = MathHelper.cos(celestialAngle * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
+		float f = MathHelper.cos(celestialAngle * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		float f1 = 0.7529412F;
 		float f2 = 0.84705883F;
@@ -133,34 +138,42 @@ public class DeepWatersDimension extends Dimension
 		f1 = f1 * (f * 0.94F + 0.06F);
 		f2 = f2 * (f * 0.94F + 0.06F);
 		f3 = f3 * (f * 0.91F + 0.09F);
-		return new Vec3d((double)f1, (double)f2, (double)f3);
+		return new Vec3d((double) f1, (double) f2, (double) f3);
 	}
 
 	@Override
-	public float getCloudHeight() {
+	public float getCloudHeight()
+	{
 		return 300;
 	}
 
-	protected void generateLightBrightnessTable() {
+	protected void generateLightBrightnessTable()
+	{
 		float f = 0.1F;
 
-		for(int i = 0; i <= 15; ++i) {
-			float f1 = 1.0F - (float)i / 15.0F;
+		for (int i = 0; i <= 15; ++i) {
+			float f1 = 1.0F - (float) i / 15.0F;
 			this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * 0.9F + 0.1F;
 		}
 
 	}
-	public WorldBorder createWorldBorder() {
-		return new WorldBorder() {
-			public double getCenterX() {
+
+	public WorldBorder createWorldBorder()
+	{
+		return new WorldBorder()
+		{
+			public double getCenterX()
+			{
 				return super.getCenterX() / 8.0D;
 			}
 
-			public double getCenterZ() {
+			public double getCenterZ()
+			{
 				return super.getCenterZ() / 8.0D;
 			}
 		};
 	}
+
 	@Override
 	public boolean canRespawnHere()
 	{
