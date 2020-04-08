@@ -1,7 +1,7 @@
 package bernie.software.world;
 
-import bernie.software.biome.provider.DeepWatersSingleBiomeProvider;
-import bernie.software.registry.DeepWatersBiomes;
+import bernie.software.biome.provider.DeepWatersBiomeProvider;
+import bernie.software.biome.provider.DeepWatersBiomeProviderSettings;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.world.gen.DeepWatersChunkGenerator;
 import bernie.software.world.gen.DeepWatersGenSettings;
@@ -15,7 +15,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
@@ -41,10 +40,9 @@ public class DeepWatersDimension extends Dimension
 		BlockState oceanFloor = DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState();
 		deepWatersGenSettings.setDefaultBlock(oceanFloor);
 		deepWatersGenSettings.setDefaultFluid(Blocks.WATER.getDefaultState());
-		SingleBiomeProviderSettings settings = new SingleBiomeProviderSettings();
+		DeepWatersBiomeProviderSettings settings = new DeepWatersBiomeProviderSettings();
 
-		settings.setBiome(DeepWatersBiomes.CoralFieldsBiome.get());
-		DeepWatersSingleBiomeProvider provider = new DeepWatersSingleBiomeProvider(settings);
+		DeepWatersBiomeProvider provider = new DeepWatersBiomeProvider(settings);
 		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
 	}
 
@@ -101,9 +99,12 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
+		/*
 		double d0 = MathHelper.frac((double)worldTime / 24000.0D - 0.25D);
 		double d1 = 0.5D - Math.cos(d0 * Math.PI) / 2.0D;
 		return (float)(d0 * 2.0D + d1) / 3.0F;
+		*/
+		return 1F;
 	}
 
 	@Override
@@ -111,9 +112,19 @@ public class DeepWatersDimension extends Dimension
 	{
 		return true;
 	}
+
+	/*
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public Vec3d getSkyColor(BlockPos cameraEntity, float partialTicks) {
+		return new Vec3d(171D,137D,220D);
+	}
+	*/
+
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
+
 		float f = MathHelper.cos(celestialAngle * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		float f1 = 0.7529412F;
@@ -127,7 +138,7 @@ public class DeepWatersDimension extends Dimension
 
 	@Override
 	public float getCloudHeight() {
-		return 384;
+		return 300;
 	}
 
 	protected void generateLightBrightnessTable() {
