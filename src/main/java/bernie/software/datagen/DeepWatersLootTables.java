@@ -14,9 +14,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.conditions.EntityHasProperty;
 import net.minecraft.world.storage.loot.conditions.KilledByPlayer;
 import net.minecraft.world.storage.loot.functions.LootingEnchantBonus;
 import net.minecraft.world.storage.loot.functions.SetCount;
+import net.minecraft.world.storage.loot.functions.Smelt;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.ArrayList;
@@ -83,11 +85,11 @@ public class DeepWatersLootTables extends LootTableProvider
 		protected void addTables()
 		{
 			this.registerLootTable(DeepWatersEntities.KILLER_WIGGLER.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.PRISMARINE_INGOT.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1F, 3F)))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1F, 2F))).acceptCondition(KilledByPlayer.builder())));
-			this.registerLootTable(DeepWatersEntities.BLUFFERFISH.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.BLUFFERFISH.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.BLUFFERFISH.get()).acceptFunction(SetCount.builder(ConstantRange.of(1))).acceptFunction(Smelt.func_215953_b().acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0F, 1F))))));
 			this.registerLootTable(DeepWatersEntities.CLAM.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.PEARL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(0F, 1F)))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0F, 1F)))));
 			this.registerLootTable(DeepWatersEntities.STING_RAY.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.BABY_KRACKEN.get(), LootTable.builder());
-			this.registerLootTable(DeepWatersEntities.MUCK_GULPER.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.MUCK_GULPER.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.MUCK_GULPER.get()).acceptFunction(SetCount.builder(ConstantRange.of(1))).acceptFunction(Smelt.func_215953_b().acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0F, 1F))))));
 		}
 
 		@Override

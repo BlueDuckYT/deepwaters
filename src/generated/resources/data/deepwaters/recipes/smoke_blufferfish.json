@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "deepwaters:blufferfish"
+  },
+  "result": "deepwaters:cooked_blufferfish",
+  "experience": 0.1,
+  "cookingtime": 100
+}

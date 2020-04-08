@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "deepwaters:muck_gulper"
+  },
+  "result": "deepwaters:cooked_muck_gulper",
+  "experience": 0.1,
+  "cookingtime": 100
+}

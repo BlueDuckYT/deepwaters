@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "deepwaters:prismarine_crystal_ore"
+  },
+  "result": "deepwaters:prismarine_ingot",
+  "experience": 0.7,
+  "cookingtime": 100
+}

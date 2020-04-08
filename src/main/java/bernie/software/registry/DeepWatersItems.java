@@ -3,10 +3,12 @@ package bernie.software.registry;
 import bernie.software.DeepWatersMod;
 import bernie.software.item.DeepWatersItem;
 import bernie.software.item.ModdedSpawnEggItem;
+import bernie.software.item.armor.DeepWatersArmorItem;
 import bernie.software.item.tool.DeepWatersAxeItem;
 import bernie.software.item.tool.DeepWatersPickaxeItem;
 import bernie.software.item.tool.DeepWatersShovelItem;
 import bernie.software.item.tool.DeepWatersSwordItem;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,11 +23,22 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_NUGGET = ITEMS.register("prismarine_nugget", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> BLUFFERFISH = ITEMS.register("blufferfish", () -> new DeepWatersItem(DeepWatersFoods.BLUFFERFISH));
+	public static final RegistryObject<Item> COOKED_BLUFFERFISH = ITEMS.register("cooked_blufferfish", () -> new DeepWatersItem(DeepWatersFoods.COOKED_BLUFFERFISH));
+	public static final RegistryObject<Item> SALTED_BLUFFERFISH = ITEMS.register("salted_blufferfish", () -> new DeepWatersItem(DeepWatersFoods.SALTED_BLUFFERFISH));
+	public static final RegistryObject<Item> MUCK_GULPER = ITEMS.register("muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.MUCK_GULPER));
+	public static final RegistryObject<Item> COOKED_MUCK_GULPER = ITEMS.register("cooked_muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.COOKED_MUCK_GULPER));
+	public static final RegistryObject<Item> SALTED_MUCK_GULPER = ITEMS.register("salted_muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.SALTED_MUCK_GULPER));
 
 	public static final RegistryObject<Item> PRISMARINE_SWORD = ITEMS.register("prismarine_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased damage underwater"));
 	public static final RegistryObject<Item> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_SHOVEL = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
+
+	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
+	public static final RegistryObject<Item> PRISMARINE_CHESTPLATE = ITEMS.register("prismarine_chestplate", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.CHEST));
+	public static final RegistryObject<Item> PRISMARINE_LEGGINGS = ITEMS.register("prismarine_leggings", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.LEGS));
+	public static final RegistryObject<Item> PRISMARINE_BOOTS = ITEMS.register("prismarine_boots", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.FEET));
 
 
 	public static final RegistryObject<Item> SHARK_TOOTH = ITEMS.register("sharktooth", () -> new DeepWatersItem());

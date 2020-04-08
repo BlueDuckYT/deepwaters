@@ -19,8 +19,8 @@ import java.util.Random;
 public class MossyOceanFloorBlock extends DeepWatersGrassBlock implements IGrowable {
 
     public MossyOceanFloorBlock() {
-        super(Properties.create(Material.ROCK)
-                .hardnessAndResistance(3.0F, 3.0F)
+        super(Properties.create(Material.EARTH)
+                .hardnessAndResistance(3.0F, 40.0F)
                 .sound(SoundType.STONE)
                 .harvestLevel(1)
                 .harvestTool(ToolType.PICKAXE)

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B B",
+    "I I"
+  ],
+  "key": {
+    "I": {
+      "item": "deepwaters:prismarine_ingot"
+    },
+    "B": {
+      "item": "minecraft:prismarine"
+    }
+  },
+  "result": {
+    "item": "deepwaters:prismarine_boots"
+  }
+}

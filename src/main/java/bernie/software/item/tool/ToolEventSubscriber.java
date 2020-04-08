@@ -18,15 +18,13 @@ public class ToolEventSubscriber
 	{
 
 		PlayerEntity player = event.getPlayer();
-		if(!player.isInWater())
-		{
-			return;
-		}
+
 		float originalSpeed = event.getOriginalSpeed();
 		Item item = player.getHeldItemMainhand().getItem();
-		if(item == DeepWatersItems.PRISMARINE_AXE.get() || item == DeepWatersItems.PRISMARINE_PICKAXE.get() || item == DeepWatersItems.PRISMARINE_SHOVEL.get())
-		{
-			event.setNewSpeed(originalSpeed * 10);
+		if (player.isInWater() || player.isSwimming() || player.isInWaterOrBubbleColumn() && player.canHarvestBlock(player.getBlockState())) {
+			if(item == DeepWatersItems.PRISMARINE_AXE.get() || item == DeepWatersItems.PRISMARINE_PICKAXE.get() || item == DeepWatersItems.PRISMARINE_SHOVEL.get()) {
+				event.setNewSpeed(originalSpeed * 10);
+			}
 		}
 	}
 }
