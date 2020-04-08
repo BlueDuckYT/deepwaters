@@ -43,7 +43,7 @@ public class DeepWatersBlocks {
 	public static final RegistryObject<Block> PRISMARINE_BLOCK = registerNormalBlock("prismarine_block",
 			() -> new DeepWatersBlock(Material.IRON, 5.0F, 6.0F, SoundType.METAL, 2, ToolType.PICKAXE), true);
 
-	public static final RegistryObject<Block> AQUADITE_ORE = registerNormalBlock("aquatite_ore",
+	public static final RegistryObject<Block> AQUALITE_ORE = registerNormalBlock("aqualite_ore",
 			() -> new DeepWatersBlock(Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 
 	public static final RegistryObject<Block> METALLIC_BLOCK_YELLOW = registerNormalBlock("metallic_block_yellow",
