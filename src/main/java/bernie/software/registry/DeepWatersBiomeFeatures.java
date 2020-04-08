@@ -31,8 +31,10 @@ public class DeepWatersBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.DISK, new SphereReplaceConfig(Blocks.CLAY.getDefaultState(), 4, 1, Lists.newArrayList(DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(), Blocks.CLAY.getDefaultState())), Placement.COUNT_TOP_SOLID, new FrequencyConfig(1)));
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.DISK, new SphereReplaceConfig(DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState(), 6, 2, Lists.newArrayList(DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(), DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState())), Placement.COUNT_TOP_SOLID, new FrequencyConfig(1)));
     }
+
     public static void addStoneVariants(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OCEAN_FLOOR, DeepWatersBlocks.LIMESTONE.get().getDefaultState(), 33), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 256)));
-   }
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, biomeIn.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OCEAN_FLOOR, Blocks.PRISMARINE.getDefaultState(), 55), Placement.COUNT_RANGE, new CountRangeConfig(10, 0, 0, 64)));
+    }
 }
 

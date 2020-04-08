@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "deepwaters:blufferfish"
+    },
+    {
+      "item": "deepwaters:salt_crystal"
+    }
+  ],
+  "result": {
+    "item": "deepwaters:salted_blufferfish"
+  }
+}

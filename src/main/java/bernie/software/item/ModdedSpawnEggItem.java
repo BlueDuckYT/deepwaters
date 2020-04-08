@@ -39,17 +39,17 @@ public class ModdedSpawnEggItem extends SpawnEggItem
 	protected static final List<ModdedSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
 	private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 
-	public ModdedSpawnEggItem(final NonNullSupplier<? extends EntityType<?>> entityTypeSupplier, final int p_i48465_2_, final int p_i48465_3_)
+	public ModdedSpawnEggItem(final NonNullSupplier<? extends EntityType<?>> entityTypeSupplier, final int egg, final int spots)
 	{
-		super(null, p_i48465_2_, p_i48465_3_, new Properties()
+		super(null, egg, spots, new Properties()
 				.group(ItemGroup.MISC));
 		this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
 		UNADDED_EGGS.add(this);
 	}
 
-	public ModdedSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, final int p_i48465_2_, final int p_i48465_3_)
+	public ModdedSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, final int egg, final int spots)
 	{
-		super(null, p_i48465_2_, p_i48465_3_, new Properties()
+		super(null, egg, spots, new Properties()
 				.group(ItemGroup.MISC));
 		this.entityTypeSupplier = Lazy.of(entityTypeSupplier);
 		UNADDED_EGGS.add(this);
