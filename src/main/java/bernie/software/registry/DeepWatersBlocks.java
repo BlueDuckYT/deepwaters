@@ -39,6 +39,9 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> PRISMARINE_BLOCK = registerNormalBlock("prismarine_block", () -> new DeepWatersBlock(
 			Material.IRON, 5.0F, 6.0F, SoundType.METAL, 2, ToolType.PICKAXE), true);
 
+  public static final RegistryObject<Block> AQUALITE_ORE = registerNormalBlock("aqualite_ore",
+    () -> new DeepWatersBlock(Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
+  
 	public static final RegistryObject<Block> METALLIC_BLOCK_YELLOW = registerNormalBlock("metallic_block_yellow", () -> new DeepWatersBlock(
 			Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> METALLIC_BLOCK_CYAN = registerNormalBlock("metallic_block_cyan", () -> new DeepWatersBlock(
@@ -76,15 +79,15 @@ public class DeepWatersBlocks
 		return register;
 	}
 
-	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends Block> block)
-	{
+	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends Block> block) {
 		return (RegistryObject<T>) baseRegister(name, block, DeepWatersBlocks::registerBlockItem);
 	}
 
-	private static <T extends Block> RegistryObject<T> registerNormalBlock(String name, Supplier<? extends Block> block, boolean dropsItself)
-	{
+	private static <T extends Block> RegistryObject<T> registerNormalBlock(String name, Supplier<? extends Block> block,
+			boolean dropsItself) {
 
-		RegistryObject<T> registryObject = (RegistryObject<T>) baseRegister(name, block, DeepWatersBlocks::registerBlockItem);
+		RegistryObject<T> registryObject = (RegistryObject<T>) baseRegister(name, block,
+				DeepWatersBlocks::registerBlockItem);
 		DeepWatersItemModels.NormalItemBlocks.add((RegistryObject<Block>) registryObject);
 		if (dropsItself) {
 			DeepWatersBlockStates.NormalBlocks.add((RegistryObject<Block>) registryObject);
@@ -94,8 +97,8 @@ public class DeepWatersBlocks
 		return registryObject;
 	}
 
-	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block)
-	{
-		return () -> new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS));
+	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block) {
+		return () -> new BlockItem(Objects.requireNonNull(block.get()),
+				new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS));
 	}
 }
