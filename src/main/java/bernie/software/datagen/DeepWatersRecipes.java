@@ -68,6 +68,14 @@ public class DeepWatersRecipes extends DeepWatersRecipeProvider
 		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_BOOTS.get(), .1F).build(consumer, name("smelt_prismarine_boots"));
 		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_BOOTS.get(), .1F).build(consumer, name("blast_prismarine_boots"));
 
+		saltFood(DeepWatersItems.SALTED_BLUFFERFISH, DeepWatersItems.BLUFFERFISH).build(consumer);
+		saltFood(DeepWatersItems.SALTED_MUCK_GULPER, DeepWatersItems.MUCK_GULPER).build(consumer);
+
+		smeltingRecipe(DeepWatersItems.COOKED_BLUFFERFISH.get(), DeepWatersItems.BLUFFERFISH.get(), .1F).build(consumer, name("smelt_blufferfish"));
+		smokingRecipe(DeepWatersItems.COOKED_BLUFFERFISH.get(), DeepWatersItems.BLUFFERFISH.get(), .1F).build(consumer, name("smoke_blufferfish"));
+		smeltingRecipe(DeepWatersItems.COOKED_MUCK_GULPER.get(), DeepWatersItems.MUCK_GULPER.get(), .1F).build(consumer, name("smelt_muck_gulper"));
+		smokingRecipe(DeepWatersItems.COOKED_MUCK_GULPER.get(), DeepWatersItems.MUCK_GULPER.get(), .1F).build(consumer, name("smoke_muck_gulper"));
+
 		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.PRISMARINE_HELMET.get(), 1)
 				.patternLine("IBI")
 				.patternLine("B B")

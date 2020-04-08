@@ -23,6 +23,12 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_NUGGET = ITEMS.register("prismarine_nugget", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> BLUFFERFISH = ITEMS.register("blufferfish", () -> new DeepWatersItem(DeepWatersFoods.BLUFFERFISH));
+	public static final RegistryObject<Item> COOKED_BLUFFERFISH = ITEMS.register("cooked_blufferfish", () -> new DeepWatersItem(DeepWatersFoods.COOKED_BLUFFERFISH));
+	public static final RegistryObject<Item> SALTED_BLUFFERFISH = ITEMS.register("salted_blufferfish", () -> new DeepWatersItem(DeepWatersFoods.SALTED_BLUFFERFISH));
+	public static final RegistryObject<Item> MUCK_GULPER = ITEMS.register("muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.MUCK_GULPER));
+	public static final RegistryObject<Item> COOKED_MUCK_GULPER = ITEMS.register("cooked_muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.COOKED_MUCK_GULPER));
+	public static final RegistryObject<Item> SALTED_MUCK_GULPER = ITEMS.register("salted_muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.SALTED_MUCK_GULPER));
 
 	public static final RegistryObject<Item> PRISMARINE_SWORD = ITEMS.register("prismarine_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased damage underwater"));
 	public static final RegistryObject<Item> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));

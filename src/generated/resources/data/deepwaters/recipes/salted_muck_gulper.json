@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "deepwaters:muck_gulper"
+    },
+    {
+      "item": "deepwaters:salt_crystal"
+    }
+  ],
+  "result": {
+    "item": "deepwaters:salted_muck_gulper"
+  }
+}
