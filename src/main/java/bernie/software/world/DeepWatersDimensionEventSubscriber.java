@@ -14,9 +14,13 @@ public class DeepWatersDimensionEventSubscriber
 	@SubscribeEvent
 	public static void onBlockBroken(final BlockEvent.BreakEvent event)
 	{
-		if (event.getPos().getY() <= 230 && event.getPlayer().dimension == DimensionType.byName(ForgeBusEventSubscriber.DIMENSION_TYPE_RL)) {
+		if (event.getPos().getY() <= 229 && event.getPlayer().dimension == DimensionType.byName(ForgeBusEventSubscriber.DIMENSION_TYPE_RL)) {
+			if (event.getPlayer().canHarvestBlock(event.getState()) && !event.getPlayer().isCreative()) {
+				event.getWorld().destroyBlock(event.getPos(), true);
+			} else {
+				event.getWorld().destroyBlock(event.getPos(), false);
 
-			event.getWorld().destroyBlock(event.getPos(), true);
+			}
 			event.getWorld().setBlockState(event.getPos(), Blocks.WATER.getDefaultState(), 1);
 		}
 	}
