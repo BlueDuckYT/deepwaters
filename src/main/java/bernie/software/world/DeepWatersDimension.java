@@ -7,6 +7,7 @@ import bernie.software.world.gen.DeepWatersChunkGenerator;
 import bernie.software.world.gen.DeepWatersGenSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -100,6 +101,13 @@ public class DeepWatersDimension extends Dimension
 		}
 	}
 
+	@Nullable
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public MusicTicker.MusicType getMusicType() {
+		return MusicTicker.MusicType.UNDER_WATER;
+	}
+
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
@@ -107,7 +115,11 @@ public class DeepWatersDimension extends Dimension
 		double d0 = MathHelper.frac((double)worldTime / -24000.0D - -0.25D);
 		double d1 = -0.5D - Math.cos(d0 * Math.PI) / -2.0D;
 		return (float)(d0 * -2.0D + d1) / -3.0F;
+	}
 
+	@Override
+	public boolean isDaytime() {
+		return true;
 	}
 
 	@Override
@@ -125,7 +137,7 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public Vec3d getSkyColor(BlockPos cameraEntity, float partialTicks) {
-		return new Vec3d(1, 125F / 255, 1);
+		return new Vec3d(125F / 255, 235F / 255, 220F / 255);
 	}
 
 	@Override
@@ -135,9 +147,9 @@ public class DeepWatersDimension extends Dimension
 
 		float f = MathHelper.cos(celestialAngle * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
-		float f1 = 88F / 255;
-		float f2 = 55F / 255;
-		float f3 = 127F / 255;
+		float f1 = 205F / 255;
+		float f2 = 240F / 255;
+		float f3 = 235F / 255;
 		f1 = f1 * (f * 0.94F + 0.06F);
 		f2 = f2 * (f * 0.94F + 0.06F);
 		f3 = f3 * (f * 0.91F + 0.09F);
@@ -193,7 +205,7 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public int getSeaLevel()
 	{
-		return 200;
+		return 230;
 	}
 
 
