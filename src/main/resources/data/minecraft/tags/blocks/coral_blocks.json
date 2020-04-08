@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "deepwaters:coral_block_green",
+    "deepwaters:coral_block_yellow",
+    "deepwaters:coral_block_blue",
+    "deepwaters:coral_block_orange"
+  ]
+}
