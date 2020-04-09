@@ -2,17 +2,18 @@ package bernie.software.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
-import net.minecraft.entity.passive.fish.PufferfishEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class BlufferFish extends AbstractFishEntity
+public class DonutFish extends AbstractFishEntity
 {
+	public net.minecraft.util.ResourceLocation ResourceLocation;
 
-	public BlufferFish(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
+	public DonutFish(EntityType<? extends AbstractFishEntity> type, World worldIn)
 	{
-		super(p_i50248_1_, p_i50248_2_);
+		super(type, worldIn);
 	}
 
 	@Override
@@ -26,5 +27,4 @@ public class BlufferFish extends AbstractFishEntity
 	{
 		return null;
 	}
-
 }
