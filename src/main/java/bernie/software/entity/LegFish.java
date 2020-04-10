@@ -19,7 +19,7 @@ public class LegFish extends AbstractFishEntity
 	public LegFish(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
 	{
 		super(p_i50248_1_, p_i50248_2_);
-		if ((int) Math.random() * 100 == 1) {
+		if ((int) (Math.random() * 100 ) == 1) {
 			socks = true;
 		}
 	}
