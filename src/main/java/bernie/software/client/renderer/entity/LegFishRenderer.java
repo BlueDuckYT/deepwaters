@@ -24,7 +24,10 @@ public class LegFishRenderer extends MobRenderer<LegFish, LegFishModel>
 	@Override
 	protected ResourceLocation getEntityTexture(LegFish entity)
 	{
-		return new ResourceLocation("deepwaters" +  ":textures/model/entity/legfish.png");
+		if (!entity.getsocks())
+			return new ResourceLocation("deepwaters" +  ":textures/model/entity/legfish.png");
+		else
+			return new ResourceLocation("deepwaters" +  ":textures/model/entity/legfishsocks.png");
 	}
 
 	@Override

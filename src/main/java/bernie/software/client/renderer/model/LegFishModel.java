@@ -28,12 +28,12 @@ public class LegFishModel extends EntityModel<LegFish> {
         LLeg = new RendererModel(this);
         LLeg.setRotationPoint(2.0F, -6.5F, 3.0F);
         Body.addChild(LLeg);
-        LLeg.cubeList.add(new ModelBox(LLeg, 0, 19, -1.5F, -1.5F, 0.0F, 3, 3, 8, 0.0F, false));
+        LLeg.cubeList.add(new ModelBox(LLeg, 14, 22, -1.5F, -1.5F, 0.0F, 3, 3, 8, 0.0F, false));
 
         RLeg = new RendererModel(this);
         RLeg.setRotationPoint(-2.0F, -6.5F, 3.0F);
         Body.addChild(RLeg);
-        RLeg.cubeList.add(new ModelBox(RLeg, 14, 22, -1.5F, -1.5F, 0.0F, 3, 3, 8, 0.0F, false));
+        RLeg.cubeList.add(new ModelBox(RLeg, 14, 22, -1.5F, -1.5F, 0.0F, 3, 3, 8, 0.0F, true));
 
         Fins = new RendererModel(this);
         Fins.setRotationPoint(0.0F, 24.0F, 0.0F);
@@ -66,6 +66,7 @@ public class LegFishModel extends EntityModel<LegFish> {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
+
     public void setRotationAngles(LegFish entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 
         this.LLeg.rotateAngleX = MathHelper.sin(limbSwing) * (float) .5;
