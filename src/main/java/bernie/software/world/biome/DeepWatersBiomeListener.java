@@ -8,6 +8,8 @@ public class DeepWatersBiomeListener
 	{
 		CoralFieldsBiome coralFieldsBiome = (CoralFieldsBiome) DeepWatersBiomes.CoralFieldsBiome.get();
 		coralFieldsBiome.addSpawns();
+		SunkenWastesBiome sunkenWastesBiome = (SunkenWastesBiome) DeepWatersBiomes.SunkenWastesBiome.get();
+		sunkenWastesBiome.addSpawns();
 	}
 
 	public static void addCarversToBiomes()
