@@ -70,5 +70,8 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(MuckGulper.class, manager -> new MuckGulperRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(CoralCrawler.class, manager -> new CoralCrawlerRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DonutFish.class, manager -> new DonutFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(ColorfulFish.class, manager -> new ColorfulFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(LegFish.class, manager -> new LegFishRenderer(manager));
+
 	}
 }
