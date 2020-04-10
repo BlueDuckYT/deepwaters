@@ -44,7 +44,7 @@ public class SkullFish extends AbstractFishEntity
 		this.goalSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ColorfulFish.class, true));
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, BlufferFish.class, true));
 		this.goalSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, DonutFish.class, true));
-		//this.goalSelector.addGoal(1, new UnderwaterCreatureAttackGoal(this, 2.0D, false));
+		//this.targetSelector.addGoal(1, new UnderwaterCreatureAttackGoal(this, 2.0D, false));
 		//Plans for future: Have it attack players and feeder fish.
 
 

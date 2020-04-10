@@ -60,5 +60,11 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		spawnEgg(DeepWatersItems.STING_RAY_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.BABY_KRACKEN_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.MUCK_GULPER_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.COLORFUL_FISH_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.DEEP_GLIDER_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.SKULL_FISH_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.LEG_FISH_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.DONUT_FISH_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.CORAL_CRAWLER_SPAWN_EGG);
 	}
 }

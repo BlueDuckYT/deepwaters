@@ -56,5 +56,17 @@ public class DeepWatersItems
 			DeepWatersEntities.BABY_KRACKEN, 9596323, 9043968));
 	public static final RegistryObject<Item> MUCK_GULPER_SPAWN_EGG = ITEMS.register("muck_gulper_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.MUCK_GULPER, 4337949, 9935773));
+	public static final RegistryObject<Item> COLORFUL_FISH_SPAWN_EGG = ITEMS.register("colorful_fish_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.COLORFUL_FISH, 11393254, 3329330));
+	public static final RegistryObject<Item> DEEP_GLIDER_SPAWN_EGG = ITEMS.register("deep_glider_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.DEEP_GLIDER, 590079, 11393254));
+	public static final RegistryObject<Item> SKULL_FISH_SPAWN_EGG = ITEMS.register("skull_fish_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.SKULL_FISH, 16711680, 16768994));
+	public static final RegistryObject<Item> DONUT_FISH_SPAWN_EGG = ITEMS.register("donut_fish_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.DONUT_FISH, 11772160, 480893));
+	public static final RegistryObject<Item> LEG_FISH_SPAWN_EGG = ITEMS.register("leg_fish_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.LEG_FISH, 524080, 14211862));
+	public static final RegistryObject<Item> CORAL_CRAWLER_SPAWN_EGG = ITEMS.register("coral_crawler_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.CORAL_CRAWLER, 3620433, 15482449));
 
 }
