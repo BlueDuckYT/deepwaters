@@ -72,6 +72,5 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DonutFish.class, manager -> new DonutFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(ColorfulFish.class, manager -> new ColorfulFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(LegFish.class, manager -> new LegFishRenderer(manager));
-
 	}
 }
