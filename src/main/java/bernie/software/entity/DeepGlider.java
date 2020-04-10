@@ -32,4 +32,6 @@ public class DeepGlider extends AbstractFishEntity
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(36.0D);
 	}
 
+	//Add Attack Goals and have it kill players and feeder fish
+
 }

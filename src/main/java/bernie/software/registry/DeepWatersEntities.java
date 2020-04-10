@@ -30,5 +30,6 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<ColorfulFish>> COLORFUL_FISH = EntityUtils.BuildWaterEntity(ColorfulFish::new, ColorfulFish.class, .3F,.1F);
 	public static final RegistryObject<EntityType<LegFish>> LEG_FISH = EntityUtils.BuildWaterEntity(LegFish::new, LegFish.class, 1.3F,.7F);
 	public static final RegistryObject<EntityType<DeepGlider>> DEEP_GLIDER = EntityUtils.BuildWaterEntity(DeepGlider::new, DeepGlider.class, .6F,.6F);
+	public static final RegistryObject<EntityType<SkullFish>> SKULL_FISH = EntityUtils.BuildWaterEntity(SkullFish::new, SkullFish.class, .3F,.3F);
 
 }

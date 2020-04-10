@@ -37,7 +37,7 @@ public class LegFish extends AbstractFishEntity
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
 	}
 
-
+	//Possibly make it kill players
 
 
 }
