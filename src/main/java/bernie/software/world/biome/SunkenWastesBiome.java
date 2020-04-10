@@ -1,6 +1,7 @@
 package bernie.software.world.biome;
 
 import bernie.software.registry.DeepWatersBiomeFeatures;
+import bernie.software.registry.DeepWatersEntities;
 import bernie.software.surfacebuilder.SunkenWastesSurfaceBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
@@ -27,7 +28,9 @@ public class SunkenWastesBiome extends WaterBiomeBase
 	@Override
 	public void addSpawns()
 	{
-
+		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.DEEP_GLIDER.get(), 30, 1, 3));
+		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.SKULL_FISH.get(), 30, 3, 7));
+		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.LEG_FISH.get(), 10, 1, 3));
 	}
 
 	@Override

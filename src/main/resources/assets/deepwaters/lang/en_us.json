@@ -49,6 +49,12 @@
   "item.deepwaters.sting_ray_spawn_egg": "Stingray Spawn Egg",
   "item.deepwaters.baby_kracken_spawn_egg": "Baby Kracken Spawn Egg",
   "item.deepwaters.muck_gulper_spawn_egg": "Muck Gulper Spawn Egg",
+  "item.deepwaters.deep_glider_spawn_egg": "Deep Glider Spawn Egg",
+  "item.deepwaters.colorful_fish_spawn_egg": "Huefish Spawn Egg",
+  "item.deepwaters.leg_fish_spawn_egg": "Legfish Spawn Egg",
+  "item.deepwaters.donut_fish_spawn_egg": "Donut Fish Spawn Egg",
+  "item.deepwaters.skull_fish_spawn_egg": "Skullfish Spawn Egg",
+  "item.deepwaters.coral_crawler_spawn_egg": "Coral Crawler Spawn Egg",
 
   "itemGroup.deepwaters_blocks": "Deep Waters Blocks",
   "itemGroup.deepwaters_items": "Deep Waters Items",
@@ -58,6 +64,12 @@
   "entity.deepwaters.clam": "Clam",
   "entity.deepwaters.stingray": "Stingray",
   "entity.deepwaters.muckgulper": "Muck Gulper",
-  "entity.deepwaters.babykracken": "Baby Kracken"
+  "entity.deepwaters.babykracken": "Baby Kracken",
+  "entity.deepwaters.skullfish": "Skullfish",
+  "entity.deepwaters.donutfish": "Donut Fish",
+  "entity.deepwaters.deepglider": "Deep Glider",
+  "entity.deepwaters.legfish": "Legfish",
+  "entity.deepwaters.colorfulfish": "Huefish",
+  "entity.deepwaters.coralcrawler": "Coral Crawler"
 
 }
