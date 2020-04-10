@@ -1,4 +1,4 @@
-package bernie.software.client.renderer.model;;
+package bernie.software.client.renderer.model;
 import bernie.software.entity.LegFish;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
@@ -12,10 +12,10 @@ public class LegFishModel extends EntityModel<LegFish> {
     private final RendererModel Body;
     private final RendererModel LLeg;
     private final RendererModel RLeg;
-    private final RendererModel Eyes;
-    private final RendererModel Mouth;
-    private final RendererModel TopMouth;
-    private final RendererModel BottomMouth;
+    private final RendererModel Fins;
+    private final RendererModel Top;
+    private final RendererModel Left;
+    private final RendererModel Right;
 
     public LegFishModel() {
         textureWidth = 64;
@@ -35,30 +35,31 @@ public class LegFishModel extends EntityModel<LegFish> {
         Body.addChild(RLeg);
         RLeg.cubeList.add(new ModelBox(RLeg, 14, 22, -1.5F, -1.5F, 0.0F, 3, 3, 8, 0.0F, false));
 
-        Eyes = new RendererModel(this);
-        Eyes.setRotationPoint(0.0F, -9.0F, -8.5F);
-        Body.addChild(Eyes);
-        Eyes.cubeList.add(new ModelBox(Eyes, 0, 9, -3.5F, -2.0F, -0.5F, 3, 2, 1, 0.0F, false));
-        Eyes.cubeList.add(new ModelBox(Eyes, 0, 6, 0.5F, -2.0F, -0.5F, 3, 2, 1, 0.0F, false));
+        Fins = new RendererModel(this);
+        Fins.setRotationPoint(0.0F, 24.0F, 0.0F);
 
-        Mouth = new RendererModel(this);
-        Mouth.setRotationPoint(0.0F, 0.0F, 0.0F);
-        Body.addChild(Mouth);
+        Top = new RendererModel(this);
+        Top.setRotationPoint(0.0F, 0.0F, 0.0F);
+        Fins.addChild(Top);
+        Top.cubeList.add(new ModelBox(Top, 34, 42, 0.0F, -13.0F, -9.0F, 0, 7, 15, 0.0F, false));
 
-        TopMouth = new RendererModel(this);
-        TopMouth.setRotationPoint(0.0F, -7.0F, -11.0F);
-        Mouth.addChild(TopMouth);
-        TopMouth.cubeList.add(new ModelBox(TopMouth, 0, 0, -2.0F, -0.5F, -2.0F, 4, 1, 2, 0.0F, false));
+        Left = new RendererModel(this);
+        Left.setRotationPoint(4.3F, 19.0F, -6.5F);
+        setRotationAngle(Left, 0.0F, 0.0F, -0.3491F);
+        Left.cubeList.add(new ModelBox(Left, 0, 22, 0.0F, -1.0F, 0.5F, 0, 2, 3, 0.0F, false));
 
-        BottomMouth = new RendererModel(this);
-        BottomMouth.setRotationPoint(0.0F, -5.5F, -11.0F);
-        Mouth.addChild(BottomMouth);
-        BottomMouth.cubeList.add(new ModelBox(BottomMouth, 0, 3, -2.0F, -0.5F, -2.0F, 4, 1, 2, 0.0F, false));
+        Right = new RendererModel(this);
+        Right.setRotationPoint(-4.3F, 19.0F, -6.5F);
+        setRotationAngle(Right, 0.0F, 0.0F, 0.3491F);
+        Right.cubeList.add(new ModelBox(Right, 0, 22, 0.0F, -1.0F, 0.5F, 0, 2, 3, 0.0F, false));
     }
 
     @Override
     public void render(LegFish entity, float f, float f1, float f2, float f3, float f4, float f5) {
         Body.render(f5);
+        Fins.render(f5);
+        Left.render(f5);
+        Right.render(f5);
     }
     public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
@@ -71,4 +72,5 @@ public class LegFishModel extends EntityModel<LegFish> {
         this.RLeg.rotateAngleX = MathHelper.sin(limbSwing) * (float) -.5;
 
     }
+
 }
