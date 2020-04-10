@@ -27,5 +27,7 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<MuckGulper>> MUCK_GULPER = EntityUtils.BuildWaterEntity(MuckGulper::new, MuckGulper.class, .7F, .2F);
 	public static final RegistryObject<EntityType<CoralCrawler>> CORAL_CRAWLER = EntityUtils.BuildWaterLandEntity(CoralCrawler::new, CoralCrawler.class, .8F, 1.5F);
 	public static final RegistryObject<EntityType<DonutFish>> DONUT_FISH = EntityUtils.BuildWaterEntity(DonutFish::new, DonutFish.class, .6F, .6F);
+	public static final RegistryObject<EntityType<ColorfulFish>> COLORFUL_FISH = EntityUtils.BuildWaterEntity(ColorfulFish::new, ColorfulFish.class, .3F,.1F);
+	public static final RegistryObject<EntityType<LegFish>> LEG_FISH = EntityUtils.BuildWaterEntity(LegFish::new, LegFish.class, 1.3F,.7F);
 
 }
