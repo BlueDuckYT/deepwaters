@@ -59,7 +59,7 @@ public class ColorfulFishModel extends EntityModel<ColorfulFish> {
         this.LFin.rotateAngleX = MathHelper.sin(limbSwing);
         this.RFin.rotateAngleX = MathHelper.sin(limbSwing) * -1;
 
-        this.Backfin.rotateAngleY = MathHelper.sin(limbSwing)/2;
+        this.Backfin.rotateAngleY = MathHelper.sin(ageInTicks)/2;
 
     }
 }

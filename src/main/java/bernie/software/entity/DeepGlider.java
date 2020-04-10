@@ -2,19 +2,14 @@ package bernie.software.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import bernie.software.entity.ai.goal.UnderwaterCreatureAttackGoal;
 
-import java.util.EnumSet;
-
-public class LegFish extends AbstractFishEntity
+public class DeepGlider extends AbstractFishEntity
 {
-	public LegFish(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
+	public DeepGlider(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
 	{
 		super(p_i50248_1_, p_i50248_2_);
 	}
@@ -33,11 +28,10 @@ public class LegFish extends AbstractFishEntity
 
 	protected void registerAttributes() {
 		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(2D);
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(3D);
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(36.0D);
 	}
 
-	//Possibly make it kill players
-
+	//Add Attack Goals and have it kill players and feeder fish
 
 }
