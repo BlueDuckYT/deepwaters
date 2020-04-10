@@ -1,14 +1,13 @@
-package bernie.software.client.renderer.model;// Made with Blockbench
-// Paste this code into your mod.
-// Make sure to generate all required imports
+package bernie.software.client.renderer.model;
 
 import bernie.software.entity.CoralCrawler;
-import bernie.software.entity.KillerWiggler;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
+// Made with Blockbench
+// Paste this code into your mod.
+// Make sure to generate all required imports
 
 public class CoralCrawlerModel extends EntityModel<CoralCrawler>
 {
@@ -22,8 +21,8 @@ public class CoralCrawlerModel extends EntityModel<CoralCrawler>
 	private final RendererModel tube2part2;
 	private final RendererModel rightleg;
 	private final RendererModel leftlegs;
-	private final RendererModel leftBackLeg;
-	private final RendererModel leftFrontLeg;
+	private final RendererModel leftLegBack;
+	private final RendererModel leftLegFront;
 
 	public CoralCrawlerModel()
 	{
@@ -86,22 +85,26 @@ public class CoralCrawlerModel extends EntityModel<CoralCrawler>
 		rightleg.cubeList.add(new ModelBox(rightleg, 24, 30, -1.0F, -4.0F, -1.5F, 2, 8, 3, 0.0F, false));
 
 		leftlegs = new RendererModel(this);
-		leftFrontLeg = new RendererModel(this);
-		leftBackLeg = new RendererModel(this);
-
 		leftlegs.setRotationPoint(3.0F, 18.0F, 0.5F);
 		setRotationAngle(leftlegs, 0.0F, -0.0873F, 0.0F);
-		leftFrontLeg.cubeList.add(new ModelBox(leftlegs, 28, 0, -1.0F, -1.0F, -3.5F, 2, 7, 2, 0.0F, false));
-		leftBackLeg.cubeList.add(new ModelBox(leftlegs, 28, 0, -1.0F, -1.0F, 1.5F, 2, 7, 2, 0.0F, false));
-		leftlegs.addChild(leftBackLeg);
-		leftlegs.addChild(leftFrontLeg);
 
+		leftLegBack = new RendererModel(this);
+		leftLegBack.setRotationPoint(0.0F, 0.0F, -2.5F);
+		leftlegs.addChild(leftLegBack);
+		leftLegBack.cubeList.add(new ModelBox(leftLegBack, 28, 0, -1.0F, -1.0F, -1.0F, 2, 7, 2, 0.0F, false));
+
+		leftLegFront = new RendererModel(this);
+		leftLegFront.setRotationPoint(0.0F, 1.0F, 2.5F);
+		leftlegs.addChild(leftLegFront);
+		leftLegFront.cubeList.add(new ModelBox(leftLegFront, 28, 0, -1.0F, -2.0F, -1.0F, 2, 7, 2, 0.0F, false));
 	}
 
 	@Override
 	public void render(CoralCrawler entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		body.render(f5);
+		rightleg.render(f5);
+		leftlegs.render(f5);
 	}
 
 	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z)
@@ -114,9 +117,10 @@ public class CoralCrawlerModel extends EntityModel<CoralCrawler>
 	@Override
 	public void setRotationAngles(CoralCrawler entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
-		this.leftBackLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		this.leftFrontLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+		this.leftLegBack.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		this.leftLegFront.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
 		this.rightleg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 	}
+
 }

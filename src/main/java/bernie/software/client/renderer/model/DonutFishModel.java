@@ -4,6 +4,7 @@ import bernie.software.entity.DonutFish;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.util.math.MathHelper;
 // Made with Blockbench
 // Paste this code into your mod.
 // Make sure to generate all required imports
@@ -53,6 +54,7 @@ public class DonutFishModel extends EntityModel<DonutFish>
 		Head.render(f5);
 	}
 
+
 	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z)
 	{
 		modelRenderer.rotateAngleX = x;
@@ -63,6 +65,7 @@ public class DonutFishModel extends EntityModel<DonutFish>
 	@Override
 	public void setRotationAngles(DonutFish entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
-		this.Tail.rotationPointX = 0;
+		this.Tail.rotateAngleY = (MathHelper.sin((float) (limbSwing * 2.5)) * 0.5F);
+		this.Fin.rotateAngleZ = (MathHelper.sin((float) (limbSwing * 2.5)) * 0.5F);
 	}
 }

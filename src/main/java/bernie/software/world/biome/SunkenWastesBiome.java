@@ -23,4 +23,16 @@ public class SunkenWastesBiome extends WaterBiomeBase
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
 		DeepWatersBiomeFeatures.addStoneVariants(this);
 	}
+
+	@Override
+	public void addSpawns()
+	{
+
+	}
+
+	@Override
+	public void addWorldCarvers()
+	{
+
+	}
 }

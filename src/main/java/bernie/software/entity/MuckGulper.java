@@ -2,13 +2,14 @@ package bernie.software.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
+import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class MuckGulper extends AbstractFishEntity
+public class MuckGulper extends AbstractGroupFishEntity
 {
-	public MuckGulper(EntityType<? extends AbstractFishEntity> type, World worldIn)
+	public MuckGulper(EntityType<? extends AbstractGroupFishEntity> type, World worldIn)
 	{
 		super(type, worldIn);
 	}

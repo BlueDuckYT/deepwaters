@@ -7,7 +7,7 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 
-public class WaterBiomeBase extends Biome
+public abstract class WaterBiomeBase extends Biome
 {
 	protected WaterBiomeBase(Builder biomeBuilder)
 	{
@@ -36,22 +36,24 @@ public class WaterBiomeBase extends Biome
 		addSpawn(WATER_PASSIVE, spawnListEntry);
 	}
 
-
 	public void addWaterMonsterCreatureSpawn(SpawnListEntry spawnListEntry)
 	{
 		addSpawn(WATER_MONSTER, spawnListEntry);
 	}
-
 
 	public void addWaterLandPassiveCreatureSpawn(SpawnListEntry spawnListEntry)
 	{
 		addSpawn(WATER_LAND_PASSIVE, spawnListEntry);
 	}
 
-
 	public void AddWorldCarver()
 	{
 		WorldCarver<ProbabilityConfig> carver = DeepWatersWorldCarvers.CORAL_CAVE_CARVER.get();
 		this.addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(0.4F)));
 	}
+
+	public abstract void addSpawns();
+
+	public abstract void addWorldCarvers();
+
 }

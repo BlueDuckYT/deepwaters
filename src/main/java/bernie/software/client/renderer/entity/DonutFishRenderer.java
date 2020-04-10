@@ -2,6 +2,7 @@ package bernie.software.client.renderer.entity;
 
 import bernie.software.client.renderer.model.DonutFishModel;
 import bernie.software.entity.DonutFish;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -45,5 +46,12 @@ public class DonutFishRenderer extends MobRenderer<DonutFish, DonutFishModel>
 	protected void applyRotations(DonutFish entityLiving, float ageInTicks, float rotationYaw, float partialTicks)
 	{
 		super.applyRotations(entityLiving, ageInTicks, rotationYaw, partialTicks);
+	}
+
+	@Override
+	public float prepareScale(DonutFish entitylivingbaseIn, float partialTicks)
+	{
+		GlStateManager.scalef(2F, 2F, 2F);
+		return super.prepareScale(entitylivingbaseIn, partialTicks);
 	}
 }
