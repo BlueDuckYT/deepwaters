@@ -1,6 +1,7 @@
 package bernie.software;
 
-import bernie.software.biome.CoralFieldsBiome;
+import bernie.software.utils.GeneralUtils;
+import bernie.software.world.biome.CoralFieldsBiome;
 import bernie.software.client.renderer.entity.*;
 import bernie.software.entity.*;
 import bernie.software.item.ModdedSpawnEggItem;
@@ -8,20 +9,16 @@ import bernie.software.item.tool.SwordEventSubscriber;
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.world.DeepWatersModDimension;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.block.Blocks;
+import bernie.software.world.biome.DeepWatersBiomeListener;
+import bernie.software.world.biome.SunkenWastesBiome;
 import net.minecraft.entity.EntityType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
-import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -39,14 +36,13 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void onDimensionRegistryEvent(final RegistryEvent.Register<ModDimension> event)
 	{
-		event.getRegistry().register(new DeepWatersModDimension().setRegistryName(Location("deepwatersdimension")));
+		event.getRegistry().register(new DeepWatersModDimension().setRegistryName(GeneralUtils.Location("deepwatersdimension")));
 	}
 
 	@SubscribeEvent
 	public static void onWorldCarverRegistryEvent(final RegistryEvent.Register<WorldCarver<?>> event)
 	{
-		CoralFieldsBiome biome = (CoralFieldsBiome) DeepWatersBiomes.CoralFieldsBiome.get();
-		biome.AddWorldCarver();
+		DeepWatersBiomeListener.addCarversToBiomes();
 	}
 
 	@SubscribeEvent
@@ -55,23 +51,11 @@ public class ModEventSubscriber
 		MinecraftForge.EVENT_BUS.register(new SwordEventSubscriber());
 	}
 
-
 	@SubscribeEvent
 	public static void onEntityRegisterEvent(final RegistryEvent.Register<EntityType<?>> event)
 	{
 		ModdedSpawnEggItem.initUnaddedEggs();
-		CoralFieldsBiome biome = (CoralFieldsBiome) DeepWatersBiomes.CoralFieldsBiome.get();
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.BLUFFERFISH.get(), 30, 4, 10));
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.KILLER_WIGGLER.get(), 1, 1, 1));
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(EntityType.SALMON, 30, 5, 10));
-		biome.addSpawn(EntityClassification.WATER_CREATURE, new Biome.SpawnListEntry(EntityType.TROPICAL_FISH, 25, 8, 8));
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.BABY_KRACKEN.get(), 2, 1, 2));
-		biome.addWaterLandPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.CLAM.get(), 12, 1, 2));
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.STING_RAY.get(), 4, 1, 4));
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.MUCK_GULPER.get(), 30, 1, 10));
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.COLORFUL_FISH.get(), 30, 6, 18));
-		biome.addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.LEG_FISH.get(), 5, 1, 3));
-
+		DeepWatersBiomeListener.addSpawnsToBiomes();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -84,12 +68,7 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(Stingray.class, manager -> new StingrayRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(BabyKracken.class, manager -> new BabyKrackenRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(MuckGulper.class, manager -> new MuckGulperRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(ColorfulFish.class, manager -> new ColorfulFishRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(LegFish.class, manager -> new LegFishRenderer(manager));
-	}
-
-	public static ResourceLocation Location(String name)
-	{
-		return new ResourceLocation(DeepWatersMod.ModID, name);
+		RenderingRegistry.registerEntityRenderingHandler(CoralCrawler.class, manager -> new CoralCrawlerRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DonutFish.class, manager -> new DonutFishRenderer(manager));
 	}
 }

@@ -56,6 +56,7 @@ public class DeepWatersBlocks
 			Material.CORAL, 2.0F, 6.0F, SoundType.CORAL, 1, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> CORAL_BLOCK_GREEN = registerNormalBlock("coral_block_green", () -> new DeepWatersBlock(
 			Material.CORAL, 2.0F, 6.0F, SoundType.CORAL, 1, ToolType.PICKAXE), true);
+
 	//public static final RegistryObject<Block> SALT_PILE = registerNormalBlock("salt_pile", () -> new DeepWatersBlock(
 	//		Material.SAND, 2.0F, 3.0F, SoundType.SAND, 1, ToolType.SHOVEL), true);
 
