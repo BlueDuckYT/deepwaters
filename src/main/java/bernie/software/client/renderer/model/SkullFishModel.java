@@ -65,7 +65,7 @@ public class SkullFishModel extends EntityModel<SkullFish> {
         this.LeftFin.rotateAngleZ = MathHelper.sin(limbSwing);
         this.RightFin.rotateAngleZ = MathHelper.sin(limbSwing) * -1;
         this.Tail.rotateAngleY = (float) (MathHelper.sin(limbSwing) * 0.75);
-        this.Head.rotateAngleX = (float) (Math.abs(MathHelper.sin(limbSwing)) * -.5);
+        this.Head.rotateAngleX = (float) (Math.abs(MathHelper.sin(limbSwing)) * -.05);
 
     }
 
