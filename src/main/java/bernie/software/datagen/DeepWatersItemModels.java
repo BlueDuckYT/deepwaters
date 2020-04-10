@@ -41,13 +41,15 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		normalItem(DeepWatersItems.PEARL);
 		normalItem(DeepWatersItems.PRISMARINE_INGOT);
 		normalItem(DeepWatersItems.PRISMARINE_NUGGET);
-		//normalItem(DeepWatersItems.PRISMARINE_HELMET);
-		//normalItem(DeepWatersItems.PRISMARINE_CHESTPLATE);
-		//normalItem(DeepWatersItems.PRISMARINE_LEGGINGS);
-		//normalItem(DeepWatersItems.PRISMARINE_BOOTS);
+		normalItem(DeepWatersItems.PRISMARINE_HELMET);
+		normalItem(DeepWatersItems.PRISMARINE_CHESTPLATE);
+		normalItem(DeepWatersItems.PRISMARINE_LEGGINGS);
+		normalItem(DeepWatersItems.PRISMARINE_BOOTS);
 		normalItem(DeepWatersItems.BLUFFERFISH);
 		normalItem(DeepWatersItems.COOKED_BLUFFERFISH);
 		normalItem(DeepWatersItems.SALTED_BLUFFERFISH);
+		normalItem(DeepWatersItems.MUCK_GULPER);
+		normalItem(DeepWatersItems.COOKED_MUCK_GULPER);
 
 		toolItem(DeepWatersItems.PRISMARINE_SWORD);
 		toolItem(DeepWatersItems.PRISMARINE_PICKAXE);

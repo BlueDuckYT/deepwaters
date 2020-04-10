@@ -57,7 +57,7 @@ public class DeepWatersLootTables extends LootTableProvider
 
 	public static List<RegistryObject<Block>> NormalItemDropBlocks = new ArrayList<>();
 
-	public static class Blocks extends DeepWatersBlockLootTableProvider
+	public static class 	Blocks extends DeepWatersBlockLootTableProvider
 	{
 		@Override
 		protected void addTables()
