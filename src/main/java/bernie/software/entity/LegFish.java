@@ -31,6 +31,12 @@ public class LegFish extends AbstractFishEntity
 		return null;
 	}
 
+	protected void registerAttributes() {
+		super.registerAttributes();
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(2D);
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+	}
+
 
 
 
