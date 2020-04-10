@@ -14,9 +14,14 @@ import java.util.EnumSet;
 
 public class LegFish extends AbstractFishEntity
 {
+	boolean socks = false;
+
 	public LegFish(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
 	{
 		super(p_i50248_1_, p_i50248_2_);
+		if ((int) Math.random() * 100 == 1) {
+			socks = true;
+		}
 	}
 
 	@Override
@@ -38,6 +43,10 @@ public class LegFish extends AbstractFishEntity
 	}
 
 	//Possibly make it kill players
+
+	public boolean getsocks() {
+		return socks;
+	}
 
 
 }
