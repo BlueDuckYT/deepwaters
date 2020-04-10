@@ -39,7 +39,6 @@ public class DeepWatersBlocks
 			Material.IRON, 1.0F, 0F, SoundType.GLASS, 0, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> PRISMARINE_BLOCK = registerNormalBlock("prismarine_block", () -> new DeepWatersBlock(
 			Material.IRON, 5.0F, 6.0F, SoundType.METAL, 2, ToolType.PICKAXE), true);
-
 	public static final RegistryObject<Block> METALLIC_BLOCK_YELLOW = registerNormalBlock("metallic_block_yellow", () -> new DeepWatersBlock(
 			Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> METALLIC_BLOCK_CYAN = registerNormalBlock("metallic_block_cyan", () -> new DeepWatersBlock(
@@ -54,13 +53,10 @@ public class DeepWatersBlocks
 			Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 
 	public static final RegistryObject<Block> CORAL_BLOCK_ORANGE = registerNormalBlock("coral_block_orange", () -> new DeepWatersBlock(
-			Material.CORAL, 2.0F, 3.0F, SoundType.PLANT, 1, ToolType.PICKAXE), true);
-	public static final RegistryObject<Block> CORAL_BLOCK_YELLOW = registerNormalBlock("coral_block_yellow", () -> new DeepWatersBlock(
-			Material.CORAL, 2.0F, 3.0F, SoundType.PLANT, 1, ToolType.PICKAXE), true);
-	public static final RegistryObject<Block> CORAL_BLOCK_BLUE = registerNormalBlock("coral_block_blue", () -> new DeepWatersBlock(
-			Material.CORAL, 2.0F, 3.0F, SoundType.PLANT, 1, ToolType.PICKAXE), true);
+			Material.CORAL, 2.0F, 6.0F, SoundType.CORAL, 1, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> CORAL_BLOCK_GREEN = registerNormalBlock("coral_block_green", () -> new DeepWatersBlock(
-			Material.CORAL, 2.0F, 3.0F, SoundType.PLANT, 1, ToolType.PICKAXE), true);
+			Material.CORAL, 2.0F, 6.0F, SoundType.CORAL, 1, ToolType.PICKAXE), true);
+
 	//public static final RegistryObject<Block> SALT_PILE = registerNormalBlock("salt_pile", () -> new DeepWatersBlock(
 	//		Material.SAND, 2.0F, 3.0F, SoundType.SAND, 1, ToolType.SHOVEL), true);
 
@@ -77,12 +73,13 @@ public class DeepWatersBlocks
 		return register;
 	}
 
-	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends Block> block) {
+	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends Block> block)
+	{
 		return (RegistryObject<T>) baseRegister(name, block, DeepWatersBlocks::registerBlockItem);
 	}
 
-	private static <T extends Block> RegistryObject<T> registerNormalBlock(String name, Supplier<? extends Block> block,
-			boolean dropsItself) {
+	private static <T extends Block> RegistryObject<T> registerNormalBlock(String name, Supplier<? extends Block> block, boolean dropsItself)
+	{
 
 		RegistryObject<T> registryObject = (RegistryObject<T>) baseRegister(name, block,
 				DeepWatersBlocks::registerBlockItem);
@@ -95,7 +92,8 @@ public class DeepWatersBlocks
 		return registryObject;
 	}
 
-	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block) {
+	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block)
+	{
 		return () -> new BlockItem(Objects.requireNonNull(block.get()),
 				new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS));
 	}

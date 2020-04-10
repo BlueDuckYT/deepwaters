@@ -4,12 +4,15 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class MuckGulper extends AbstractGroupFishEntity
+public class DonutFish extends AbstractGroupFishEntity
 {
-	public MuckGulper(EntityType<? extends AbstractGroupFishEntity> type, World worldIn)
+	public net.minecraft.util.ResourceLocation ResourceLocation;
+
+	public DonutFish(EntityType<? extends AbstractGroupFishEntity> type, World worldIn)
 	{
 		super(type, worldIn);
 	}
