@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "deepwaters:coral_block_blue"
+          "name": "deepwaters:salt_pile"
         }
       ],
       "conditions": [

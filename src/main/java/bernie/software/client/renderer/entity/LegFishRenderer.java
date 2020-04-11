@@ -4,9 +4,11 @@ package bernie.software.client.renderer.entity;
 
 import bernie.software.client.renderer.model.LegFishModel;
 import bernie.software.entity.LegFish;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -34,5 +36,11 @@ public class LegFishRenderer extends MobRenderer<LegFish, LegFishModel>
 	protected void applyRotations(LegFish entityLiving, float ageInTicks, float rotationYaw, float partialTicks)
 	{
 		super.applyRotations(entityLiving, ageInTicks, rotationYaw, partialTicks);
+		float f = 4.3F * MathHelper.sin(0.6F * ageInTicks);
+		GlStateManager.rotatef(f, 0.0F, 1.0F, 0.0F);
+		if (!entityLiving.isInWater()) {
+			GlStateManager.translatef(0.1F, 0.1F, -0.1F);
+			GlStateManager.rotatef(90.0F, 0.0F, 0.0F, 1.0F);
+		}
 	}
 }
