@@ -37,6 +37,8 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> SUNKEN_GRAVEL = registerNormalBlock("sunken_gravel", () -> new SunkenGravelBlock(), true);
 	public static final RegistryObject<Block> PEARL_BLOCK = registerNormalBlock("pearl_block", () -> new DeepWatersBlock(
 			Material.IRON, 1.0F, 0F, SoundType.GLASS, 0, ToolType.PICKAXE), true);
+	public static final RegistryObject<Block> SALT_BLOCK = registerNormalBlock("salt_block", () -> new DeepWatersBlock(
+			Material.ROCK, 2.0F, 3.0F, SoundType.STONE, 1, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> PRISMARINE_BLOCK = registerNormalBlock("prismarine_block", () -> new DeepWatersBlock(
 			Material.IRON, 5.0F, 6.0F, SoundType.METAL, 2, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> METALLIC_BLOCK_YELLOW = registerNormalBlock("metallic_block_yellow", () -> new DeepWatersBlock(
@@ -56,9 +58,6 @@ public class DeepWatersBlocks
 			Material.CORAL, 2.0F, 6.0F, SoundType.CORAL, 1, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> CORAL_BLOCK_GREEN = registerNormalBlock("coral_block_green", () -> new DeepWatersBlock(
 			Material.CORAL, 2.0F, 6.0F, SoundType.CORAL, 1, ToolType.PICKAXE), true);
-
-	//public static final RegistryObject<Block> SALT_PILE = registerNormalBlock("salt_pile", () -> new DeepWatersBlock(
-	//		Material.SAND, 2.0F, 3.0F, SoundType.SAND, 1, ToolType.SHOVEL), true);
 
 	public static final RegistryObject<Block> LIMESTONE = registerNormalBlock("limestone", () -> new DeepWatersBlock(
 			Material.ROCK, 3F, 6.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);

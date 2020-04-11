@@ -90,6 +90,12 @@ public class DeepWatersLootTables extends LootTableProvider
 			this.registerLootTable(DeepWatersEntities.STING_RAY.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.BABY_KRACKEN.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.MUCK_GULPER.get(), LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(DeepWatersItems.MUCK_GULPER.get()).acceptFunction(SetCount.builder(ConstantRange.of(1))).acceptFunction(Smelt.func_215953_b().acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE))).acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0F, 1F))))));
+			this.registerLootTable(DeepWatersEntities.CORAL_CRAWLER.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.DONUT_FISH.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.COLORFUL_FISH.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.LEG_FISH.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.DEEP_GLIDER.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.SKULL_FISH.get(), LootTable.builder());
 		}
 
 		@Override
