@@ -1,13 +1,14 @@
 package bernie.software.entity.ai.goal;
 
+import bernie.software.entity.SkullFish;
 import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 
 public class FishSwimGoal extends RandomSwimmingGoal
 {
-	private final AbstractFishEntity fish;
+	private final SkullFish fish;
 
-	public FishSwimGoal(AbstractFishEntity fish)
+	public FishSwimGoal(SkullFish fish)
 	{
 		super(fish, 1.0D, 40);
 		this.fish = fish;
@@ -19,6 +20,9 @@ public class FishSwimGoal extends RandomSwimmingGoal
 	 */
 	public boolean shouldExecute()
 	{
+		if (fish.attackGoal.attacker.isAggressive()) {
+			return false;
+		}
 		return super.shouldExecute();
 	}
 }

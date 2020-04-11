@@ -1,5 +1,6 @@
 package bernie.software;
 
+import bernie.software.entity.vehicle.SurgeVehicle;
 import bernie.software.utils.GeneralUtils;
 import bernie.software.world.biome.CoralFieldsBiome;
 import bernie.software.client.renderer.entity.*;
@@ -74,5 +75,7 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(LegFish.class, manager -> new LegFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepGlider.class, manager -> new DeepGliderRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(SkullFish.class, manager -> new SkullFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(SurgeVehicle.class, manager -> new SurgeRenderer(manager));
+
 	}
 }
