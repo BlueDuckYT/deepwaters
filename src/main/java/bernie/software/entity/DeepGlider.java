@@ -28,7 +28,7 @@ public class DeepGlider extends AbstractFishEntity
 
 	protected void registerAttributes() {
 		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(3D);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(2D);
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(36.0D);
 	}
 
