@@ -1,6 +1,7 @@
 package bernie.software.entity;
 
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
@@ -13,6 +14,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -214,10 +216,40 @@ public class KillerWiggler extends MonsterEntity
 		return worldIn.getFluidState(pos).isTagged(FluidTags.WATER) ? 10.0F + worldIn.getBrightness(pos) - 0.5F : super.getBlockPathWeight(pos, worldIn);
 	}
 
+	public int length = new Random().nextInt(5)+5;
+	public HashMap<Integer,Vec3d> segments=new HashMap();
+
+	@Override
+	public void writeAdditional(CompoundNBT p_213281_1_) {
+		super.writeAdditional(p_213281_1_);
+		p_213281_1_.putInt("length",length);
+	}
+
+	@Override
+	public void readAdditional(CompoundNBT p_70037_1_) {
+		super.readAdditional(p_70037_1_);
+		length=p_70037_1_.getInt("length");
+	}
+
+	@Override
+	public void deserializeNBT(CompoundNBT nbt) {
+		readAdditional(nbt);
+	}
+
+	@Override
+	public CompoundNBT serializeNBT() {
+		CompoundNBT nbt=new CompoundNBT();
+		writeAdditional(nbt);
+		return nbt;
+	}
+
 	/**
 	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
 	 * use this to react to sunlight and start to burn.
 	 */
+
+
+
 	public void livingTick()
 	{
 		if (this.isAlive()) {
