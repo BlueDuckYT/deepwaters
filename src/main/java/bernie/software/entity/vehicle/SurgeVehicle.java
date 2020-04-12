@@ -79,6 +79,8 @@ public class SurgeVehicle extends AbstractFishEntity
 			this.prevRotationYawHead = player.prevRotationYawHead;
 			this.rotationYaw = entity.getRotationYawHead();
 			this.setRotationYawHead(entity.getRotationYawHead());
+
+			this.rotationPitch = entity.getPitch(1);
 		}
 		super.tick();
 

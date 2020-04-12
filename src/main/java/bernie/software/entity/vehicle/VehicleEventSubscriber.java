@@ -65,7 +65,8 @@ public class VehicleEventSubscriber
 			Entity ridingEntity = Minecraft.getInstance().player.getRidingEntity();
 			if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
 			{
-				Minecraft.getInstance().fontRenderer.drawString("Battery: █████████", 10, event.getWindow().getHeight() / 4 - 20, 14103062);
+
+				Minecraft.getInstance().fontRenderer.drawString("Battery: █████████", event.getWindow().getScaledWidth() / 2 - 60, event.getWindow().getScaledHeight() - 40, 14103062);
 				//GlStateManager.disableTexture2D();
 				//Minecraft.getInstance().draw(0, 0, 0, 0, 10, 10, 255, 255, 255);
 				//GlStateManager.te();
