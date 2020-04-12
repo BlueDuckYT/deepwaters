@@ -14,9 +14,11 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(DeepWatersMod.ModID)
-public class DeepWatersMod {
+public class DeepWatersMod
+{
 
-	public DeepWatersMod() {
+	public DeepWatersMod()
+	{
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		bus.addListener(this::setup);
@@ -32,15 +34,18 @@ public class DeepWatersMod {
 
 	public static final String ModID = "deepwaters";
 
-	public void setup(FMLCommonSetupEvent event) {
+	public void setup(FMLCommonSetupEvent event)
+	{
 		DeepWatersBiomes.addBiomeTypes();
 	}
 
-	public void clientSetup(FMLClientSetupEvent event) {
+	public void clientSetup(FMLClientSetupEvent event)
+	{
 
 	}
 
-	public void gatherData(GatherDataEvent event) {
+	public void gatherData(GatherDataEvent event)
+	{
 		DataGenerator generator = event.getGenerator();
 
 		generator.addProvider(new DeepWatersRecipes(generator));
@@ -48,4 +53,5 @@ public class DeepWatersMod {
 		generator.addProvider(new DeepWatersItemModels(generator, event.getExistingFileHelper()));
 		generator.addProvider(new DeepWatersLootTables(generator));
 	}
+
 }
