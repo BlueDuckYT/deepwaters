@@ -541,9 +541,9 @@ public class KillerWigglerModel extends EntityModel<KillerWiggler> {
 
 		RendererModel model = new KillerWigglerHead().getModel();
 		main.childModels=new ArrayList<>();
-		model.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-3.2f))*4.5f;
-		model.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-3.2f))*4.5f;
-		model.rotateAngleY=(float)Math.toRadians(45+17);
+		model.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-3.2f))*0;
+		model.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-3.2f))*0;
+//		model.rotateAngleY=(float)Math.toRadians(45+17);
 		main.addChild(model);
 		int length=entityIn.length;
 		for (int i=0;i<=length;i++) {
@@ -551,14 +551,17 @@ public class KillerWigglerModel extends EntityModel<KillerWiggler> {
 			if (i==length) {
 				model2=new KillerWigglerTail().getModel();
 			}
-			model2.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(3f-(i*0.875f));
-			model2.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(3f-(i*0.875f));
-			float x2=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(3f-((i-1)*0.875f));
-			float z2=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(3f-((i-1)*0.875f));
+//			model2.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(0-(i*0.875f));
+//			model2.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(0-(i*0.875f));
+			model2.offsetZ=(float)(entityIn.posX-entityIn.poses.get(i).x);
+			model2.offsetY=(float)(entityIn.posY-entityIn.poses.get(i).y);
+			model2.offsetX=(float)(entityIn.posZ-entityIn.poses.get(i).z);
+			float x2=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(0-((i-1)*0.875f));
+			float z2=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(0-((i-1)*0.875f));
 			if (i==length) {
 				model2.rotateAngleY=(float)Math.atan2(model2.offsetZ-z2,model2.offsetX-x2)+22.575f+91f+(float)Math.toRadians(5f);
-				model2.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(4f-(i*0.875f));
-				model2.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(4f-(i*0.875f));
+				model2.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(1-(i*0.875f));
+				model2.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(1-(i*0.875f));
 			} else {
 				model2.rotateAngleY=(float)Math.atan2(model2.offsetZ-z2,model2.offsetX-x2)+22.575f;
 			}
