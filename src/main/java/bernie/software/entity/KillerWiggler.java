@@ -7,7 +7,9 @@ import java.util.Random;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
+import bernie.software.DeepWatersMod;
 import bernie.software.entity.ai.goal.HostileWaterEntityAttackGoal;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.controller.MovementController;
@@ -258,23 +260,22 @@ public class KillerWiggler extends MonsterEntity
 				this.clientSideTailAnimationO = this.clientSideTailAnimation;
 				this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
 				AxisAlignedBB box = this.getBoundingBox();
-				try {
-					if (poses.get(0).distanceTo(this.getPositionVec())>=0.875f) {
-						for (int i=length-1;i>=1;i--) {
-							if (!poses.containsKey(i)) {
-								poses.put(i,this.getPositionVec());
-							} else if (i>=1) {
-								if (poses.get(i).distanceTo(poses.get(i-1))>=0.875f) {
-									poses.replace(i,poses.get(i-1));
-								}
-							}
-						}
-						poses.replace(0,this.getPositionVec());
-					}
-				} catch (Exception err) {
-					for (int i=0;i<length;i++) {
+				if (!poses.containsKey(0)) {
+					for (int i=0;i<=length;i++) {
 						poses.put(i,this.getPositionVec());
 					}
+				}
+				if (poses.get(0).distanceTo(this.getPositionVec())>=0.875f) {
+					for (int i=length-1;i>=1;i--) {
+						if (!poses.containsKey(i)) {
+							poses.put(i,this.getPositionVec());
+						} else if (i>=1) {
+							if (poses.get(i).distanceTo(poses.get(i-1))>=0.875f) {
+								poses.replace(i,poses.get(i-1));
+							}
+						}
+					}
+					poses.replace(0,this.getPositionVec());
 				}
 				if (!this.isInWater()) {
 					this.clientSideTailAnimationSpeed = 2.0F;
