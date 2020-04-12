@@ -4,10 +4,7 @@ import bernie.software.DeepWatersMod;
 import bernie.software.item.DeepWatersItem;
 import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.item.armor.DeepWatersArmorItem;
-import bernie.software.item.tool.DeepWatersAxeItem;
-import bernie.software.item.tool.DeepWatersPickaxeItem;
-import bernie.software.item.tool.DeepWatersShovelItem;
-import bernie.software.item.tool.DeepWatersSwordItem;
+import bernie.software.item.tool.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -34,6 +31,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_SHOVEL = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
+	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE.toProperty()).addToolTip("needs info"));
 
 	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
 	public static final RegistryObject<Item> PRISMARINE_CHESTPLATE = ITEMS.register("prismarine_chestplate", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.CHEST));

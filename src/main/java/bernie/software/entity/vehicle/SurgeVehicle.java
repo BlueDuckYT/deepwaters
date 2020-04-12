@@ -124,8 +124,10 @@ public class SurgeVehicle extends AbstractFishEntity
 	 * @param amount
 	 */
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (super.attackEntityFrom(source,amount)) {
+			this.remove();
+		}
 		return false;
 	}
 
