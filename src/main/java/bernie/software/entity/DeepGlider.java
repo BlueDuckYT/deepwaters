@@ -43,18 +43,7 @@ public class DeepGlider extends AbstractFishEntity
 
 	}
 
-	protected void registerGoals()
-	{
-		attackGoal = new UnderwaterCreatureAttackGoal(this, .75D, false);
-		this.goalSelector.addGoal(1, attackGoal);
-		//this.goalSelector.addGoal(8, new RandomSwimmingGoal(this, 1.0D, 40));
 
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ColorfulFish.class, true));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, BlufferFish.class, true));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, DonutFish.class, true));
-
-	}
 
 
 
