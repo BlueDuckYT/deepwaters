@@ -52,9 +52,9 @@ public class wormModel extends EntityModel<AbstractWormEntity> {
                 double distoff=0;
                 for (int i=0;i<=length;i++) {
 //                    DeepWatersMod.log.log(Level.INFO,poses.get(i));
-                    RendererModel model2 = new KillerWigglerBody().getModel();
+                    RendererModel model2 = mdl2.getConstructor().newInstance().getModel();
                     if (i==length) {
-                        model2=new KillerWigglerTail().getModel();
+                        model2=mdl3.getConstructor().newInstance().getModel();
                     }
                     Vec3d offset=entityIn.getPositionVector().subtract(poses.get(i));
                     if (i==0) {

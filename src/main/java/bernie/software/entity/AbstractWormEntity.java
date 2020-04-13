@@ -31,7 +31,11 @@ public abstract class AbstractWormEntity extends CreatureEntity {
         int length=this.getLength();
         if (!poses.containsKey(0)) {
             for (int i=0;i<=length;i++) {
-                poses.put(i,this.getPositionVec());
+                if (i==0) {
+                    poses.put(i,this.getPositionVec().add(new Vec3d(0,0,0).subtract(this.getForward())));
+                } else {
+                    poses.put(i,poses.get(i-1).add(new Vec3d(0,0,0).subtract(this.getForward())));
+                }
             }
         }
         for (int i=0;i<=length;i++) {
