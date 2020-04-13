@@ -168,6 +168,12 @@ public class SurgeVehicle extends AbstractFishEntity
 		return true;
 	}
 
+	@Override
+	public boolean isPushedByWater() {
+		return false;
+	}
+
+
 	@Nullable
 	public Entity getControllingPassenger()
 	{
