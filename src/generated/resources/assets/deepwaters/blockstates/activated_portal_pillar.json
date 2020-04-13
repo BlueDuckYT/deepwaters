@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "deepwaters:block/activated_portal_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "deepwaters:block/activated_portal_pillar"
+    },
+    "axis=z": {
+      "model": "deepwaters:block/activated_portal_pillar",
+      "x": 90
+    }
+  }
+}

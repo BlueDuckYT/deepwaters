@@ -3,6 +3,7 @@ package bernie.software.datagen.provider;
 import bernie.software.DeepWatersMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.LogBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -48,7 +49,7 @@ public abstract class DeepWatersBlockStateProvider extends BlockStateProvider {
         simpleBlock(block.get());
     }
 
-    public void woodBlock(Supplier<? extends LogBlock> block, String name) {
+    public void pillarBlock(Supplier<? extends RotatedPillarBlock> block, String name) {
         axisBlock(block.get(), textureLoc(name));
     }
 

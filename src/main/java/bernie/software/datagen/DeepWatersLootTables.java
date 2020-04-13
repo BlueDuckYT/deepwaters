@@ -66,6 +66,8 @@ public class DeepWatersLootTables extends LootTableProvider
 				dropSelf(block);
 			}
 			dropWithSilk(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, DeepWatersBlocks.OCEAN_FLOOR);
+			dropSelf(DeepWatersBlocks.PORTAL_PILLAR);
+			dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
 
 			dropWithFortune(DeepWatersBlocks.SALT_ORE, DeepWatersItems.SALT_CRYSTAL);
 		}
@@ -96,6 +98,7 @@ public class DeepWatersLootTables extends LootTableProvider
 			this.registerLootTable(DeepWatersEntities.LEG_FISH.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.DEEP_GLIDER.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.SKULL_FISH.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.JUNGLE_FISH.get(), LootTable.builder());
 		}
 
 		@Override
