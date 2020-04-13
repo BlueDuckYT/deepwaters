@@ -68,5 +68,6 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		spawnEgg(DeepWatersItems.LEG_FISH_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.DONUT_FISH_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.CORAL_CRAWLER_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.JUNGLE_FISH_SPAWN_EGG);
 	}
 }

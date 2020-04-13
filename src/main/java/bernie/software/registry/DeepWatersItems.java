@@ -66,5 +66,7 @@ public class DeepWatersItems
 			DeepWatersEntities.LEG_FISH, 524080, 14211862));
 	public static final RegistryObject<Item> CORAL_CRAWLER_SPAWN_EGG = ITEMS.register("coral_crawler_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.CORAL_CRAWLER, 3620433, 15482449));
+	public static final RegistryObject<Item> JUNGLE_FISH_SPAWN_EGG = ITEMS.register("jungle_fish_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.JUNGLE_FISH, 16716544, 16759552));
 
 }
