@@ -84,6 +84,7 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DeepGlider.class, manager -> new DeepGliderRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(SkullFish.class, manager -> new SkullFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(SurgeVehicle.class, manager -> new SurgeRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(JungleFish.class, manager -> new JungleFishRenderer(manager));
 
 	}
 
