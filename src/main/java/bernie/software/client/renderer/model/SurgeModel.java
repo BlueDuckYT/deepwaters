@@ -107,8 +107,7 @@ public class SurgeModel extends EntityModel<SurgeVehicle>
 		Main.render(f5);
 	}
 
-	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z)
-	{
+	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
