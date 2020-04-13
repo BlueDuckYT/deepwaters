@@ -31,3 +31,22 @@ authors="Love, Cheese and small house plants" #optional
 description='''
 An underwater dimension inspired by Subnautica.
 '''
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.deepwaters]] #optional
+    # the modid of the dependency
+    modId="forge" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=true #mandatory
+    # The version range of the dependency
+    versionRange="[28.2.3,)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="NONE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
+    side="BOTH"
+# Here's another dependency
+[[dependencies.deepwaters]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"

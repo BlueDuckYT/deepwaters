@@ -79,6 +79,8 @@ public class SurgeVehicle extends AbstractFishEntity
 			this.prevRotationYawHead = player.prevRotationYawHead;
 			this.rotationYaw = entity.getRotationYawHead();
 			this.setRotationYawHead(entity.getRotationYawHead());
+
+			this.rotationPitch = entity.getPitch(1);
 		}
 		super.tick();
 
@@ -91,6 +93,8 @@ public class SurgeVehicle extends AbstractFishEntity
 	@Override
 	public void livingTick()
 	{
+		https:
+//i.softwarelocker.net/wpDuQ8.png
 
 		//this.tickLerp();
 		super.livingTick();
@@ -120,8 +124,10 @@ public class SurgeVehicle extends AbstractFishEntity
 	 * @param amount
 	 */
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (super.attackEntityFrom(source,amount)) {
+			this.remove();
+		}
 		return false;
 	}
 
