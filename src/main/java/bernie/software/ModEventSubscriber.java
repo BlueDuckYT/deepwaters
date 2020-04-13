@@ -1,5 +1,8 @@
 package bernie.software;
 
+import bernie.software.client.renderer.model.KillerWigglerBody;
+import bernie.software.client.renderer.model.KillerWigglerHead;
+import bernie.software.client.renderer.model.KillerWigglerTail;
 import bernie.software.commands.DeepWatersCommand;
 import bernie.software.entity.vehicle.SurgeVehicle;
 import bernie.software.utils.GeneralUtils;
@@ -16,6 +19,7 @@ import bernie.software.world.biome.SunkenWastesBiome;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraftforge.api.distmarker.Dist;
@@ -67,7 +71,7 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void doClientStuff(final FMLClientSetupEvent event)
 	{
-		RenderingRegistry.registerEntityRenderingHandler(KillerWiggler.class, manager -> new KillerWigglerRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(KillerWiggler.class, manager -> new WormRenderer(manager,new KillerWigglerHead(),new KillerWigglerBody(),new KillerWigglerTail(),new ResourceLocation("deepwaters" +  ":textures/model/entity/killerwiggler.png")));
 		RenderingRegistry.registerEntityRenderingHandler(BlufferFish.class, manager -> new BlufferFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(Clam.class, manager -> new ClamRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(Stingray.class, manager -> new StingrayRenderer(manager));
@@ -80,5 +84,7 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DeepGlider.class, manager -> new DeepGliderRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(SkullFish.class, manager -> new SkullFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(SurgeVehicle.class, manager -> new SurgeRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(JungleFish.class, manager -> new JungleFishRenderer(manager));
+
 	}
 }

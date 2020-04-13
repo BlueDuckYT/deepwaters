@@ -112,16 +112,17 @@ public class SurgeModel extends EntityModel<SurgeVehicle>
 		modelRenderer.rotateAngleZ = z;
 	}
 
-
 	@Override
 	public void setRotationAngles(SurgeVehicle entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
+
 		if (entityIn.getControllingPassenger() != null)
 		{
 			this.Right_Screw.rotateAngleZ = ageInTicks * 0.3F;
 			this.Left_Screw.rotateAngleZ = ageInTicks * 0.3F;
 
 		}
+
 		this.Main.rotateAngleY = entityIn.rotationYaw * ((float) Math.PI / 180F) / 180;
 		this.Main.rotateAngleX = entityIn.rotationPitch * ((float) Math.PI / 180F) / 180;
 

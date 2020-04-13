@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-public class KillerWigglerBody extends EntityModel {
+public class KillerWigglerBody extends AbstractWormPart {
 	private final RendererModel body_part1;
 	private final RendererModel LL1;
 	private final RendererModel pt1_LL1;
@@ -16,6 +16,7 @@ public class KillerWigglerBody extends EntityModel {
 	private final RendererModel pt1_RL1;
 	private final RendererModel pt2_RL1;
 
+	@Override
 	public RendererModel getModel() {
 		return body_part1;
 	}
@@ -60,6 +61,7 @@ public class KillerWigglerBody extends EntityModel {
 		setRotationAngle(pt2_RL1, 0.0F, 0.0F, 0.1745F);
 		RL1.addChild(pt2_RL1);
 		pt2_RL1.cubeList.add(new ModelBox(pt2_RL1, 90, 60, -2.0F, 0.0F, -2.0F, 4, 16, 4, 0.0F, false));
+		setModel(body_part1);
 	}
 
 	@Override
