@@ -123,6 +123,8 @@ public class SurgeModel extends EntityModel<SurgeVehicle>
 
 		}
 		this.Main.rotateAngleY = entityIn.rotationYaw * ((float) Math.PI / 180F) / 180;
+		this.Main.rotateAngleX = entityIn.rotationPitch * ((float) Math.PI / 180F) / 180;
+
 		this.Main.rotateAngleX = 0;
 		//this.Main.rotateAngleY = entityIn.rotationYaw * ((float) Math.PI / 180F);
 	}
