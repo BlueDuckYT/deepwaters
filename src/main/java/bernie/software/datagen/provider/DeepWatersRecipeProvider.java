@@ -101,6 +101,16 @@ public class DeepWatersRecipeProvider extends ForgeRecipeProvider implements ICo
                 .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()));
     }
 
+    public ShapedRecipeBuilder makeShield(Supplier<? extends Item> shieldOut, Supplier<? extends Item> materialIn) {
+        return ShapedRecipeBuilder.shapedRecipe(shieldOut.get())
+                .patternLine("#")
+                .patternLine("/")
+                .patternLine("/")
+                .key('#', materialIn.get())
+                .key('/', Items.STICK)
+                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()));
+    }
+
     public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {
         return smeltingRecipe(result, ingredient, exp, 1);
     }

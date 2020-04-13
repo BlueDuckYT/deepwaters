@@ -49,6 +49,7 @@ public class DeepWatersRecipes extends DeepWatersRecipeProvider
 		makePickaxe(DeepWatersItems.PRISMARINE_PICKAXE, DeepWatersItems.PRISMARINE_INGOT).build(consumer);
 		makeAxe(DeepWatersItems.PRISMARINE_AXE, DeepWatersItems.PRISMARINE_INGOT).build(consumer);
 		makeShovel(DeepWatersItems.PRISMARINE_SHOVEL, DeepWatersItems.PRISMARINE_INGOT).build(consumer);
+		makeShield(DeepWatersItems.PRISMARINE_SHIELD, DeepWatersItems.PRISMARINE_INGOT).build(consumer);
 
 		smeltingRecipe(DeepWatersItems.PRISMARINE_INGOT.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), .7F).build(consumer, name("smelt_prismarine_ore"));
 		blastingRecipe(DeepWatersItems.PRISMARINE_INGOT.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), .7F).build(consumer, name("blast_prismarine_ore"));

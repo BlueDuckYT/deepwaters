@@ -219,7 +219,7 @@ public class KillerWiggler extends MonsterEntity
 		return worldIn.getFluidState(pos).isTagged(FluidTags.WATER) ? 10.0F + worldIn.getBrightness(pos) - 0.5F : super.getBlockPathWeight(pos, worldIn);
 	}
 
-	public int length = new Random().nextInt(5)+5;
+	public int length = 10;
 	public HashMap<Integer,Vec3d> segments=new HashMap();
 
 	@Override
@@ -265,12 +265,12 @@ public class KillerWiggler extends MonsterEntity
 						poses.put(i,this.getPositionVec());
 					}
 				}
-				if (poses.get(0).distanceTo(this.getPositionVec())>=0.875f) {
-					for (int i=length-1;i>=1;i--) {
+				if (poses.get(0).distanceTo(this.getPositionVec())>=(0.875f)) {
+					for (int i=length;i>=1;i--) {
 						if (!poses.containsKey(i)) {
-							poses.put(i,this.getPositionVec());
+							poses.put(i,this.getPositionVector());
 						} else if (i>=1) {
-							if (poses.get(i).distanceTo(poses.get(i-1))>=0.875f) {
+							if ((poses.get(i).distanceTo(poses.get(i-1))>=0.875f)) {
 								poses.replace(i,poses.get(i-1));
 							}
 						}
