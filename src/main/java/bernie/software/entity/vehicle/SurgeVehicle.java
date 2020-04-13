@@ -1,17 +1,13 @@
 package bernie.software.entity.vehicle;
 
 
-import bernie.software.keyboard;
-import com.mojang.blaze3d.platform.GlStateManager;
+import bernie.software.KeyboardHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -19,10 +15,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
@@ -71,7 +64,7 @@ public class SurgeVehicle extends AbstractFishEntity
 		{
 			LivingEntity player = (LivingEntity) entity;
 			Vec3d lookVec = entity.getLookVec();
-			if (this.inWater && keyboard.isKeyDown)
+			if (this.inWater && KeyboardHandler.isKeyDown)
 			{
 				this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
 			}
@@ -124,8 +117,10 @@ public class SurgeVehicle extends AbstractFishEntity
 	 * @param amount
 	 */
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount) {
-		if (super.attackEntityFrom(source,amount)) {
+	public boolean attackEntityFrom(DamageSource source, float amount)
+	{
+		if (super.attackEntityFrom(source, amount))
+		{
 			this.remove();
 		}
 		return false;

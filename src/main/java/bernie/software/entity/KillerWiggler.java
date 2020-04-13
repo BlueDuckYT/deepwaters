@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Predicate;
+import java.util.logging.Level;
 import javax.annotation.Nullable;
 
 import bernie.software.DeepWatersMod;
@@ -43,6 +44,8 @@ public class KillerWiggler extends MonsterEntity
 {
 	private static final DataParameter<Boolean> MOVING = EntityDataManager.createKey(KillerWiggler.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(KillerWiggler.class, DataSerializers.VARINT);
+	private static final DataParameter<Integer> LENGTH = EntityDataManager.createKey(KillerWiggler.class, DataSerializers.VARINT);
+
 	protected float clientSideTailAnimation;
 	protected float clientSideTailAnimationO;
 	protected float clientSideTailAnimationSpeed;
@@ -108,6 +111,7 @@ public class KillerWiggler extends MonsterEntity
 		super.registerData();
 		this.dataManager.register(MOVING, false);
 		this.dataManager.register(TARGET_ENTITY, 0);
+		this.dataManager.register(LENGTH, 10);
 	}
 
 	public boolean canBreatheUnderwater()
@@ -130,6 +134,19 @@ public class KillerWiggler extends MonsterEntity
 		this.dataManager.set(MOVING, moving);
 	}
 
+	public int getLength()
+	{
+
+		Integer length = this.dataManager.get(LENGTH);
+		//DeepWatersMod..log(Level.INFO, LENGTH);
+		return length;
+	}
+
+	public void setLength(int length)
+	{
+		this.dataManager.set(LENGTH, length);
+	}
+
 	public int getAttackDuration()
 	{
 		return 80;
@@ -148,21 +165,32 @@ public class KillerWiggler extends MonsterEntity
 	@Nullable
 	public LivingEntity getTargetedEntity()
 	{
-		if (!this.hasTargetedEntity()) {
+		if (!this.hasTargetedEntity())
+		{
 			return null;
-		} else if (this.world.isRemote) {
-			if (this.targetedEntity != null) {
+		}
+		else if (this.world.isRemote)
+		{
+			if (this.targetedEntity != null)
+			{
 				return this.targetedEntity;
-			} else {
+			}
+			else
+			{
 				Entity entity = this.world.getEntityByID(this.dataManager.get(TARGET_ENTITY));
-				if (entity instanceof LivingEntity) {
+				if (entity instanceof LivingEntity)
+				{
 					this.targetedEntity = (LivingEntity) entity;
 					return this.targetedEntity;
-				} else {
+				}
+				else
+				{
 					return null;
 				}
 			}
-		} else {
+		}
+		else
+		{
 			return this.getAttackTarget();
 		}
 	}
@@ -170,7 +198,8 @@ public class KillerWiggler extends MonsterEntity
 	public void notifyDataManagerChange(DataParameter<?> key)
 	{
 		super.notifyDataManagerChange(key);
-		if (TARGET_ENTITY.equals(key)) {
+		if (TARGET_ENTITY.equals(key))
+		{
 			this.clientSideAttackTime = 0;
 			this.targetedEntity = null;
 		}
@@ -219,29 +248,32 @@ public class KillerWiggler extends MonsterEntity
 		return worldIn.getFluidState(pos).isTagged(FluidTags.WATER) ? 10.0F + worldIn.getBrightness(pos) - 0.5F : super.getBlockPathWeight(pos, worldIn);
 	}
 
-	public int length = 10;
-	public HashMap<Integer,Vec3d> segments=new HashMap();
+	public HashMap<Integer, Vec3d> segments = new HashMap();
 
 	@Override
-	public void writeAdditional(CompoundNBT p_213281_1_) {
+	public void writeAdditional(CompoundNBT p_213281_1_)
+	{
 		super.writeAdditional(p_213281_1_);
-		p_213281_1_.putInt("length",length);
+		p_213281_1_.putInt("length", getLength());
 	}
 
 	@Override
-	public void readAdditional(CompoundNBT p_70037_1_) {
+	public void readAdditional(CompoundNBT p_70037_1_)
+	{
 		super.readAdditional(p_70037_1_);
-		length=p_70037_1_.getInt("length");
+		setLength(p_70037_1_.getInt("length"));
 	}
 
 	@Override
-	public void deserializeNBT(CompoundNBT nbt) {
+	public void deserializeNBT(CompoundNBT nbt)
+	{
 		readAdditional(nbt);
 	}
 
 	@Override
-	public CompoundNBT serializeNBT() {
-		CompoundNBT nbt=new CompoundNBT();
+	public CompoundNBT serializeNBT()
+	{
+		CompoundNBT nbt = new CompoundNBT();
 		writeAdditional(nbt);
 		return nbt;
 	}
@@ -252,74 +284,104 @@ public class KillerWiggler extends MonsterEntity
 	 */
 
 
-	public HashMap<Integer,Vec3d> poses=new HashMap<>();
+	public HashMap<Integer, Vec3d> poses = new HashMap<>();
+
 	public void livingTick()
 	{
-		if (this.isAlive()) {
-			if (this.world.isRemote) {
+		if (this.isAlive())
+		{
+			if (this.world.isRemote)
+			{
 				this.clientSideTailAnimationO = this.clientSideTailAnimation;
 				this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
 				AxisAlignedBB box = this.getBoundingBox();
-				if (!poses.containsKey(0)) {
-					for (int i=0;i<=length;i++) {
-						poses.put(i,this.getPositionVec());
+				if (!poses.containsKey(0))
+				{
+					for (int i = 0; i <= getLength(); i++)
+					{
+						poses.put(i, this.getPositionVec());
 					}
 				}
-				if (poses.get(0).distanceTo(this.getPositionVec())>=(0.875f)) {
-					for (int i=length;i>=1;i--) {
-						if (!poses.containsKey(i)) {
-							poses.put(i,this.getPositionVector());
-						} else if (i>=1) {
-							if ((poses.get(i).distanceTo(poses.get(i-1))>=0.875f)) {
-								poses.replace(i,poses.get(i-1));
+				if (poses.get(0).distanceTo(this.getPositionVec()) >= (0.875f))
+				{
+					for (int i = getLength(); i >= 1; i--)
+					{
+						if (!poses.containsKey(i))
+						{
+							poses.put(i, this.getPositionVector());
+						}
+						else if (i >= 1)
+						{
+							if ((poses.get(i).distanceTo(poses.get(i - 1)) >= 0.875f))
+							{
+								poses.replace(i, poses.get(i - 1));
 							}
 						}
 					}
-					poses.replace(0,this.getPositionVec());
+					poses.replace(0, this.getPositionVec());
 				}
-				if (!this.isInWater()) {
+				if (!this.isInWater())
+				{
 					this.clientSideTailAnimationSpeed = 2.0F;
 					Vec3d vec3d = this.getMotion();
-					if (vec3d.y > 0.0D && this.clientSideTouchedGround && !this.isSilent()) {
+					if (vec3d.y > 0.0D && this.clientSideTouchedGround && !this.isSilent())
+					{
 						this.world.playSound(this.posX, this.posY, this.posZ, this.getFlopSound(), this.getSoundCategory(), 1.0F, 1.0F, false);
 					}
 
 					this.clientSideTouchedGround = vec3d.y < 0.0D && this.world.isTopSolid((new BlockPos(this)).down(), this);
-				} else if (this.isMoving()) {
-					if (this.clientSideTailAnimationSpeed < 0.5F) {
+				}
+				else if (this.isMoving())
+				{
+					if (this.clientSideTailAnimationSpeed < 0.5F)
+					{
 						this.clientSideTailAnimationSpeed = 4.0F;
-					} else {
+					}
+					else
+					{
 						this.clientSideTailAnimationSpeed += (0.5F - this.clientSideTailAnimationSpeed) * 0.1F;
 					}
-				} else {
+				}
+				else
+				{
 					this.clientSideTailAnimationSpeed += (0.125F - this.clientSideTailAnimationSpeed) * 0.2F;
 				}
 
 				this.clientSideTailAnimation += this.clientSideTailAnimationSpeed;
 				this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation;
-				if (!this.isInWaterOrBubbleColumn()) {
+				if (!this.isInWaterOrBubbleColumn())
+				{
 					this.clientSideSpikesAnimation = this.rand.nextFloat();
-				} else if (this.isMoving()) {
+				}
+				else if (this.isMoving())
+				{
 					this.clientSideSpikesAnimation += (0.0F - this.clientSideSpikesAnimation) * 0.25F;
-				} else {
+				}
+				else
+				{
 					this.clientSideSpikesAnimation += (1.0F - this.clientSideSpikesAnimation) * 0.06F;
 				}
 
-				if (this.isMoving() && this.isInWater()) {
+				if (this.isMoving() && this.isInWater())
+				{
 					Vec3d vec3d1 = this.getLook(0.0F);
 
-					for (int i = 0; i < 2; ++i) {
+					for (int i = 0; i < 2; ++i)
+					{
 						this.world.addParticle(ParticleTypes.BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.getWidth() - vec3d1.x * 1.5D, this.posY + this.rand.nextDouble() * (double) this.getHeight() - vec3d1.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.getWidth() - vec3d1.z * 1.5D, 0.0D, 0.0D, 0.0D);
 					}
 				}
 
-				if (this.hasTargetedEntity()) {
-					if (this.clientSideAttackTime < this.getAttackDuration()) {
+				if (this.hasTargetedEntity())
+				{
+					if (this.clientSideAttackTime < this.getAttackDuration())
+					{
 						++this.clientSideAttackTime;
 					}
 
 					LivingEntity livingentity = this.getTargetedEntity();
-					if (livingentity != null) {
+					if (livingentity != null)
+					{
 						this.getLookController().setLookPositionWithEntity(livingentity, 90.0F, 90.0F);
 						this.getLookController().tick();
 						double d5 = (double) this.getAttackAnimationScale(0.0F);
@@ -332,7 +394,8 @@ public class KillerWiggler extends MonsterEntity
 						d2 = d2 / d3;
 						double d4 = this.rand.nextDouble();
 
-						while (d4 < d3) {
+						while (d4 < d3)
+						{
 							d4 += 1.8D - d5 + this.rand.nextDouble() * (1.7D - d5);
 							//this.world.addParticle(ParticleTypes.BUBBLE, this.posX + d0 * d4, this.posY + d1 * d4 + (double)this.getEyeHeight(), this.posZ + d2 * d4, 0.0D, 0.0D, 0.0D);
 						}
@@ -340,16 +403,20 @@ public class KillerWiggler extends MonsterEntity
 				}
 			}
 
-			if (this.isInWaterOrBubbleColumn()) {
+			if (this.isInWaterOrBubbleColumn())
+			{
 				this.setAir(300);
-			} else if (this.onGround) {
+			}
+			else if (this.onGround)
+			{
 				this.setMotion(this.getMotion().add((double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F), 0.5D, (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F)));
 				this.rotationYaw = this.rand.nextFloat() * 360.0F;
 				this.onGround = false;
 				this.isAirBorne = true;
 			}
 
-			if (this.hasTargetedEntity()) {
+			if (this.hasTargetedEntity())
+			{
 				this.rotationYaw = this.rotationYawHead;
 			}
 		}
@@ -395,14 +462,17 @@ public class KillerWiggler extends MonsterEntity
 	 */
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
-		if (!this.isMoving() && !source.isMagicDamage() && source.getImmediateSource() instanceof LivingEntity) {
+		if (!this.isMoving() && !source.isMagicDamage() && source.getImmediateSource() instanceof LivingEntity)
+		{
 			LivingEntity livingentity = (LivingEntity) source.getImmediateSource();
-			if (!source.isExplosion()) {
+			if (!source.isExplosion())
+			{
 				//livingentity.attackEntityFrom(DamageSource.causeThornsDamage(this), 2.0F);
 			}
 		}
 
-		if (this.wander != null) {
+		if (this.wander != null)
+		{
 			this.wander.makeUpdate();
 		}
 
@@ -420,100 +490,23 @@ public class KillerWiggler extends MonsterEntity
 
 	public void travel(Vec3d p_213352_1_)
 	{
-		if (this.isServerWorld() && this.isInWater()) {
+		if (this.isServerWorld() && this.isInWater())
+		{
 			this.moveRelative(0.1F, p_213352_1_);
 			this.move(MoverType.SELF, this.getMotion());
 			this.setMotion(this.getMotion().scale(0.9D));
-			if (!this.isMoving() && this.getAttackTarget() == null) {
+			if (!this.isMoving() && this.getAttackTarget() == null)
+			{
 				this.setMotion(this.getMotion().add(0.0D, -0.005D, 0.0D));
 			}
-		} else {
+		}
+		else
+		{
 			super.travel(p_213352_1_);
 		}
 
 	}
 
-	static class AttackGoal extends Goal
-	{
-		private final KillerWiggler guardian;
-		private int tickCounter;
-		private final boolean isElder;
-
-		public AttackGoal(KillerWiggler guardian)
-		{
-			this.guardian = guardian;
-			this.isElder = false;
-			this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
-		}
-
-		/**
-		 * Returns whether the EntityAIBase should begin execution.
-		 */
-		public boolean shouldExecute()
-		{
-			LivingEntity livingentity = this.guardian.getAttackTarget();
-			return livingentity != null && livingentity.isAlive();
-		}
-
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
-		public boolean shouldContinueExecuting()
-		{
-			return super.shouldContinueExecuting() && (this.isElder || this.guardian.getDistanceSq(this.guardian.getAttackTarget()) > 9.0D);
-		}
-
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
-		public void startExecuting()
-		{
-			this.tickCounter = -10;
-			this.guardian.getNavigator().clearPath();
-			this.guardian.getLookController().setLookPositionWithEntity(this.guardian.getAttackTarget(), 90.0F, 90.0F);
-			this.guardian.isAirBorne = true;
-		}
-
-		/**
-		 * Reset the task's internal state. Called when this task is interrupted by another one
-		 */
-		public void resetTask()
-		{
-			this.guardian.setTargetedEntity(0);
-			this.guardian.setAttackTarget((LivingEntity) null);
-			this.guardian.wander.makeUpdate();
-		}
-
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
-		public void tick()
-		{
-			LivingEntity livingentity = this.guardian.getAttackTarget();
-			this.guardian.getNavigator().clearPath();
-			this.guardian.getLookController().setLookPositionWithEntity(livingentity, 90.0F, 90.0F);
-			if (!this.guardian.canEntityBeSeen(livingentity)) {
-				this.guardian.setAttackTarget((LivingEntity) null);
-			} else {
-				++this.tickCounter;
-				if (this.tickCounter == 0) {
-					this.guardian.setTargetedEntity(this.guardian.getAttackTarget().getEntityId());
-					this.guardian.world.setEntityState(this.guardian, (byte) 45);
-				} else if (this.tickCounter >= this.guardian.getAttackDuration()) {
-					float f = 1.0F;
-					if (this.guardian.world.getDifficulty() == Difficulty.HARD) {
-						f += 2.0F;
-					}
-
-					livingentity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this.guardian, this.guardian), f);
-					livingentity.attackEntityFrom(DamageSource.causeMobDamage(this.guardian), (float) this.guardian.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue());
-					this.guardian.setAttackTarget((LivingEntity) null);
-				}
-
-				super.tick();
-			}
-		}
-	}
 
 	static class MoveHelperController extends MovementController
 	{
@@ -527,7 +520,8 @@ public class KillerWiggler extends MonsterEntity
 
 		public void tick()
 		{
-			if (this.action == MovementController.Action.MOVE_TO && !this.entityGuardian.getNavigator().noPath()) {
+			if (this.action == MovementController.Action.MOVE_TO && !this.entityGuardian.getNavigator().noPath())
+			{
 				Vec3d vec3d = new Vec3d(this.posX - this.entityGuardian.posX, this.posY - this.entityGuardian.posY, this.posZ - this.entityGuardian.posZ);
 				double d0 = vec3d.length();
 				double d1 = vec3d.x / d0;
@@ -551,7 +545,8 @@ public class KillerWiggler extends MonsterEntity
 				double d11 = lookcontroller.getLookPosX();
 				double d12 = lookcontroller.getLookPosY();
 				double d13 = lookcontroller.getLookPosZ();
-				if (!lookcontroller.getIsLooking()) {
+				if (!lookcontroller.getIsLooking())
+				{
 					d11 = d8;
 					d12 = d9;
 					d13 = d10;
@@ -559,7 +554,9 @@ public class KillerWiggler extends MonsterEntity
 
 				this.entityGuardian.getLookController().setLookPosition(MathHelper.lerp(0.125D, d11, d8), MathHelper.lerp(0.125D, d12, d9), MathHelper.lerp(0.125D, d13, d10), 10.0F, 40.0F);
 				this.entityGuardian.setMoving(true);
-			} else {
+			}
+			else
+			{
 				this.entityGuardian.setAIMoveSpeed(0.0F);
 				this.entityGuardian.setMoving(false);
 			}
