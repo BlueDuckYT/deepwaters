@@ -31,6 +31,8 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 	{
 		grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
 		normalBlock(DeepWatersBlocks.SALT_ORE);
+		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR, "portal_pillar");
+		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, "activated_portal_pillar");
 		for (RegistryObject<Block> block : NormalBlocks) {
 			normalBlock(block);
 		}

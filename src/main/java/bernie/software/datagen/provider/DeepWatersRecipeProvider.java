@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.common.data.ForgeRecipeProvider;
@@ -103,11 +104,11 @@ public class DeepWatersRecipeProvider extends ForgeRecipeProvider implements ICo
 
     public ShapedRecipeBuilder makeShield(Supplier<? extends Item> shieldOut, Supplier<? extends Item> materialIn) {
         return ShapedRecipeBuilder.shapedRecipe(shieldOut.get())
-                .patternLine("#")
-                .patternLine("/")
-                .patternLine("/")
+                .patternLine("#/#")
+                .patternLine("###")
+                .patternLine(" # ")
                 .key('#', materialIn.get())
-                .key('/', Items.STICK)
+                .key('/', Items.OAK_PLANKS)
                 .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()));
     }
 
