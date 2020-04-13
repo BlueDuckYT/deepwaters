@@ -6,11 +6,12 @@ import net.minecraft.entity.Entity;
 //Made with Blockbench
 //Paste this code into your mod.
 
-public class KillerWigglerTail extends EntityModel {
+public class KillerWigglerTail extends AbstractWormPart {
 	private final RendererModel tail;
 	private final RendererModel tail_left;
 	private final RendererModel tail_right;
 
+	@Override
 	public RendererModel getModel() {
 		return tail;
 	}
@@ -32,6 +33,7 @@ public class KillerWigglerTail extends EntityModel {
 		tail_right.setRotationPoint(-4.0F, 0.7F, 91.9F);
 		tail.addChild(tail_right);
 		tail_right.cubeList.add(new ModelBox(tail_right, 66, 66, -2.0F, -2.0F, -78.75F, 4, 4, 16, 0.0F, false));
+		setModel(tail);
 	}
 
 	@Override

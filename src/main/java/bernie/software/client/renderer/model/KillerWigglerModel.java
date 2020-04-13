@@ -547,7 +547,7 @@ public class KillerWigglerModel extends EntityModel<KillerWiggler> {
 //		main.rotateAngleY=(float)(-(entityIn.rotationYaw));
 //		entityIn.renderYawOffset=0;
 
-		RendererModel model = new KillerWigglerHead().getModel();
+		/*RendererModel model = new KillerWigglerHead().getModel();
 		main.childModels=new ArrayList<>();
 		main.setRotationPoint(0.0F, 0.0F, 0.0F);
 		main.offsetY=0.4f;
@@ -605,7 +605,7 @@ public class KillerWigglerModel extends EntityModel<KillerWiggler> {
 				}
 				main.addChild(model2);
 			}
-		} catch (Exception err) {}
+		} catch (Exception err) {}*/
 
 		float limbSwingSpeed = 0.3F;
 //		this.LL1.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
