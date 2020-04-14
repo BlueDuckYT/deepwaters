@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "deepwaters:salt_block"
+    }
+  ],
+  "result": {
+    "item": "deepwaters:salt_crystal",
+    "count": 9
+  }
+}

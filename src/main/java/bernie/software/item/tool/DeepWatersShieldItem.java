@@ -1,5 +1,6 @@
 package bernie.software.item.tool;
 
+import bernie.software.registry.DeepWatersItemGroups;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class DeepWatersShieldItem extends ShieldItem {
     public DeepWatersShieldItem(Properties builder) {
-        super(builder);
+        super(builder.group(DeepWatersItemGroups.DEEPWATERS_ITEMS));
     }
     private List<StringTextComponent> tooltips = new ArrayList<>();
     @Override

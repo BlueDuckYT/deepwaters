@@ -13,13 +13,14 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.carver.CaveWorldCarver;
+import net.minecraft.world.gen.carver.UnderwaterCaveWorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 
-public class CoralFieldsCaveWorldCarver extends CaveWorldCarver
+public class CoralFieldsCaveWorldCarver extends UnderwaterCaveWorldCarver
 {
 	public CoralFieldsCaveWorldCarver(Function<Dynamic<?>, ? extends ProbabilityConfig> p_i49927_1_) {
-		super(p_i49927_1_, 200);
-		this.carvableBlocks = ImmutableSet.of(Blocks.WATER, DeepWatersBlocks.OCEAN_FLOOR.get(), DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get(), DeepWatersBlocks.SUNKEN_GRAVEL.get(), DeepWatersBlocks.SALT_ORE.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get());
+		super(p_i49927_1_);
+		this.carvableBlocks = ImmutableSet.of(Blocks.WATER, DeepWatersBlocks.OCEAN_FLOOR.get(), DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get(), DeepWatersBlocks.SUNKEN_GRAVEL.get(), DeepWatersBlocks.SALT_ORE.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), DeepWatersBlocks.AQUALITE_ORE.get());
 		this.carvableFluids = ImmutableSet.of(Fluids.WATER);
 
 	}
@@ -48,6 +49,7 @@ public class CoralFieldsCaveWorldCarver extends CaveWorldCarver
 		return p_222726_1_.nextInt(this.maxHeight);
 	}
 
+	/*
 	@Override
 	protected boolean carveBlock(IChunk chunkIn, BitSet carvingMask, Random rand, BlockPos.MutableBlockPos p_222703_4_, BlockPos.MutableBlockPos p_222703_5_, BlockPos.MutableBlockPos p_222703_6_, int p_222703_7_, int p_222703_8_, int p_222703_9_, int p_222703_10_, int p_222703_11_, int p_222703_12_, int p_222703_13_, int p_222703_14_, AtomicBoolean p_222703_15_) {
 		int i = p_222703_12_ | p_222703_14_ << 4 | p_222703_13_ << 8;
@@ -71,4 +73,5 @@ public class CoralFieldsCaveWorldCarver extends CaveWorldCarver
 			}
 		}
 	}
+	 */
 }

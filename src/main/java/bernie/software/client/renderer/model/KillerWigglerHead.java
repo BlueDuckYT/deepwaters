@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.model.ModelBox;
 //Paste this code into your mod.
 import net.minecraft.entity.Entity;
 
-public class KillerWigglerHead extends EntityModel {
+public class KillerWigglerHead extends AbstractWormPart {
 	private final RendererModel head;
 	private final RendererModel right_claws;
 	private final RendererModel right_claws_top;
@@ -17,10 +17,6 @@ public class KillerWigglerHead extends EntityModel {
 	private final RendererModel left_claws_bottom;
 	private final RendererModel center_claws_up;
 	private final RendererModel center_claws_down;
-
-	public RendererModel getModel() {
-		return head;
-	}
 
 	public KillerWigglerHead() {
 		textureWidth = 512;
@@ -87,6 +83,7 @@ public class KillerWigglerHead extends EntityModel {
 		head.addChild(center_claws_down);
 		center_claws_down.cubeList.add(new ModelBox(center_claws_down, 0, 20, -5.55F, -11.076F, -41.4911F, 2, 2, 6, 0.0F, false));
 		center_claws_down.cubeList.add(new ModelBox(center_claws_down, 0, 20, 4.45F, -11.076F, -41.4911F, 2, 2, 6, 0.0F, false));
+		setModel(head);
 	}
 
 	@Override

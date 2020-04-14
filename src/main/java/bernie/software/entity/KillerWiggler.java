@@ -38,8 +38,9 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.apache.logging.log4j.Level;
 
-public class KillerWiggler extends MonsterEntity
+public class KillerWiggler extends AbstractWormEntity
 {
 	private static final DataParameter<Boolean> MOVING = EntityDataManager.createKey(KillerWiggler.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> TARGET_ENTITY = EntityDataManager.createKey(KillerWiggler.class, DataSerializers.VARINT);
@@ -63,7 +64,6 @@ public class KillerWiggler extends MonsterEntity
 		this.clientSideTailAnimation = this.rand.nextFloat();
 		this.clientSideTailAnimationO = this.clientSideTailAnimation;
 	}
-
 
 	@Nullable
 	@Override
@@ -89,6 +89,7 @@ public class KillerWiggler extends MonsterEntity
 	protected void registerAttributes()
 	{
 		super.registerAttributes();
+		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(3D);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
@@ -219,8 +220,7 @@ public class KillerWiggler extends MonsterEntity
 		return worldIn.getFluidState(pos).isTagged(FluidTags.WATER) ? 10.0F + worldIn.getBrightness(pos) - 0.5F : super.getBlockPathWeight(pos, worldIn);
 	}
 
-	public int length = new Random().nextInt(5)+5;
-	public HashMap<Integer,Vec3d> segments=new HashMap();
+	public int length = 10;
 
 	@Override
 	public void writeAdditional(CompoundNBT p_213281_1_) {
@@ -246,44 +246,29 @@ public class KillerWiggler extends MonsterEntity
 		return nbt;
 	}
 
+	@Override
+	public int getLength() {
+		return length;
+	}
+
 	/**
 	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
 	 * use this to react to sunlight and start to burn.
 	 */
-
-
-	public HashMap<Integer,Vec3d> poses=new HashMap<>();
-	public void livingTick()
-	{
+	@Override
+	public void livingTick() {
 		if (this.isAlive()) {
 			if (this.world.isRemote) {
 				this.clientSideTailAnimationO = this.clientSideTailAnimation;
 				this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
 				AxisAlignedBB box = this.getBoundingBox();
-				if (!poses.containsKey(0)) {
-					for (int i=0;i<=length;i++) {
-						poses.put(i,this.getPositionVec());
-					}
-				}
-				if (poses.get(0).distanceTo(this.getPositionVec())>=0.875f) {
-					for (int i=length-1;i>=1;i--) {
-						if (!poses.containsKey(i)) {
-							poses.put(i,this.getPositionVec());
-						} else if (i>=1) {
-							if (poses.get(i).distanceTo(poses.get(i-1))>=0.875f) {
-								poses.replace(i,poses.get(i-1));
-							}
-						}
-					}
-					poses.replace(0,this.getPositionVec());
-				}
+
 				if (!this.isInWater()) {
 					this.clientSideTailAnimationSpeed = 2.0F;
 					Vec3d vec3d = this.getMotion();
 					if (vec3d.y > 0.0D && this.clientSideTouchedGround && !this.isSilent()) {
 						this.world.playSound(this.posX, this.posY, this.posZ, this.getFlopSound(), this.getSoundCategory(), 1.0F, 1.0F, false);
 					}
-
 					this.clientSideTouchedGround = vec3d.y < 0.0D && this.world.isTopSolid((new BlockPos(this)).down(), this);
 				} else if (this.isMoving()) {
 					if (this.clientSideTailAnimationSpeed < 0.5F) {

@@ -15,4 +15,14 @@ public class DeepWatersBlock extends Block {
                 .harvestTool(tool)
         );
     }
+
+    public DeepWatersBlock(Material material, float hardness, float resist, SoundType sound, int harvestlvl, ToolType tool, int light) {
+        super(Properties.create(material)
+                .hardnessAndResistance(hardness,resist)
+                .sound(sound)
+                .harvestLevel(harvestlvl)
+                .harvestTool(tool)
+                .lightValue(light)
+        );
+    }
 }
