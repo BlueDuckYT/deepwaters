@@ -3,6 +3,7 @@ package bernie.software.entity.vehicle;
 import bernie.software.DeepWatersMod;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
+import javafx.geometry.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -24,25 +25,16 @@ import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Filter;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class VehicleEventSubscriber
 {
 	@SubscribeEvent
-	public static void onRenderEvent(RenderPlayerEvent.Pre event)
-	{
-		Entity ridingEntity = event.getPlayer().getRidingEntity();
-		if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
-		{
-			PlayerModel<AbstractClientPlayerEntity> entityModel = event.getRenderer().getEntityModel();
-			entityModel.bipedRightArm.rotateAngleX = MathHelper.sin(event.getPlayer().ticksExisted);
-			entityModel.bipedLeftArm.rotateAngleX = 10F;
-//			entityModel.bipedBody.rotateAngleY=ridingEntity.rotationPitch;
-		}
-	}
-
-	@SubscribeEvent
 	public static void onPlayerModelEvent(PlayerModelEvent.SetupAngles event)
 	{
+		if(!event.getPlayer().getEntityWorld().isRemote)
+		{
+			return;
+		}
 		Entity ridingEntity = event.getPlayer().getRidingEntity();
 		if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
 		{

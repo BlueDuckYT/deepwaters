@@ -9,7 +9,7 @@ import net.minecraft.util.SoundEvents;
 import java.util.function.Supplier;
 
 public enum  DeepWatersArmorMaterials implements IArmorMaterial {
-    PRISMARINE("prismarine",17, new int[]{3, 6, 7, 3}, 8, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, () -> Ingredient.fromItems(DeepWatersItems.PRISMARINE_INGOT.get()))
+    PRISMARINE("Prismarine",17, new int[]{3, 6, 7, 3}, 8, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, () -> Ingredient.fromItems(DeepWatersItems.PRISMARINE_INGOT.get()))
     ;
 
     private static final int[] durability_arr = new int[]{13, 15, 16, 11};

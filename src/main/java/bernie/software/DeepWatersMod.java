@@ -26,7 +26,6 @@ public class DeepWatersMod
 		log= LogManager.getLogger();
 
 		bus.addListener(this::setup);
-		bus.addListener(this::clientSetup);
 		bus.addListener(this::gatherData);
 
 		DeepWatersBiomes.BIOMES.register(bus);
@@ -42,9 +41,6 @@ public class DeepWatersMod
 		DeepWatersBiomes.addBiomeTypes();
 	}
 
-	public void clientSetup(FMLClientSetupEvent event) {
-
-	}
 
 	public void gatherData(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();

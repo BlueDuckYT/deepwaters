@@ -1,6 +1,5 @@
 package bernie.software.item.tool;
 
-import bernie.software.item.events.shield;
 import bernie.software.registry.DeepWatersItemGroups;
 import bernie.software.registry.DeepWatersShieldProperties;
 import net.minecraft.client.util.ITooltipFlag;
@@ -9,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
-import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
