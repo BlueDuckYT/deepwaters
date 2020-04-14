@@ -2,11 +2,9 @@ package bernie.software.item.events;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.item.tool.DeepWatersShieldItem.shieldEvent;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.IntNBT;
 import net.minecraft.nbt.LongNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -25,8 +23,8 @@ public class ShieldEvents
 			if (playerEntity.isInWater())
 			{
 				Long time = new Date().getTime();
-				DeepWatersMod.log.log(Level.INFO, time);
-				DeepWatersMod.log.log(Level.INFO, stack.getTag().getLong("COOLDOWN"));
+				DeepWatersMod.logger.log(Level.INFO, time);
+				DeepWatersMod.logger.log(Level.INFO, stack.getTag().getLong("COOLDOWN"));
 				if (stack.getTag().getLong("COOLDOWN") <= time - 10000)
 				{
 					double speedFactor = 2;

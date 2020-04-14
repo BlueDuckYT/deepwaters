@@ -217,7 +217,7 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public boolean canRespawnHere()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
