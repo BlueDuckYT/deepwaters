@@ -25,6 +25,8 @@ public abstract class AbstractWormEntity extends CreatureEntity {
         return poses;
     }
     public abstract int getLength();
+    public abstract float getSegmentDistance();
+    public abstract float getYRenderOffset();
     Vec3d moveVec=new Vec3d(0,0,0);
     float wiggle=0;
     int moveChance=16;
@@ -96,7 +98,7 @@ public abstract class AbstractWormEntity extends CreatureEntity {
                     float z2=(float)posZ;
                     rotation=(float)Math.atan2(x1-x2,z1-z2);
                 }
-                poses.replace(i,new Vec3d(posX+(Math.sin((rotation))*0.875f),posY,posZ+(Math.cos((rotation))*0.875f)));
+                poses.replace(i,new Vec3d(posX+(Math.sin((rotation))*getSegmentDistance()),posY,posZ+(Math.cos((rotation))*getSegmentDistance())));
             }
         } catch (Exception err) {
             poses.clear();

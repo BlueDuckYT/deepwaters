@@ -61,6 +61,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		//toolItem(DeepWatersItems.PRISMARINE_SHIELD);
 
 		spawnEgg(DeepWatersItems.KILLER_WIGGLER_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.EEL_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.BLUFFERFISH_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.STING_RAY_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.BABY_KRACKEN_SPAWN_EGG);

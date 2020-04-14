@@ -110,6 +110,11 @@ public class KillerWiggler extends AbstractWormEntity
 		return new SwimmerPathNavigator(this, worldIn);
 	}
 
+	@Override
+	public float getSegmentDistance() {
+		return 1;
+	}
+
 	protected void registerData()
 	{
 		super.registerData();
@@ -119,6 +124,10 @@ public class KillerWiggler extends AbstractWormEntity
 		this.dataManager.set(LENGTH, 10);
 	}
 
+	@Override
+	public float getYRenderOffset() {
+		return 0.4f;
+	}
 
 	public boolean canBreatheUnderwater()
 	{
