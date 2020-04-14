@@ -113,7 +113,9 @@ public class KillerWiggler extends AbstractWormEntity
 		this.dataManager.register(MOVING, false);
 		this.dataManager.register(TARGET_ENTITY, 0);
 		this.dataManager.register(LENGTH, 10);
+		this.dataManager.set(LENGTH, 10);
 	}
+
 
 	public boolean canBreatheUnderwater()
 	{
@@ -137,7 +139,6 @@ public class KillerWiggler extends AbstractWormEntity
 
 	public int getEntityLength()
 	{
-
 		Integer length = this.dataManager.get(LENGTH);
 		DeepWatersMod.log.log(Level.INFO, length.toString());
 		return length;
