@@ -32,7 +32,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_SHOVEL = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
-	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new shield.prismarine().getClass()).addToolTip("needs info"));
+	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new shield.prismarine().getClass()).addToolTip("Allows you to dash in water"));
 
 	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
 	public static final RegistryObject<Item> PRISMARINE_CHESTPLATE = ITEMS.register("prismarine_chestplate", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.CHEST));
