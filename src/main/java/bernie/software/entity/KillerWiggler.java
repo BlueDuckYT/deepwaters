@@ -143,7 +143,7 @@ public class KillerWiggler extends AbstractWormEntity
 	public int getEntityLength()
 	{
 		Integer length = this.dataManager.get(LENGTH);
-		DeepWatersMod.log.log(Level.INFO, length.toString());
+//		DeepWatersMod.log.log(Level.INFO, length.toString());
 		return length;
 	}
 

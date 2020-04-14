@@ -25,10 +25,43 @@ public abstract class AbstractWormEntity extends CreatureEntity {
         return poses;
     }
     public abstract int getLength();
+    Vec3d moveVec=new Vec3d(0,0,0);
+    float wiggle=0;
+    int moveChance=16;
+    int stopChance=128;
+    boolean moving=false;
     @Override
     public void livingTick() {
-        handlePositions();
         super.livingTick();
+        if (this.getAttackTarget()==null&&this.isInWater()) {
+            handleAI();
+        }
+        handlePositions();
+    }
+    public void handleAI() {
+        if (!moving) {
+            if ((rand.nextDouble()*moveChance)<=1) {
+                moveVec=(moveVec.add(new Vec3d(rand.nextFloat()-(rand.nextFloat()*2),(rand.nextFloat()-(rand.nextFloat()*2))/16,rand.nextFloat()-(rand.nextFloat()*2)).normalize()).normalize());
+                moving=true;
+            }
+        } else {
+            setMotion(moveVec.scale(0.05f));
+            if ((rand.nextDouble()*stopChance)<=1) {
+                moving=false;
+                if (this.collided) {
+                    moveVec=new Vec3d(0,0,0);
+                    moving=false;
+                }
+            }
+        }
+        rotationPitch=0;
+        prevRotationPitch=0;
+        rotationYaw=0;
+        prevRotationYaw=0;
+        rotationYawHead=0;
+        prevRotationYawHead=0;
+        renderYawOffset=0;
+        prevRenderYawOffset=0;
     }
     public void handlePositions() {
         HashMap<Integer,Vec3d> poses = this.getPoses();
@@ -42,26 +75,31 @@ public abstract class AbstractWormEntity extends CreatureEntity {
                 }
             }
         }
-        for (int i=0;i<=length;i++) {
-            float posX=(float) this.posX;
-            float posZ=(float) this.posZ;
-            float rotation=0;
-            if (i>=1) {
-                float x1=(float)poses.get(i).x;
-                float x2=(float)poses.get(i-1).x;
-                float z1=(float)poses.get(i).z;
-                float z2=(float)poses.get(i-1).z;
-                rotation=(float)Math.atan2(x1-x2,z1-z2);
-                posX=(float)poses.get(i-1).x;
-                posZ=(float)poses.get(i-1).z;
-            } else {
-                float x1=(float)poses.get(i).x;
-                float x2=(float)posX;
-                float z1=(float)poses.get(i).z;
-                float z2=(float)posZ;
-                rotation=(float)Math.atan2(x1-x2,z1-z2);
+        poses.replace(0,new Vec3d(prevPosX-posX,prevPosY-posY,prevPosZ-posZ).add(poses.get(0)));
+        try {
+            for (int i=0;i<=length;i++) {
+                float posX=(float) this.posX;
+                float posZ=(float) this.posZ;
+                float rotation=0;
+                if (i>=1) {
+                    float x1=(float)poses.get(i).x;
+                    float x2=(float)poses.get(i-1).x;
+                    float z1=(float)poses.get(i).z;
+                    float z2=(float)poses.get(i-1).z;
+                    rotation=(float)Math.atan2(x1-x2,z1-z2);
+                    posX=(float)poses.get(i-1).x;
+                    posZ=(float)poses.get(i-1).z;
+                } else {
+                    float x1=(float)poses.get(i).x;
+                    float x2=(float)posX;
+                    float z1=(float)poses.get(i).z;
+                    float z2=(float)posZ;
+                    rotation=(float)Math.atan2(x1-x2,z1-z2);
+                }
+                poses.replace(i,new Vec3d(posX+(Math.sin((rotation))*0.875f),posY,posZ+(Math.cos((rotation))*0.875f)));
             }
-            poses.replace(i,new Vec3d(posX+(Math.sin((rotation))*0.875f),posY,posZ+(Math.cos((rotation))*0.875f)));
+        } catch (Exception err) {
+            poses.clear();
         }
 //        if (poses.get(0).distanceTo(this.getPositionVec())>=(0.875f)) {
 //            DeepWatersMod.log.log(Level.INFO,"h");
