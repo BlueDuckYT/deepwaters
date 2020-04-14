@@ -12,6 +12,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.awt.*;
+
 public class DeepWatersItems
 {
 
@@ -45,6 +47,8 @@ public class DeepWatersItems
 
 	public static final RegistryObject<Item> KILLER_WIGGLER_SPAWN_EGG = ITEMS.register("killer_wiggler_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.KILLER_WIGGLER, 2892056, 12337464));
+	public static final RegistryObject<Item> EEL_SPAWN_EGG = ITEMS.register("eel_spawn_egg", () -> new ModdedSpawnEggItem(
+			DeepWatersEntities.EEL, Color.RED.getRed(), Color.GREEN.getRGB()));
 	public static final RegistryObject<Item> BLUFFERFISH_SPAWN_EGG = ITEMS.register("blufferfish_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.BLUFFERFISH, 5793118, 9937052));
 	public static final RegistryObject<Item> STING_RAY_SPAWN_EGG = ITEMS.register("sting_ray_spawn_egg", () -> new ModdedSpawnEggItem(
