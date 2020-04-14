@@ -102,8 +102,5 @@ public class MuckGulperModel extends EntityModel<MuckGulper>
 		this.FinLeft.rotateAngleZ = (float) (MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
 		this.FinRight.rotateAngleZ = (float) (-1 * MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
 		this.Head.rotateAngleZ = (float) (MathHelper.sin(limbSwing) * 5);
-
 	}
-
-
 }
