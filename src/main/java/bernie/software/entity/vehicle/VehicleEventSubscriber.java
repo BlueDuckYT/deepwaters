@@ -28,10 +28,12 @@ import org.apache.logging.log4j.core.Filter;
 @Mod.EventBusSubscriber(Dist.CLIENT)
 public class VehicleEventSubscriber
 {
+
+
 	@SubscribeEvent
 	public static void onPlayerModelEvent(PlayerModelEvent.SetupAngles event)
 	{
-		if(!event.getPlayer().getEntityWorld().isRemote)
+		if (!event.getPlayer().getEntityWorld().isRemote)
 		{
 			return;
 		}
