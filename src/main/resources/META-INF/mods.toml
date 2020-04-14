@@ -22,7 +22,7 @@ displayName="Deep Waters" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="http://bernie.software/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="examplemod.png" #optional
+#logoFile="https://i.softwarelocker.net/wiggler.JPG" #optional
 # A text field displayed in the mod UI
 credits="Thank you to all the texture designers, modelers, animators, builders, and creative people who made this mod possible" #optional
 # A text field displayed in the mod UI
@@ -44,3 +44,9 @@ An underwater dimension inspired by Subnautica.
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
+[[dependencies.deepwaters]]
+    modId="obfuscate"
+    mandatory=true
+    versionRange="[0.3.3,0.3.3]"
+    ordering="NONE"
+    side="BOTH"
