@@ -51,6 +51,8 @@ public class DeepWatersBlocks
 			Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> METALLIC_BLOCK_BLUE = registerNormalBlock("metallic_block_blue", () -> new DeepWatersBlock(
 			Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
+	public static final RegistryObject<Block> OXYGENATOR = registerNormalBlock("oxygenator", () -> new DeepWatersBlock(
+			Material.ROCK, 2.0F, 4.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 
 	public static final RegistryObject<Block> DEAD_CORAL_BLOCK_ORANGE = registerNormalBlock("dead_coral_block_orange", () -> new DeepWatersBlock(
 			Material.ROCK, 1.5F, 6F, SoundType.STONE, 0, ToolType.PICKAXE), true);
