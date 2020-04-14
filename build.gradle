@@ -16,7 +16,8 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = ZoltuGitVersioning.versionInfo.toString()
+def gitVersion = ZoltuGitVersioning.versionInfo
+version = "${gitVersion.major}.${gitVersion.minor}.${gitVersion.commitCount}"
 group = 'bernie.software.deepwaters' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'deepwaters-1.14.4'
 
