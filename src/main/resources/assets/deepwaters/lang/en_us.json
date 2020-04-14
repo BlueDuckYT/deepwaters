@@ -20,7 +20,14 @@
   "block.deepwaters.magmatic_rock": "Magmatic Rock",
   "block.deepwaters.prismarine_block": "Prismarine Crystal Block",
   "block.deepwaters.aqualite_ore": "Aqualite Ore",
+  "block.deepwaters.salt_block": "Salt Block",
+  "block.deepwaters.portal_pillar": "Portal Pillar",
+  "block.deepwaters.activated_portal_pillar": "Activated Portal Pillar",
+  "block.deepwaters.dead_coral_block_orange": "Dead Goldenrod Coral Block",
+  "block.deepwaters.dead_coral_block_green": "Dead Green Coral Block",
 
+
+  "item.deepwaters.prismarine_shield": "Prismarine Shield",
   "item.deepwaters.salt_crystal": "Salt Crystal",
   "item.deepwaters.pearl": "Pearl",
   "item.deepwaters.sharktooth": "Shark Tooth",
