@@ -15,4 +15,5 @@ public class DeepWatersModDimension extends ModDimension
 	{
 		return DeepWatersDimension::new;
 	}
+
 }

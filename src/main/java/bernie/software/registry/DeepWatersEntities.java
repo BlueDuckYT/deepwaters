@@ -4,16 +4,10 @@ import bernie.software.DeepWatersMod;
 import bernie.software.entity.*;
 import bernie.software.entity.vehicle.SurgeVehicle;
 import bernie.software.utils.EntityUtils;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.util.Tuple;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DeepWatersEntities
 {
@@ -22,7 +16,6 @@ public class DeepWatersEntities
 
 	public static final RegistryObject<EntityType<KillerWiggler>> KILLER_WIGGLER = EntityUtils.BuildWaterEntity(KillerWiggler::new, KillerWiggler.class, 10.387F, 2.4375F);
 	public static final RegistryObject<EntityType<BlufferFish>> BLUFFERFISH = EntityUtils.BuildWaterEntity(BlufferFish::new, BlufferFish.class, 1.125F, 1F);
-	public static final RegistryObject<EntityType<Clam>> CLAM = EntityUtils.BuildWaterLandEntity(Clam::new, Clam.class, 1F, 0.4F);
 	public static final RegistryObject<EntityType<Stingray>> STING_RAY = EntityUtils.BuildWaterEntity(Stingray::new, Stingray.class, 2.845F, 0.3125F);
 	public static final RegistryObject<EntityType<BabyKracken>> BABY_KRACKEN = EntityUtils.BuildWaterEntity(BabyKracken::new, BabyKracken.class, 1, 2);
 	public static final RegistryObject<EntityType<MuckGulper>> MUCK_GULPER = EntityUtils.BuildWaterEntity(MuckGulper::new, MuckGulper.class, .7F, .2F);
@@ -34,5 +27,6 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<SkullFish>> SKULL_FISH = EntityUtils.BuildWaterEntity(SkullFish::new, SkullFish.class, 0.3F, 0.3F);
 	public static final RegistryObject<EntityType<SurgeVehicle>> SURGE = EntityUtils.BuildEntity(SurgeVehicle::new, SurgeVehicle.class, 1.5F, 0.5F);
 	public static final RegistryObject<EntityType<JungleFish>> JUNGLE_FISH = EntityUtils.BuildWaterEntity(JungleFish::new, JungleFish.class, 0.3F, 0.3F);
+	public static final RegistryObject<EntityType<Eel>> EEL = EntityUtils.BuildWaterEntity(Eel::new, Eel.class, 0.3F, 0.2f);
 
 }

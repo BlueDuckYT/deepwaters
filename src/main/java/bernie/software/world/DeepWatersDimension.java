@@ -34,6 +34,7 @@ public class DeepWatersDimension extends Dimension
 	public DeepWatersDimension(World worldIn, DimensionType typeIn)
 	{
 		super(worldIn, typeIn);
+
 	}
 
 	@Override
@@ -55,10 +56,13 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public BlockPos findSpawn(ChunkPos chunkPosIn, boolean checkValid)
 	{
-		for (int i = chunkPosIn.getXStart(); i <= chunkPosIn.getXEnd(); ++i) {
-			for (int j = chunkPosIn.getZStart(); j <= chunkPosIn.getZEnd(); ++j) {
+		for (int i = chunkPosIn.getXStart(); i <= chunkPosIn.getXEnd(); ++i)
+		{
+			for (int j = chunkPosIn.getZStart(); j <= chunkPosIn.getZEnd(); ++j)
+			{
 				BlockPos blockpos = this.findSpawn(i, j, checkValid);
-				if (blockpos != null) {
+				if (blockpos != null)
+				{
 					return blockpos;
 				}
 			}
@@ -67,31 +71,46 @@ public class DeepWatersDimension extends Dimension
 		return null;
 	}
 
+
 	@Nullable
 	@Override
 	public BlockPos findSpawn(int posX, int posZ, boolean checkValid)
 	{
+
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(posX, 0, posZ);
 		Biome biome = this.world.getBiome(blockpos$mutableblockpos);
-		BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
-		if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
+		BlockState blockstate = Blocks.SAND.getDefaultState();
+		BlockState blockstate2 = DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState();
+
+		if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN))
+		{
 			return null;
-		} else {
+		}
+		else
+		{
 			Chunk chunk = this.world.getChunk(posX >> 4, posZ >> 4);
-			int i = chunk.getTopBlockY(Heightmap.Type.MOTION_BLOCKING, posX & 15, posZ & 15);
-			if (i < 0) {
+			int i = 250;
+			if (i < 0)
+			{
 				return null;
-			} else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, posX & 15, posZ & 15) > chunk.getTopBlockY(Heightmap.Type.OCEAN_FLOOR, posX & 15, posZ & 15)) {
+			}
+			else if (chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE, posX & 15, posZ & 15) > chunk.getTopBlockY(Heightmap.Type.OCEAN_FLOOR, posX & 15, posZ & 15))
+			{
 				return null;
-			} else {
-				for (int j = i + 1; j >= 0; --j) {
+			}
+			else
+			{
+				for (int j = i + 1; j >= 230; --j)
+				{
 					blockpos$mutableblockpos.setPos(posX, j, posZ);
 					BlockState blockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
-					if (!blockstate1.getFluidState().isEmpty()) {
+					if (!blockstate1.getFluidState().isEmpty())
+					{
 						break;
 					}
 
-					if (blockstate1.equals(blockstate)) {
+					if (blockstate1.equals(blockstate) || blockstate1.equals(blockstate2))
+					{
 						return blockpos$mutableblockpos.up().toImmutable();
 					}
 				}
@@ -104,7 +123,8 @@ public class DeepWatersDimension extends Dimension
 	@Nullable
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public MusicTicker.MusicType getMusicType() {
+	public MusicTicker.MusicType getMusicType()
+	{
 		return MusicTicker.MusicType.UNDER_WATER;
 	}
 
@@ -112,13 +132,14 @@ public class DeepWatersDimension extends Dimension
 	public float calculateCelestialAngle(long worldTime, float partialTicks)
 	{
 
-		double d0 = MathHelper.frac((double)worldTime / -24000.0D - -0.25D);
+		double d0 = MathHelper.frac((double) worldTime / -24000.0D - -0.25D);
 		double d1 = -0.5D - Math.cos(d0 * Math.PI) / -2.0D;
-		return (float)(d0 * -2.0D + d1) / -3.0F;
+		return (float) (d0 * -2.0D + d1) / -3.0F;
 	}
 
 	@Override
-	public boolean isDaytime() {
+	public boolean isDaytime()
+	{
 		return true;
 	}
 
@@ -130,13 +151,15 @@ public class DeepWatersDimension extends Dimension
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public float getStarBrightness(float par1) {
+	public float getStarBrightness(float par1)
+	{
 		return 50;
 	}
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public Vec3d getSkyColor(BlockPos cameraEntity, float partialTicks) {
+	public Vec3d getSkyColor(BlockPos cameraEntity, float partialTicks)
+	{
 		return new Vec3d(125F / 255, 235F / 255, 220F / 255);
 	}
 
@@ -167,7 +190,8 @@ public class DeepWatersDimension extends Dimension
 	{
 		float f = 0.1F;
 
-		for (int i = 0; i <= 15; ++i) {
+		for (int i = 0; i <= 15; ++i)
+		{
 			float f1 = 1.0F - (float) i / 15.0F;
 			this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * 0.9F + 0.1F;
 		}
@@ -193,7 +217,7 @@ public class DeepWatersDimension extends Dimension
 	@Override
 	public boolean canRespawnHere()
 	{
-		return false;
+		return true;
 	}
 
 	@Override

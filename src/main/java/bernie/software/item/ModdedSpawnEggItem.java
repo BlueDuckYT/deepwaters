@@ -1,5 +1,6 @@
 package bernie.software.item;
 
+import bernie.software.utils.Lazy;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
@@ -10,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -75,7 +75,8 @@ public class ModdedSpawnEggItem extends SpawnEggItem
 				return stack;
 			}
 		};
-		for (final SpawnEggItem egg : UNADDED_EGGS) {
+		for (final SpawnEggItem egg : UNADDED_EGGS)
+		{
 			EGGS.put(egg.getType(null), egg);
 			DispenserBlock.registerDispenseBehavior(egg, defaultDispenseItemBehavior);
 			// ItemColors for each spawn egg don't need to be registered because this method is called before ItemColors is created

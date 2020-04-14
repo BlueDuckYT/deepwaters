@@ -102,12 +102,14 @@ public class SurgeModel extends EntityModel<SurgeVehicle>
 	}
 
 	@Override
-	public void render(SurgeVehicle entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(SurgeVehicle entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
 //		Main.rotateAngleX=(entity.getControllingPassenger().rotationPitch/90f);
 		Main.render(f5);
 	}
 
-	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
+	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z)
+	{
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
@@ -125,9 +127,10 @@ public class SurgeModel extends EntityModel<SurgeVehicle>
 		}
 
 		this.Main.rotateAngleY = entityIn.rotationYaw * ((float) Math.PI / 180F) / 180;
-		this.Main.rotateAngleX = entityIn.rotationPitch * ((float) Math.PI / 180F) / 180;
+		//float pitch = entityIn.rotationPitch * ((float) Math.PI / 180F);
+		//this.Main.rotateAngleX = pitch;
 
 //		this.Main.rotateAngleX = 0;
-		//this.Main.rotateAngleY = entityIn.rotationYaw * ((float) Math.PI / 180F);
+		//his.Main.rotateAngleY = entityIn.rotationYaw * ((float) Math.PI / 180F);
 	}
 }

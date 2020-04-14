@@ -8,7 +8,6 @@ import bernie.software.registry.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -18,15 +17,16 @@ import org.apache.logging.log4j.Logger;
 @Mod(DeepWatersMod.ModID)
 public class DeepWatersMod
 {
-	public static Logger log;
+	public static Logger logger;
+	public static final String ModID = "deepwaters";
 
-	public DeepWatersMod() {
+	public DeepWatersMod()
+	{
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-		log= LogManager.getLogger();
+		logger = LogManager.getLogger();
 
 		bus.addListener(this::setup);
-		bus.addListener(this::clientSetup);
 		bus.addListener(this::gatherData);
 
 		DeepWatersBiomes.BIOMES.register(bus);
@@ -36,17 +36,15 @@ public class DeepWatersMod
 		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
 	}
 
-	public static final String ModID = "deepwaters";
 
-	public void setup(FMLCommonSetupEvent event) {
+	public void setup(FMLCommonSetupEvent event)
+	{
 		DeepWatersBiomes.addBiomeTypes();
 	}
 
-	public void clientSetup(FMLClientSetupEvent event) {
 
-	}
-
-	public void gatherData(GatherDataEvent event) {
+	public void gatherData(GatherDataEvent event)
+	{
 		DataGenerator generator = event.getGenerator();
 
 		generator.addProvider(new DeepWatersRecipes(generator));
