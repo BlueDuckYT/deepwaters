@@ -3,7 +3,6 @@ package bernie.software.entity.vehicle;
 import bernie.software.DeepWatersMod;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
-import javafx.geometry.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
