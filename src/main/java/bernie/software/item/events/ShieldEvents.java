@@ -5,12 +5,15 @@ import bernie.software.item.tool.DeepWatersShieldItem.shieldEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.LongNBT;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 
 import java.util.Date;
+import java.util.Random;
+import java.util.function.Consumer;
 
 public class ShieldEvents
 {
@@ -27,6 +30,16 @@ public class ShieldEvents
 				DeepWatersMod.logger.log(Level.INFO, stack.getTag().getLong("COOLDOWN"));
 				if (stack.getTag().getLong("COOLDOWN") <= time - 10000)
 				{
+					playerEntity.getHeldItem(hand).damageItem(3, playerEntity, new Consumer<PlayerEntity>() {
+						@Override
+						public void accept(PlayerEntity playerEntity) {
+							if (playerEntity.getHeldItem(hand).getDamage()<=0) {
+								ItemStack stk=playerEntity.getHeldItem(hand);
+								stk=new ItemStack(Items.AIR);
+								playerEntity.setHeldItem(hand,stk);
+							}
+						}
+					});
 					double speedFactor = 2;
 					stack.setTagInfo("COOLDOWN", new LongNBT(time));
 					playerEntity.setVelocity(playerEntity.getLookVec().scale(speedFactor).x, playerEntity.getLookVec().scale(speedFactor).y, playerEntity.getLookVec().scale(speedFactor).z);
