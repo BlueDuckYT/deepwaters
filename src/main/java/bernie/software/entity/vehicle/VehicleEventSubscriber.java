@@ -60,7 +60,6 @@ public class VehicleEventSubscriber
 	}
 
 	@SubscribeEvent
-	@OnlyIn(Dist.CLIENT)
 	public static void onRenderText(RenderGameOverlayEvent event)
 	{
 		if (event.getType() == RenderGameOverlayEvent.ElementType.HELMET)

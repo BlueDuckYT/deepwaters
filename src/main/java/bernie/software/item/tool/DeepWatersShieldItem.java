@@ -4,6 +4,7 @@ import bernie.software.item.events.shield;
 import bernie.software.registry.DeepWatersItemGroups;
 import bernie.software.registry.DeepWatersShieldProperties;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class DeepWatersShieldItem extends ShieldItem {
         super(prop.toProperty().group(DeepWatersItemGroups.DEEPWATERS_ITEMS));
         thisProperties=prop;
     }
-    public DeepWatersShieldItem(DeepWatersShieldProperties prop,Class<? extends useEvent> event) {
+    public DeepWatersShieldItem(DeepWatersShieldProperties prop,Class<? extends shieldEvent> event) {
         super(prop.toProperty().group(DeepWatersItemGroups.DEEPWATERS_ITEMS));
         thisProperties=prop;
         DeepWatersShieldItem.registerUseEvent(prop,event);
@@ -55,13 +56,22 @@ public class DeepWatersShieldItem extends ShieldItem {
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 
-    public static void registerUseEvent(DeepWatersShieldProperties prop, Class<? extends useEvent> event) {
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        try {
+            events.get(thisProperties).newInstance().inInv(stack,worldIn,entityIn,itemSlot,isSelected);
+        } catch (Exception err) {}
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
+    public static void registerUseEvent(DeepWatersShieldProperties prop, Class<? extends shieldEvent> event) {
         events.put(prop,event);
     }
 
-    private static HashMap<DeepWatersShieldProperties,Class<? extends useEvent>> events = new HashMap<>();
+    private static HashMap<DeepWatersShieldProperties,Class<? extends shieldEvent>> events = new HashMap<>();
 
-    public static abstract class useEvent {
+    public static abstract class shieldEvent {
         public abstract void onUse(World world, PlayerEntity playerEntity, Hand hand);
+        public abstract void inInv(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected);
     }
 }
