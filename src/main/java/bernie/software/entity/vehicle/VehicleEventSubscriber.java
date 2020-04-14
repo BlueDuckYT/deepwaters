@@ -34,6 +34,7 @@ public class VehicleEventSubscriber
 			PlayerModel<AbstractClientPlayerEntity> entityModel = event.getRenderer().getEntityModel();
 			entityModel.bipedRightArm.rotateAngleX = MathHelper.sin(event.getPlayer().ticksExisted);
 			entityModel.bipedLeftArm.rotateAngleX = 10F;
+//			entityModel.bipedBody.rotateAngleY=ridingEntity.rotationPitch;
 		}
 	}
 

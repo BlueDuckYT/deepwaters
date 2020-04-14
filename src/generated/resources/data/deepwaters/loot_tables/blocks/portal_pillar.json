@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "deepwaters:salt_pile"
+          "name": "deepwaters:portal_pillar"
         }
       ],
       "conditions": [

@@ -1,10 +1,13 @@
 package bernie.software.client.renderer.model;
 
 import bernie.software.entity.KillerWiggler;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
 // Designed with Blockbench by pnamota/Sprint
@@ -527,48 +530,82 @@ public class KillerWigglerModel extends EntityModel<KillerWiggler> {
 		main.render(f5);
 	}
 	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
-//		modelRenderer.rotateAngleX = x;
-//		modelRenderer.rotateAngleY = y;
-//		modelRenderer.rotateAngleZ = z;
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
+	}
+	@Override
+	public void setLivingAnimations(KillerWiggler entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+		entityIn.setHeadRotation(0,0);
 	}
 
 	@Override
 	public void setRotationAngles(KillerWiggler entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
 	{
-		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-//		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-//		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+//		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+//		main.rotateAngleX=0;
+//		main.rotateAngleY=(float)(-(entityIn.rotationYaw));
+//		entityIn.renderYawOffset=0;
 
-		RendererModel model = new KillerWigglerHead().getModel();
+		/*RendererModel model = new KillerWigglerHead().getModel();
 		main.childModels=new ArrayList<>();
-		model.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-3.2f))*0;
-		model.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-3.2f))*0;
-//		model.rotateAngleY=(float)Math.toRadians(45+17);
+		main.setRotationPoint(0.0F, 0.0F, 0.0F);
+		main.offsetY=0.4f;
+		float x1a=(float)entityIn.poses.get(0).x;
+		float x2a=(float)entityIn.posX;
+		float z1a=(float)entityIn.poses.get(0).z;
+		float z2a=(float)entityIn.posZ;
+		model.rotateAngleY=(float)Math.atan2(x2a-x1a,z2a-z1a);
+		model.offsetZ=-1;
 		main.addChild(model);
 		int length=entityIn.length;
 		try {
+			double distoff=0;
 			for (int i=0;i<=length;i++) {
 				RendererModel model2 = new KillerWigglerBody().getModel();
 				if (i==length) {
 					model2=new KillerWigglerTail().getModel();
 				}
-//			model2.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(0-(i*0.875f));
-//			model2.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(0-(i*0.875f));
-				model2.offsetZ=(float)(entityIn.posX-entityIn.poses.get(i).x);
-				model2.offsetY=(float)(entityIn.posY-entityIn.poses.get(i).y);
-				model2.offsetX=(float)(entityIn.posZ-entityIn.poses.get(i).z);
-				float x2=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(0-((i-1)*0.875f));
-				float z2=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(0-((i-1)*0.875f));
-				if (i==length) {
-					model2.rotateAngleY=(float)Math.atan2(model2.offsetZ-z2,model2.offsetX-x2)+22.575f+91f+(float)Math.toRadians(5f);
-					model2.offsetX=(float)Math.cos(Math.toRadians(entityIn.rotationYaw-15))*(1-(i*0.875f));
-					model2.offsetZ=(float)Math.sin(Math.toRadians(entityIn.rotationYaw-15))*(1-(i*0.875f));
+				entityIn.poses.replace(i,new Vec3d(entityIn.poses.get(i).x,entityIn.posY,entityIn.poses.get(i).z));
+				Vec3d offset=entityIn.getPositionVector().subtract(entityIn.poses.get(i));
+				if (i==0) {
+					distoff=offset.distanceTo(new Vec3d(0,0,0));
 				} else {
-					model2.rotateAngleY=(float)Math.atan2(model2.offsetZ-z2,model2.offsetX-x2)+22.575f;
+					distoff=entityIn.poses.get(i).distanceTo(entityIn.poses.get(i-1));
+				}
+				model2.offsetX=((float)offset.x-(0.2f*((float)offset.x*(float)distoff)));
+				model2.offsetZ=((float)offset.z-(0.2f*((float)offset.z*(float)distoff)));
+				if (i==0) {
+					float x1=(float)entityIn.poses.get(i).x;
+					float x2=(float)entityIn.posX;
+					float z1=(float)entityIn.poses.get(i).z;
+					float z2=(float)entityIn.posZ;
+					model2.rotateAngleY=(float)Math.atan2(x1-x2,z1-z2);
+				} else {
+					if (i==1) {
+						float x1=(float)entityIn.poses.get(i).x;
+						float x2=(float)entityIn.poses.get(i-1).x;
+						float z1=(float)entityIn.poses.get(i).z;
+						float z2=(float)entityIn.poses.get(i-1).z;
+						model2.rotateAngleY=(float)Math.atan2(x1-x2,z1-z2);
+					} else {
+						float x1=(float)entityIn.poses.get(i).x;
+						float x2=(float)entityIn.poses.get(i-1).x;
+						float x3=(float)entityIn.poses.get(i-2).x;
+						float z1=(float)entityIn.poses.get(i).z;
+						float z2=(float)entityIn.poses.get(i-1).z;
+						float z3=(float)entityIn.poses.get(i-2).z;
+						model2.rotateAngleY=((float)Math.atan2(x1-x2,z1-z2)+(float)Math.atan2(x2-x3,z2-z3))/2f;
+						if (i==length) {
+							model2.rotateAngleY+=Math.toRadians(180f);
+							model2.offsetZ-=(float)Math.cos(model2.rotateAngleY)*1;
+							model2.offsetX-=(float)Math.sin(model2.rotateAngleY)*1;
+						}
+					}
 				}
 				main.addChild(model2);
 			}
-		} catch (Exception err) {}
+		} catch (Exception err) {}*/
 
 		float limbSwingSpeed = 0.3F;
 //		this.LL1.rotateAngleY = (float) MathHelper.sin((float) limbSwing) * 0.5F;
