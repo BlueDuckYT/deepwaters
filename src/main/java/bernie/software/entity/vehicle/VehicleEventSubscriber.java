@@ -1,5 +1,6 @@
 package bernie.software.entity.vehicle;
 
+import bernie.software.DeepWatersMod;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
 import net.minecraft.client.Minecraft;
@@ -20,6 +21,7 @@ import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Filter;
 
 @Mod.EventBusSubscriber
@@ -52,8 +54,8 @@ public class VehicleEventSubscriber
 			modelPlayer.bipedRightLeg.rotateAngleX = MathHelper.cos(ridingEntity.ticksExisted * 0.3F) * 0.3F;
 			modelPlayer.bipedRightLeg.rotateAngleY = 0;
 			modelPlayer.bipedHead.rotateAngleX = -.5F;
-
 			GlStateManager.rotatef(20, 1, 0, 0);
+
 		}
 	}
 

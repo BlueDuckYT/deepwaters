@@ -46,8 +46,6 @@ public class DeepWatersItems
 			DeepWatersEntities.KILLER_WIGGLER, 2892056, 12337464));
 	public static final RegistryObject<Item> BLUFFERFISH_SPAWN_EGG = ITEMS.register("blufferfish_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.BLUFFERFISH, 5793118, 9937052));
-	public static final RegistryObject<Item> CLAM_SPAWN_EGG = ITEMS.register("clam_spawn_egg", () -> new ModdedSpawnEggItem(
-			DeepWatersEntities.CLAM, 14068356, 15501655));
 	public static final RegistryObject<Item> STING_RAY_SPAWN_EGG = ITEMS.register("sting_ray_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.STING_RAY, 9009089, 2233927));
 	public static final RegistryObject<Item> BABY_KRACKEN_SPAWN_EGG = ITEMS.register("baby_kracken_spawn_egg", () -> new ModdedSpawnEggItem(

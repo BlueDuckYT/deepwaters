@@ -31,7 +31,8 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 	@Override
 	protected void registerModels()
 	{
-		for (RegistryObject<Block> block : NormalItemBlocks) {
+		for (RegistryObject<Block> block : NormalItemBlocks)
+		{
 			itemBlock(block);
 		}
 		itemBlock(DeepWatersBlocks.PORTAL_PILLAR);
@@ -61,7 +62,6 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 
 		spawnEgg(DeepWatersItems.KILLER_WIGGLER_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.BLUFFERFISH_SPAWN_EGG);
-		spawnEgg(DeepWatersItems.CLAM_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.STING_RAY_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.BABY_KRACKEN_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.MUCK_GULPER_SPAWN_EGG);

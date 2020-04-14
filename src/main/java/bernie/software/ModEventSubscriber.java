@@ -71,9 +71,8 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void doClientStuff(final FMLClientSetupEvent event)
 	{
-		RenderingRegistry.registerEntityRenderingHandler(KillerWiggler.class, manager -> new WormRenderer(manager,new KillerWigglerHead(),new KillerWigglerBody(),new KillerWigglerTail(),new ResourceLocation("deepwaters" +  ":textures/model/entity/killerwiggler.png")));
+		RenderingRegistry.registerEntityRenderingHandler(KillerWiggler.class, manager -> new WormRenderer(manager, new KillerWigglerHead(), new KillerWigglerBody(), new KillerWigglerTail(), new ResourceLocation("deepwaters" + ":textures/model/entity/killerwiggler.png")));
 		RenderingRegistry.registerEntityRenderingHandler(BlufferFish.class, manager -> new BlufferFishRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(Clam.class, manager -> new ClamRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(Stingray.class, manager -> new StingrayRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(BabyKracken.class, manager -> new BabyKrackenRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(MuckGulper.class, manager -> new MuckGulperRenderer(manager));
