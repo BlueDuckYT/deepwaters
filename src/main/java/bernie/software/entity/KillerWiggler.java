@@ -54,7 +54,6 @@ public class KillerWiggler extends AbstractWormEntity
 	private LivingEntity targetedEntity;
 	private int clientSideAttackTime;
 	private boolean clientSideTouchedGround;
-	protected RandomWalkingGoal wander;
 
 	public KillerWiggler(EntityType<? extends KillerWiggler> p_i48554_1_, World p_i48554_2_)
 	{
@@ -70,19 +69,23 @@ public class KillerWiggler extends AbstractWormEntity
 
 	@Nullable
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox()
-	{
+	public AxisAlignedBB getCollisionBoundingBox() {
 		return new AxisAlignedBB(posX - 1.5625, posY, posZ - 5.3437, posX + 1.5625, posY + 2.4375, posZ + 5.3437);
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox() {
+		return super.getBoundingBox();
 	}
 
 	protected void registerGoals()
 	{
+		super.registerGoals();
 		MoveTowardsRestrictionGoal movetowardsrestrictiongoal = new MoveTowardsRestrictionGoal(this, 1.0D);
-		this.wander = new RandomWalkingGoal(this, 1.0D, 80);
 		//this.goalSelector.addGoal(4, new HostileWaterEntityAttackGoal(this, 5, true));
 		this.goalSelector.addGoal(5, movetowardsrestrictiongoal);
 		this.goalSelector.addGoal(7, this.wander);
-		this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
+//		this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
 		this.wander.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		movetowardsrestrictiongoal.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));

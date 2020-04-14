@@ -3,11 +3,15 @@ package bernie.software.entity;
 import bernie.software.DeepWatersMod;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public abstract class AbstractWormEntity extends CreatureEntity {
     public AbstractWormEntity(EntityType<? extends CreatureEntity> p_i48575_1_, World p_i48575_2_) {
@@ -75,5 +79,41 @@ public abstract class AbstractWormEntity extends CreatureEntity {
 //            poses.replace(0,this.getPositionVec());
 //        }
         this.setPoses((HashMap<Integer, Vec3d>) poses.clone());
+    }
+    protected RandomWalkingGoal wander;
+
+    @Override
+    protected void registerGoals() {
+        //chance=1/value
+//        this.wander = new RandomSwimGoal(this, 64, 256);
+        this.wander = new RandomSwimmingGoal(this,0,1000000000);
+    }
+    public float getEntityRotationHead() {
+        float x1a=-(float)this.poses.get(0).x;
+        float x2a=-(float)this.posX;
+        float z1a=-(float)this.poses.get(0).z;
+        float z2a=-(float)this.posZ;
+        return (float) (Math.atan2(x2a-x1a,z2a-z1a));
+    }
+
+    public class RandomSwimGoal extends RandomSwimmingGoal {
+        public RandomSwimGoal(AbstractWormEntity entity,double speed,int chance) {
+            super(entity,speed,chance);
+        }
+        @Override
+        public boolean shouldExecute() {
+            return super.shouldExecute();
+        }
+        @Override
+        public boolean shouldContinueExecuting() {
+            return super.shouldContinueExecuting();
+        }
+        @Override
+        public void startExecuting() {
+            super.startExecuting();
+            setRotation(0,0);
+            setHeadRotation(0,0);
+            setRenderYawOffset(0);
+        }
     }
 }
