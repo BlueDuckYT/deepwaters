@@ -1,4 +1,4 @@
-package bernie.software.client.renderer.entity;
+package bernie.software.client.renderer.model;
 import bernie.software.client.renderer.model.AbstractWormPart;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;

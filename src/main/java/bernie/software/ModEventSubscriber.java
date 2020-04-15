@@ -1,8 +1,6 @@
 package bernie.software;
 
-import bernie.software.client.renderer.model.KillerWigglerBody;
-import bernie.software.client.renderer.model.KillerWigglerHead;
-import bernie.software.client.renderer.model.KillerWigglerTail;
+import bernie.software.client.renderer.model.*;
 import bernie.software.entity.vehicle.SurgeVehicle;
 import bernie.software.utils.GeneralUtils;
 import bernie.software.client.renderer.entity.*;
