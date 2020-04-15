@@ -4,7 +4,6 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/bernie-g/deepwaters?color=green&label=Commits&logo=git&style=for-the-badge)
 
 
-
 Deep Waters is a twilight-forest style underwater dimension for Minecraft Forge inspired by Subnautica. 
 
 
