@@ -1,5 +1,8 @@
 # Deep Waters
-[![Build Status](https://tincrayon.visualstudio.com/DeepWaters/_apis/build/status/bernie-g.deepwaters?branchName=master)](https://tincrayon.visualstudio.com/DeepWaters/_build/latest?definitionId=1&branchName=master) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/bernie-g/deepwaters?label=version) [![Discord](https://discordapp.com/api/guilds/695117761956937779/widget.png)](https://discord.gg/FmFPZuf)
+![Azure DevOps builds](https://img.shields.io/azure-devops/build/tincrayon/46715ca0-e96d-4a90-bb5b-0f73def71a8b/1?color=0078D4&label=Azure%20Pipelines&logo=azure%20pipelines&style=for-the-badge)                ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/bernie-g/deepwaters?label=version&logo=github&color=DFB317&style=for-the-badge) 
+![Discord](https://img.shields.io/discord/695117761956937779?style=for-the-badge&color=7289DA&logo=discord&label=Discord)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/bernie-g/deepwaters?color=green&label=Commits&logo=git&style=for-the-badge)
+
 
 
 Deep Waters is a twilight-forest style underwater dimension for Minecraft Forge inspired by Subnautica. 
@@ -14,16 +17,18 @@ The mod is for Minecraft **1.14.4**, and we will probably be updating to 1.15 so
 ## Features
 
 * Deep Waters dimension with new biomes, decorations, trees, coral, etc.
-* Dozens of custom fish, underwater creatures, and land creatures. All fully animated and modeled with care.
+* Dozens of custom fish, underwater creatures, and land creatures; all fully animated and modeled with care
 * Underwater vehicles, gadgets, weapons, armor
-* Lore and progression system for advancing your gear (magic based, techy feel, no grinding)
+* Lore and progression system for advancing your gear (magic based, techy feel, minimal grinding)
 * Custom structures, boss fights, and curios
 * **Much much more coming soon!**
 
 ## Screenshots
 ![Custom dimension](https://cdn.discordapp.com/attachments/695271473794777198/696414785553694810/unknown.png)
 
-![Custom dimension](https://cdn.discordapp.com/attachments/695117761956937782/699795370959437844/2020-04-13_22.48.08.png)
+![Custom dimension](https://cdn.discordapp.com/attachments/695117761956937782/699795370959437844/2020-04-13_22.48.08.png?width=1204&height=677)
+
+![Underwater base](https://media.discordapp.net/attachments/695117761956937782/699803276249661470/2020-04-14_22.08.08.png?width=1204&height=677)
 ## Dependencies
 
 * [Minecraft Forge](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html) >= 1.14.4-28.2.0
