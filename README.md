@@ -32,7 +32,7 @@ The mod is for Minecraft **1.14.4**, and we will probably be updating to 1.15 so
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-If you are interested in helping us work on the project or want to see our progress, feel free to check out our [development trello.](https://trello.com/b/SkjlqWhx/deep-waters-dev-todo-list)
+If you are interested in helping us work on the project or want to see our progress, feel free to check out our [development trello](https://trello.com/b/SkjlqWhx/deep-waters-dev-todo-list) and hop in our [discord.](https://discord.gg/YVdekhS)
 
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
