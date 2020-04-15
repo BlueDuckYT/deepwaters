@@ -9,15 +9,15 @@ buildscript {
     }
 }
 plugins {
-    id "com.zoltu.git-versioning" version "3.0.3"
+    id 'com.palantir.git-version' version '0.12.3'
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-def gitVersion = ZoltuGitVersioning.versionInfo
-version = "${gitVersion.major}.${gitVersion.minor}.${gitVersion.commitCount}"
+def details = versionDetails()
+version = details.lastTag
 group = 'bernie.software.deepwaters' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'deepwaters-1.14.4'
 
