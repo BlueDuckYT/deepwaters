@@ -72,4 +72,5 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> JUNGLE_FISH_SPAWN_EGG = ITEMS.register("jungle_fish_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.JUNGLE_FISH, 16716544, 16759552));
 
+
 }
