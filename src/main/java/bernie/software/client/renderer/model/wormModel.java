@@ -2,9 +2,12 @@ package bernie.software.client.renderer.model;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.entity.AbstractWormEntity;
+import bernie.software.utils.renderutils.RenderHelper;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.Level;
 
@@ -36,7 +39,8 @@ public class wormModel extends EntityModel<AbstractWormEntity> {
         try {
             Object obj=entityIn.getClass().cast(entityIn);
 //            RendererModel model = mdl1.getConstructor().newInstance().toModel().getModel();
-            RendererModel model = mdl1.getConstructor().newInstance().getModel();
+            AbstractWormPart modelW = mdl1.getConstructor().newInstance();
+            RendererModel model = modelW.getModel();
 //            DeepWatersMod.log.log(Level.INFO,mdl1.getConstructor().newInstance());
             main.childModels=new ArrayList<>();
             main.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -56,7 +60,8 @@ public class wormModel extends EntityModel<AbstractWormEntity> {
                 double distoff=0;
                 for (int i=0;i<=length;i++) {
 //                    DeepWatersMod.log.log(Level.INFO,poses.get(i));
-                    RendererModel model2 = mdl2.getConstructor().newInstance().getModel();
+                    AbstractWormPart modelW2 = mdl2.getConstructor().newInstance();
+                    RendererModel model2 = modelW2.getModel();
                     if (i==length) {
                         model2=mdl3.getConstructor().newInstance().getModel();
                     }

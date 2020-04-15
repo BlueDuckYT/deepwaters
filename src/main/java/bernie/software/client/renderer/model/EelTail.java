@@ -4,6 +4,8 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.Entity;
+
+import java.util.ArrayList;
 // Made with Blockbench
 // Paste this code into your mod.
 // Make sure to generate all required imports
@@ -16,16 +18,23 @@ public class EelTail extends AbstractWormPart {
 		return eel1;
 	}
 
+	@Override
+	ArrayList<ModelBox> bodyBoxes() {
+		ArrayList<ModelBox> box=new ArrayList<>();
+		box.add(new ModelBox(eel1, 7, 0, -0.5F, -0.5F, 0.9975f, 1, 1, 4, 0.0F, false));
+		return box;
+	}
+
 	public EelTail() {
 		textureWidth = 32;
 		textureHeight = 16;
 
 		eel1 = new RendererModel(this);
 		eel1.setRotationPoint(-0, 0, 0);
-		eel1.cubeList.add(new ModelBox(eel1, 17, 4, -0.0F, 0.5F, 1.8675f, 0, 1, 2, 0.0F, false));
-		eel1.cubeList.add(new ModelBox(eel1, 17, 4, -0.0F, -1.5f, 1.8675f, 0, 1, 2, 0.0F, false));
-		eel1.cubeList.add(new ModelBox(eel1, 7, 0, -0.5F, -0.5F, 0.8675f, 1, 1, 4, 0.0F, false));
-		eel1.offsetX=1f;
+		eel1.cubeList.add(new ModelBox(eel1, 17, 4, -0.0F, 0.5F, 1.9975f, 0, 1, 2, 0.0F, false));
+		eel1.cubeList.add(new ModelBox(eel1, 17, 4, -0.0F, -1.5f, 1.9975f, 0, 1, 2, 0.0F, false));
+		eel1.cubeList.add(new ModelBox(eel1, 7, 0, -0.5F, -0.5F, 0.9975f, 1, 1, 4, 0.0F, false));
+//		eel1.offsetX=-2f;
 	}
 
 	@Override

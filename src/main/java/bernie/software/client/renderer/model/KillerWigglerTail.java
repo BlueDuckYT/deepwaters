@@ -3,6 +3,8 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.Entity;
+
+import java.util.ArrayList;
 //Made with Blockbench
 //Paste this code into your mod.
 
@@ -14,6 +16,11 @@ public class KillerWigglerTail extends AbstractWormPart {
 	@Override
 	public RendererModel getModel() {
 		return tail;
+	}
+
+	@Override
+	ArrayList<ModelBox> bodyBoxes() {
+		return null;
 	}
 
 	public KillerWigglerTail() {

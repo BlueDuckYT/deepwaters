@@ -11,7 +11,7 @@ public class Eel extends AbstractWormEntity {
     }
     @Override
     public float getSegmentDistance() {
-        return 0.325f;
+        return 0.33475f;
     }
     public Eel(EntityType<? extends CreatureEntity> p_i48575_1_, World p_i48575_2_) {
         super(p_i48575_1_, p_i48575_2_);

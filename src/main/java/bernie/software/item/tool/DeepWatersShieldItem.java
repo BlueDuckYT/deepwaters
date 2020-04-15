@@ -4,6 +4,7 @@ import bernie.software.registry.DeepWatersItemGroups;
 import bernie.software.registry.DeepWatersShieldProperties;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,7 +30,7 @@ public class DeepWatersShieldItem extends ShieldItem {
     public DeepWatersShieldItem(DeepWatersShieldProperties prop,Class<? extends shieldEvent> event) {
         super(prop.toProperty().group(DeepWatersItemGroups.DEEPWATERS_ITEMS));
         thisProperties=prop;
-        DeepWatersShieldItem.registerUseEvent(prop,event);
+        DeepWatersShieldItem.registerEvent(prop,event);
     }
     private List<StringTextComponent> tooltips = new ArrayList<>();
     public DeepWatersShieldProperties thisProperties;
@@ -62,8 +63,13 @@ public class DeepWatersShieldItem extends ShieldItem {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    public static void registerUseEvent(DeepWatersShieldProperties prop, Class<? extends shieldEvent> event) {
+    public static void registerEvent(DeepWatersShieldProperties prop, Class<? extends shieldEvent> event) {
         events.put(prop,event);
+    }
+
+    @Override
+    public boolean isShield(ItemStack stack, @Nullable LivingEntity entity) {
+        return true;
     }
 
     private static HashMap<DeepWatersShieldProperties,Class<? extends shieldEvent>> events = new HashMap<>();

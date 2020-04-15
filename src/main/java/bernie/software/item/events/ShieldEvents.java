@@ -23,11 +23,11 @@ public class ShieldEvents
 		public void onUse(World world, PlayerEntity playerEntity, Hand hand)
 		{
 			ItemStack stack = playerEntity.getHeldItem(hand);
-			if (playerEntity.isInWater())
+			if (playerEntity.isInWater()&&playerEntity.isSneaking())
 			{
 				Long time = new Date().getTime();
-				DeepWatersMod.logger.log(Level.INFO, time);
-				DeepWatersMod.logger.log(Level.INFO, stack.getTag().getLong("COOLDOWN"));
+//				DeepWatersMod.logger.log(Level.INFO, time);
+//				DeepWatersMod.logger.log(Level.INFO, stack.getTag().getLong("COOLDOWN"));
 				if (stack.getTag().getLong("COOLDOWN") <= time - 10000)
 				{
 					playerEntity.getHeldItem(hand).damageItem(3, playerEntity, new Consumer<PlayerEntity>() {
@@ -50,10 +50,14 @@ public class ShieldEvents
 		@Override
 		public void inInv(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected)
 		{
-			if (!stack.getTag().contains("COOLDOWN"))
-			{
-				stack.getOrCreateChildTag("COOLDOWN");
+			if (!stack.hasTag()) {
+				Long time = new Date().getTime()-7500;
+				stack.getOrCreateTag();
+				stack.setTagInfo("COOLDOWN", new LongNBT(time));
+			}
+			if (!stack.getTag().contains("COOLDOWN")) {
 				Long time = new Date().getTime();
+				stack.getOrCreateChildTag("COOLDOWN");
 				stack.setTagInfo("COOLDOWN", new LongNBT(time));
 			}
 		}
