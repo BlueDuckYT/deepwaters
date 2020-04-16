@@ -5,6 +5,7 @@ import bernie.software.KeyboardHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -19,7 +20,7 @@ import net.minecraftforge.client.event.InputEvent;
 
 import javax.annotation.Nullable;
 
-public class SurgeVehicle extends AbstractFishEntity
+public class SurgeVehicle extends WaterMobEntity
 {
 
 	private boolean forwardInputDown;
@@ -36,23 +37,23 @@ public class SurgeVehicle extends AbstractFishEntity
 		return;
 	}
 
-	public SurgeVehicle(EntityType<? extends AbstractFishEntity> type, World worldIn)
+	public SurgeVehicle(EntityType<? extends WaterMobEntity> type, World worldIn)
 	{
 		super(type, worldIn);
 	}
 
-	@Override
-	protected ItemStack getFishBucket()
-	{
-		return null;
-	}
-
-	@Override
-	protected SoundEvent getFlopSound()
-	{
-		return null;
-	}
-
+//	@Override
+//	protected ItemStack getFishBucket()
+//	{
+//		return null;
+//	}
+//
+//	@Override
+//	protected SoundEvent getFlopSound()
+//	{
+//		return null;
+//	}
+	
 	/**
 	 * Called to update the entity's position/logic.
 	 */
