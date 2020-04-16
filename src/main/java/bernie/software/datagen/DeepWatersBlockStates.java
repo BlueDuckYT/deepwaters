@@ -33,6 +33,7 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 		normalBlock(DeepWatersBlocks.SALT_ORE);
 		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR, "portal_pillar");
 		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, "activated_portal_pillar");
+		//(DeepWatersBlocks.OXYGENATOR, "oxygenator");
 		for (RegistryObject<Block> block : NormalBlocks) {
 			normalBlock(block);
 		}

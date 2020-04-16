@@ -1,8 +1,16 @@
 package bernie.software.block;
 
+import bernie.software.world.DeepWatersModDimension;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.ToolType;
 
 public class DeepWatersBlock extends Block {
@@ -25,4 +33,5 @@ public class DeepWatersBlock extends Block {
                 .lightValue(light)
         );
     }
+
 }

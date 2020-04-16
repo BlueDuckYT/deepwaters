@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "deepwaters:block/oxygenator"
+    },
+    "facing=east": {
+      "model": "deepwaters:block/oxygenator",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "deepwaters:block/oxygenator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deepwaters:block/oxygenator",
+      "y": 270
+    }
+  }
+}
