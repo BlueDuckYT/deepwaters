@@ -1,6 +1,7 @@
 package bernie.software;
 
 import bernie.software.commands.DeepWatersCommand;
+import bernie.software.commands.ForceSpawnCommand;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.util.ResourceLocation;
@@ -30,5 +31,7 @@ public class ForgeBusEventSubscriber
 	{
 		CommandDispatcher<CommandSource> commandDispatcher = event.getCommandDispatcher();
 		DeepWatersCommand.register(commandDispatcher);
+		ForceSpawnCommand.register(commandDispatcher);
+
 	}
 }

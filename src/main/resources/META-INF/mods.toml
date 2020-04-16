@@ -46,6 +46,6 @@ An underwater dimension inspired by Subnautica.'''
 [[dependencies.deepwaters]]
     modId="obfuscate"
     mandatory=true
-    versionRange="[0.3.3,0.3.3]"
+    versionRange="[0.3.3]"
     ordering="NONE"
     side="BOTH"
