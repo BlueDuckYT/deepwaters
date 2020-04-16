@@ -23,7 +23,7 @@ public class ToolRenderEvents
 		try {
 			if (event.getItem().getItem().getRegistryName().toString().equals("deepwaters:prismarine_shield")&&event instanceof RenderItemEvent.Gui.Post) {
 				Long time=new Date().getTime();
-				Long cooldown=(event.getItem().getTag().getLong("COOLDOWN")-(time-10000));
+				Long cooldown=(event.getItem().getTag().getLong("COOLDOWN")-(time));
 				if (cooldown>=0) {
 					GlStateManager.disableTexture();
 					GlStateManager.disableLighting();

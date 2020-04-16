@@ -19,6 +19,7 @@ public class ShieldEvents
 {
 	public static class Prismarine extends shieldEvent
 	{
+		public int cooldown=10000;
 		@Override
 		public void onUse(World world, PlayerEntity playerEntity, Hand hand)
 		{
@@ -28,7 +29,7 @@ public class ShieldEvents
 				Long time = new Date().getTime();
 //				DeepWatersMod.logger.log(Level.INFO, time);
 //				DeepWatersMod.logger.log(Level.INFO, stack.getTag().getLong("COOLDOWN"));
-				if (stack.getTag().getLong("COOLDOWN") <= time - 10000)
+				if (stack.getTag().getLong("COOLDOWN") <= time)
 				{
 					playerEntity.getHeldItem(hand).damageItem(3, playerEntity, new Consumer<PlayerEntity>() {
 						@Override
@@ -41,7 +42,7 @@ public class ShieldEvents
 						}
 					});
 					double speedFactor = 2;
-					stack.setTagInfo("COOLDOWN", new LongNBT(time));
+					stack.setTagInfo("COOLDOWN", new LongNBT(time+cooldown));
 					playerEntity.setVelocity(playerEntity.getLookVec().scale(speedFactor).x, playerEntity.getLookVec().scale(speedFactor).y, playerEntity.getLookVec().scale(speedFactor).z);
 				}
 			}
@@ -51,7 +52,7 @@ public class ShieldEvents
 		public void inInv(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected)
 		{
 			if (!stack.hasTag()) {
-				Long time = new Date().getTime()-7500;
+				Long time = new Date().getTime()+7500;
 				stack.getOrCreateTag();
 				stack.setTagInfo("COOLDOWN", new LongNBT(time));
 			}

@@ -21,6 +21,11 @@ public class KillerWigglerHead extends AbstractWormPart {
 	private final RendererModel center_claws_down;
 
 	@Override
+	public RendererModel getModel() {
+		return head;
+	}
+
+	@Override
 	ArrayList<ModelBox> bodyBoxes() {
 		return null;
 	}
