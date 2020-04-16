@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.model.ModelBox;
 //Paste this code into your mod.
 import net.minecraft.entity.Entity;
 
+import java.util.ArrayList;
+
 public class KillerWigglerHead extends AbstractWormPart {
 	private final RendererModel head;
 	private final RendererModel right_claws;
@@ -17,6 +19,16 @@ public class KillerWigglerHead extends AbstractWormPart {
 	private final RendererModel left_claws_bottom;
 	private final RendererModel center_claws_up;
 	private final RendererModel center_claws_down;
+
+	@Override
+	public RendererModel getModel() {
+		return head;
+	}
+
+	@Override
+	ArrayList<ModelBox> bodyBoxes() {
+		return null;
+	}
 
 	public KillerWigglerHead() {
 		textureWidth = 512;

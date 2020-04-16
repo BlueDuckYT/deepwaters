@@ -55,6 +55,21 @@ public class KillerWiggler extends AbstractWormEntity
 	private int clientSideAttackTime;
 	private boolean clientSideTouchedGround;
 
+	@Override
+	public boolean extraAI() {
+//		try {
+//			int segmentTarget=5;
+//			Vec3d move=this.getPositionVector().subtract(getPoses().get(segmentTarget));
+//			this.setMotion(move.normalize().scale(-0.1f));
+//		} catch (Exception err) {}
+		return false;
+	}
+
+	@Override
+	public AxisAlignedBB segmentBox() {
+		return new AxisAlignedBB(-0.5,-0.5,-0.5,1,1,1);
+	}
+
 	public KillerWiggler(EntityType<? extends KillerWiggler> p_i48554_1_, World p_i48554_2_)
 	{
 		super(p_i48554_1_, p_i48554_2_);
@@ -89,7 +104,18 @@ public class KillerWiggler extends AbstractWormEntity
 		this.wander.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		movetowardsrestrictiongoal.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, false));
+		this.goalSelector.addGoal(1, new attackGoal(this, 2.0D, false));
+	}
+
+	public class attackGoal extends MeleeAttackGoal {
+		public attackGoal(CreatureEntity creature, double speedIn, boolean useLongMemory) {
+			super(creature, speedIn, useLongMemory);
+		}
+
+		@Override
+		protected double getAttackReachSqr(LivingEntity attackTarget) {
+			return super.getAttackReachSqr(attackTarget)/10;
+		}
 	}
 
 	protected void registerAttributes()
@@ -304,6 +330,9 @@ public class KillerWiggler extends AbstractWormEntity
 	@Override
 	public void livingTick()
 	{
+		if (getEntityLength()<=0) {
+			setLength(10);
+		}
 		if (this.isAlive())
 		{
 			if (this.world.isRemote)
@@ -409,10 +438,17 @@ public class KillerWiggler extends AbstractWormEntity
 			if (this.hasTargetedEntity())
 			{
 				this.rotationYaw = this.rotationYawHead;
+//				this.spinAttack(this.getTargetedEntity());
 			}
 		}
 
 		super.livingTick();
+	}
+
+	@Override
+	public boolean canAttack(LivingEntity target) {
+		DeepWatersMod.logger.log(Level.INFO,target.getPositionVector().distanceTo(this.getPositionVec()));
+		return target.getPositionVector().distanceTo(this.getPositionVec())<=5;
 	}
 
 	protected SoundEvent getFlopSound()
@@ -458,7 +494,7 @@ public class KillerWiggler extends AbstractWormEntity
 			LivingEntity livingentity = (LivingEntity) source.getImmediateSource();
 			if (!source.isExplosion())
 			{
-				//livingentity.attackEntityFrom(DamageSource.causeThornsDamage(this), 2.0F);
+				livingentity.attackEntityFrom(DamageSource.causeThornsDamage(this), 2.0F);
 			}
 		}
 

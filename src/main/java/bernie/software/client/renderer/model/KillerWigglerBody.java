@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.ArrayList;
+
 public class KillerWigglerBody extends AbstractWormPart {
 	private final RendererModel body_part1;
 	private final RendererModel LL1;
@@ -15,6 +17,11 @@ public class KillerWigglerBody extends AbstractWormPart {
 	private final RendererModel RL1;
 	private final RendererModel pt1_RL1;
 	private final RendererModel pt2_RL1;
+
+	@Override
+	ArrayList<ModelBox> bodyBoxes() {
+		return null;
+	}
 
 	@Override
 	public RendererModel getModel() {

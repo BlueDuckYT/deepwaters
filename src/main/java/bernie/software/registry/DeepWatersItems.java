@@ -1,6 +1,7 @@
 package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
+import bernie.software.item.DeepWatersAbstractRuneItem;
 import bernie.software.item.DeepWatersItem;
 import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.item.armor.DeepWatersArmorItem;
@@ -41,6 +42,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_LEGGINGS = ITEMS.register("prismarine_leggings", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.LEGS));
 	public static final RegistryObject<Item> PRISMARINE_BOOTS = ITEMS.register("prismarine_boots", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.FEET));
 
+	public static final RegistryObject<Item> POWER_STONE = ITEMS.register("power_stone", () -> new DeepWatersAbstractRuneItem(new Item.Properties().maxStackSize(1).group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
 
 	public static final RegistryObject<Item> SHARK_TOOTH = ITEMS.register("sharktooth", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PEAL_WAND = ITEMS.register("pearl_wand", () -> new DeepWatersItem()); //replace with PearlWandItem when the time comes

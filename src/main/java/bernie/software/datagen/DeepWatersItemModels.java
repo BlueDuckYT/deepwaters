@@ -40,7 +40,6 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 
 		normalItem(DeepWatersItems.SALT_CRYSTAL);
 		normalItem(DeepWatersItems.SHARK_TOOTH);
-		toolItem(DeepWatersItems.PEAL_WAND);
 		normalItem(DeepWatersItems.PEARL);
 		normalItem(DeepWatersItems.PRISMARINE_INGOT);
 		normalItem(DeepWatersItems.PRISMARINE_NUGGET);
@@ -58,7 +57,10 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		toolItem(DeepWatersItems.PRISMARINE_PICKAXE);
 		toolItem(DeepWatersItems.PRISMARINE_AXE);
 		toolItem(DeepWatersItems.PRISMARINE_SHOVEL);
+		toolItem(DeepWatersItems.PEAL_WAND);
 		//toolItem(DeepWatersItems.PRISMARINE_SHIELD);
+
+		normalItem(DeepWatersItems.POWER_STONE);
 
 		spawnEgg(DeepWatersItems.KILLER_WIGGLER_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.EEL_SPAWN_EGG);

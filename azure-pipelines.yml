@@ -11,8 +11,19 @@ pool:
 
 variables:
   GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
+  sdsds: dsd
 
 steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'Start-Sleep -Seconds 60'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "##vso[task.setvariable variable=tags]git tag --sort=-creatordate"
+      echo "##vso[task.setvariable variable=tag]$(tags)[0]"
 - task: Cache@2
   inputs:
     key: 'gradle | "$(Agent.OS)"'
@@ -47,7 +58,12 @@ steps:
 
 - task: fizzcode-discordhook@1
   inputs:
-    DiscordChannelID: '696828133533548544'
-    DiscordToken: 'c2THSHw1v4x9Pmculi-WMIy6NEwxqkc28OcSanA83o7C6esOGVEkk7NHn9S2I8bAn133'
-    Title: 'New build: $(GitVersion.SemVer)'
-    Message: 'Download the build here: https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts'
+    DiscordChannelID: '$(webhook_id)'
+    DiscordToken: '$(webhook_token)'
+    Title: 'New build: $(tag)'
+    Message: |
+      Download the build [here](https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts)
+      
+      *Dependencies:*
+      **Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)
+      **Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)
