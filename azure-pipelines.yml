@@ -56,14 +56,31 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/build/libs/'
     publishLocation: 'pipeline'
 
-- task: fizzcode-discordhook@1
+- task: ado-discord-webhook@1
   inputs:
-    DiscordChannelID: '$(webhook_id)'
-    DiscordToken: '$(webhook_token)'
-    Title: 'New build: $(tag)'
-    Message: |
-      Download the build [here](https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts)
+    channelId: '$(webhook_id)'
+    webhookKey: '$(webhook_token)'
+    messageType: 'embeds'
+    embeds: |
+      {
+        "embeds": [
+          {
+            "title": "Woah",
+            "description": "If this doesn't work idk wtf to do"
+          }
+        ]
+      }
+
+
+
+# - task: fizzcode-discordhook@1
+#   inputs:
+#     DiscordChannelID: '$(webhook_id)'
+#     DiscordToken: '$(webhook_token)'
+#     Title: 'New build: $(tag)'
+#     Message: |
+#       Download the build [here](https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts)
       
-      *Dependencies:*
-      **Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)
-      **Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)
+#       *Dependencies:*
+#       **Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)
+#       **Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)
