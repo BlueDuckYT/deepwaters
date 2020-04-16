@@ -55,6 +55,21 @@ public class KillerWiggler extends AbstractWormEntity
 	private int clientSideAttackTime;
 	private boolean clientSideTouchedGround;
 
+	@Override
+	public boolean extraAI() {
+//		try {
+//			int segmentTarget=5;
+//			Vec3d move=this.getPositionVector().subtract(getPoses().get(segmentTarget));
+//			this.setMotion(move.normalize().scale(-0.1f));
+//		} catch (Exception err) {}
+		return false;
+	}
+
+	@Override
+	public AxisAlignedBB segmentBox() {
+		return new AxisAlignedBB(-0.5,-0.5,-0.5,1,1,1);
+	}
+
 	public KillerWiggler(EntityType<? extends KillerWiggler> p_i48554_1_, World p_i48554_2_)
 	{
 		super(p_i48554_1_, p_i48554_2_);

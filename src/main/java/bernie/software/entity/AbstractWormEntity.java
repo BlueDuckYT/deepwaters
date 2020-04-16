@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
@@ -27,6 +28,7 @@ public abstract class AbstractWormEntity extends CreatureEntity {
     public abstract int getLength();
     public abstract float getSegmentDistance();
     public abstract float getYRenderOffset();
+    public abstract AxisAlignedBB segmentBox();
     Vec3d moveVec=new Vec3d(0,0,0);
     float wiggle=0;
     int moveChance=16;
@@ -36,10 +38,13 @@ public abstract class AbstractWormEntity extends CreatureEntity {
     public void livingTick() {
         super.livingTick();
         if (this.getAttackTarget()==null&&this.isInWater()) {
-            handleAI();
+            if (!extraAI()) {
+                handleAI();
+            }
         }
         handlePositions();
     }
+    public abstract boolean extraAI();
     public void handleAI() {
         if (!moving) {
             if ((rand.nextDouble()*moveChance)<=1) {
@@ -97,6 +102,19 @@ public abstract class AbstractWormEntity extends CreatureEntity {
                     float z1=(float)poses.get(i).z;
                     float z2=(float)posZ;
                     rotation=(float)Math.atan2(x1-x2,z1-z2);
+                }
+                float x1=(float)poses.get(i).x;
+                float y1=(float)poses.get(i).y;
+                float z1=(float)poses.get(i).z;
+                if (i>=2) {
+                    if (segmentBox().offset(this.posX,this.posY,this.posZ).intersects(segmentBox().offset(x1,y1,z1))) {
+                        float x2=(float)poses.get(0).x;
+                        float x3=(float)posX;
+                        float z2=(float)poses.get(0).z;
+                        float z3=(float)posZ;
+                        rotation=(float)Math.atan2(x3-x2,z3-z2);
+                        poses.replace(i,poses.get(i).add(-Math.cos(rotation)*0.1f,0,-Math.sin(rotation)*0.1f));
+                    }
                 }
                 poses.replace(i,new Vec3d(posX+(Math.sin((rotation))*getSegmentDistance()),posY,posZ+(Math.cos((rotation))*getSegmentDistance())));
             }

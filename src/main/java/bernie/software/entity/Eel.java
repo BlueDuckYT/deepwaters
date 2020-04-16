@@ -2,6 +2,7 @@ package bernie.software.entity;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class Eel extends AbstractWormEntity {
@@ -19,6 +20,16 @@ public class Eel extends AbstractWormEntity {
     @Override
     public int getAir() {
         return 9;
+    }
+
+    @Override
+    public boolean extraAI() {
+        return false;
+    }
+
+    @Override
+    public AxisAlignedBB segmentBox() {
+        return new AxisAlignedBB(-0.1,-0.1,-0.1,0.1,0.1,0.1);
     }
 
     @Override
