@@ -53,7 +53,7 @@ public class DeepWatersBlocks
 			Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> OXYGENATOR = registerNormalBlock("oxygenator", () -> new DeepWatersBlock(
 			Material.ROCK, 2.0F, 4.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
-	public static final RegistryObject<Block> DEEPWATERSPORTAL = registerNormalBlock("deepwatersportal", () -> new DeepWatersPortalBlock(
+	public static final RegistryObject<Block> DEEPWATERSPORTAL = registerNormalBlock("portal", () -> new DeepWatersPortalBlock(
 			Material.ROCK, 500.0F, 500.0F, SoundType.STONE, 500, ToolType.PICKAXE), false);
 
 	public static final RegistryObject<Block> DEAD_CORAL_BLOCK_ORANGE = registerNormalBlock("dead_coral_block_orange", () -> new DeepWatersBlock(
@@ -66,6 +66,8 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> CORAL_BLOCK_GREEN = registerNormalBlock("coral_block_green", () -> new DeepWatersCoralBlock(
 			DEAD_CORAL_BLOCK_GREEN.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
 
+	public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
+	public static final RegistryObject<Block> PEDASTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
 	public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlock("activated_portal_pillar", () -> new PortalPillarBlock(15));
 

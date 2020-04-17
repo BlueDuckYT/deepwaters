@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=south": { "model": "deepwaters:block/pedestal", "y": 0 },
+    "facing=west":  { "model": "deepwaters:block/pedestal", "y": 90 },
+    "facing=north": { "model": "deepwaters:block/pedestal", "y": 180 },
+    "facing=east":  { "model": "deepwaters:block/pedestal", "y": 270 }
+  }
+}
