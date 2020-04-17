@@ -31,8 +31,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 	@Override
 	protected void registerModels()
 	{
-		for (RegistryObject<Block> block : NormalItemBlocks)
-		{
+		for (RegistryObject<Block> block : NormalItemBlocks) {
 			itemBlock(block);
 		}
 		itemBlock(DeepWatersBlocks.PORTAL_PILLAR);
@@ -53,6 +52,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		normalItem(DeepWatersItems.MUCK_GULPER);
 		normalItem(DeepWatersItems.COOKED_MUCK_GULPER);
 		normalItem(DeepWatersItems.SALTED_MUCK_GULPER);
+		normalItem(DeepWatersItems.AQUASTONE_TORCH);
 
 		toolItem(DeepWatersItems.PRISMARINE_SWORD);
 		toolItem(DeepWatersItems.PRISMARINE_PICKAXE);

@@ -68,6 +68,10 @@ public class DeepWatersBlocks
 
 	public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
 	public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new DeepWatersRedstoneDust(Block.Properties.create(Material.ROCK)));
+	public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new DeepWatersDiodeComparator(Block.Properties.create(Material.ROCK)));
+	public static final RegistryObject<Block> AQUA_REPEAT = registerBlock("aquastone_repeater", () -> new DeepWatersDiodeRepeater(Block.Properties.create(Material.ROCK)));
+//	public static final RegistryObject<Block> AQUA_TORCH = registerBlock("aquastone_torch", () -> new DeepWatersRedstoneTorch.AquastoneTorch());
+//	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerBlock("aquastone_walltorch", () -> new DeepWatersRedstoneTorch.AquastoneTorchWall());
 	public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
 	public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlock("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));
