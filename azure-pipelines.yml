@@ -19,7 +19,7 @@ steps:
   inputs:
     channelId: '$(webhook_id)'
     webhookKey: '$(webhook_token)'
-    embeds: '{   "embeds": [     {       "title": "Woah",       "description": "Test plz work"     }   ] }'
+    embeds: '{   "embeds": [     {       "title": "Woah",       "description": "Test please work"     }   ] }'
 
 - task: PowerShell@2
   inputs:
