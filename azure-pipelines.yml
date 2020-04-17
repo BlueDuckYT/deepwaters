@@ -15,7 +15,7 @@ variables:
 
 steps:
 
-- task: DiscordPublisher@0
+- task: DiscordPublisher@1
   inputs:
     channelId: '$(webhook_id)'
     webhookKey: '$(webhook_token)'
