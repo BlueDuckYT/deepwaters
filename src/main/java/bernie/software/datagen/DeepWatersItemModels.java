@@ -52,6 +52,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		normalItem(DeepWatersItems.SALTED_BLUFFERFISH);
 		normalItem(DeepWatersItems.MUCK_GULPER);
 		normalItem(DeepWatersItems.COOKED_MUCK_GULPER);
+		normalItem(DeepWatersItems.SALTED_MUCK_GULPER);
 
 		toolItem(DeepWatersItems.PRISMARINE_SWORD);
 		toolItem(DeepWatersItems.PRISMARINE_PICKAXE);

@@ -36,7 +36,7 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR, "portal_pillar");
 		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, "activated_portal_pillar");
 		rotational(DeepWatersBlocks.SUNKEN_WASTES_LAMP, "sunkenwastes_lamp");
-		rotational(DeepWatersBlocks.PEDASTAL, "pedestal");
+		rotational(DeepWatersBlocks.PEDESTAL, "pedestal");
 		redstone(DeepWatersBlocks.AQUA_STONE, "aquastone_wire");
 		//(DeepWatersBlocks.OXYGENATOR, "oxygenator");
 		for (RegistryObject<Block> block : NormalBlocks) {
