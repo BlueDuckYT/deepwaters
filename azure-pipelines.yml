@@ -14,6 +14,13 @@ variables:
   sdsds: dsd
 
 steps:
+
+- task: DiscordPublisher@0
+  inputs:
+    WebhookID: '$(webhook_id)'
+    WebhookToken: '$(webhook_token)'
+    EmbedMessage: '{   "embeds": [     {       "title": "Woah",       "description": "If this doesn''t work idk wtf to do"     }   ] }'
+
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
@@ -56,20 +63,8 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/build/libs/'
     publishLocation: 'pipeline'
 
-- task: ado-discord-webhook@1
-  inputs:
-    channelId: '$(webhook_id)'
-    webhookKey: '$(webhook_token)'
-    messageType: 'embeds'
-    embeds: |
-      {
-        "embeds": [
-          {
-            "title": "Woah",
-            "description": "If this doesn't work idk wtf to do"
-          }
-        ]
-      }
+
+
 
 
 
