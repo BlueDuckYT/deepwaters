@@ -31,11 +31,13 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 	{
 		grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
 		normalBlock(DeepWatersBlocks.SALT_ORE);
+		normalBlock(DeepWatersBlocks.DEEPWATERSPORTAL);
+		rotationalWithVerticle(DeepWatersBlocks.PORTAL_PILLAR_END,"portalpillaroff");
 		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR, "portal_pillar");
 		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, "activated_portal_pillar");
 		rotational(DeepWatersBlocks.SUNKEN_WASTES_LAMP, "sunkenwastes_lamp");
 		rotational(DeepWatersBlocks.PEDASTAL, "pedestal");
-		rotational(DeepWatersBlocks.DEEPWATERSPORTAL, "portal");
+		redstone(DeepWatersBlocks.AQUA_STONE, "aquastone_wire");
 		//(DeepWatersBlocks.OXYGENATOR, "oxygenator");
 		for (RegistryObject<Block> block : NormalBlocks) {
 			normalBlock(block);

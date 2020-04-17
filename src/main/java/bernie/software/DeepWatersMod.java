@@ -1,11 +1,15 @@
 package bernie.software;
 
+import bernie.software.block.DeepWatersRedstoneDust;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
 import bernie.software.datagen.DeepWatersRecipes;
 import bernie.software.registry.*;
 import bernie.software.world.gen.structures.Portal;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -19,6 +23,7 @@ import net.minecraft.world.gen.feature.FeatureRadiusConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -45,6 +50,7 @@ public class DeepWatersMod
 
 		bus.addListener(this::setup);
 		bus.addListener(this::gatherData);
+		bus.addListener(this::clientSetup);
 
 		DeepWatersBiomes.BIOMES.register(bus);
 		DeepWatersBlocks.BLOCKS.register(bus);
@@ -53,6 +59,9 @@ public class DeepWatersMod
 		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
 	}
 
+	public void clientSetup(FMLClientSetupEvent event) {
+		Minecraft.getInstance().getBlockColors().register(new DeepWatersRedstoneDust.colors(),DeepWatersBlocks.AQUA_STONE.get());
+	}
 
 	public void setup(FMLCommonSetupEvent event)
 	{

@@ -67,9 +67,12 @@ public class DeepWatersBlocks
 			DEAD_CORAL_BLOCK_GREEN.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
 
 	public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
+	public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new DeepWatersRedstoneDust(Block.Properties.create(Material.ROCK)));
 	public static final RegistryObject<Block> PEDASTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
+	public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlock("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));
 	public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlock("activated_portal_pillar", () -> new PortalPillarBlock(15));
+	public static final RegistryObject<DeepWatersPortalPillarEnd> ACTIVATED_PORTAL_PILLAR_END = registerBlock("activated_portal_pillar_end", () -> new DeepWatersPortalPillarEnd(15));
 
 	public static final RegistryObject<Block> LIMESTONE = registerNormalBlock("limestone", () -> new DeepWatersBlock(
 			Material.ROCK, 3F, 6.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);

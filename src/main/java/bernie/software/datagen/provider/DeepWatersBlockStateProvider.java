@@ -3,6 +3,7 @@ package bernie.software.datagen.provider;
 import bernie.software.DeepWatersMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.LogBlock;
+import net.minecraft.block.RedstoneWireBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
@@ -53,6 +54,14 @@ public abstract class DeepWatersBlockStateProvider extends BlockStateProvider {
 
     public void rotational(Supplier<? extends Block> block, String name) {
         horizontalBlock(block.get(), new ModelBuilder.UncheckedModelFile(name));
+    }
+
+    public void rotationalWithVerticle(Supplier<? extends Block> block, String name) {
+        directionalBlock(block.get(), new ModelBuilder.UncheckedModelFile(name));
+    }
+
+    public void redstone(Supplier<? extends Block> block, String name) {
+        fourWayMultipart(getMultipartBuilder(block.get().getBlock()), new ModelBuilder.UncheckedModelFile(name));
     }
 
     public void grassBlock(Supplier<? extends Block> block, String bottom) {
