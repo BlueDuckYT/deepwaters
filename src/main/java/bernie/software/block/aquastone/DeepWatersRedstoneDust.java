@@ -11,6 +11,7 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.RedstoneSide;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -19,6 +20,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -45,8 +47,8 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
 
     protected static boolean canConnectTo(BlockState blockState, IBlockReader world, BlockPos pos, @Nullable Direction side) {
         Block block = blockState.getBlock();
-        if (block == Blocks.REDSTONE_WIRE) {
-            return false;
+        if (block instanceof RedstoneWireBlock) {
+            return true;
         } else if (blockState.getBlock() == Blocks.REPEATER) {
             Direction direction = blockState.get(RepeaterBlock.HORIZONTAL_FACING);
             return direction == side || direction.getOpposite() == side;
@@ -66,9 +68,30 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
 
+    private RedstoneSide getSide(IBlockReader worldIn, BlockPos pos, Direction face) {
+        BlockPos blockpos = pos.offset(face);
+        BlockState blockstate = worldIn.getBlockState(blockpos);
+        BlockPos blockpos1 = pos.up().offset(face);
+        BlockState blockstate1 = worldIn.getBlockState(blockpos1);
+        if (canConnectTo(worldIn.getBlockState(blockpos),worldIn,blockpos,face)||canConnectTo(worldIn.getBlockState(blockpos.offset(Direction.DOWN)),worldIn,blockpos.offset(Direction.DOWN),face)) {
+            return RedstoneSide.SIDE;
+        }
+        if (canConnectTo(worldIn.getBlockState(blockpos1),worldIn,blockpos1,null)||
+            worldIn.getBlockState(blockpos1).getBlock() instanceof RedstoneWireBlock) {
+            return RedstoneSide.UP;
+        }
+        return RedstoneSide.NONE;
+    }
+
     boolean canProvidePower=true;
     private final Set<BlockPos> blocksNeedingUpdate = Sets.newHashSet();
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+        BlockState state1=worldIn.getBlockState(pos);
+        state1=state1.with(NORTH,getSide(worldIn,pos,Direction.NORTH));
+        state1=state1.with(SOUTH,getSide(worldIn,pos,Direction.SOUTH));
+        state1=state1.with(EAST,getSide(worldIn,pos,Direction.EAST));
+        state1=state1.with(WEST,getSide(worldIn,pos,Direction.WEST));
+        worldIn.setBlockState(pos,state1);
         if (!worldIn.isRemote) {
             if (state.isValidPosition(worldIn, pos)) {
                 BlockPos[] poses=new BlockPos[]{
@@ -82,7 +105,16 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
                     newState = forcePower(pos,pos1,worldIn);
                 }
                 try {
-                    updateSurroundingRedstone(worldIn,pos,newState);
+                    boolean shouldUpdateDown=true;
+                    for (Direction dir:Direction.values()) {
+                        if (worldIn.getBlockState(pos.offset(Direction.DOWN).offset(dir)).getBlock() instanceof RedstoneWireBlock) {
+                            shouldUpdateDown=false;
+                        }
+                    }
+                    if (shouldUpdateDown) {
+                        worldIn.notifyNeighborsOfStateExcept(pos.offset(Direction.DOWN),this,Direction.UP);
+                    }
+                    worldIn.notifyNeighborsOfStateExcept(pos.offset(Direction.UP),this,Direction.DOWN);
                 } catch (Exception err) {}
             } else {
                 spawnDrops(state, worldIn, pos);
@@ -240,17 +272,17 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
         @Override
         public int getColor(BlockState p_getColor_1_, @Nullable IEnviromentBlockReader p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_) {
             try {
-                float power=(2f/(p_getColor_1_.get(POWER)));
+                float power=(p_getColor_1_.get(POWER)-0)/15f;
                 int color1R=2;
                 int color1G=188;
                 int color1B=255;
                 int color2R=0;
                 int color2G=24;
                 int color2B=33;
-                float fade=((power)/2);
-                int red=(int)(((fade*color1R)+((1-fade)*color2R))*1.5f);
-                int gre=(int)(((fade*color1G)+((1-fade)*color2G))*1.5f);
-                int blu=(int)(((fade*color1B)+((1-fade)*color2B))*1.5f);
+                float fade=((power)*1);
+                int red=(int)(((fade*color1R)+((1-fade)*color2R))*1);
+                int gre=(int)(((fade*color1G)+((1-fade)*color2G))*1);
+                int blu=(int)(((fade*color1B)+((1-fade)*color2B))*1);
                 Color color=new Color(red,gre,blu);
                 return color.getRGB();
             } catch (Exception err) {

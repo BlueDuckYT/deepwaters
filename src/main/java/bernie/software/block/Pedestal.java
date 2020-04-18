@@ -53,7 +53,7 @@ public class Pedestal extends Block implements IWaterLoggable {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getStateForPlacement(context).with(WATERLOGGED,false);
+        return super.getStateForPlacement(context).with(ROTATION,context.getPlacementHorizontalFacing()).with(WATERLOGGED,false);
     }
 
     public IFluidState getFluidState(BlockState state) {
