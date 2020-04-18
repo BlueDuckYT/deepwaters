@@ -2,10 +2,10 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.block.*;
-import bernie.software.block.aquastone.DeepWatersAquastoneBlock;
-import bernie.software.block.aquastone.DeepWatersDiodeComparator;
-import bernie.software.block.aquastone.DeepWatersDiodeRepeater;
-import bernie.software.block.aquastone.DeepWatersRedstoneDust;
+import bernie.software.block.aquastone.AquastoneBlock;
+import bernie.software.block.aquastone.AquastoneComparator;
+import bernie.software.block.aquastone.AquastoneRepeater;
+import bernie.software.block.aquastone.AquastoneDust;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
@@ -66,16 +66,16 @@ public class DeepWatersBlocks
 			Material.ROCK, 1.5F, 6F, SoundType.STONE, 0, ToolType.PICKAXE), true);
 
 	public static final RegistryObject<Block> CORAL_BLOCK_ORANGE = registerNormalBlock("coral_block_orange", () -> new DeepWatersCoralBlock(
-			DEAD_CORAL_BLOCK_ORANGE.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F,6F).sound(SoundType.CORAL)), true);
+			DEAD_CORAL_BLOCK_ORANGE.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
 	public static final RegistryObject<Block> CORAL_BLOCK_GREEN = registerNormalBlock("coral_block_green", () -> new DeepWatersCoralBlock(
 			DEAD_CORAL_BLOCK_GREEN.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
 
 	public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
-	public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new DeepWatersRedstoneDust(Block.Properties.create(Material.ROCK)));
-	public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new DeepWatersDiodeComparator(Block.Properties.create(Material.ROCK)));
-	public static final RegistryObject<Block> AQUA_REPEAT = registerBlock("aquastone_repeater", () -> new DeepWatersDiodeRepeater(Block.Properties.create(Material.ROCK)));
-	public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new DeepWatersAquastoneBlock(Block.Properties.create(Material.ROCK)));
-//	public static final RegistryObject<Block> AQUA_TORCH = registerBlock("aquastone_torch", () -> new DeepWatersRedstoneTorch.AquastoneTorch());
+	public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new AquastoneDust(Block.Properties.create(Material.ROCK)));
+	public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new AquastoneComparator(Block.Properties.create(Material.ROCK)));
+	public static final RegistryObject<Block> AQUA_REPEAT = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(Block.Properties.create(Material.ROCK)));
+	public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new AquastoneBlock(Block.Properties.create(Material.ROCK)));
+	//	public static final RegistryObject<Block> AQUA_TORCH = registerBlock("aquastone_torch", () -> new DeepWatersRedstoneTorch.AquastoneTorch());
 //	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerBlock("aquastone_walltorch", () -> new DeepWatersRedstoneTorch.AquastoneTorchWall());
 	public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
@@ -107,7 +107,8 @@ public class DeepWatersBlocks
 		RegistryObject<T> registryObject = (RegistryObject<T>) baseRegister(name, block,
 				DeepWatersBlocks::registerBlockItem);
 		DeepWatersItemModels.NormalItemBlocks.add((RegistryObject<Block>) registryObject);
-		if (dropsItself) {
+		if (dropsItself)
+		{
 			DeepWatersBlockStates.NormalBlocks.add((RegistryObject<Block>) registryObject);
 			DeepWatersLootTables.NormalItemDropBlocks.add((RegistryObject<Block>) registryObject);
 

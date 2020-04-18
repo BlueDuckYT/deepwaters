@@ -1,6 +1,6 @@
 package bernie.software;
 
-import bernie.software.block.aquastone.DeepWatersRedstoneDust;
+import bernie.software.block.aquastone.AquastoneDust;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
@@ -44,14 +44,15 @@ public class DeepWatersMod
 		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
 	}
 
-	public void clientSetup(FMLClientSetupEvent event) {
-		Minecraft.getInstance().getBlockColors().register(new DeepWatersRedstoneDust.colors(),DeepWatersBlocks.AQUA_STONE.get());
+	public void clientSetup(FMLClientSetupEvent event)
+	{
+		Minecraft.getInstance().getBlockColors().register(new AquastoneDust.Colors(), DeepWatersBlocks.AQUA_STONE.get());
 	}
 
 	public void setup(FMLCommonSetupEvent event)
 	{
 		DeepWatersBiomes.addBiomeTypes();
-		ArrayList<Biome> biomes=new ArrayList<>();
+		ArrayList<Biome> biomes = new ArrayList<>();
 		biomes.add(Biomes.DEEP_OCEAN);
 	}
 
