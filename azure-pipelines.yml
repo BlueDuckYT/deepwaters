@@ -36,6 +36,8 @@ steps:
         "embeds": [
           {
             "title": "Version $(tag)",
+            "url": "https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts",
+
             "description": "A new build was just created because of a push to the github.\nYou must install Minecraft 1.14 and all dependencies in order to run the mod.\n\n",
             "color": 3120127,
             "thumbnail": {
