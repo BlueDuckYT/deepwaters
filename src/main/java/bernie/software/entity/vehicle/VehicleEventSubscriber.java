@@ -32,6 +32,7 @@ public class VehicleEventSubscriber
 	@SubscribeEvent
 	public static void onPlayerModelEvent(PlayerModelEvent.SetupAngles event)
 	{
+
 		if (!event.getPlayer().getEntityWorld().isRemote)
 		{
 			return;
