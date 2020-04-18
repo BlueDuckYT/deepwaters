@@ -14,25 +14,10 @@ variables:
   sdsds: dsd
 
 steps:
-- task: DiscordPublisher@1
-  inputs:
-    channelId: '$(wehook_id)'
-    webhookKey: '$(webhook_token)'
-    embeds: |
-      {
-        "embeds": [
-          {
-            "title": "Woah",
-            "description": "This is my 14th attempt at doing this and every time I have to rebuild the entire thing, delete the extension, republish it, reinstall it, and test it again. Every time takes like 10 minutes to test, not including how long it takes to program. im going insane help"
-          }
-        ]
-      }
-
-
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Start-Sleep -Seconds 60'
+    script: 'Start-Sleep -Seconds 30'
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -71,19 +56,29 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/build/libs/'
     publishLocation: 'pipeline'
 
-
-
-
-
-
-# - task: fizzcode-discordhook@1
-#   inputs:
-#     DiscordChannelID: '$(webhook_id)'
-#     DiscordToken: '$(webhook_token)'
-#     Title: 'New build: $(tag)'
-#     Message: |
-#       Download the build [here](https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts)
+- task: DiscordPublisher@1
+  inputs:
+    channelId: '$(wehook_id)'
+    webhookKey: '$(webhook_token)'
+    embeds: |
+      {
+        "embeds": [
+          {
+            "title": "Version $(tag)",
+            "description": "A new build was just created because of a push to the github.\nYou must install Minecraft 1.14 and all dependencies in order to run the mod.\n\n",
+            "color": 3120127,
+            "thumbnail": {
+              "url": "https://cdn.discordapp.com/icons/695117761956937779/4e5dde3ad1c8254fb27e8316cdc30a37.webp"
+            },
       
-#       *Dependencies:*
-#       **Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)
-#       **Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)
+      
+            "fields": [
+              {
+                "name": "Dependencies:",
+                "value": "**Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)\n**Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)"
+              }
+              
+            ]
+          }
+        ]
+      }
