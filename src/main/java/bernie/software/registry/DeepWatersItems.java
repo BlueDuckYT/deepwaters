@@ -1,7 +1,7 @@
 package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.block.DeepWatersRedstoneTorch;
+import bernie.software.block.aquastone.DeepWatersRedstoneTorch;
 import bernie.software.item.DeepWatersAbstractRuneItem;
 import bernie.software.item.DeepWatersItem;
 import bernie.software.item.ModdedSpawnEggItem;

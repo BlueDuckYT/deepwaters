@@ -2,6 +2,10 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.block.*;
+import bernie.software.block.aquastone.DeepWatersAquastoneBlock;
+import bernie.software.block.aquastone.DeepWatersDiodeComparator;
+import bernie.software.block.aquastone.DeepWatersDiodeRepeater;
+import bernie.software.block.aquastone.DeepWatersRedstoneDust;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
@@ -70,6 +74,7 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new DeepWatersRedstoneDust(Block.Properties.create(Material.ROCK)));
 	public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new DeepWatersDiodeComparator(Block.Properties.create(Material.ROCK)));
 	public static final RegistryObject<Block> AQUA_REPEAT = registerBlock("aquastone_repeater", () -> new DeepWatersDiodeRepeater(Block.Properties.create(Material.ROCK)));
+	public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new DeepWatersAquastoneBlock(Block.Properties.create(Material.ROCK)));
 //	public static final RegistryObject<Block> AQUA_TORCH = registerBlock("aquastone_torch", () -> new DeepWatersRedstoneTorch.AquastoneTorch());
 //	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerBlock("aquastone_walltorch", () -> new DeepWatersRedstoneTorch.AquastoneTorchWall());
 	public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
