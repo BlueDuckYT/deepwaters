@@ -22,7 +22,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=tag]git describe --tags --abbrev=0"
+      temp=$(git describe --tags --abbrev=0)
+      echo "##vso[task.setvariable variable=tag]$temp"
+      echo "$temp"
+      echo $temp
 
 - task: DiscordPublisher@1
   inputs:
