@@ -1,11 +1,11 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "deepwaters:blocks/oxygenator_vertical",
-    "up": "deepwaters:blocks/oxygenator_vertical",
-    "north": "deepwaters:blocks/oxygenator_front",
-    "east": "deepwaters:blocks/oxygenator_sides",
-    "south": "deepwaters:blocks/oxygenator_sides",
-    "west": "deepwaters:blocks/oxygenator_sides"
+    "down": "deepwaters:block/oxygenator_vertical",
+    "up": "deepwaters:block/oxygenator_vertical",
+    "north": "deepwaters:block/oxygenator_front",
+    "east": "deepwaters:block/oxygenator_sides",
+    "south": "deepwaters:block/oxygenator_sides",
+    "west": "deepwaters:block/oxygenator_sides"
   }
 }
