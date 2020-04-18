@@ -17,13 +17,39 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Start-Sleep -Seconds 30'
+    script: 'Start-Sleep -Seconds 0'
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=tags]git tag --sort=-creatordate"
-      echo "##vso[task.setvariable variable=tag]$(tags)[0]"
+      echo "##vso[task.setvariable variable=tag]git describe --tags --abbrev=0"
+
+- task: DiscordPublisher@1
+  inputs:
+    channelId: '$(wehook_id)'
+    webhookKey: '$(webhook_token)'
+    embeds: |
+      {
+        "embeds": [
+          {
+            "title": "Version $(tag)",
+            "description": "A new build was just created because of a push to the github.\nYou must install Minecraft 1.14 and all dependencies in order to run the mod.\n\n",
+            "color": 3120127,
+            "thumbnail": {
+              "url": "https://cdn.discordapp.com/icons/695117761956937779/4e5dde3ad1c8254fb27e8316cdc30a37.webp"
+            },
+      
+      
+            "fields": [
+              {
+                "name": "Dependencies:",
+                "value": "**Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)\n**Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)"
+              }
+              
+            ]
+          }
+        ]
+      }
 - task: Cache@2
   inputs:
     key: 'gradle | "$(Agent.OS)"'
@@ -56,29 +82,3 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/build/libs/'
     publishLocation: 'pipeline'
 
-- task: DiscordPublisher@1
-  inputs:
-    channelId: '$(wehook_id)'
-    webhookKey: '$(webhook_token)'
-    embeds: |
-      {
-        "embeds": [
-          {
-            "title": "Version $(tag)",
-            "description": "A new build was just created because of a push to the github.\nYou must install Minecraft 1.14 and all dependencies in order to run the mod.\n\n",
-            "color": 3120127,
-            "thumbnail": {
-              "url": "https://cdn.discordapp.com/icons/695117761956937779/4e5dde3ad1c8254fb27e8316cdc30a37.webp"
-            },
-      
-      
-            "fields": [
-              {
-                "name": "Dependencies:",
-                "value": "**Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)\n**Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)"
-              }
-              
-            ]
-          }
-        ]
-      }
