@@ -9,7 +9,7 @@ Deep Waters is a twilight-forest style underwater dimension for Minecraft Forge 
 
 ## Installation
 
-Currently, the mod is in development and only prereleases are available. Keep in mind a majority of the content is not implemented yet, and most things are still very work in progress. If you'd still like to try out the mod, you can grab the most recent build in the discord or from the most recent passing [azure pipeline artifact.](https://pip.pypa.io/en/stable/)
+Currently, the mod is in development and only prereleases are available. Keep in mind a majority of the content is not implemented yet, and most things are still very work in progress. If you'd still like to try out the mod, you can grab the most recent build in the discord or from the most recent passing [azure pipeline artifact.](https://tincrayon.visualstudio.com/DeepWaters/_build?definitionId=1&_a=summary)
 
 The mod is for Minecraft **1.14.4**, and we will probably be updating to 1.15 soon.
 
