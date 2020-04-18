@@ -1,7 +1,10 @@
 package bernie.software.block.aquastone;
 
+import bernie.software.DeepWatersMod;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
+import it.unimi.dsi.fastutil.doubles.DoubleList;
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.fluid.Fluids;
@@ -13,10 +16,11 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.RedstoneSide;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IEnviromentBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.util.math.shapes.*;
+import net.minecraft.world.*;
+import org.apache.logging.log4j.Level;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -31,7 +35,7 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
 
     @Override
     public boolean canProvidePower(BlockState state) {
-        return canProvidePower;
+        return true;
     }
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -39,6 +43,21 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, SOUTH, WEST, POWER, WATERLOGGED);
     }
+
+    @Override
+    public BlockState getExtendedState(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        BlockState state1=worldIn.getBlockState(pos);
+        state1=state1.with(NORTH,getSide(worldIn,pos,Direction.NORTH));
+        state1=state1.with(SOUTH,getSide(worldIn,pos,Direction.SOUTH));
+        state1=state1.with(EAST,getSide(worldIn,pos,Direction.EAST));
+        state1=state1.with(WEST,getSide(worldIn,pos,Direction.WEST));
+        return state1;
+    }
+
+//    @Override
+//    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+//        return new VoxelShapeArray(new BitSetVoxelShapePart(0, 0, 0), (DoubleList)(new DoubleArrayList(new double[]{0.0D})), (DoubleList)(new DoubleArrayList(new double[]{0.0D})), (DoubleList)(new DoubleArrayList(new double[]{0.0D})));
+//    }
 
     @Override
     public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
@@ -71,13 +90,16 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
     private RedstoneSide getSide(IBlockReader worldIn, BlockPos pos, Direction face) {
         BlockPos blockpos = pos.offset(face);
         BlockState blockstate = worldIn.getBlockState(blockpos);
-        BlockPos blockpos1 = pos.up().offset(face);
+        BlockPos blockpos1 = blockpos.offset(Direction.UP);
         BlockState blockstate1 = worldIn.getBlockState(blockpos1);
-        if (canConnectTo(worldIn.getBlockState(blockpos),worldIn,blockpos,face)||canConnectTo(worldIn.getBlockState(blockpos.offset(Direction.DOWN)),worldIn,blockpos.offset(Direction.DOWN),face)) {
+        if (canConnectTo(blockstate,worldIn,blockpos,face)||
+            canConnectTo(worldIn.getBlockState(blockpos.offset(Direction.DOWN)),worldIn,blockpos.offset(Direction.DOWN),null)||
+            blockstate.getBlock() instanceof RedstoneWireBlock||
+            worldIn.getBlockState(blockpos.offset(Direction.DOWN)).getBlock() instanceof DeepWatersRedstoneDust||
+            worldIn.getBlockState(blockpos.offset(Direction.DOWN)).getBlock() instanceof RedstoneWireBlock) {
             return RedstoneSide.SIDE;
         }
-        if (canConnectTo(worldIn.getBlockState(blockpos1),worldIn,blockpos1,null)||
-            worldIn.getBlockState(blockpos1).getBlock() instanceof RedstoneWireBlock) {
+        if ((blockstate1.getBlock() instanceof RedstoneWireBlock)) {
             return RedstoneSide.UP;
         }
         return RedstoneSide.NONE;
@@ -101,8 +123,9 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
                         new BlockPos(-1,0,0)
                 };
                 BlockState newState=state;
+                int oldPower=state.get(POWER);
                 for (BlockPos pos1:poses) {
-                    newState = forcePower(pos,pos1,worldIn);
+                    newState = forcePower(pos,pos1,worldIn,oldPower);
                 }
                 try {
                     boolean shouldUpdateDown=true;
@@ -112,9 +135,9 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
                         }
                     }
                     if (shouldUpdateDown) {
-                        worldIn.notifyNeighborsOfStateExcept(pos.offset(Direction.DOWN),this,Direction.UP);
                     }
-                    worldIn.notifyNeighborsOfStateExcept(pos.offset(Direction.UP),this,Direction.DOWN);
+//                    worldIn.notifyNeighborsOfStateExcept(pos.offset(Direction.UP),this,Direction.DOWN);
+                    worldIn.notifyNeighborsOfStateExcept(pos.offset(Direction.DOWN),this,Direction.UP);
                 } catch (Exception err) {}
             } else {
                 spawnDrops(state, worldIn, pos);
@@ -122,11 +145,41 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
             }
         }
     }
+
+    @Override
+    public int getWeakPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side) {
+        return getAqualitePower(pos,blockAccess)-2;
+    }
+
     public int getAqualitePower(BlockPos pos,World world) {
         int power=world.getRedstonePowerFromNeighbors(pos);
         if (power<world.getStrongPower(pos)) {
             power=world.getStrongPower(pos)+1;
         }
+        int aquaPower=getAqualitePower(pos,(IBlockReader)world);
+        if (power<aquaPower) {
+            power=aquaPower;
+        }
+        return power;
+    }
+
+    @Override
+    public int getStrongPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side) {
+        return getWeakPower(blockState,blockAccess,pos,side);
+    }
+
+    @Override
+    public void updateDiagonalNeighbors(BlockState state, IWorld worldIn, BlockPos pos, int flags) {
+//        super.updateDiagonalNeighbors(state, worldIn, pos, flags);
+    }
+
+    @Override
+    public boolean shouldCheckWeakPower(BlockState state, IWorldReader world, BlockPos pos, Direction side) {
+        return false;
+    }
+
+    public int getAqualitePower(BlockPos pos, IBlockReader world) {
+        int power=0;
         BlockPos[] direct=new BlockPos[]{
                 new BlockPos(1,0,0),
                 new BlockPos(0,0,1),
@@ -182,25 +235,65 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
         }
         return power;
     }
-    public BlockState forcePower(BlockPos source,BlockPos offset,World world) {
+    public void tryChangeBlock(BlockPos source,BlockPos offset,World world,int sourcePower) {
         if (world.getBlockState(source.add(offset)).getBlock() instanceof RedstoneWireBlock) {
             if (world.getBlockState(source.add(offset)).get(POWER)<world.getRedstonePowerFromNeighbors(source)) {
-                if (world.getRedstonePowerFromNeighbors(source)>0) {
-                    if (world.getRedstonePowerFromNeighbors(source)>world.getBlockState(source).get(POWER)) {
-                        try {
-                            world.setBlockState(source.add(offset),world.getBlockState(source.add(offset)).with(POWER,world.getRedstonePowerFromNeighbors(source)-2));
-                        } catch (Exception err) {}
+                try {
+                    if (sourcePower>world.getBlockState(source.add(offset)).get(POWER)) {
+                        world.setBlockState(source.add(offset),world.getBlockState(source.add(offset)).with(POWER,sourcePower-2),4);
+                    } else {
+                        world.setBlockState(source.add(offset),world.getBlockState(source.add(offset)).with(POWER,0),4);
                     }
+                } catch (Exception err) {}
+            }
+        }
+    }
+    public BlockState forcePower(BlockPos source,BlockPos offset,World world,int oldPower) {
+        int subtractAmount=1;
+        if (!world.getBlockState(source).get(WATERLOGGED)) {
+            subtractAmount=2;
+        }
+        int power=getAqualitePower(source,world)-subtractAmount;
+//        DeepWatersMod.logger.log(Level.INFO,power+subtractAmount);
+        if (power<=0) {
+            power=0;
+        }
+        if (power>oldPower) {
+            try {
+                tryChangeBlock(source,offset,world,power);
+                if (!world.getBlockState(source.offset(Direction.UP)).isOpaqueCube(world,source.offset(Direction.UP))) {
+                    try {
+                        tryChangeBlock(source,offset.offset(Direction.UP),world,power);
+                    } catch (Exception err) {}
+                }
+                if (world.getBlockState(source.offset(Direction.DOWN)).isOpaqueCube(world,source.offset(Direction.DOWN))) {
+                    try {
+                        tryChangeBlock(source,offset.offset(Direction.DOWN),world,power);
+                    } catch (Exception err) {}
+                }
+                try {
+                    world.setBlockState(source,world.getBlockState(source).with(POWER,power));
+                } catch (Exception err) {}
+            } catch (Exception err) {}
+        } else {
+            if (power!=oldPower) {
+                try {
+                    try {
+                        world.setBlockState(source,world.getBlockState(source).with(POWER,0));
+                    } catch (Exception err) {}
+                    try {
+                        world.setBlockState(source.add(offset),world.getBlockState(source.add(offset)).with(POWER,0));
+                    } catch (Exception err) {}
+                    try {
+                        world.setBlockState(source.add(offset.offset(Direction.UP)),world.getBlockState(source.add(offset.offset(Direction.UP))).with(POWER,0));
+                    } catch (Exception err) {}
+                    try {
+                        world.setBlockState(source.add(offset.offset(Direction.DOWN)),world.getBlockState(source.add(offset.offset(Direction.DOWN))).with(POWER,0));
+                    } catch (Exception err) {}
+                } catch (Exception err) {
                 }
             }
         }
-        try {
-            int newPower=getAqualitePower(source,world)-1;
-            if (world.getBlockState(source).get(POWER)!=newPower) {
-                world.setBlockState(source,world.getBlockState(source).with(POWER,newPower));
-                world.notifyNeighborsOfStateChange(source.add(offset),world.getBlockState(source.add(offset)).getBlock());
-            }
-        } catch (Exception err) {}
         return world.getBlockState(source);
     }
     private BlockState updateSurroundingRedstone(World worldIn, BlockPos pos, BlockState state) {
@@ -209,7 +302,7 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
         this.blocksNeedingUpdate.clear();
 
         for(BlockPos blockpos : list) {
-            worldIn.notifyNeighborsOfStateChange(blockpos, this);
+//            worldIn.notifyNeighborsOfStateChange(blockpos, this);
         }
 
         return state;
@@ -225,9 +318,9 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
     private BlockState getState(World world, BlockPos pos, BlockState state) {
         BlockState blockstate = state;
         int i = state.get(POWER);
-        this.canProvidePower = false;
+//        this.canProvidePower = false;
         int highestNeighborPower = world.getRedstonePowerFromNeighbors(pos);
-        this.canProvidePower = true;
+//        this.canProvidePower = true;
         int thisPower = 0;
         if (highestNeighborPower < 15) {
             for(Direction direction : Direction.Plane.HORIZONTAL) {
@@ -251,7 +344,7 @@ public class DeepWatersRedstoneDust extends RedstoneWireBlock implements IWaterL
         if (i != setPower) {
             state = state.with(POWER, Integer.valueOf(setPower));
             if (world.getBlockState(pos) == blockstate) {
-                world.setBlockState(pos, state, 2);
+                world.setBlockState(pos, state, 16);
             }
 
             this.blocksNeedingUpdate.add(pos);
