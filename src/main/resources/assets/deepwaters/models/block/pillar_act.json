@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/orientable",
 	"textures": {
-		"top": "deepwaters:block/portal_pillar_bottom",
-		"front": "deepwaters:block/portal_pillar_end"
+		"top": "deepwaters:block/activated_portal_pillar_bottom",
+		"front": "deepwaters:block/activated_portal_pillar_end"
 	},
 	"elements": [
 		{

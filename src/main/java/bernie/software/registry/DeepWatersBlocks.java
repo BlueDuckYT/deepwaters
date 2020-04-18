@@ -2,10 +2,7 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.block.*;
-import bernie.software.block.aquastone.AquastoneBlock;
-import bernie.software.block.aquastone.AquastoneComparator;
-import bernie.software.block.aquastone.AquastoneRepeater;
-import bernie.software.block.aquastone.AquastoneDust;
+import bernie.software.block.aquastone.*;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
@@ -75,8 +72,8 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new AquastoneComparator(Block.Properties.create(Material.ROCK)));
 	public static final RegistryObject<Block> AQUA_REPEAT = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(Block.Properties.create(Material.ROCK)));
 	public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new AquastoneBlock(Block.Properties.create(Material.ROCK)));
-	//	public static final RegistryObject<Block> AQUA_TORCH = registerBlock("aquastone_torch", () -> new DeepWatersRedstoneTorch.AquastoneTorch());
-//	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerBlock("aquastone_walltorch", () -> new DeepWatersRedstoneTorch.AquastoneTorchWall());
+		public static final RegistryObject<Block> AQUA_TORCH = registerOnlyBlock("aquastone_torch", () -> new RedstoneTorch.AquastoneTorch());
+	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerOnlyBlock("aquastone_walltorch", () -> new RedstoneTorch.AquastoneTorchWall());
 	public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
 	public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlock("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));
@@ -95,10 +92,19 @@ public class DeepWatersBlocks
 		DeepWatersItems.ITEMS.register(name, item.apply(register));
 		return register;
 	}
+	private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block)
+	{
+		RegistryObject<T> register = BLOCKS.register(name, block);
+		return register;
+	}
 
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends Block> block)
 	{
 		return (RegistryObject<T>) baseRegister(name, block, DeepWatersBlocks::registerBlockItem);
+	}
+	private static <T extends Block> RegistryObject<T> registerOnlyBlock(String name, Supplier<? extends Block> block)
+	{
+		return (RegistryObject<T>) baseRegister(name, block);
 	}
 
 	private static <T extends Block> RegistryObject<T> registerNormalBlock(String name, Supplier<? extends Block> block, boolean dropsItself)
@@ -107,8 +113,7 @@ public class DeepWatersBlocks
 		RegistryObject<T> registryObject = (RegistryObject<T>) baseRegister(name, block,
 				DeepWatersBlocks::registerBlockItem);
 		DeepWatersItemModels.NormalItemBlocks.add((RegistryObject<Block>) registryObject);
-		if (dropsItself)
-		{
+		if (dropsItself) {
 			DeepWatersBlockStates.NormalBlocks.add((RegistryObject<Block>) registryObject);
 			DeepWatersLootTables.NormalItemDropBlocks.add((RegistryObject<Block>) registryObject);
 
