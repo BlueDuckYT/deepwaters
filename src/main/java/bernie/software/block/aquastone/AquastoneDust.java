@@ -9,6 +9,7 @@ import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.RedstoneSide;
@@ -36,11 +37,12 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	}
 
 	private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	private static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_8;
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
 	{
-		builder.add(NORTH, EAST, SOUTH, WEST, POWER, WATERLOGGED);
+		builder.add(NORTH, EAST, SOUTH, WEST, POWER, WATERLOGGED, LEVEL);
 	}
 
 	@Override
@@ -90,13 +92,44 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return super.getStateForPlacement(context).with(WATERLOGGED, false);
+		World wo=context.getWorld();
+		BlockPos pos=context.getPos();
+		int level=0;
+		boolean logged=false;
+		logged=Blocks.COBBLESTONE_STAIRS.getStateForPlacement(context).get(WATERLOGGED);
+		for (Direction dir:Direction.values()) {
+			if (wo.getBlockState(pos.offset(dir)).getMaterial().isLiquid()) {
+				logged=true;
+				level=0;
+			}
+			try {
+				if (wo.getBlockState(pos.offset(dir)).get(WATERLOGGED)) {
+					logged=true;
+					if (wo.getBlockState(pos.offset(dir)).get(LEVEL)>=1) {
+						level=wo.getBlockState(pos.offset(dir)).get(LEVEL)-1;
+					}
+					if (level<=0) {
+						level=0;
+						logged=false;
+					}
+				}
+			} catch (Exception err) {}
+		}
+		return super.getStateForPlacement(context).with(WATERLOGGED, logged).with(LEVEL,level);
 	}
 
 	@Override
 	public IFluidState getFluidState(BlockState state)
 	{
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		if (state.get(LEVEL)==0) {
+			return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		} else {
+			try {
+				return state.get(WATERLOGGED) ? Fluids.WATER.getFlowingFluidState(state.get(LEVEL),false) : super.getFluidState(state);
+			} catch (Exception err) {
+				return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+			}
+		}
 	}
 
 	private RedstoneSide getSide(IBlockReader worldIn, BlockPos pos, Direction face)
