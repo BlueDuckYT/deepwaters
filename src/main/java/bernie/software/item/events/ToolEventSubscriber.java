@@ -19,6 +19,8 @@ public class ToolEventSubscriber
 		if (player.isInWater() || player.isSwimming() || player.isInWaterOrBubbleColumn() && player.canHarvestBlock(player.getBlockState())) {
 			if(item == DeepWatersItems.PRISMARINE_AXE.get() || item == DeepWatersItems.PRISMARINE_PICKAXE.get() || item == DeepWatersItems.PRISMARINE_SHOVEL.get()) {
 				event.setNewSpeed(originalSpeed * 10);
+			} else if(item == DeepWatersItems.AQUALITE_PICKAXE.get()) {
+				event.setNewSpeed(originalSpeed * 20);
 			}
 		}
 	}

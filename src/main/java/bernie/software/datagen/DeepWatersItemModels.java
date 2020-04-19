@@ -55,7 +55,9 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		normalItem(DeepWatersItems.AQUASTONE_TORCH);
 
 		toolItem(DeepWatersItems.PRISMARINE_SWORD);
+		toolItem(DeepWatersItems.AQUALITE_SWORD);
 		toolItem(DeepWatersItems.PRISMARINE_PICKAXE);
+		toolItem(DeepWatersItems.AQUALITE_PICKAXE);
 		toolItem(DeepWatersItems.PRISMARINE_AXE);
 		toolItem(DeepWatersItems.PRISMARINE_SHOVEL);
 		toolItem(DeepWatersItems.PEAL_WAND);
