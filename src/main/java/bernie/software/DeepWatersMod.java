@@ -42,14 +42,16 @@ public class DeepWatersMod
 		DeepWatersItems.ITEMS.register(bus);
 		DeepWatersEntities.ENTITIES.register(bus);
 		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
+		DeepWatersStructures.STRUCTURES.register(bus);
+
 	}
 
-	public void clientSetup(FMLClientSetupEvent event)
+	private void clientSetup(FMLClientSetupEvent event)
 	{
 		Minecraft.getInstance().getBlockColors().register(new AquastoneDust.Colors(), DeepWatersBlocks.AQUA_STONE.get());
 	}
 
-	public void setup(FMLCommonSetupEvent event)
+	private void setup(FMLCommonSetupEvent event)
 	{
 		DeepWatersBiomes.addBiomeTypes();
 		ArrayList<Biome> biomes = new ArrayList<>();
@@ -57,7 +59,7 @@ public class DeepWatersMod
 	}
 
 
-	public void gatherData(GatherDataEvent event)
+	private void gatherData(GatherDataEvent event)
 	{
 		DataGenerator generator = event.getGenerator();
 
