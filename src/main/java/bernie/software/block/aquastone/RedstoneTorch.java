@@ -33,7 +33,11 @@ public class RedstoneTorch {
         @Override
         public BlockState getStateForPlacement(BlockItemUseContext context)
         {
-            return super.getStateForPlacement(context).with(WATERLOGGED,false);
+            try {
+                return super.getStateForPlacement(context).with(WATERLOGGED,false);
+            } catch (Exception err) {
+                return super.getStateForPlacement(context);
+            }
         }
 
         public IFluidState getFluidState(BlockState state)
@@ -57,7 +61,11 @@ public class RedstoneTorch {
         @Override
         public BlockState getStateForPlacement(BlockItemUseContext context)
         {
-            return super.getStateForPlacement(context).with(WATERLOGGED,false);
+            try {
+                return super.getStateForPlacement(context).with(WATERLOGGED,false);
+            } catch (Exception err) {
+                return super.getStateForPlacement(context);
+            }
         }
 
         public IFluidState getFluidState(BlockState state)
