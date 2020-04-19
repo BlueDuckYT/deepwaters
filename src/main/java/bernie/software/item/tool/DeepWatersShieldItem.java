@@ -47,6 +47,14 @@ public class DeepWatersShieldItem extends ShieldItem {
         return this;
     }
 
+    public static shieldEvent getEvent(DeepWatersShieldItem item) {
+        try {
+            return events.get(item.thisProperties).newInstance();
+        } catch (Exception err) {
+            return null;
+        }
+    }
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         try {
@@ -75,6 +83,7 @@ public class DeepWatersShieldItem extends ShieldItem {
     private static HashMap<DeepWatersShieldProperties,Class<? extends shieldEvent>> events = new HashMap<>();
 
     public static abstract class shieldEvent {
+        public abstract int cooldown();
         public abstract void onUse(World world, PlayerEntity playerEntity, Hand hand);
         public abstract void inInv(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected);
     }

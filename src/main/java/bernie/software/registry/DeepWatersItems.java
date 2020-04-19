@@ -24,6 +24,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> AQUALITE_INGOT = ITEMS.register("aqualite_ingot", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_NUGGET = ITEMS.register("prismarine_nugget", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> BLUFFERFISH = ITEMS.register("blufferfish", () -> new DeepWatersItem(DeepWatersFoods.BLUFFERFISH));
 	public static final RegistryObject<Item> COOKED_BLUFFERFISH = ITEMS.register("cooked_blufferfish", () -> new DeepWatersItem(DeepWatersFoods.COOKED_BLUFFERFISH));
@@ -31,13 +32,16 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> MUCK_GULPER = ITEMS.register("muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.MUCK_GULPER));
 	public static final RegistryObject<Item> COOKED_MUCK_GULPER = ITEMS.register("cooked_muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.COOKED_MUCK_GULPER));
 	public static final RegistryObject<Item> SALTED_MUCK_GULPER = ITEMS.register("salted_muck_gulper", () -> new DeepWatersItem(DeepWatersFoods.SALTED_MUCK_GULPER));
-	public static final RegistryObject<Item> AQUASTONE_TORCH = ITEMS.register("aquastone_torch", () -> new RedstoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
+	public static final RegistryObject<Item> AQUASTONE_TORCH = ITEMS.register("aquastone_torch", () -> new RedstoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS)));
 
 	public static final RegistryObject<Item> PRISMARINE_SWORD = ITEMS.register("prismarine_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased damage underwater"));
+	public static final RegistryObject<Item> AQUALITE_SWORD = ITEMS.register("aqualite_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased damage underwater"));
 	public static final RegistryObject<Item> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
+	public static final RegistryObject<Item> AQUALITE_PICKAXE = ITEMS.register("aqualite_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_SHOVEL = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
-	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new ShieldEvents.Prismarine().getClass()).addToolTip("Allows you to dash in water"));
+	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new ShieldEvents.Prismarine().getClass()).addToolTip("Allows you to dash in water."));
+	public static final RegistryObject<Item> DARK_PRISMARINE_SHIELD = ITEMS.register("dark_prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.DARKPRISMARINE,new ShieldEvents.DarkPrismarine().getClass()).addToolTip("Allows you to dash in water.\nHalf the cooldown of the prismarine shield.\nDouble the speed of the prismarine shield."));
 
 	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
 	public static final RegistryObject<Item> PRISMARINE_CHESTPLATE = ITEMS.register("prismarine_chestplate", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.CHEST));

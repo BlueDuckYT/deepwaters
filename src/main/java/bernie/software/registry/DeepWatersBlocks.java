@@ -6,9 +6,7 @@ import bernie.software.block.aquastone.*;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
-import net.minecraft.block.Block;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -54,7 +52,7 @@ public class DeepWatersBlocks
 			Material.ROCK, 3.0F, 3.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> OXYGENATOR = registerNormalBlock("oxygenator", () -> new DeepWatersBlock(
 			Material.ROCK, 2.0F, 4.0F, SoundType.STONE, 2, ToolType.PICKAXE), true);
-	public static final RegistryObject<Block> DEEPWATERSPORTAL = BLOCKS.register("portal", () -> new DeepWatersPortalBlock(
+	public static final RegistryObject<Block> DEEPWATERSPORTAL = registerOnlyBlock("portal", () -> new DeepWatersPortalBlock(
 			Material.ROCK, 500.0F, 500.0F, SoundType.STONE));
 
 	public static final RegistryObject<Block> DEAD_CORAL_BLOCK_ORANGE = registerNormalBlock("dead_coral_block_orange", () -> new DeepWatersBlock(
@@ -72,8 +70,10 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new AquastoneComparator(Block.Properties.create(Material.ROCK)));
 	public static final RegistryObject<Block> AQUA_REPEAT = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(Block.Properties.create(Material.ROCK)));
 	public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new AquastoneBlock(Block.Properties.create(Material.ROCK)));
-		public static final RegistryObject<Block> AQUA_TORCH = registerOnlyBlock("aquastone_torch", () -> new RedstoneTorch.AquastoneTorch());
+	public static final RegistryObject<Block> AQUA_TORCH = registerOnlyBlock("aquastone_torch", () -> new RedstoneTorch.AquastoneTorch());
 	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerOnlyBlock("aquastone_walltorch", () -> new RedstoneTorch.AquastoneTorchWall());
+	public static final RegistryObject<Block> AQUA_STONE_BUTTON = registerBlock("aquastone_stone_button", () -> Button.constructBlock((AbstractButtonBlock)Blocks.STONE_BUTTON));
+//	public static final RegistryObject<Block> AQUA_STONE_PLATE = registerBlock("aquastone_stone_pressureplate", () -> PressurePlate.constructBlock(Blocks.STONE_PRESSURE_PLATE.getClass()));
 	public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
 	public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlock("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));

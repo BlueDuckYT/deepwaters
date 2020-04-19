@@ -108,8 +108,9 @@ public class DeepWatersRecipeProvider extends ForgeRecipeProvider implements ICo
                 .patternLine("###")
                 .patternLine(" # ")
                 .key('#', materialIn.get())
-                .key('/', Items.OAK_PLANKS)
-                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()));
+                .key('/', Items.SHIELD)
+                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()))
+                .setGroup("");
     }
 
     public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {

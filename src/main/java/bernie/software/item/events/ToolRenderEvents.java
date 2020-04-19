@@ -2,6 +2,7 @@ package bernie.software.item.events;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.item.DeepWatersAbstractRuneItem;
+import bernie.software.item.tool.DeepWatersShieldItem;
 import bernie.software.utils.renderutils.RenderHelper;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mrcrayfish.obfuscate.client.event.RenderItemEvent;
@@ -21,7 +22,7 @@ public class ToolRenderEvents
 	@SubscribeEvent
 	public static void onRenderItem(RenderItemEvent event) {
 		try {
-			if (event.getItem().getItem().getRegistryName().toString().equals("deepwaters:prismarine_shield")&&event instanceof RenderItemEvent.Gui.Post) {
+			if (event.getItem().getItem() instanceof DeepWatersShieldItem &&event instanceof RenderItemEvent.Gui.Post) {
 				Long time=new Date().getTime();
 				Long cooldown=(event.getItem().getTag().getLong("COOLDOWN")-(time));
 				if (cooldown>=0) {
@@ -34,7 +35,7 @@ public class ToolRenderEvents
 					GlStateManager.translatef(-0.03f,0,0);
 					RenderHelper.drawRect(0,-0.05,1.08,0.1,0,0,0,1);
 					RenderHelper.drawRect(0,0,1.08,0.1,0.25,0.5,1,1);
-					RenderHelper.drawRect(0,0,((((float)Math.abs(cooldown/100))/100)+0.08),0.1,0.2,0.1,0.1,1);
+					RenderHelper.drawRect(0,0,((((float)Math.abs(cooldown)/DeepWatersShieldItem.getEvent((DeepWatersShieldItem)event.getItem().getItem()).cooldown()))+0.08),0.1,0.2,0.1,0.1,1);
 					GlStateManager.popMatrix();
 					GlStateManager.enableLighting();
 					GlStateManager.enableTexture();
