@@ -27,6 +27,13 @@
   "block.deepwaters.dead_coral_block_green": "Dead Green Coral Block",
   "block.deepwaters.oxygenator": "Oxygenator",
 
+  "block.deepwaters.aquastone_torch": "Aquastone Torch",
+  "block.deepwaters.aquastone_block": "Aquastone Block",
+  "block.deepwaters.aquastone_repeater": "Aquastone Repeater",
+  "block.deepwaters.aquastone_comparator": "Aquastone Comparator",
+  "block.deepwaters.aquastone": "Aquastone Wire",
+  "block.deepwaters.aquastone_stone_button": "tile.null.name",
+
 
   "item.deepwaters.prismarine_shield": "Prismarine Shield",
   "item.deepwaters.salt_crystal": "Salt Crystal",
