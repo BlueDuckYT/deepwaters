@@ -109,7 +109,7 @@ public class DeepWatersDimensionEventSubscriber
 								if (!attemptLandFind(event))
 								{
 									entity.remove();
-									event.setCanceled(true);
+									//event.setCanceled(true);
 								}
 							}
 						}
@@ -135,13 +135,14 @@ public class DeepWatersDimensionEventSubscriber
 					}
 				}
 			}
-		} catch (Exception err)
+		}
+		catch (Exception err)
 		{
 			DeepWatersMod.logger.log(Level.ERROR, err);
 		}
 	}
 
-	public static boolean attemptLandFind(LivingSpawnEvent event)
+	private static boolean attemptLandFind(LivingSpawnEvent event)
 	{
 		IWorld world = event.getWorld();
 		Entity entity = event.getEntity();
