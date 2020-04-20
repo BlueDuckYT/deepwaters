@@ -46,7 +46,7 @@ public class RedstoneTorch {
         }
 
         public AquastoneTorch() {
-            super(Block.Properties.create(Material.ROCK));
+            super(Block.Properties.create(Material.ROCK).doesNotBlockMovement());
         }
     }
     public static class AquastoneTorchWall extends RedstoneWallTorchBlock implements IWaterLoggable {
@@ -74,7 +74,7 @@ public class RedstoneTorch {
         }
 
         public AquastoneTorchWall() {
-            super(Block.Properties.create(Material.ROCK));
+            super(Block.Properties.create(Material.ROCK).doesNotBlockMovement());
         }
     }
 }
