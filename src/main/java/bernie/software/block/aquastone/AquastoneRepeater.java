@@ -10,6 +10,8 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 
 public class AquastoneRepeater extends RepeaterBlock implements IWaterLoggable
 {
@@ -35,5 +37,23 @@ public class AquastoneRepeater extends RepeaterBlock implements IWaterLoggable
 	public IFluidState getFluidState(BlockState state)
 	{
 		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+	}
+
+	@Override
+	protected int getDelay(BlockState p_196346_1_) {
+		if (p_196346_1_.get(WATERLOGGED)) {
+			return super.getDelay(p_196346_1_);
+		} else {
+			return super.getDelay(p_196346_1_)*4;
+		}
+	}
+
+	@Override
+	protected int getActiveSignal(IBlockReader worldIn, BlockPos pos, BlockState state) {
+		if (state.get(WATERLOGGED)) {
+			return super.getActiveSignal(worldIn, pos, state);
+		} else {
+			return (int)(super.getActiveSignal(worldIn, pos, state)/1.25f);
+		}
 	}
 }

@@ -237,14 +237,37 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 		if (dirsPowered.contains(Direction.SOUTH)&&!(dirsPowered.size()>=2)) {
 			dirsPowered.add(Direction.NORTH);
 		}
-		side=side.getOpposite();
+		boolean worksVertically=false;
+		if (blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof RedstoneDiodeBlock) {
+			side=side.getOpposite();
+			dirsPowered.add(Direction.DOWN);
+			worksVertically = (!(side.equals(Direction.DOWN)||side.equals(Direction.UP)));
+			if (worksVertically) {
+				if (dirsPowered.contains(side)) {
+					worksVertically=true;
+				} else {
+					worksVertically=false;
+				}
+			}
+		} else {
+			dirsPowered.add(Direction.UP);
+			worksVertically = (!(side.equals(Direction.DOWN)||side.equals(Direction.UP)));
+			if (worksVertically) {
+				if (dirsPowered.contains(side)) {
+					worksVertically=true;
+				} else {
+					worksVertically=false;
+				}
+			}
+		}
 		boolean canPower=false;
 		if (dirsPowered.contains(side)) {
 			canPower=true;
 		} else if (blockState.get(WEST).equals(RedstoneSide.NONE)&&
 			blockState.get(EAST).equals(RedstoneSide.NONE)&&
 			blockState.get(SOUTH).equals(RedstoneSide.NONE)&&
-			blockState.get(NORTH).equals(RedstoneSide.NONE)) {
+			blockState.get(NORTH).equals(RedstoneSide.NONE)&&
+			worksVertically) {
 			canPower=true;
 		}
 		return canPower ? blockAccess.getBlockState(pos).get(POWER):0;

@@ -11,6 +11,10 @@ import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 public class RedstoneTorch {
     public static class Item extends WallOrFloorItem {
@@ -48,6 +52,15 @@ public class RedstoneTorch {
         public AquastoneTorch() {
             super(Block.Properties.create(Material.ROCK).doesNotBlockMovement());
         }
+
+        @Override
+        public int getWeakPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side) {
+            if (blockState.get(WATERLOGGED)) {
+                return super.getWeakPower(blockState,blockAccess,pos,side);
+            } else {
+                return super.getWeakPower(blockState,blockAccess,pos,side)/2;
+            }
+        }
     }
     public static class AquastoneTorchWall extends RedstoneWallTorchBlock implements IWaterLoggable {
         public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -75,6 +88,15 @@ public class RedstoneTorch {
 
         public AquastoneTorchWall() {
             super(Block.Properties.create(Material.ROCK).doesNotBlockMovement());
+        }
+
+        @Override
+        public int getWeakPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side) {
+            if (blockState.get(WATERLOGGED)) {
+                return super.getWeakPower(blockState,blockAccess,pos,side);
+            } else {
+                return super.getWeakPower(blockState,blockAccess,pos,side)/2;
+            }
         }
     }
 }
