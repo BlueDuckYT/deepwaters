@@ -140,49 +140,55 @@ public class Pedestal extends Block implements IWaterLoggable
 				{
 					return false;
 				}
-
-				worldIn.setBlockState(centerBottom,
-						DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get().getDefaultState().with(FACING,
-								Direction.UP));
 				RotatedPillarBlock activePillar = DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR.get();
-				worldIn.setBlockState(centerBottom.up(),
-						activePillar.getDefaultState());
-				worldIn.setBlockState(centerBottom.up(2),
-						activePillar.getDefaultState());
-				worldIn.setBlockState(centerBottom.up(3),
-						activePillar.getDefaultState());
-
 				Block portal = DeepWatersBlocks.DEEPWATERSPORTAL.get();
 
-				worldIn.setBlockState(centerBottom.north(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.north(2), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.north(-1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.north(-2), portal.getDefaultState());
-
-				worldIn.setBlockState(centerBottom.east(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.east(2), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.east(-1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.east(-2), portal.getDefaultState());
-
-				worldIn.setBlockState(centerBottom.south(1).east(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.south(2).east(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.south(1).east(2), portal.getDefaultState());
-
-				worldIn.setBlockState(centerBottom.south(1).west(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.south(2).west(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.south(1).west(2), portal.getDefaultState());
-
-				worldIn.setBlockState(centerBottom.north(1).east(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.north(2).east(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.north(1).east(2), portal.getDefaultState());
-
-				worldIn.setBlockState(centerBottom.north(1).west(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.north(2).west(1), portal.getDefaultState());
-				worldIn.setBlockState(centerBottom.north(1).west(2), portal.getDefaultState());
+				FillPortal(worldIn, centerBottom, activePillar, portal,
+						DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get());
 			}
 			return true;
 		}
 		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+	}
+
+	public static void FillPortal(World worldIn, BlockPos centerBottom, RotatedPillarBlock activePillar, Block portal,
+	                              Block portalBlockEnd)
+	{
+		worldIn.setBlockState(centerBottom,
+				portalBlockEnd.getDefaultState().with(FACING,
+						Direction.UP));
+		worldIn.setBlockState(centerBottom.up(),
+				activePillar.getDefaultState());
+		worldIn.setBlockState(centerBottom.up(2),
+				activePillar.getDefaultState());
+		worldIn.setBlockState(centerBottom.up(3),
+				activePillar.getDefaultState());
+
+		worldIn.setBlockState(centerBottom.north(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.north(2), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.north(-1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.north(-2), portal.getDefaultState());
+
+		worldIn.setBlockState(centerBottom.east(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.east(2), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.east(-1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.east(-2), portal.getDefaultState());
+
+		worldIn.setBlockState(centerBottom.south(1).east(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.south(2).east(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.south(1).east(2), portal.getDefaultState());
+
+		worldIn.setBlockState(centerBottom.south(1).west(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.south(2).west(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.south(1).west(2), portal.getDefaultState());
+
+		worldIn.setBlockState(centerBottom.north(1).east(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.north(2).east(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.north(1).east(2), portal.getDefaultState());
+
+		worldIn.setBlockState(centerBottom.north(1).west(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.north(2).west(1), portal.getDefaultState());
+		worldIn.setBlockState(centerBottom.north(1).west(2), portal.getDefaultState());
 	}
 
 	private static char[][] firstLayer = {
@@ -225,7 +231,7 @@ public class Pedestal extends Block implements IWaterLoggable
 	public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type)
 	{
 		return super.canEntitySpawn(state, worldIn, pos, type);
-		
+
 	}
 
 	/*

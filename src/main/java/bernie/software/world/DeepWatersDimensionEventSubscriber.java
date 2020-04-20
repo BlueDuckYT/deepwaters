@@ -2,8 +2,11 @@ package bernie.software.world;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.ForgeBusEventSubscriber;
+import bernie.software.block.DeepWatersBlock;
+import bernie.software.block.Pedestal;
 import bernie.software.entity.CoralCrawler;
 import bernie.software.registry.DeepWatersBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -13,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -21,6 +25,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.Level;
 
+import java.util.Arrays;
 import java.util.Random;
 
 @Mod.EventBusSubscriber
@@ -33,8 +38,10 @@ public class DeepWatersDimensionEventSubscriber
 	public static void onBlockBroken(final BlockEvent.BreakEvent event)
 	{
 		boolean replace = true;
-		IWorld world = event.getWorld();
+		World world = (World) event.getWorld();
 		BlockPos pos = event.getPos();
+		Block block = world.getBlockState(pos).getBlock();
+
 		int xPos = pos.getX();
 		int yPos = pos.getY();
 		int zPos = pos.getZ();
@@ -44,7 +51,8 @@ public class DeepWatersDimensionEventSubscriber
 			{
 				for (int z = -8; z < 9; z++)
 				{
-					if (world.getBlockState(new BlockPos(xPos + x, yPos + y, zPos + z)).getBlock().equals(DeepWatersBlocks.OXYGENATOR.get()))
+					if (world.getBlockState(new BlockPos(xPos + x, yPos + y, zPos + z)).getBlock().equals(
+							DeepWatersBlocks.OXYGENATOR.get()))
 					{
 						replace = false;
 					}
@@ -72,7 +80,8 @@ public class DeepWatersDimensionEventSubscriber
 		}
 
 		PlayerEntity player = event.getPlayer();
-		if (replace && yPos <= 229 && player.dimension == DimensionType.byName(ForgeBusEventSubscriber.DIMENSION_TYPE_RL))
+		if (replace && yPos <= 229 && player.dimension == DimensionType.byName(
+				ForgeBusEventSubscriber.DIMENSION_TYPE_RL))
 		{
 			if (player.canHarvestBlock(event.getState()) && !player.isCreative())
 			{
@@ -86,7 +95,6 @@ public class DeepWatersDimensionEventSubscriber
 			world.setBlockState(pos, WATER, 1);
 		}
 	}
-
 
 	@SubscribeEvent
 	public static void entitySpawnEvent(LivingSpawnEvent.CheckSpawn event)
@@ -166,7 +174,8 @@ public class DeepWatersDimensionEventSubscriber
 
 	private static boolean HasWaterBelow(IWorld world, BlockPos pos)
 	{
-		return world.hasWater(pos) || world.hasWater(pos.down()) || world.hasWater(pos.down(2)) || world.hasWater(pos.down(3));
+		return world.hasWater(pos) || world.hasWater(pos.down()) || world.hasWater(pos.down(2)) || world.hasWater(
+				pos.down(3));
 	}
 
 }

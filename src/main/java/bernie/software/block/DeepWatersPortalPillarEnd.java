@@ -14,28 +14,35 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
-public class DeepWatersPortalPillarEnd extends DirectionalBlock {
-    public DeepWatersPortalPillarEnd(Properties builder) {
-        super(builder);
-    }
-    public DeepWatersPortalPillarEnd(int light) {
-        super(Properties.create(Material.ROCK)
-                .hardnessAndResistance(3F, 50F)
-                .sound(SoundType.STONE)
-                .harvestTool(ToolType.PICKAXE)
-                .lightValue(light)
-        );
-    }
-    public static final EnumProperty FACING = BlockStateProperties.FACING;
+public class DeepWatersPortalPillarEnd extends DirectionalBlock
+{
+	public DeepWatersPortalPillarEnd(Properties builder)
+	{
+		super(builder);
+	}
 
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return super.getStateForPlacement(context).with(FACING,context.getFace());
-    }
+	public DeepWatersPortalPillarEnd(int light)
+	{
+		super(Properties.create(Material.ROCK)
+				.hardnessAndResistance(-1F, -1F)
+				.sound(SoundType.STONE)
+				.harvestTool(ToolType.PICKAXE)
+				.lightValue(light)
+		);
+	}
 
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
+	public static final EnumProperty FACING = BlockStateProperties.FACING;
+
+	@Nullable
+	@Override
+	public BlockState getStateForPlacement(BlockItemUseContext context)
+	{
+		return super.getStateForPlacement(context).with(FACING, context.getFace());
+	}
+
+	@Override
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+	{
+		builder.add(FACING);
+	}
 }
