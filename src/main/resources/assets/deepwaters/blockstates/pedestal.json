@@ -1,8 +1,12 @@
 {
   "variants": {
-    "facing=south": { "model": "deepwaters:block/pedestal", "y": 0 },
-    "facing=west":  { "model": "deepwaters:block/pedestal", "y": 90 },
-    "facing=north": { "model": "deepwaters:block/pedestal", "y": 180 },
-    "facing=east":  { "model": "deepwaters:block/pedestal", "y": 270 }
+    "facing=south,hasheart=false": { "model": "deepwaters:block/pedestal", "y": 0 },
+    "facing=west,hasheart=false":  { "model": "deepwaters:block/pedestal", "y": 90 },
+    "facing=north,hasheart=false": { "model": "deepwaters:block/pedestal", "y": 180 },
+    "facing=east,hasheart=false":  { "model": "deepwaters:block/pedestal", "y": 270 },
+    "facing=south,hasheart=true": { "model": "deepwaters:block/pedestal_with_heart", "y": 0 },
+    "facing=west,hasheart=true":  { "model": "deepwaters:block/pedestal_with_heart", "y": 90 },
+    "facing=north,hasheart=true": { "model": "deepwaters:block/pedestal_with_heart", "y": 180 },
+    "facing=east,hasheart=true":  { "model": "deepwaters:block/pedestal_with_heart", "y": 270 }
   }
 }
