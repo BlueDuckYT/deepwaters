@@ -4,18 +4,28 @@ import bernie.software.DeepWatersMod;
 import bernie.software.ModEventSubscriber;
 import bernie.software.utils.GeneralUtils;
 import com.mojang.datafixers.Dynamic;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.dimension.Dimension;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
+import net.minecraft.world.gen.feature.template.PlacementSettings;
+import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.world.server.ServerWorld;
 import org.apache.logging.log4j.Level;
 
 import java.util.Random;
@@ -65,10 +75,11 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 	}
 
 	@Override
-	protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ)
+	protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z,
+	                                               int spacingOffsetsX, int spacingOffsetsZ)
 	{
 		//this means Portals cannot be closer than 7 chunks or more than 12 chunks
-		int maxDistance = 12;
+		int maxDistance = 20;
 		int minDistance = 7;
 
 		int xTemp = x + maxDistance * spacingOffsetsX;
@@ -78,7 +89,8 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 		int validChunkX = xTemp2 / maxDistance;
 		int validChunkZ = zTemp2 / maxDistance;
 
-		((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), validChunkX, validChunkZ, getSeedModifier());
+		((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), validChunkX, validChunkZ,
+				getSeedModifier());
 		validChunkX = validChunkX * maxDistance;
 		validChunkZ = validChunkZ * maxDistance;
 		validChunkX = validChunkX + random.nextInt(maxDistance - minDistance);
@@ -102,16 +114,42 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 		return false;
 	}
 
+	private static PlacementSettings placementSettings = (new PlacementSettings()).setMirror(Mirror.NONE).setRotation(
+			Rotation.NONE).setIgnoreEntities(false).setChunk(
+			null);
+
+	public static void placePortalAtLocation(IWorld world, ChunkGenerator<? extends GenerationSettings> changedBlock,
+	                                         Random rand, BlockPos position, NoFeatureConfig config)
+	{
+		TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
+		Template template = templatemanager.getTemplate(GeneralUtils.Location("deepwatersportalactivated"));
+		Dimension dimension = world.getDimension();
+		DimensionType type = dimension.getType();
+		ResourceLocation registryName = type.getRegistryName();
+		if (template == null)
+		{
+			DeepWatersMod.logger.warn("Portal NTB does not exist!");
+			return;
+		}
+
+		BlockPos finalPosition = world.getHeight(Heightmap.Type.WORLD_SURFACE, position);
+
+		template.addBlocksToWorld(world, position, placementSettings);
+		finalPosition = finalPosition.down();
+	}
+
 	public static class Start extends StructureStart
 	{
 
-		Start(Structure<?> structureIn, int chunkX, int chunkZ, Biome biomeIn, MutableBoundingBox boundsIn, int referenceIn, long seed)
+		Start(Structure<?> structureIn, int chunkX, int chunkZ, Biome biomeIn, MutableBoundingBox boundsIn,
+		      int referenceIn, long seed)
 		{
 			super(structureIn, chunkX, chunkZ, biomeIn, boundsIn, referenceIn, seed);
 		}
 
 		@Override
-		public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn)
+		public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ,
+		                 Biome biomeIn)
 		{
 			//Check out vanilla's WoodlandMansionStructure for how they offset the x and z
 			//so that they get the y value of the land at the mansion's entrance, no matter
@@ -136,7 +174,8 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 			recalculateStructureSize();
 
 			//I use to debug and quickly find out if the structure is spawning or not and where it is.
-			DeepWatersMod.logger.log(Level.DEBUG, "Portal spawned at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
+			DeepWatersMod.logger.log(Level.DEBUG,
+					"Portal spawned at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
 		}
 
 	}

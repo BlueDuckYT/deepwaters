@@ -1,5 +1,6 @@
 package bernie.software.utils;
 
+import bernie.software.world.gen.structures.DeepWatersPortalStructure;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.common.ForgeHooks;
@@ -27,12 +30,14 @@ import javax.annotation.Nullable;
 public class TeleportUtils
 {
 
-	public static void performTeleport(PlayerEntity player, DimensionType dimension, BlockPos dest, @Nullable Direction direction)
+	public static void performTeleport(PlayerEntity player, DimensionType dimension, BlockPos dest,
+	                                   @Nullable Direction direction)
 	{
 		performTeleport(player, dimension, dest.getX() + 0.5, dest.getY() + 1.5, dest.getZ() + 0.5, direction);
 	}
 
-	private static void performTeleport(PlayerEntity player, DimensionType dimension, double destX, double destY, double destZ, @Nullable Direction direction)
+	private static void performTeleport(PlayerEntity player, DimensionType dimension, double destX, double destY,
+	                                    double destZ, @Nullable Direction direction)
 	{
 		DimensionType oldId = player.getEntityWorld().getDimension().getType();
 
@@ -83,7 +88,7 @@ public class TeleportUtils
 		player.addExperienceLevel(0);
 
 		changeDim(serverPlayer, new BlockPos(x, y, z), dimension);
-//        player.setPositionAndUpdate(x, y, z);
+		//player.setPositionAndUpdate(x, y, z);
 	}
 
 	private static void changeDim(ServerPlayerEntity player, BlockPos pos, DimensionType type)
@@ -99,25 +104,38 @@ public class TeleportUtils
 		ServerWorld srcWorld = player.server.getWorld(dimensiontype);
 		player.dimension = type;
 		ServerWorld destWorld = player.server.getWorld(type);
+
+		int spawnHeight = destWorld.getHeight(Heightmap.Type.WORLD_SURFACE, pos).getY() + 1;
+		DeepWatersPortalStructure.placePortalAtLocation(destWorld,
+				destWorld.getChunkProvider().getChunkGenerator(), destWorld.getRandom(),
+				new BlockPos(pos.getX(),
+						spawnHeight <= destWorld.getSeaLevel() ? destWorld.getSeaLevel() - 1 : spawnHeight,
+						pos.getZ()), new NoFeatureConfig());
+
 		WorldInfo worldinfo = player.world.getWorldInfo();
-		player.connection.sendPacket(new SRespawnPacket(type, worldinfo.getGenerator(), player.interactionManager.getGameType()));
-		player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
+		player.connection.sendPacket(
+				new SRespawnPacket(type, worldinfo.getGenerator(), player.interactionManager.getGameType()));
+		player.connection.sendPacket(
+				new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
 		PlayerList playerlist = player.server.getPlayerList();
 		playerlist.updatePermissionLevel(player);
 		srcWorld.removeEntity(player, true);
 		player.revive();
 		float f = player.rotationPitch;
 		float f1 = player.rotationYaw;
-
-		player.setLocationAndAngles(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, f1, f);
+		BlockPos spawnPos = new BlockPos(pos.getX(),
+				pos.getY() <= destWorld.getSeaLevel() ? destWorld.getSeaLevel() - 1 : pos.getY(),
+				pos.getZ()).east(4).north(1).up(3);
+		player.setLocationAndAngles(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
 		srcWorld.getProfiler().endSection();
 		srcWorld.getProfiler().startSection("placing");
-		player.setLocationAndAngles(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, f1, f);
+		player.setLocationAndAngles(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
 
 		srcWorld.getProfiler().endSection();
 		player.setWorld(destWorld);
 		destWorld.func_217447_b(player);
-		player.connection.setPlayerLocation(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, f1, f);
+
+		player.connection.setPlayerLocation(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
 		player.interactionManager.setWorld(destWorld);
 		player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
 		playerlist.sendWorldInfo(player, destWorld);
@@ -130,6 +148,8 @@ public class TeleportUtils
 
 		player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
 		BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, type);
+		destWorld.getChunk(spawnPos);
+		player.teleport(destWorld, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
 	}
 
 
@@ -157,7 +177,8 @@ public class TeleportUtils
 	 * Teleport an entity and return the new entity (as teleporting to other dimensions causes
 	 * entities to be killed and recreated)
 	 */
-	public static Entity teleportEntity(Entity entity, World destWorld, double newX, double newY, double newZ, Direction facing)
+	public static Entity teleportEntity(Entity entity, World destWorld, double newX, double newY, double newZ,
+	                                    Direction facing)
 	{
 		World world = entity.getEntityWorld();
 		if (entity instanceof PlayerEntity)

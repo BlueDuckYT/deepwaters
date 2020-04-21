@@ -2,6 +2,7 @@ package bernie.software.item.events;
 
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersItems;
+import bernie.software.world.gen.structures.DeepWatersPortalStructure;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +32,14 @@ public class ToolEventSubscriber
 
 		World world = player.getEntityWorld();
 		BlockPos pos = event.getPos();
+		if (!world.isRemote())
+		{
+			DeepWatersPortalStructure.placePortalAtLocation(player.world,
+					player.world.getChunkProvider().getChunkGenerator(), player.world.getRandom(),
+					new BlockPos(pos.getX(), player.world.getHeight(Heightmap.Type.WORLD_SURFACE, pos).getY() + 1,
+							pos.getZ()), new NoFeatureConfig());
+		}
+
 		if (Arrays.asList(PortalBlocks).contains(world.getBlockState(pos).getBlock()))
 		{
 			for (Direction dir : Direction.values())
