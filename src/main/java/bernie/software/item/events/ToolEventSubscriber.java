@@ -32,13 +32,6 @@ public class ToolEventSubscriber
 
 		World world = player.getEntityWorld();
 		BlockPos pos = event.getPos();
-		if (!world.isRemote())
-		{
-			DeepWatersPortalStructure.placePortalAtLocation(player.world,
-					player.world.getChunkProvider().getChunkGenerator(), player.world.getRandom(),
-					new BlockPos(pos.getX(), player.world.getHeight(Heightmap.Type.WORLD_SURFACE, pos).getY() + 1,
-							pos.getZ()), new NoFeatureConfig());
-		}
 
 		if (Arrays.asList(PortalBlocks).contains(world.getBlockState(pos).getBlock()))
 		{
