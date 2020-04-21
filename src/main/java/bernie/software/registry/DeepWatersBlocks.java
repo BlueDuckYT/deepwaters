@@ -73,7 +73,8 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> AQUA_TORCH = registerOnlyBlock("aquastone_torch", () -> new RedstoneTorch.AquastoneTorch());
 	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerOnlyBlock("aquastone_walltorch", () -> new RedstoneTorch.AquastoneTorchWall());
 	public static final RegistryObject<Block> AQUA_STONE_BUTTON = registerBlock("aquastone_stone_button", () -> Button.constructBlock((AbstractButtonBlock)Blocks.STONE_BUTTON));
-//	public static final RegistryObject<Block> AQUA_STONE_PLATE = registerBlock("aquastone_stone_pressureplate", () -> PressurePlate.constructBlock(Blocks.STONE_PRESSURE_PLATE.getClass()));
+//	public static final RegistryObject<Block> AQUA_STONE_PLATE = registerBlock("aquastone_stone_pressureplate", () -> PressurePlate.makeWaterloggable((PressurePlateBlock) Blocks.STONE_PRESSURE_PLATE));
+//	public static final RegistryObject<Block> AQUA_IRON_PLATE = registerBlock("aquastone_iron_pressureplate", () -> PressurePlate.makeWaterloggable((WeightedPressurePlateBlock) Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE));
 	public static final RegistryObject<Block> IRON_HATCH = registerNormalBlock("iron_hatch", () -> new DeepWatersTrapdoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE),true);
 	public static final RegistryObject<Block> SCRAP_DOOR = registerNormalBlock("iron_hatch_door", () -> new DeepWatersDoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE),true);
 	public static final RegistryObject<Block> SCRAP_LADDER = registerNormalBlock("scrap_ladder", () -> new DeepWatersLadder(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.PICKAXE),true);
