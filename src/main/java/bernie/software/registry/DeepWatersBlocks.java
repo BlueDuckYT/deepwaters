@@ -74,6 +74,12 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> AQUA_TORCH_WALL = registerOnlyBlock("aquastone_walltorch", () -> new RedstoneTorch.AquastoneTorchWall());
 	public static final RegistryObject<Block> AQUA_STONE_BUTTON = registerBlock("aquastone_stone_button", () -> Button.constructBlock((AbstractButtonBlock)Blocks.STONE_BUTTON));
 //	public static final RegistryObject<Block> AQUA_STONE_PLATE = registerBlock("aquastone_stone_pressureplate", () -> PressurePlate.constructBlock(Blocks.STONE_PRESSURE_PLATE.getClass()));
+	public static final RegistryObject<Block> IRON_HATCH = registerNormalBlock("iron_hatch", () -> new DeepWatersTrapdoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE),true);
+	public static final RegistryObject<Block> SCRAP_DOOR = registerNormalBlock("iron_hatch_door", () -> new DeepWatersDoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE),true);
+	public static final RegistryObject<Block> SCRAP_LADDER = registerNormalBlock("scrap_ladder", () -> new DeepWatersLadder(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.PICKAXE),true);
+	public static final RegistryObject<Block> SCRAP_LANTERN = registerNormalBlock("scrap_lantern", () -> new DeepWatersLantern(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.PICKAXE),true);
+	public static final RegistryObject<Block> DEADWOOD_TRAPDOOR = registerNormalBlock("deadwood_trapdoor", () -> new DeepWatersTrapdoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE),true);
+	public static final RegistryObject<Block> DEADWOOD_DOOR = registerNormalBlock("deadwood_door", () -> new DeepWatersDoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE),true);
 	public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
 	public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlock("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));
