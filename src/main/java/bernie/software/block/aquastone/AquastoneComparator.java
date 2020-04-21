@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ComparatorBlock;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
@@ -33,6 +34,10 @@ public class AquastoneComparator extends ComparatorBlock implements IWaterLoggab
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
 		return super.getStateForPlacement(context).with(WATERLOGGED, false);
+	}
+
+	public PushReaction getPushReaction(BlockState state) {
+		return PushReaction.DESTROY;
 	}
 
 	public IFluidState getFluidState(BlockState state)

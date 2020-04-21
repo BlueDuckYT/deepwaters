@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.RepeaterBlock;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
@@ -46,6 +47,10 @@ public class AquastoneRepeater extends RepeaterBlock implements IWaterLoggable
 		} else {
 			return super.getDelay(p_196346_1_)*4;
 		}
+	}
+
+	public PushReaction getPushReaction(BlockState state) {
+		return PushReaction.DESTROY;
 	}
 
 	@Override

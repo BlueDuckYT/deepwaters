@@ -1,6 +1,7 @@
 package bernie.software.block.aquastone;
 
 import net.minecraft.block.*;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
@@ -39,7 +40,11 @@ public class Button {
         @Override
         public BlockState getStateForPlacement(BlockItemUseContext context)
         {
-            return super.getStateForPlacement(context).with(WATERLOGGED, false);
+            try {
+                return super.getStateForPlacement(context).with(WATERLOGGED, false);
+            } catch (Exception err) {
+                return super.getStateForPlacement(context);
+            }
         }
 
         public IFluidState getFluidState(BlockState state)
@@ -57,6 +62,10 @@ public class Button {
                 }
             } catch (Exception err) {}
             return null;
+        }
+
+        public PushReaction getPushReaction(BlockState state) {
+            return PushReaction.DESTROY;
         }
     }
 }
