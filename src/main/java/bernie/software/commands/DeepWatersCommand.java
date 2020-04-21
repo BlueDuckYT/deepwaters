@@ -1,11 +1,8 @@
 package bernie.software.commands;
 
 import bernie.software.ForgeBusEventSubscriber;
-import bernie.software.ModEventSubscriber;
 import bernie.software.registry.DeepWatersBiomes;
-import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -16,9 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.event.ForgeEventFactory;
-
-import static bernie.software.ModEventSubscriber.DeepWatersDimension;
 
 public class DeepWatersCommand
 {
@@ -38,7 +32,7 @@ public class DeepWatersCommand
 		ServerPlayerEntity player = context.getSource().asPlayer();
 		int x = player.getPosition().getX();
 		int z = player.getPosition().getZ();
-		DimensionType deepWatersDimensionType = DimensionType.byName(ForgeBusEventSubscriber.DIMENSION_TYPE_RL);
+		DimensionType deepWatersDimensionType = DimensionType.byName(ForgeBusEventSubscriber.DEEPWATERSDIMENSION);
 		if (player.dimension.equals(DimensionType.OVERWORLD))
 		{
 			ServerWorld deepWatersWorld = player.server.getWorld(deepWatersDimensionType);
@@ -50,7 +44,8 @@ public class DeepWatersCommand
 			{
 				for (int j = 0; j < 300; j++)
 				{
-					if (deepWatersWorld.getBiome(new BlockPos(i * 16, 50, j * 16)) == DeepWatersBiomes.CoralFieldsBiome.get())
+					if (deepWatersWorld.getBiome(
+							new BlockPos(i * 16, 50, j * 16)) == DeepWatersBiomes.CoralFieldsBiome.get())
 					{
 						pos = new ChunkPos(i * 16, j * 16);
 						spawnPos = deepWatersWorld.dimension.findSpawn(pos, false);

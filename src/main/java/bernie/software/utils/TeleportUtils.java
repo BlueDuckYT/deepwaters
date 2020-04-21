@@ -1,255 +1,58 @@
 package bernie.software.utils;
 
-import bernie.software.world.gen.structures.DeepWatersPortalStructure;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.play.server.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
-import net.minecraft.util.Direction;
+import net.minecraft.network.play.server.SChangeGameStatePacket;
+import net.minecraft.network.play.server.SRespawnPacket;
+import net.minecraft.network.play.server.SServerDifficultyPacket;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.fml.hooks.BasicEventHooks;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
-
-import javax.annotation.Nullable;
-
-// This class is copied from the McJty Lib, thanks McJty this saves me a ton of time <3
 
 public class TeleportUtils
 {
-
-	public static void performTeleport(PlayerEntity player, DimensionType dimension, BlockPos dest,
-	                                   @Nullable Direction direction)
+	public static void TeleportPlayerToDimension(ServerWorld deepWatersWorld, ServerPlayerEntity player,
+	                                             BlockPos spawnPos)
 	{
-		performTeleport(player, dimension, dest.getX() + 0.5, dest.getY() + 1.5, dest.getZ() + 0.5, direction);
+		deepWatersWorld.getChunk(spawnPos);
+		player.teleport(deepWatersWorld, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(),
+				player.rotationYaw, player.rotationPitch);
 	}
 
-	private static void performTeleport(PlayerEntity player, DimensionType dimension, double destX, double destY,
-	                                    double destZ, @Nullable Direction direction)
+	public static Entity TransferEntityToNewDimension(Entity entityIn, ServerWorld destinationWorld, BlockPos spawnPos)
 	{
-		DimensionType oldId = player.getEntityWorld().getDimension().getType();
-
-		float rotationYaw = player.rotationYaw;
-		float rotationPitch = player.rotationPitch;
-
-		if (!oldId.equals(dimension))
+		Entity entity2 = entityIn.getType().create(destinationWorld);
+		if (entity2 != null)
 		{
-			teleportToDimension(player, dimension, destX, destY, destZ);
+			entity2.copyDataFromOld(entityIn);
+			entity2.moveToBlockPosAndAngles(spawnPos, entityIn.rotationYaw, entityIn.rotationPitch);
+			entity2.setMotion(entityIn.getMotion());
+			destinationWorld.func_217460_e(entity2);
 		}
-		if (direction != null)
-		{
-			fixOrientation(player, destX, destY, destZ, direction);
-		}
-		else
-		{
-			player.rotationYaw = rotationYaw;
-			player.rotationPitch = rotationPitch;
-		}
-		player.setPositionAndUpdate(destX, destY, destZ);
+		return entity2;
 	}
 
-	/**
-	 * Get a world for a dimension, possibly loading it from the configuration manager.
-	 */
-	public static World getWorldForDimension(DimensionType type)
+	/*
+		Show the changing dimension screen, this is usually pretty brief
+	*/
+	public static void SendDimensionChangePackets(DimensionType dimension, ServerPlayerEntity player, WorldInfo worldInfo)
 	{
-		World w = WorldUtils.getWorld(type);
-		if (w == null)
-		{
-			MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-			w = server.getWorld(type);
-		}
-		return w;
-	}
-
-
-	private static void teleportToDimension(PlayerEntity player, DimensionType dimension, double x, double y, double z)
-	{
-		DimensionType oldDimension = player.getEntityWorld().getDimension().getType();
-		ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
-		MinecraftServer server = player.getEntityWorld().getServer();
-		ServerWorld worldServer = server.getWorld(dimension);
-		if (worldServer == null)
-		{
-			return;
-		}
-		player.addExperienceLevel(0);
-
-		changeDim(serverPlayer, new BlockPos(x, y, z), dimension);
-		//player.setPositionAndUpdate(x, y, z);
-	}
-
-	private static void changeDim(ServerPlayerEntity player, BlockPos pos, DimensionType type)
-	{ // copy from ServerPlayerEntity#changeDimension
-		if (!ForgeHooks.onTravelToDimension(player, type))
-		{
-			return;
-		}
-
-//        player.isInvulnerableDimensionChange();
-		DimensionType dimensiontype = player.dimension;
-
-		ServerWorld srcWorld = player.server.getWorld(dimensiontype);
-		player.dimension = type;
-		ServerWorld destWorld = player.server.getWorld(type);
-
-		int spawnHeight = destWorld.getHeight(Heightmap.Type.WORLD_SURFACE, pos).getY() + 1;
-		DeepWatersPortalStructure.placePortalAtLocation(destWorld,
-				destWorld.getChunkProvider().getChunkGenerator(), destWorld.getRandom(),
-				new BlockPos(pos.getX(),
-						spawnHeight <= destWorld.getSeaLevel() ? destWorld.getSeaLevel() - 1 : spawnHeight,
-						pos.getZ()), new NoFeatureConfig());
-
-		WorldInfo worldinfo = player.world.getWorldInfo();
+		player.connection.sendPacket(new SChangeGameStatePacket(4, 0.0F));
+		player.connection.sendPacket(new SRespawnPacket(dimension, worldInfo.getGenerator(),
+				player.interactionManager.getGameType()));
 		player.connection.sendPacket(
-				new SRespawnPacket(type, worldinfo.getGenerator(), player.interactionManager.getGameType()));
-		player.connection.sendPacket(
-				new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
-		PlayerList playerlist = player.server.getPlayerList();
-		playerlist.updatePermissionLevel(player);
-		srcWorld.removeEntity(player, true);
-		player.revive();
-		float f = player.rotationPitch;
-		float f1 = player.rotationYaw;
-		BlockPos spawnPos = new BlockPos(pos.getX(),
-				pos.getY() <= destWorld.getSeaLevel() ? destWorld.getSeaLevel() - 1 : pos.getY(),
-				pos.getZ()).east(4).north(1).up(3);
-		player.setLocationAndAngles(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
-		srcWorld.getProfiler().endSection();
-		srcWorld.getProfiler().startSection("placing");
-		player.setLocationAndAngles(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
-
-		srcWorld.getProfiler().endSection();
-		player.setWorld(destWorld);
-		destWorld.func_217447_b(player);
-
-		player.connection.setPlayerLocation(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
-		player.interactionManager.setWorld(destWorld);
-		player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
-		playerlist.sendWorldInfo(player, destWorld);
-		playerlist.sendInventory(player);
-
-		for (EffectInstance effectinstance : player.getActivePotionEffects())
-		{
-			player.connection.sendPacket(new SPlayEntityEffectPacket(player.getEntityId(), effectinstance));
-		}
-
-		player.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
-		BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, type);
-		destWorld.getChunk(spawnPos);
-		player.teleport(destWorld, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), f1, f);
+				new SServerDifficultyPacket(worldInfo.getDifficulty(), worldInfo.isDifficultyLocked()));
 	}
 
-
-	private static void facePosition(Entity entity, double newX, double newY, double newZ, BlockPos dest)
+	public static boolean canEntityBeTeleported(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	{
-		double d0 = dest.getX() - newX;
-		double d1 = dest.getY() - (newY + entity.getEyeHeight());
-		double d2 = dest.getZ() - newZ;
-
-		double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-		float f = (float) (MathHelper.atan2(d2, d0) * (180D / Math.PI)) - 90.0F;
-		float f1 = (float) (-(MathHelper.atan2(d1, d3) * (180D / Math.PI)));
-		entity.rotationPitch = updateRotation(entity.rotationPitch, f1);
-		entity.rotationYaw = updateRotation(entity.rotationYaw, f);
+		return !worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && VoxelShapes.compare(
+				VoxelShapes.create(entityIn.getBoundingBox().offset((double) (-pos.getX()), (double) (-pos.getY()),
+						(double) (-pos.getZ()))), state.getShape(worldIn, pos), IBooleanFunction.AND);
 	}
-
-	private static float updateRotation(float angle, float targetAngle)
-	{
-		float f = MathHelper.wrapDegrees(targetAngle - angle);
-		return angle + f;
-	}
-
-
-	/**
-	 * Teleport an entity and return the new entity (as teleporting to other dimensions causes
-	 * entities to be killed and recreated)
-	 */
-	public static Entity teleportEntity(Entity entity, World destWorld, double newX, double newY, double newZ,
-	                                    Direction facing)
-	{
-		World world = entity.getEntityWorld();
-		if (entity instanceof PlayerEntity)
-		{
-			performTeleport((PlayerEntity) entity, destWorld.getDimension().getType(), newX, newY, newZ, facing);
-			return entity;
-		}
-		else
-		{
-			float rotationYaw = entity.rotationYaw;
-			float rotationPitch = entity.rotationPitch;
-
-			if (world.getDimension().getType() != destWorld.getDimension().getType())
-			{
-				CompoundNBT tagCompound = new CompoundNBT();
-				entity.writeUnlessRemoved(tagCompound);
-				tagCompound.remove("Dimension");
-				EntityType<?> type = entity.getType();
-				((ServerWorld) world).removeEntity(entity);
-				entity.revive();
-				((ServerWorld) world).updateEntity(entity);
-//                world.updateEntityWithOptionalForce(entity, false);
-
-				Entity newEntity = type.create(destWorld);
-				newEntity.read(tagCompound);
-				if (facing != null)
-				{
-					fixOrientation(newEntity, newX, newY, newZ, facing);
-				}
-				else
-				{
-					newEntity.rotationYaw = rotationYaw;
-					newEntity.rotationPitch = rotationPitch;
-				}
-				newEntity.setLocationAndAngles(newX, newY, newZ, newEntity.rotationYaw, newEntity.rotationPitch);
-				boolean flag = newEntity.forceSpawn;
-				newEntity.forceSpawn = true;
-				destWorld.addEntity(newEntity);
-				newEntity.forceSpawn = flag;
-				((ServerWorld) world).updateEntity(newEntity);
-
-				entity.remove();
-
-				((ServerWorld) world).resetUpdateEntityTick();
-				((ServerWorld) destWorld).resetUpdateEntityTick();
-				return newEntity;
-			}
-			else
-			{
-				if (facing != null)
-				{
-					fixOrientation(entity, newX, newY, newZ, facing);
-				}
-				else
-				{
-					entity.rotationYaw = rotationYaw;
-					entity.rotationPitch = rotationPitch;
-				}
-				entity.setLocationAndAngles(newX, newY, newZ, entity.rotationYaw, entity.rotationPitch);
-				((ServerWorld) destWorld).updateEntity(entity);
-				return entity;
-			}
-		}
-	}
-
-	private static void fixOrientation(Entity entity, double newX, double newY, double newZ, Direction facing)
-	{
-		if (facing != Direction.DOWN && facing != Direction.UP)
-		{
-			facePosition(entity, newX, newY, newZ, new BlockPos(newX, newY, newZ).offset(facing, 4));
-		}
-	}
-
 }

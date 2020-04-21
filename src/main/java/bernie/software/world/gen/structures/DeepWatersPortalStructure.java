@@ -118,9 +118,10 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 			Rotation.NONE).setIgnoreEntities(false).setChunk(
 			null);
 
-	public static void placePortalAtLocation(IWorld world, ChunkGenerator<? extends GenerationSettings> changedBlock,
+	public static void placePortalAtLocation(IWorld world,
 	                                         Random rand, BlockPos position, NoFeatureConfig config)
 	{
+		ChunkGenerator<?> generator = world.getChunkProvider().getChunkGenerator();
 		TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
 		Template template = templatemanager.getTemplate(GeneralUtils.Location("deepwatersportalactivated"));
 		Dimension dimension = world.getDimension();

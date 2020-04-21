@@ -2,8 +2,6 @@ package bernie.software.world;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.ForgeBusEventSubscriber;
-import bernie.software.block.DeepWatersBlock;
-import bernie.software.block.Pedestal;
 import bernie.software.entity.CoralCrawler;
 import bernie.software.registry.DeepWatersBlocks;
 import net.minecraft.block.Block;
@@ -25,7 +23,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.Level;
 
-import java.util.Arrays;
 import java.util.Random;
 
 @Mod.EventBusSubscriber
@@ -81,7 +78,7 @@ public class DeepWatersDimensionEventSubscriber
 
 		PlayerEntity player = event.getPlayer();
 		if (replace && yPos <= 229 && player.dimension == DimensionType.byName(
-				ForgeBusEventSubscriber.DIMENSION_TYPE_RL))
+				ForgeBusEventSubscriber.DEEPWATERSDIMENSION))
 		{
 			if (player.canHarvestBlock(event.getState()) && !player.isCreative())
 			{

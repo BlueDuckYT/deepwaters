@@ -2,6 +2,7 @@ package bernie.software;
 
 import bernie.software.commands.DeepWatersCommand;
 import bernie.software.commands.ForceSpawnCommand;
+import bernie.software.utils.GeneralUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import net.minecraft.util.ResourceLocation;
@@ -15,14 +16,14 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 @Mod.EventBusSubscriber(modid = "deepwaters", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeBusEventSubscriber
 {
-	public static final ResourceLocation DIMENSION_TYPE_RL = new ResourceLocation("deepwaters", "deepwatersdimension");
+	public static final ResourceLocation DEEPWATERSDIMENSION = GeneralUtils.Location("deepwatersdimension");
 
 	@SubscribeEvent
 	public static void onRegisterDimensionsEvent(RegisterDimensionsEvent event)
 	{
-		if (DimensionType.byName(DIMENSION_TYPE_RL) == null)
+		if (DimensionType.byName(DEEPWATERSDIMENSION) == null)
 		{
-			DimensionManager.registerDimension(DIMENSION_TYPE_RL, ModEventSubscriber.DeepWatersDimension, null, true);
+			DimensionManager.registerDimension(DEEPWATERSDIMENSION, ModEventSubscriber.DeepWatersDimension, null, true);
 		}
 	}
 
