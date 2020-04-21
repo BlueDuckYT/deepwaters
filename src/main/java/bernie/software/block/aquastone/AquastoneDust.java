@@ -1,5 +1,6 @@
 package bernie.software.block.aquastone;
 
+import bernie.software.DeepWatersMod;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.*;
@@ -16,11 +17,14 @@ import net.minecraft.state.properties.RedstoneSide;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
+import net.minecraft.world.chunk.Chunk;
+import org.apache.logging.log4j.Level;
 
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
@@ -64,7 +68,7 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	@Override
 	public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
-		return false;
+		return true;
 	}
 
 	protected static boolean canConnectTo(BlockState blockState, IBlockReader world, BlockPos pos, @Nullable Direction side)
@@ -160,34 +164,44 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	@Override
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
 	{
-		BlockState state1 = worldIn.getBlockState(pos);
-		state1 = state1.with(NORTH, getSide(worldIn, pos, Direction.NORTH));
-		state1 = state1.with(SOUTH, getSide(worldIn, pos, Direction.SOUTH));
-		state1 = state1.with(EAST, getSide(worldIn, pos, Direction.EAST));
-		state1 = state1.with(WEST, getSide(worldIn, pos, Direction.WEST));
-		worldIn.setBlockState(pos, state1);
 		if (!worldIn.isRemote)
 		{
 			if (state.isValidPosition(worldIn, pos))
 			{
-				BlockPos[] poses = new BlockPos[]{
-						new BlockPos(1, 0, 0),
-						new BlockPos(0, 0, 1),
-						new BlockPos(0, 0, -1),
-						new BlockPos(-1, 0, 0)
-				};
+//				BlockPos[] poses = new BlockPos[]{
+//						new BlockPos(1, 0, 0),
+//						new BlockPos(0, 0, 1),
+//						new BlockPos(0, 0, -1),
+//						new BlockPos(-1, 0, 0)
+//				};
 				BlockState newState = state;
 				int oldPower = state.get(POWER);
-				for (BlockPos pos1 : poses)
-				{
-					forcePower(pos, pos1, worldIn, oldPower);
-				}
-				try
-				{
-					worldIn.notifyNeighborsOfStateExcept(pos.offset(Direction.DOWN), this, Direction.UP);
-				}
-				catch (Exception err)
-				{
+//				for (BlockPos pos1 : poses)
+//				{
+//					if (!pos1.add(pos).equals(fromPos))
+//					{
+////						if (blockIn!=this) {
+////						if (!isMoving) {
+////							newState=forcePower(pos, pos1, worldIn, oldPower);
+////						}
+////						}
+//						try {
+//						} catch (Exception err) {}
+//					}
+//				}
+				worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(POWER,getPowerForPos(worldIn,pos)));
+				newState=worldIn.getBlockState(pos);
+				int newPower = newState.get(POWER);
+				if (newPower!=oldPower) {
+					try
+					{
+					for (Direction direction:Direction.values()) {
+						worldIn.notifyNeighbors(pos.offset(direction), this);
+					}
+					}
+					catch (Exception err)
+					{
+					}
 				}
 			}
 			else
@@ -199,17 +213,101 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	}
 
 	@Override
+	public void animateTick(BlockState state, World worldIn, BlockPos pos, Random random) {
+		super.animateTick(state, worldIn, pos, random);
+		BlockState state1 = worldIn.getBlockState(pos);
+		worldIn.setBlockState(pos, state1
+				.with(NORTH, getSide(worldIn, pos, Direction.NORTH))
+				.with(SOUTH, getSide(worldIn, pos, Direction.SOUTH))
+				.with(EAST, getSide(worldIn, pos, Direction.EAST))
+				.with(WEST, getSide(worldIn, pos, Direction.WEST))
+		);
+	}
+
+	@Override
 	public int getWeakPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side)
 	{
-		return getAqualitePower(pos, blockAccess) - 2;
+		ArrayList<Direction> dirsPowered=new ArrayList<>();
+		if (!blockState.get(NORTH).equals(RedstoneSide.NONE)) {
+			dirsPowered.add(Direction.NORTH);
+		}
+		if (!blockState.get(SOUTH).equals(RedstoneSide.NONE)) {
+			dirsPowered.add(Direction.SOUTH);
+		}
+		if (!blockState.get(EAST).equals(RedstoneSide.NONE)) {
+			dirsPowered.add(Direction.EAST);
+		}
+		if (!blockState.get(WEST).equals(RedstoneSide.NONE)) {
+			dirsPowered.add(Direction.WEST);
+		}
+		if (dirsPowered.contains(Direction.EAST)&&!(dirsPowered.size()>=2)) {
+			dirsPowered.add(Direction.WEST);
+		}
+		if (dirsPowered.contains(Direction.WEST)&&!(dirsPowered.size()>=2)) {
+			dirsPowered.add(Direction.EAST);
+		}
+		if (dirsPowered.contains(Direction.NORTH)&&!(dirsPowered.size()>=2)) {
+			dirsPowered.add(Direction.SOUTH);
+		}
+		if (dirsPowered.contains(Direction.SOUTH)&&!(dirsPowered.size()>=2)) {
+			dirsPowered.add(Direction.NORTH);
+		}
+		boolean worksVertically=false;
+		side=side.getOpposite();
+		if (blockAccess.getBlockState(pos.offset(side)).getBlock() instanceof RedstoneDiodeBlock) {
+			dirsPowered.add(Direction.DOWN);
+			worksVertically = (!(side.equals(Direction.DOWN)||side.equals(Direction.UP)));
+			if (worksVertically) {
+				if (dirsPowered.contains(side)) {
+					worksVertically=true;
+				} else {
+					worksVertically=false;
+				}
+			}
+		} else {
+			dirsPowered.add(Direction.DOWN);
+			worksVertically = (!(side.equals(Direction.DOWN)||side.equals(Direction.UP)));
+			if (worksVertically) {
+				if (dirsPowered.contains(side)) {
+					worksVertically=true;
+				} else {
+					worksVertically=false;
+				}
+			}
+		}
+		boolean canPower=false;
+		if (dirsPowered.contains(side)) {
+			canPower=true;
+		} else if (blockState.get(WEST).equals(RedstoneSide.NONE)&&
+			blockState.get(EAST).equals(RedstoneSide.NONE)&&
+			blockState.get(SOUTH).equals(RedstoneSide.NONE)&&
+			blockState.get(NORTH).equals(RedstoneSide.NONE)&&
+			worksVertically) {
+			canPower=true;
+		}
+		return canPower ? blockAccess.getBlockState(pos).get(POWER):0;
 	}
 
 	private int getAqualitePower(BlockPos pos, World world)
 	{
+//		int power=0;
+//		Direction[] FACING_VALUES=new Direction[]{
+//				Direction.NORTH,
+//				Direction.SOUTH,
+//				Direction.EAST,
+//				Direction.WEST
+//		};
+//		for(Direction direction : FACING_VALUES) {
+//			int power2=world.getBlockState(pos.offset(direction)).getWeakPower(world,pos,direction);
+//			if (power<power2) {
+//				power=power2;
+//			}
+//		}
+//		int power = 0;
 		int power = world.getRedstonePowerFromNeighbors(pos);
 		if (power < world.getStrongPower(pos))
 		{
-			power = world.getStrongPower(pos) + 1;
+			power = world.getStrongPower(pos);
 		}
 		int aquaPower = getAqualitePower(pos, (IBlockReader) world);
 		if (power < aquaPower)
@@ -222,12 +320,14 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	@Override
 	public int getStrongPower(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction side)
 	{
-		return getWeakPower(blockState, blockAccess, pos, side);
+//		return getWeakPower(blockState, blockAccess, pos, side);
+		return getWeakPower(blockState,blockAccess,pos,side);
 	}
 
 	@Override
 	public void updateDiagonalNeighbors(BlockState state, IWorld worldIn, BlockPos pos, int flags)
 	{
+		super.updateDiagonalNeighbors(state,worldIn,pos,flags);
 	}
 
 	@Override
@@ -245,53 +345,33 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				new BlockPos(0, 0, -1),
 				new BlockPos(-1, 0, 0)
 		};
-		if (world.getBlockState(pos.offset(Direction.DOWN)).isOpaqueCube(world, pos.offset(Direction.DOWN)))
-		{
-			BlockPos[] indirect = new BlockPos[]{
-					new BlockPos(1, -1, 0),
-					new BlockPos(0, -1, 1),
-					new BlockPos(0, -1, -1),
-					new BlockPos(-1, -1, 0)
-			};
-			for (BlockPos pos1 : indirect)
+		try {
+			if (world.getBlockState(pos.offset(Direction.DOWN)).isOpaqueCube(world, pos.offset(Direction.DOWN)))
 			{
-				if (world.getBlockState(pos.add(pos1)).getBlock() instanceof RedstoneWireBlock)
+				BlockPos[] indirect = new BlockPos[]{
+						new BlockPos(1, -1, 0),
+						new BlockPos(0, -1, 1),
+						new BlockPos(0, -1, -1),
+						new BlockPos(-1, -1, 0)
+				};
+				for (BlockPos pos1 : indirect)
 				{
-					if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
+					if (world.getBlockState(pos.add(pos1)).getBlock() instanceof RedstoneWireBlock)
 					{
-						if (!world.getBlockState(pos.add(pos1.offset(Direction.UP))).isOpaqueCube(world, pos.add(pos1.offset(Direction.UP))))
+						if (!world.getBlockState(pos.add(pos1).offset(Direction.UP)).isOpaqueCube(world, pos.add(pos1).offset(Direction.UP)))
 						{
 							if (world.getBlockState(pos.add(pos1)).get(POWER) != power)
 							{
-								power = world.getBlockState(pos.add(pos1)).get(POWER);
+								if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
+								{
+									power = world.getBlockState(pos.add(pos1)).get(POWER);
+								}
 							}
 						}
 					}
 				}
 			}
-		}
-		for (BlockPos pos1 : direct)
-		{
-			if (world.getBlockState(pos.add(pos1)).getBlock() instanceof RedstoneWireBlock)
-			{
-				if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
-				{
-					if (world.getBlockState(pos.add(pos1)).get(POWER) != power)
-					{
-						power = world.getBlockState(pos.add(pos1)).get(POWER);
-					}
-				}
-			}
-		}
-		BlockPos[] indirect = new BlockPos[]{
-				new BlockPos(1, 1, 0),
-				new BlockPos(0, 1, 1),
-				new BlockPos(0, 1, -1),
-				new BlockPos(-1, 1, 0)
-		};
-		for (BlockPos pos1 : indirect)
-		{
-			if (world.getBlockState(pos.add(pos1.offset(Direction.DOWN))).isOpaqueCube(world, pos.add(pos1.offset(Direction.DOWN))))
+			for (BlockPos pos1 : direct)
 			{
 				if (world.getBlockState(pos.add(pos1)).getBlock() instanceof RedstoneWireBlock)
 				{
@@ -299,15 +379,52 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 					{
 						if (world.getBlockState(pos.add(pos1)).get(POWER) != power)
 						{
-							if (world.getBlockState(pos.add(pos1.offset(Direction.DOWN))).isSolid())
+							power = world.getBlockState(pos.add(pos1)).get(POWER);
+						}
+					}
+				} else {
+					try
+					{
+						ArrayList<Direction> dirs=new ArrayList<>();
+						dirs.add(Direction.WEST);
+						dirs.add(Direction.EAST);
+						dirs.add(Direction.NORTH);
+						Direction dir=Direction.SOUTH;
+						for (Direction dir2:dirs) {
+							if (new BlockPos(0,0,0).offset(dir2).equals(pos1)) {
+								dir=dir2;
+							}
+						}
+						power=world.getBlockState(pos.add(pos1)).getWeakPower(world,pos.add(pos1),dir);
+					} catch (Exception err) {}
+				}
+			}
+			BlockPos[] indirect = new BlockPos[]{
+					new BlockPos(1, 1, 0),
+					new BlockPos(0, 1, 1),
+					new BlockPos(0, 1, -1),
+					new BlockPos(-1, 1, 0)
+			};
+			for (BlockPos pos1 : indirect)
+			{
+				if (world.getBlockState(pos.add(pos1.offset(Direction.DOWN))).isOpaqueCube(world, pos.add(pos1.offset(Direction.DOWN))))
+				{
+					if (world.getBlockState(pos.add(pos1)).getBlock() instanceof RedstoneWireBlock)
+					{
+						if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
+						{
+							if (world.getBlockState(pos.add(pos1)).get(POWER) != power)
 							{
-								power = world.getBlockState(pos.add(pos1)).get(POWER);
+								if (world.getBlockState(pos.add(pos1.offset(Direction.DOWN))).isSolid())
+								{
+									power = world.getBlockState(pos.add(pos1)).get(POWER);
+								}
 							}
 						}
 					}
 				}
 			}
-		}
+		} catch (Exception err) {}
 		return power;
 	}
 
@@ -321,11 +438,11 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				{
 					if (sourcePower > world.getBlockState(source.add(offset)).get(POWER))
 					{
-						world.setBlockState(source.add(offset), world.getBlockState(source.add(offset)).with(POWER, sourcePower - 2), 4);
+						world.setBlockState(source.add(offset), world.getBlockState(source.add(offset)).with(POWER, sourcePower - 2));
 					}
 					else
 					{
-						world.setBlockState(source.add(offset), world.getBlockState(source.add(offset)).with(POWER, 0), 4);
+						world.setBlockState(source.add(offset), world.getBlockState(source.add(offset)).with(POWER, 0));
 					}
 				}
 				catch (Exception err)
@@ -335,8 +452,7 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 		}
 	}
 
-	private BlockState forcePower(BlockPos source, BlockPos offset, World world, int oldPower)
-	{
+	public int getPowerForPos(World world,BlockPos source) {
 		int subtractAmount = 1;
 		if (!world.getBlockState(source).get(WATERLOGGED))
 		{
@@ -348,42 +464,50 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 		{
 			power = 0;
 		}
+		return power;
+	}
+
+	private BlockState forcePower(BlockPos source, BlockPos offset, World world, int oldPower)
+	{
+		int power=getPowerForPos(world,source);
 		if (power > oldPower)
 		{
-			try
-			{
-				tryChangeBlock(source, offset, world, power);
-				if (!world.getBlockState(source.offset(Direction.UP)).isOpaqueCube(world, source.offset(Direction.UP)))
-				{
-					try
-					{
-						tryChangeBlock(source, offset.offset(Direction.UP), world, power);
-					}
-					catch (Exception err)
-					{
-					}
-				}
-				if (world.getBlockState(source.offset(Direction.DOWN)).isOpaqueCube(world, source.offset(Direction.DOWN)))
-				{
-					try
-					{
-						tryChangeBlock(source, offset.offset(Direction.DOWN), world, power);
-					}
-					catch (Exception err)
-					{
-					}
-				}
-				try
-				{
-					world.setBlockState(source, world.getBlockState(source).with(POWER, power));
-				}
-				catch (Exception err)
-				{
-				}
-			}
-			catch (Exception err)
-			{
-			}
+			world.setBlockState(source, world.getBlockState(source).with(POWER, power));
+//			turnOn(source,new ArrayList<>(),world);
+//			try
+//			{
+//				tryChangeBlock(source, offset, world, power);
+//				if (!world.getBlockState(source.offset(Direction.UP)).isOpaqueCube(world, source.offset(Direction.UP)))
+//				{
+//					try
+//					{
+//						tryChangeBlock(source, offset.offset(Direction.UP), world, power);
+//					}
+//					catch (Exception err)
+//					{
+//					}
+//				}
+//				if (world.getBlockState(source.offset(Direction.DOWN)).isOpaqueCube(world, source.offset(Direction.DOWN)))
+//				{
+//					try
+//					{
+//						tryChangeBlock(source, offset.offset(Direction.DOWN), world, power);
+//					}
+//					catch (Exception err)
+//					{
+//					}
+//				}
+//				try
+//				{
+//					world.setBlockState(source, world.getBlockState(source).with(POWER, power));
+//				}
+//				catch (Exception err)
+//				{
+//				}
+//			}
+//			catch (Exception err)
+//			{
+//			}
 		}
 		else
 		{
@@ -391,34 +515,35 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 			{
 				try
 				{
-					try
-					{
-						world.setBlockState(source, world.getBlockState(source).with(POWER, 0));
-					}
-					catch (Exception err)
-					{
-					}
-					try
-					{
-						world.setBlockState(source.add(offset), world.getBlockState(source.add(offset)).with(POWER, 0));
-					}
-					catch (Exception err)
-					{
-					}
-					try
-					{
-						world.setBlockState(source.add(offset.offset(Direction.UP)), world.getBlockState(source.add(offset.offset(Direction.UP))).with(POWER, 0));
-					}
-					catch (Exception err)
-					{
-					}
-					try
-					{
-						world.setBlockState(source.add(offset.offset(Direction.DOWN)), world.getBlockState(source.add(offset.offset(Direction.DOWN))).with(POWER, 0));
-					}
-					catch (Exception err)
-					{
-					}
+					turnOff(source,new ArrayList<>(),world,0);
+//					try
+//					{
+//						world.setBlockState(source, world.getBlockState(source).with(POWER, 0));
+//					}
+//					catch (Exception err)
+//					{
+//					}
+//					try
+//					{
+//						world.setBlockState(source.add(offset), world.getBlockState(source.add(offset)).with(POWER, 0));
+//					}
+//					catch (Exception err)
+//					{
+//					}
+//					try
+//					{
+//						world.setBlockState(source.add(offset.offset(Direction.UP)), world.getBlockState(source.add(offset.offset(Direction.UP))).with(POWER, 0));
+//					}
+//					catch (Exception err)
+//					{
+//					}
+//					try
+//					{
+//						world.setBlockState(source.add(offset.offset(Direction.DOWN)), world.getBlockState(source.add(offset.offset(Direction.DOWN))).with(POWER, 0));
+//					}
+//					catch (Exception err)
+//					{
+//					}
 				}
 				catch (Exception err)
 				{
@@ -426,6 +551,86 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 			}
 		}
 		return world.getBlockState(source);
+	}
+
+	public void turnOff(BlockPos source,ArrayList<BlockPos> done,World world,int index) {
+		for (Direction dir:Direction.values()) {
+			if (!done.contains(source.offset(dir))) {
+				ArrayList<Direction> horizontal=new ArrayList<>();
+				horizontal.add(Direction.NORTH);
+				horizontal.add(Direction.SOUTH);
+				horizontal.add(Direction.EAST);
+				horizontal.add(Direction.WEST);
+				BlockPos offset=new BlockPos(0,0,0).offset(dir);
+//				if (dir.equals(Direction.UP)||
+//					dir.equals(Direction.DOWN)) {
+//					for (Direction dir2:directions) {
+//						offset=new BlockPos(0,0,0).offset(dir).offset(dir2);
+//						if (world.getBlockState(source.offset(dir)).getBlock() instanceof RedstoneWireBlock) {
+//							try
+//							{
+//								if (!done.contains(source.add(offset))) {
+//									done.add(source.add(offset));
+//									world.setBlockState(source.add(offset), world.getBlockState(source.add(offset)).with(POWER, 0));
+////									DeepWatersMod.logger.log(Level.INFO,"h"+dir);
+////									turnOff(source.add(offset),done,world);
+//								}
+//							}
+//							catch (Exception err)
+//							{
+//							}
+//						} else {
+//						}
+//					}
+//				}
+				if (index<=1000) {
+					if (world.getBlockState(source.offset(dir)).getBlock() instanceof RedstoneWireBlock) {
+						index+=1;
+						done.add(source.offset(dir));
+						try
+						{
+							world.setBlockState(source.offset(dir), world.getBlockState(source.offset(dir)).with(POWER, 0));
+						DeepWatersMod.logger.log(Level.INFO,"h"+index);
+							if (horizontal.contains(dir)) {
+								if (!done.contains(source.offset(dir).offset(Direction.UP))) {
+									if (world.getBlockState(source.offset(dir).offset(Direction.UP)).getBlock() instanceof RedstoneWireBlock) {
+										world.setBlockState(source.offset(dir).offset(Direction.UP), world.getBlockState(source.offset(dir).offset(Direction.UP)).with(POWER, 0));
+										done.add(source.offset(dir).offset(Direction.UP));
+										turnOff(source.offset(dir).offset(Direction.UP),done,world,index);
+									}
+								}
+							}
+							turnOff(source.offset(dir),done,world,index);
+						}
+						catch (Exception err)
+						{
+						}
+					} else {
+					}
+				}
+			}
+		}
+	}
+
+	public void turnOn(BlockPos source,ArrayList<BlockPos> done,World world) {
+		int power=getPowerForPos(world,source);
+		for (Direction dir:Direction.values()) {
+			if (!done.contains(source.offset(dir))) {
+				if (world.getBlockState(source.offset(dir)).getBlock() instanceof RedstoneWireBlock) {
+					done.add(source.offset(dir));
+					try
+					{
+						Chunk chunk = world.getChunkAt(source.offset(dir));
+						chunk.setBlockState(source.offset(dir),world.getBlockState(source.offset(dir)).with(POWER, power),true);
+//						world.setBlockState(source.offset(dir), );
+						turnOn(source.offset(dir),done,world);
+					}
+					catch (Exception err)
+					{
+					}
+				}
+			}
+		}
 	}
 
 	private int maxSignal(int existingSignal, BlockState neighbor)
