@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "deepwaters:block/deadwood_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "deepwaters:block/deadwood_log"
+    },
+    "axis=z": {
+      "model": "deepwaters:block/deadwood_log",
+      "x": 90
+    }
+  }
+}

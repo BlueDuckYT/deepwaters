@@ -8,6 +8,7 @@ import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ToolType;
@@ -76,12 +77,15 @@ public class DeepWatersBlocks
 //	public static final RegistryObject<Block> AQUA_STONE_PLATE = registerBlock("aquastone_stone_pressureplate", () -> PressurePlate.makeWaterloggable((PressurePlateBlock) Blocks.STONE_PRESSURE_PLATE));
 //	public static final RegistryObject<Block> AQUA_IRON_PLATE = registerBlock("aquastone_iron_pressureplate", () -> PressurePlate.makeWaterloggable((WeightedPressurePlateBlock) Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE));
 	public static final RegistryObject<Block> IRON_HATCH = registerNormalBlock("iron_hatch", () -> new DeepWatersTrapdoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE),true);
-	public static final RegistryObject<Block> SCRAP_DOOR = registerNormalBlock("iron_hatch_door", () -> new DeepWatersDoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE),true);
+	public static final RegistryObject<DoorBlock> SCRAP_DOOR = registerBlock("iron_hatch_door", () -> new DeepWatersDoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE));
 	public static final RegistryObject<Block> SCRAP_LADDER = registerNormalBlock("scrap_ladder", () -> new DeepWatersLadder(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.PICKAXE),true);
 	public static final RegistryObject<Block> SCRAP_LANTERN = registerNormalBlock("scrap_lantern", () -> new DeepWatersLantern(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.PICKAXE),true);
+	public static final RegistryObject<LogBlock> DEADWOOD_LOG = registerBlock("deadwood_log", () -> new DeepWatersLogBlock(MaterialColor.WHITE_TERRACOTTA));
+	public static final RegistryObject<Block> DEADWOOD_PLANKS = registerNormalBlock("deadwood_planks", () -> new DeepWatersBlock(
+			Material.WOOD, 2F, 3F, SoundType.WOOD, 0, ToolType.AXE), true);
 	public static final RegistryObject<Block> DEADWOOD_TRAPDOOR = registerNormalBlock("deadwood_trapdoor", () -> new DeepWatersTrapdoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE),true);
-	public static final RegistryObject<Block> DEADWOOD_DOOR = registerNormalBlock("deadwood_door", () -> new DeepWatersDoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE),true);
-	public static final RegistryObject<Block> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
+	public static final RegistryObject<DoorBlock> DEADWOOD_DOOR = registerBlock("deadwood_door", () -> new DeepWatersDoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE));
+	public static final RegistryObject<Pedestal> PEDESTAL = registerBlock("pedestal", () -> new Pedestal());
 	public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PortalPillarBlock());
 	public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlock("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));
 	public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlock("activated_portal_pillar", () -> new PortalPillarBlock(15));

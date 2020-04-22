@@ -14,6 +14,7 @@ public class PortalPillarBlock extends RotatedPillarBlock
 				.hardnessAndResistance(3F, 50F)
 				.sound(SoundType.STONE)
 				.harvestTool(ToolType.PICKAXE)
+				.noDrops()
 		);
 	}
 
@@ -24,6 +25,7 @@ public class PortalPillarBlock extends RotatedPillarBlock
 				.sound(SoundType.STONE)
 				.harvestTool(ToolType.PICKAXE)
 				.lightValue(light)
+				.noDrops()
 		);
 	}
 }

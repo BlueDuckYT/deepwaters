@@ -1,0 +1,7 @@
+{
+  "parent": "block/door_bottom",
+  "textures": {
+    "bottom": "deepwaters:block/iron_hatch_door_bottom",
+    "top": "deepwaters:block/iron_hatch_door_top"
+  }
+}
