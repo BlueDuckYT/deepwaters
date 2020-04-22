@@ -40,7 +40,7 @@ public class Pedestal extends Block implements IWaterLoggable
 {
 	public Pedestal(Properties properties)
 	{
-		super(properties);
+		super(properties.noDrops());
 	}
 
 	// empty = air or portal block
@@ -59,7 +59,7 @@ public class Pedestal extends Block implements IWaterLoggable
 		super(Properties.create(Material.ROCK)
 				.hardnessAndResistance(-1f, -1f)
 				.sound(SoundType.STONE)
-				.harvestLevel(0)
+				.noDrops()
 		);
 	}
 

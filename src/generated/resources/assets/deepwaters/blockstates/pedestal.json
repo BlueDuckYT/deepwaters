@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,hasheart=false,waterlogged=false": {
+      "model": "minecraft:pedestal"
+    },
+    "facing=south,hasheart=false,waterlogged=false": {
+      "model": "minecraft:pedestal",
+      "y": 180
+    },
+    "facing=west,hasheart=false,waterlogged=false": {
+      "model": "minecraft:pedestal",
+      "y": 270
+    },
+    "facing=east,hasheart=false,waterlogged=false": {
+      "model": "minecraft:pedestal",
+      "y": 90
+    },
+    "facing=north,hasheart=true,waterlogged=false": {
+      "model": "minecraft:pedestal"
+    },
+    "facing=south,hasheart=true,waterlogged=false": {
+      "model": "minecraft:pedestal",
+      "y": 180
+    },
+    "facing=west,hasheart=true,waterlogged=false": {
+      "model": "minecraft:pedestal",
+      "y": 270
+    },
+    "facing=east,hasheart=true,waterlogged=false": {
+      "model": "minecraft:pedestal",
+      "y": 90
+    },
+    "facing=north,hasheart=false,waterlogged=true": {
+      "model": "minecraft:pedestal"
+    },
+    "facing=south,hasheart=false,waterlogged=true": {
+      "model": "minecraft:pedestal",
+      "y": 180
+    },
+    "facing=west,hasheart=false,waterlogged=true": {
+      "model": "minecraft:pedestal",
+      "y": 270
+    },
+    "facing=east,hasheart=false,waterlogged=true": {
+      "model": "minecraft:pedestal",
+      "y": 90
+    },
+    "facing=north,hasheart=true,waterlogged=true": {
+      "model": "minecraft:pedestal"
+    },
+    "facing=south,hasheart=true,waterlogged=true": {
+      "model": "minecraft:pedestal",
+      "y": 180
+    },
+    "facing=west,hasheart=true,waterlogged=true": {
+      "model": "minecraft:pedestal",
+      "y": 270
+    },
+    "facing=east,hasheart=true,waterlogged=true": {
+      "model": "minecraft:pedestal",
+      "y": 90
+    }
+  }
+}

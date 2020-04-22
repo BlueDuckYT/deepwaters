@@ -28,6 +28,7 @@ public class DeepWatersPortalPillarEnd extends DirectionalBlock
 				.sound(SoundType.STONE)
 				.harvestTool(ToolType.PICKAXE)
 				.lightValue(light)
+				.noDrops()
 		);
 	}
 

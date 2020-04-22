@@ -52,7 +52,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		normalItem(DeepWatersItems.MUCK_GULPER);
 		normalItem(DeepWatersItems.COOKED_MUCK_GULPER);
 		normalItem(DeepWatersItems.SALTED_MUCK_GULPER);
-		normalItem(DeepWatersItems.AQUASTONE_TORCH);
+		//normalItem(DeepWatersItems.AQUASTONE_TORCH);
 
 		toolItem(DeepWatersItems.PRISMARINE_SWORD);
 		toolItem(DeepWatersItems.AQUALITE_SWORD);
@@ -63,7 +63,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		toolItem(DeepWatersItems.PEAL_WAND);
 		//toolItem(DeepWatersItems.PRISMARINE_SHIELD);
 
-		normalItem(DeepWatersItems.POWER_STONE);
+		//normalItem(DeepWatersItems.POWER_STONE);
 
 		spawnEgg(DeepWatersItems.KILLER_WIGGLER_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.EEL_SPAWN_EGG);
