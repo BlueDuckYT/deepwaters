@@ -16,11 +16,14 @@
 			}
 		},
 		{
-			"from": [0, 0.25, 8],
-			"to": [16, 0.25, 16],
+			"from": [5, 0, 8],
+			"to": [11, 0.25, 16],
 			"shade": false,
 			"faces": {
-				"up": {"uv": [0, 8, 16, 16], "texture": "#1"}
+				"east": {"uv": [10, 8, 11, 16], "rotation": 90, "texture": "#1"},
+				"south": {"uv": [5, 15.75, 11, 16], "texture": "#line", "tintindex": 0},
+				"west": {"uv": [5, 8, 6, 16], "rotation": 270, "texture": "#1"},
+				"up": {"uv": [5, 8, 11, 16], "texture": "#1"}
 			}
 		},
 		{

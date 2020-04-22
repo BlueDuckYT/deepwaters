@@ -17,6 +17,9 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.RedstoneSide;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.Chunk;
 import org.apache.logging.log4j.Level;
@@ -26,6 +29,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+import static bernie.software.block.DeepWatersPortalPillarEnd.FACING;
 import static net.minecraft.block.RedstoneDiodeBlock.POWERED;
 
 public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
@@ -157,7 +161,9 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 //			DeepWatersMod.logger.log(Level.INFO,blockstate1);
 //			DeepWatersMod.logger.log(Level.INFO,RedstoneSide.UP);
 //			DeepWatersMod.logger.log(Level.INFO,"h");
-			return RedstoneSide.UP;
+			if (!worldIn.getBlockState(pos.offset(Direction.UP)).isNormalCube(worldIn,pos.offset(Direction.UP))) {
+				return RedstoneSide.UP;
+			}
 		} else if (canConnectTo(blockstate, worldIn, blockpos, face) ||
 			canConnectTo(worldIn.getBlockState(blockpos.down()), worldIn, blockpos.down(), null) ||
 			blockstate.getBlock() instanceof RedstoneWireBlock ||
@@ -373,11 +379,18 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 		};
 		for(Direction direction : FACING_VALUES) {
 			int j = world.getRedstonePower(pos.offset(direction), direction);
+			boolean diodePower=diodePowered(world,pos.offset(direction),direction.getOpposite());
+			boolean otherSource=false;
 			if (!(world.getBlockState(pos.offset(direction)).getBlock() instanceof RedstoneWireBlock)&&
 				!isPowerSourceAt(world,pos,direction)&&
-				!diodePowered(world,pos.offset(direction),direction.getOpposite())) {
+				!diodePower) {
 				j=0;
+				otherSource=true;
 			}
+//			if (otherSource&&
+//				!world.getBlockState(pos.offset(direction)).isOpaqueCube(world,pos.offset(direction))) {
+//				j=0;
+//			}
 			if (j >= 15) {
 				return 15;
 			}
@@ -406,6 +419,19 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 			if (!direction.equals(facing)) {
 				BlockState state=world.getBlockState(pos.offset(direction));
 				if (state.getBlock() instanceof RedstoneDiodeBlock&&
+						state.get(POWERED)) {
+					return true;
+				}
+				if (state.getBlock() instanceof ObserverBlock&&
+					state.get(POWERED)&&
+					state.get(FACING).equals(direction)) {
+					return true;
+				}
+				if (state.getBlock() instanceof AbstractButtonBlock&&
+					state.get(POWERED)) {
+					return true;
+				}
+				if (state.getBlock() instanceof AbstractPressurePlateBlock&&
 					state.get(POWERED)) {
 					return true;
 				}
@@ -433,15 +459,19 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				if (true) {
 					if (worldIn.getBlockState(pos.offset(direction).offset(Direction.UP)).getBlock() instanceof RedstoneWireBlock) {
 						if (redstoneside==RedstoneSide.UP) {
-							worldIn.setBlockState(pos.offset(direction).offset(Direction.UP),getExtendedState(state,worldIn,pos.offset(direction).offset(Direction.UP)),0);
+							if (!worldIn.getBlockState(pos.up()).isNormalCube(worldIn,pos.offset(Direction.UP))) {
+								worldIn.setBlockState(pos.offset(direction).offset(Direction.UP),getExtendedState(state,worldIn,pos.offset(direction).offset(Direction.UP)),0);
+							}
 						} else {
-							worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(FACING_PROPERTY_MAP.get(direction),RedstoneSide.UP),0);
+							if (!worldIn.getBlockState(pos.offset(Direction.UP)).isNormalCube(worldIn,pos.offset(Direction.UP))) {
+								worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(FACING_PROPERTY_MAP.get(direction),RedstoneSide.UP),0);
+							}
 						}
 					} else if (worldIn.getBlockState(pos.offset(direction).offset(Direction.UP)).getBlock() instanceof RedstoneWireBlock) {
-						if (redstoneside==RedstoneSide.SIDE) {
-//							worldIn.setBlockState(pos.offset(direction).offset(Direction.UP),getExtendedState(state,worldIn,pos.offset(direction).offset(Direction.UP)),0);
-						} else {
+						if (!worldIn.getBlockState(pos.up()).isNormalCube(worldIn,pos.up())) {
 							worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(FACING_PROPERTY_MAP.get(direction),RedstoneSide.SIDE),0);
+						} else {
+							worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(FACING_PROPERTY_MAP.get(direction),RedstoneSide.NONE),0);
 						}
 					}
 				}
@@ -454,6 +484,28 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	public boolean shouldCheckWeakPower(BlockState state, IWorldReader world, BlockPos pos, Direction side)
 	{
 		return false;
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		VoxelShape shape=Block.makeCuboidShape(5,0D,5,11,0.25D,11);
+		VoxelShape lineNorth=Block.makeCuboidShape(5,0D,0,11,0.25D,11);
+		VoxelShape lineSouth=Block.makeCuboidShape(5,0D,5,11,0.25D,16);
+		VoxelShape lineWest=Block.makeCuboidShape(0,0D,5,11,0.25D,11);
+		VoxelShape lineEast=Block.makeCuboidShape(5,0D,5,16,0.25D,11);
+		if (!state.get(NORTH).equals(RedstoneSide.NONE)) {
+			shape=VoxelShapes.or(shape,lineNorth);
+		}
+		if (!state.get(WEST).equals(RedstoneSide.NONE)) {
+			shape=VoxelShapes.or(shape,lineWest);
+		}
+		if (!state.get(EAST).equals(RedstoneSide.NONE)) {
+			shape=VoxelShapes.or(shape,lineEast);
+		}
+		if (!state.get(SOUTH).equals(RedstoneSide.NONE)) {
+			shape=VoxelShapes.or(shape,lineSouth);
+		}
+		return shape;
 	}
 
 	private int getAqualitePower(BlockPos pos, IBlockReader world)
@@ -484,14 +536,11 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				{
 					if (world.getBlockState(pos.add(pos1)).getBlock() instanceof RedstoneWireBlock)
 					{
-						if (!world.getBlockState(pos.add(pos1).offset(Direction.UP)).isOpaqueCube(world, pos.add(pos1).offset(Direction.UP)))
+						if (true||world.getBlockState(pos.add(pos1).offset(Direction.UP)).isOpaqueCube(world, pos.add(pos1).offset(Direction.UP)))
 						{
-							if (world.getBlockState(pos.add(pos1)).get(POWER) != power)
+							if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
 							{
-								if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
-								{
-									power = world.getBlockState(pos.add(pos1)).get(POWER);
-								}
+								power = world.getBlockState(pos.add(pos1)).get(POWER);
 							}
 						}
 					}
@@ -503,10 +552,7 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				{
 					if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
 					{
-						if (world.getBlockState(pos.add(pos1)).get(POWER) != power)
-						{
-							power = world.getBlockState(pos.add(pos1)).get(POWER);
-						}
+						power = world.getBlockState(pos.add(pos1)).get(POWER);
 					}
 				} else {
 					try
@@ -539,12 +585,9 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 					{
 						if (world.getBlockState(pos.add(pos1)).get(POWER) > power)
 						{
-							if (world.getBlockState(pos.add(pos1)).get(POWER) != power)
+							if (world.getBlockState(pos.add(pos1.offset(Direction.DOWN))).isSolid())
 							{
-								if (world.getBlockState(pos.add(pos1.offset(Direction.DOWN))).isSolid())
-								{
-									power = world.getBlockState(pos.add(pos1)).get(POWER);
-								}
+								power = world.getBlockState(pos.add(pos1)).get(POWER);
 							}
 						}
 					}
