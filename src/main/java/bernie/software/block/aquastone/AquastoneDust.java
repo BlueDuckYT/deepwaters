@@ -411,7 +411,7 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				}
 			}
 		}
-		return false;
+		return world.getBlockState(pos.offset(Direction.DOWN)).getBlock() instanceof RedstoneTorchBlock ;
 	}
 
 	@Override
@@ -841,9 +841,9 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				int color1R = 2;
 				int color1G = 188;
 				int color1B = 255;
-				int color2R = 0;
-				int color2G = 24;
-				int color2B = 33;
+				int color2R = 1;
+				int color2G = 29;
+				int color2B = 38;
 				float fade = ((power) * 1);
 				int red = (int) (((fade * color1R) + ((1 - fade) * color2R)) * 1);
 				int green = (int) (((fade * color1G) + ((1 - fade) * color2G)) * 1);
