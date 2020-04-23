@@ -8,7 +8,7 @@ import net.minecraftforge.common.ToolType;
 
 public class DeepWatersLogBlock extends LogBlock {
 
-    public DeepWatersLogBlock(MaterialColor verticalColorIn, Properties properties) {
+    public DeepWatersLogBlock(MaterialColor verticalColorIn) {
         super(verticalColorIn, Properties.create(Material.WOOD)
                 .hardnessAndResistance(2F)
                 .sound(SoundType.WOOD)

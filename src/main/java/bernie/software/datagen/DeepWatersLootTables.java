@@ -67,7 +67,18 @@ public class DeepWatersLootTables extends LootTableProvider
 				dropSelf(block);
 			}
 			dropWithSilk(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, DeepWatersBlocks.OCEAN_FLOOR);
+			dropSelf(DeepWatersBlocks.DEADWOOD_DOOR);
+			dropSelf(DeepWatersBlocks.SCRAP_DOOR);
+			dropSelf(DeepWatersBlocks.AQUA_STONE);
+			dropSelf(DeepWatersBlocks.AQUA_COMPARE);
+			dropSelf(DeepWatersBlocks.AQUA_REPEAT);
+			dropSelf(DeepWatersBlocks.AQUA_BLOCK);
+			dropSelf(DeepWatersBlocks.AQUA_TORCH);
+			dropSelf(DeepWatersBlocks.AQUA_TORCH_WALL);
+			dropSelf(DeepWatersBlocks.AQUA_STONE_BUTTON);
+			dropSelf(DeepWatersBlocks.SUNKEN_WASTES_LAMP);
 			dropSelf(DeepWatersBlocks.PORTAL_PILLAR);
+			dropSelf(DeepWatersBlocks.DEADWOOD_LOG);
 			dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
 
 			dropWithFortune(DeepWatersBlocks.SALT_ORE, DeepWatersItems.SALT_CRYSTAL);

@@ -29,10 +29,13 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 	@Override
 	protected void registerStatesAndModels()
 	{
+		doorBlock(DeepWatersBlocks.SCRAP_DOOR.get(), modLoc("block/iron_hatch_door_bottom"), modLoc("block/iron_hatch_door_top"));
+		doorBlock(DeepWatersBlocks.DEADWOOD_DOOR.get(), modLoc("block/deadwood_door_bottom"), modLoc("block/deadwood_door_top"));
 		grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
 		normalBlock(DeepWatersBlocks.SALT_ORE);
 		normalBlock(DeepWatersBlocks.DEEPWATERSPORTAL);
 		rotationalWithVerticle(DeepWatersBlocks.PORTAL_PILLAR_END,"portalpillaroff");
+		logBlock(DeepWatersBlocks.DEADWOOD_LOG, "deadwood_log");
 		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR, "portal_pillar");
 		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, "activated_portal_pillar");
 		rotational(DeepWatersBlocks.SUNKEN_WASTES_LAMP, "sunkenwastes_lamp");

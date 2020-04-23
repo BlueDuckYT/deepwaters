@@ -3,6 +3,7 @@ package bernie.software.block.aquastone;
 import bernie.software.registry.DeepWatersBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
@@ -61,6 +62,10 @@ public class RedstoneTorch {
                 return super.getWeakPower(blockState,blockAccess,pos,side)/2;
             }
         }
+
+        public PushReaction getPushReaction(BlockState state) {
+            return PushReaction.DESTROY;
+        }
     }
     public static class AquastoneTorchWall extends RedstoneWallTorchBlock implements IWaterLoggable {
         public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -97,6 +102,10 @@ public class RedstoneTorch {
             } else {
                 return super.getWeakPower(blockState,blockAccess,pos,side)/2;
             }
+        }
+
+        public PushReaction getPushReaction(BlockState state) {
+            return PushReaction.DESTROY;
         }
     }
 }

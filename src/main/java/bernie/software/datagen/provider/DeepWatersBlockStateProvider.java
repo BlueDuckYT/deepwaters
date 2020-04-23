@@ -52,6 +52,10 @@ public abstract class DeepWatersBlockStateProvider extends BlockStateProvider {
         axisBlock(block.get(), textureLoc(name));
     }
 
+    public void logBlock(Supplier<? extends LogBlock> block, String name) {
+        axisBlock(block.get(), textureLoc(name));
+    }
+
     public void rotational(Supplier<? extends Block> block, String name) {
         horizontalBlock(block.get(), new ModelBuilder.UncheckedModelFile(name));
     }

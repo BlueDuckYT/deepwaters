@@ -1,0 +1,45 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"1": "#line",
+		"2": "deepwaters:block/aquastone_line_overlay",
+		"1_2": "deepwaters:block/aquastone_dot"
+	},
+	"elements": [
+		{
+			"from": [0, 0.3, 0],
+			"to": [16, 0.3, 7],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [0, 0, 16, 7], "texture": "#1", "tintindex": 0}
+			}
+		},
+		{
+			"from": [5, 0, 0],
+			"to": [11, 0.25, 8],
+			"shade": false,
+			"faces": {
+				"north": {"uv": [5, 0, 11, 0.25], "texture": "#1", "tintindex": 0},
+				"east": {"uv": [10, 0, 11, 8], "rotation": 90, "texture": "#2"},
+				"west": {"uv": [5, 0, 6, 8], "rotation": 270, "texture": "#2"},
+				"up": {"uv": [5, 0, 11, 8], "texture": "#2"}
+			}
+		},
+		{
+			"from": [0, 0.25, 0],
+			"to": [16, 0.25, 16],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1_2", "tintindex": 0}
+			}
+		}
+	],
+	"groups": [0, 1,
+		{
+			"name": "dust_dot",
+			"origin": [8, 8, 8],
+			"children": [2]
+		}
+	]
+}

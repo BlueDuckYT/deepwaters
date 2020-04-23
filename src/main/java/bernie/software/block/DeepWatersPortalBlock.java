@@ -4,6 +4,8 @@ import bernie.software.DeepWatersMod;
 import bernie.software.utils.EntityUtils;
 import bernie.software.utils.TeleportUtils;
 import bernie.software.utils.WorldUtils;
+import bernie.software.ForgeBusEventSubscriber;
+import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.world.gen.structures.DeepWatersPortalStructure;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,6 +15,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.network.play.server.SChangeGameStatePacket;
+import net.minecraft.network.play.server.SRespawnPacket;
+import net.minecraft.network.play.server.SServerDifficultyPacket;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -20,6 +29,10 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Random;
 
 public class DeepWatersPortalBlock extends Block
 {
@@ -30,7 +43,19 @@ public class DeepWatersPortalBlock extends Block
 				.hardnessAndResistance(hardness, resist)
 				.sound(sound)
 				.doesNotBlockMovement()
+				.noDrops()
 		);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (rand.nextInt(100) == 0) {
+			worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+		}
+		double d0 = (float)pos.getX() + rand.nextFloat();
+		double d1 = (float)pos.getY() + rand.nextFloat() + 1;
+		double d2 = (float)pos.getZ() + rand.nextFloat();
+		worldIn.addParticle(ParticleTypes.BUBBLE_POP, d0, d1, d2, 0.0D, -0.1D, 0.0D);
 	}
 
 	@Override

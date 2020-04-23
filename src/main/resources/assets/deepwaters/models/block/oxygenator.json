@@ -3,7 +3,7 @@
   "textures": {
     "down": "deepwaters:block/oxygenator_vertical",
     "up": "deepwaters:block/oxygenator_vertical",
-    "north": "deepwaters:block/oxygenator_front",
+    "north": "deepwaters:block/oxygenator",
     "east": "deepwaters:block/oxygenator_sides",
     "south": "deepwaters:block/oxygenator_sides",
     "west": "deepwaters:block/oxygenator_sides"

@@ -2,6 +2,7 @@ package bernie.software.entity.vehicle;
 
 
 import bernie.software.KeyboardHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -10,6 +11,7 @@ import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
@@ -17,6 +19,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 
@@ -57,6 +63,61 @@ public class SurgeVehicle extends WaterMobEntity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+
+	public ItemStackHandler inventory = this.initInventory();
+	private LazyOptional<ItemStackHandler> itemHandler = LazyOptional.of(() -> this.inventory);
+
+	protected ItemStackHandler initInventory() {
+		return new ItemStackHandler() {
+			@Override
+			protected void onContentsChanged(final int slot) {
+				int tempload = 0;
+				for (int i = 0; i < this.getSlots(); i++) {
+					if (!this.getStackInSlot(i).isEmpty()) {
+						tempload++;
+					}
+				}
+				final int newValue;
+				if (tempload > 31)
+					newValue = 4;
+				else if (tempload > 16)
+					newValue = 3;
+				else if (tempload > 8)
+					newValue = 2;
+				else if (tempload > 3)
+					newValue = 1;
+				else
+					newValue = 0;
+			}
+		};
+	}
+
+	@Override
+	public boolean replaceItemInInventory(final int inventorySlot, final ItemStack itemStackIn) {
+		if (inventorySlot >= 0 && inventorySlot < this.inventory.getSlots()) {
+			this.inventory.setStackInSlot(inventorySlot, itemStackIn);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public void remove(final boolean keepData) {
+		super.remove(keepData);
+		if (!keepData && this.itemHandler != null) {
+			this.itemHandler.invalidate();
+			this.itemHandler = null;
+		}
+	}
+
+	@Override
+	public <T> LazyOptional<T> getCapability(final Capability<T> capability, @Nullable final Direction facing) {
+		if (this.isAlive() && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && this.itemHandler != null)
+			return this.itemHandler.cast();
+		return super.getCapability(capability, facing);
+	}
+
 	@Override
 	public void tick()
 	{
@@ -64,11 +125,17 @@ public class SurgeVehicle extends WaterMobEntity
 		if (this.getControllingPassenger() != null)
 		{
 			LivingEntity player = (LivingEntity) entity;
+            Minecraft mc = Minecraft.getInstance();
 			Vec3d lookVec = entity.getLookVec();
 			if (this.inWater && KeyboardHandler.isKeyDown)
 			{
 				this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
 			}
+            if (KeyboardHandler.isKeyDown)
+            {
+//                ((PlayerEntity) entity).openContainer();
+            }
+
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
 			this.prevRotationYawHead = player.prevRotationYawHead;
 			this.rotationYaw = entity.getRotationYawHead();

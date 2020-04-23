@@ -40,7 +40,7 @@ public class Pedestal extends Block implements IWaterLoggable
 {
 	public Pedestal(Properties properties)
 	{
-		super(properties);
+		super(properties.noDrops());
 	}
 
 	// empty = air or portal block
@@ -59,16 +59,30 @@ public class Pedestal extends Block implements IWaterLoggable
 		super(Properties.create(Material.ROCK)
 				.hardnessAndResistance(-1f, -1f)
 				.sound(SoundType.STONE)
-				.harvestLevel(0)
+				.noDrops()
 		);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
 	{
-		VoxelShape shape = VoxelShapes.or(Block.makeCuboidShape(5.0D, 3.0D, 5.0D, 11.0D, 7.0D, 11.0D),
-				Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 3.0D, 10.0D));
-		return shape;
+		VoxelShape shape1 =
+				VoxelShapes.or(
+					Block.makeCuboidShape(5.0D, 3.0D, 5.0D, 11.0D, 7.0D, 11.0D),
+					Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 3.0D, 10.0D)
+		);
+		VoxelShape shape2=
+				VoxelShapes.or(VoxelShapes.or(VoxelShapes.or(VoxelShapes.or(
+						Block.makeCuboidShape(6.5D, 6.0D, 6.5D, 9.5D, 8.0D, 9.5D),
+						Block.makeCuboidShape(6.0D, 6.0D, 6.9D, 10.0D, 8.0D, 7.65D)),
+						Block.makeCuboidShape(6.0D, 6.0D, 8.35D, 10.0D, 8.0D, 9.1D)),
+						Block.makeCuboidShape(8.35D, 6.0D, 6.0D, 9.1D, 8.0D, 10.0D)),
+						Block.makeCuboidShape(6.9D, 6.0D, 6.0D, 7.65D, 8.0D, 10.0D)
+		);
+		if (state.get(HASHEART)) {
+			shape1=VoxelShapes.or(shape1,shape2);
+		}
+		return shape1;
 	}
 
 	@Override
