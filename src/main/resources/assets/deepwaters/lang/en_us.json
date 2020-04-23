@@ -80,5 +80,5 @@
   "entity.deepwaters.legfish": "Legfish",
   "entity.deepwaters.colorfulfish": "Huefish",
   "entity.deepwaters.coralcrawler": "Coral Crawler",
-  "structure.deepwaters.deepwatersportal": "Deep Waters Portal"
+  "feature .deepwaters.deepwatersportal": "Deep Waters Portal"
 }

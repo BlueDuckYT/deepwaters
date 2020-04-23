@@ -68,7 +68,6 @@ public class DeepWatersPortalBlock extends Block
 					WorldInfo worldInfo = deepWatersWorld.getWorldInfo();
 
 					TeleportUtils.SendDimensionChangePackets(deepWatersDimension, player, worldInfo);
-
 					int spawnHeight = WorldUtils.getDeepWatersSpawnHeight(deepWatersWorld, portalCenter);
 					BlockPos portalCenterDeepWaters = new BlockPos(portalCenter.getX(),
 							spawnHeight <= deepWatersSeaLevel ? deepWatersSeaLevel - 1 : spawnHeight,
