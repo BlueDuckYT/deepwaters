@@ -17,7 +17,7 @@ public class SurgeRegistry
 {
     private static final List<ContainerType<?>> CONTAINER_TYPES = new ArrayList<>();
 
-    public static final ContainerType<SurgeContainer> SURGE_CONTAINER = register(new ResourceLocation(DeepWatersMod.ModID, "backpack"), (IContainerFactory<SurgeContainer>) (windowId, playerInventory, data) -> new SurgeContainer(windowId, playerInventory, data.readVarInt()));
+//    public static final ContainerType<SurgeContainer> SURGE_CONTAINER = register(new ResourceLocation(DeepWatersMod.ModID, "backpack"), (IContainerFactory<SurgeContainer>) (windowId, playerInventory, data) -> new SurgeContainer(windowId, playerInventory, data.readVarInt()));
 
     private static <T extends Container> ContainerType<T> register(ResourceLocation name, ContainerType.IFactory<T> factory)
     {

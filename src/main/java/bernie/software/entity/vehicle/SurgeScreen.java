@@ -15,7 +15,7 @@ public class SurgeScreen extends ContainerScreen<SurgeContainer>
 {
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("textures/gui/container/generic_54.png");
 
-    private final int rows;
+    private final int rows=3;
 
     public SurgeScreen(SurgeContainer surgeContainer, PlayerInventory playerInventory, ITextComponent titleIn)
     {
