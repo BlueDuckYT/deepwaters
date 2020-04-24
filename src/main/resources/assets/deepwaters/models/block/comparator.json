@@ -2,7 +2,6 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"slab": "deepwaters:block/smooth_stone",
 		"particle": "deepwaters:block/comparator",
 		"top": "deepwaters:block/comparator",
 		"unlit": "deepwaters:block/redstone_torch_off"
@@ -17,7 +16,7 @@
 				"south": {"uv": [0, 14, 16, 16], "texture": "#top"},
 				"west": {"uv": [0, 14, 16, 16], "texture": "#top"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#slab", "cullface": "down"}
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#top"}
 			}
 		},
 		{
