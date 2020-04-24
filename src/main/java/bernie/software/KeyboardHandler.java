@@ -20,14 +20,4 @@ public class KeyboardHandler
 			isKeyDown = mc.gameSettings.keyBindForward.isKeyDown();
 		}
 	}
-
-	@SubscribeEvent
-	public static void onKeySpacePress(final InputEvent.KeyInputEvent event)
-	{
-		Minecraft mc = Minecraft.getInstance();
-		if (mc.player != null)
-		{
-			isKeyDown = mc.gameSettings.keyBindJump.isKeyDown();
-		}
-	}
 }
