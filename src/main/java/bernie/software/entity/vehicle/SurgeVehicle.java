@@ -36,6 +36,7 @@ public class SurgeVehicle extends WaterMobEntity
 	private double lerpZ;
 	private double lerpYaw;
 	private double lerpPitch;
+	public double battery;
 
 	@Override
 	protected void registerGoals()
@@ -46,6 +47,7 @@ public class SurgeVehicle extends WaterMobEntity
 	public SurgeVehicle(EntityType<? extends WaterMobEntity> type, World worldIn)
 	{
 		super(type, worldIn);
+		battery = 100;
 	}
 
 //	@Override
@@ -129,12 +131,11 @@ public class SurgeVehicle extends WaterMobEntity
 			Vec3d lookVec = entity.getLookVec();
 			if (this.inWater && KeyboardHandler.isKeyDown)
 			{
-				this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
+				if(battery > 0.000){
+					battery -= 0.01;
+					this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
+				}
 			}
-            if (KeyboardHandler.isKeyDown)
-            {
-//                ((PlayerEntity) entity).openContainer();
-            }
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
 			this.prevRotationYawHead = player.prevRotationYawHead;
