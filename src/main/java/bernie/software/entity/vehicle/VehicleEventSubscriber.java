@@ -65,7 +65,7 @@ public class VehicleEventSubscriber
                 for(int i = 0;i <= ((SurgeVehicle) ridingEntity).battery;i += 10){
                     batteryFilled.append("█");
                 }
-                Minecraft.getInstance().fontRenderer.drawString("Battery: " + batteryFilled.toString(), event.getWindow().getScaledWidth() / 2 - 60, event.getWindow().getScaledHeight() - 40, 14103062);
+                Minecraft.getInstance().fontRenderer.drawString("Battery: " + batteryFilled.toString(), event.getWindow().getScaledWidth() / 2 - 60, event.getWindow().getScaledHeight() - 50, 14103062);
                 //GlStateManager.disableTexture2D();
                 //Minecraft.getInstance().draw(0, 0, 0, 0, 10, 10, 255, 255, 255);
                 //GlStateManager.te();
