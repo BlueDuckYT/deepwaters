@@ -17,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -24,6 +25,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -191,81 +194,94 @@ public class DeepWatersDimensionEventSubscriber
 	static Color prevfogColor=Color.RED;
 
 	@SubscribeEvent
+	@OnlyIn(Dist.CLIENT)
 	public static void renderFog(RenderWorldLastEvent event) {
 		try {
-			if (Minecraft.getInstance().player.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())) {
-				PlayerEntity playerEntity = Minecraft.getInstance().player;
-				World world=playerEntity.world;
-				GlStateManager.pushMatrix();
-				GlStateManager.disableAlphaTest();
-				GlStateManager.setProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
-				GlStateManager.enableBlend();
-				GlStateManager.disableCull();
-				GlStateManager.disableLighting();
-				net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
-				double fogDist=((playerEntity.getPositionVec().y/256))*500;
+			PlayerEntity playerEntity = Minecraft.getInstance().player;
+			if (playerEntity.posY<128) {
+				if (playerEntity.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())) {
+					World world=playerEntity.world;
+					GlStateManager.pushMatrix();
+					GlStateManager.disableAlphaTest();
+					GlStateManager.setProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
+					GlStateManager.enableBlend();
+					GlStateManager.disableCull();
+					GlStateManager.disableLighting();
+					GlStateManager.disableTexture();
+					net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+					double fogDist=((playerEntity.getPositionVec().y/256))*500;
+					try {
+						fogDist*=(playerEntity.getActivePotionEffect(Effects.NIGHT_VISION).getAmplifier()+2)*2;
+					} catch (Exception err) {}
 //				double fogCount=((1-(playerEntity.getPositionVec().y/256))*1);
-				double fogCount=0;
-				if (blendProgress>=120) {
-					if (playerEntity.posY>=128&&fogCount1!=0) {
-						fogCount=0;
-						fogCount1=fogCount;
-						blendProgress=0;
-					} else if (playerEntity.posY>=64&&playerEntity.posY<128&&fogCount1!=0.5) {
-						fogCount=0.5;
-						fogCount1=fogCount;
-						blendProgress=0;
-					} else if (fogCount1!=1&&playerEntity.posY<64) {
-						fogCount=1;
-						fogCount1=fogCount;
-						blendProgress=0;
+					double fogCount=0;
+					if (blendProgress>=120) {
+						if (playerEntity.posY>=128&&fogCount1!=0) {
+							fogCount=0;
+							fogCount1=fogCount;
+							blendProgress=0;
+						} else if (playerEntity.posY>=64&&playerEntity.posY<128&&fogCount1!=0.5) {
+							fogCount=0.5;
+							fogCount1=fogCount;
+							blendProgress=0;
+						} else if (fogCount1!=1&&playerEntity.posY<64) {
+							fogCount=1;
+							fogCount1=fogCount;
+							blendProgress=0;
+						} else {
+							prevFogCount=fogCount1;
+						}
 					} else {
-						prevFogCount=fogCount1;
+						blendProgress+=1;
 					}
-				} else {
-					blendProgress+=1;
-				}
-				if (colorBlendProgress>=120) {
-					fogColor=prevfogColor;
-					if (fogColor.getRGB()!=world.getBiome(playerEntity.getPosition()).getWaterFogColor()) {
-						prevfogColor=new Color(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
-						colorBlendProgress=0;
+					if (colorBlendProgress>=120) {
+						fogColor=prevfogColor;
+						if (fogColor.getRGB()!=world.getBiome(playerEntity.getPosition()).getWaterFogColor()) {
+							prevfogColor=new Color(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
+							colorBlendProgress=0;
+						}
+					} else {
+						colorBlendProgress+=1;
 					}
-				} else {
-					colorBlendProgress+=1;
-				}
-				float temp=(world.getBiome(playerEntity.getPosition()).getDefaultTemperature());
-				for (int x=0; x<=(36); x++) {
-					for (int y=0; y<=(36); y++) {
-						for (int z2=1; z2<=2; z2++) {
-							GlStateManager.pushMatrix();
-							double z=z2/2f;
-							int multiple=10;
-							double y1 = Math.cos(y * multiple) * (z);
-							double y2 = Math.cos((y+1) * multiple) * (z);
-							double y3 = Math.sin((y+1) * multiple) * (z);
-							double y4 = Math.sin(y * multiple) * (z);
+					float temp=(world.getBiome(playerEntity.getPosition()).getDefaultTemperature());
+					for (int x=0; x<=(36); x++) {
+						for (int y=0; y<=(36); y++) {
+							for (int z2=0; z2<=1; z2++) {
+								GlStateManager.pushMatrix();
+								double z=((z2)*2f);
+								int multiple=10;
+								int yMultiple=10;
+								double y1 = Math.cos(y * yMultiple) * (z);
+								double y2 = Math.cos((y+1) * yMultiple) * (z);
+								double y3 = Math.sin((y+1) * yMultiple) * (z);
+								double y4 = Math.sin(y * yMultiple) * (z);
 //							double x1 = Math.cos((x-y1) * multiple) * (z * fogDist);
-							double x1 = ((Math.cos((x)*multiple))*(z*fogDist))-(y1*fogDist);
-							double z1 = ((Math.sin((x)*multiple))*(z*fogDist))-(y4*fogDist);
-							RenderHelper.triangle tri=new RenderHelper.triangle(
-									x1,
-									x1,
-									((Math.cos((x+1)*multiple))*(z*fogDist))-(y2*fogDist),
-									y1 * (fogDist),
-									y2 * (fogDist),
-									y1 * (fogDist),
-									z1,
-									z1,
-									((Math.sin((x+1)*multiple))*(z*fogDist))-(y3*fogDist)
-							);
-							Vec3d vec=playerEntity.getPositionVec();
-							int totalLight=0;
-							for (double i:new double[]{tri.x1,tri.x2,tri.x3}) {
-								for (double j:new double[]{tri.z1,tri.z2,tri.z3}) {
-									totalLight+=world.getLight(new BlockPos(vec.x+i,vec.y,vec.z+j));
+								double x1 = ((Math.cos((x)*multiple))*(z*fogDist))-(y1*fogDist);
+								double z1 = ((Math.sin((x)*multiple))*(z*fogDist))-(y4*fogDist);
+								RenderHelper.triangle tri=new RenderHelper.triangle(
+										((Math.cos((x+1)*multiple))*(z*fogDist))-(y2*fogDist),
+										x1,
+										x1,
+										y1 * (fogDist),
+										y1 * (fogDist),
+										y2 * (fogDist),
+										z1,
+										((Math.sin((x+1)*multiple))*(z*fogDist))-(y3*fogDist),
+										z1
+								);
+								Vec3d vec=playerEntity.getPositionVec();
+								float totalLight=0;
+								for (double i:new double[]{tri.x1,tri.x3}) {
+									for (double j:new double[]{tri.y1,tri.y2}) {
+										for (double k:new double[]{tri.z1,tri.z3}) {
+											totalLight+=world.getLight(new BlockPos(vec.x+(i),vec.y+(j),vec.z+(k)));
+											totalLight+=world.getLight(new BlockPos(vec.x+(i),vec.y,vec.z+(k)))/4;
+											totalLight+=world.getLight(new BlockPos(vec.x,vec.y,vec.z+(k)))/8;
+											totalLight+=world.getLight(new BlockPos(vec.x+(j),vec.y,vec.z))/8;
+											totalLight+=world.getLight(new BlockPos(vec.x,vec.y,vec.z))/128;
+										}
+									}
 								}
-							}
 //							if (
 //									world.getLight(new BlockPos(vec.x+tri.x2,vec.y,vec.z+tri.z1))<=0||
 //									world.getLight(new BlockPos(vec.x+tri.x1,vec.y,vec.z+tri.z3))<=0
@@ -278,18 +294,31 @@ public class DeepWatersDimensionEventSubscriber
 									double colorBlue=MathHelper.lerp((amt2),fogColor.getBlue()/255f,prevfogColor.getBlue()/255f);
 									double colorGreen=MathHelper.lerp((amt2),fogColor.getGreen()/255f,prevfogColor.getGreen()/255f);
 									double colorAlpha=MathHelper.lerp((amt2),fogColor.getAlpha()/255f,prevfogColor.getAlpha()/255f);
-									RenderHelper.drawTriangle(tri,colorRed,colorBlue,colorGreen,(((fogCount1-(z/fogDist))/(10+(totalLight/(1-y1))))*divisor)/2);
-//									RenderHelper.drawTriangle(tri,0,0,1,1);
+									double alphaMultiplier=1f;
+									if (playerEntity.posY>=100) {
+										alphaMultiplier=playerEntity.posY-100;
+										if (alphaMultiplier>=28) {
+											alphaMultiplier=28;
+										}
+										alphaMultiplier/=4;
+										alphaMultiplier+=1;
+									}
+									if (totalLight<=5) {
+										RenderHelper.drawTriangle(tri,colorRed,colorBlue,colorGreen,((((fogCount1-(z/fogDist))/(10+(totalLight)))*divisor)/1)/(alphaMultiplier));
+									}
+//									RenderHelper.drawTriangle(tri,1,0,0,0.01);
 								}
 //							}
-							if(true) {
+								if(true) {
+								}
+								GlStateManager.popMatrix();
 							}
-							GlStateManager.popMatrix();
 						}
 					}
+					GlStateManager.enableCull();
+					GlStateManager.enableTexture();
+					GlStateManager.unsetProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
 				}
-				GlStateManager.enableCull();
-				GlStateManager.unsetProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
 			}
 			GlStateManager.popMatrix();
 		} catch (Exception err) {
