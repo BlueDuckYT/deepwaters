@@ -6,7 +6,7 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[28,)" #mandatory (28 is current forge version)
+loaderVersion="[31,)" #mandatory (28 is current forge version)
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/bernie-g/deepwaters/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
@@ -26,7 +26,7 @@ displayURL="http://bernie.software/" #optional
 # A text field displayed in the mod UI
 credits="Thank you to all the texture designers, modelers, animators, builders, and creative people who made this mod possible." #optional
 # A text field displayed in the mod UI
-authors="Gecko, Quek, GiantLuigi4, BlueDuck" #optional
+authors="Gecko, GiantLuigi4, Quek, BlueDuck" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 An underwater dimension inspired by Subnautica.'''
@@ -37,7 +37,7 @@ An underwater dimension inspired by Subnautica.'''
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[28.2.0,)" #mandatory
+    versionRange="[31)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -46,6 +46,6 @@ An underwater dimension inspired by Subnautica.'''
 [[dependencies.deepwaters]]
     modId="obfuscate"
     mandatory=true
-    versionRange="[0.3.3]"
+    versionRange="[0.4.0]"
     ordering="NONE"
     side="BOTH"
