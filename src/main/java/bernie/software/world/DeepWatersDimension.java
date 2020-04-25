@@ -158,13 +158,6 @@ public class DeepWatersDimension extends Dimension
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public Vec3d getSkyColor(BlockPos cameraEntity, float partialTicks)
-	{
-		return new Vec3d(125F / 255, 235F / 255, 220F / 255);
-	}
-
-	@Override
-	@OnlyIn(Dist.CLIENT)
 	public Vec3d getFogColor(float celestialAngle, float partialTicks)
 	{
 

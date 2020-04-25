@@ -82,11 +82,11 @@ public abstract class AbstractWormEntity extends CreatureEntity {
                 }
             }
         }
-        poses.replace(0,new Vec3d(prevPosX-posX,prevPosY-posY,prevPosZ-posZ).add(poses.get(0)));
+        poses.replace(0,new Vec3d(prevPosX-getPosX(),prevPosY-getPosY(),prevPosZ-getPosZ()).add(poses.get(0)));
         try {
             for (int i=0;i<=length;i++) {
-                float posX=(float) this.posX;
-                float posZ=(float) this.posZ;
+                float posX=(float) this.getPosX();
+                float posZ=(float) this.getPosZ();
                 float rotation=0;
                 if (i>=1) {
                     float x1=(float)poses.get(i).x;
@@ -107,7 +107,7 @@ public abstract class AbstractWormEntity extends CreatureEntity {
                 float y1=(float)poses.get(i).y;
                 float z1=(float)poses.get(i).z;
                 if (i>=2) {
-                    if (segmentBox().offset(this.posX,this.posY,this.posZ).intersects(segmentBox().offset(x1,y1,z1))) {
+                    if (segmentBox().offset(this.getPosX(),this.getPosY(),this.getPosZ()).intersects(segmentBox().offset(x1,y1,z1))) {
                         float x2=(float)poses.get(0).x;
                         float x3=(float)posX;
                         float z2=(float)poses.get(0).z;
@@ -116,7 +116,7 @@ public abstract class AbstractWormEntity extends CreatureEntity {
                         poses.replace(i,poses.get(i).add(-Math.cos(rotation)*0.1f,0,-Math.sin(rotation)*0.1f));
                     }
                 }
-                poses.replace(i,new Vec3d(posX+(Math.sin((rotation))*getSegmentDistance()),posY,posZ+(Math.cos((rotation))*getSegmentDistance())));
+                poses.replace(i,new Vec3d(posX+(Math.sin((rotation))*getSegmentDistance()),getPosY(),posZ+(Math.cos((rotation))*getSegmentDistance())));
             }
         } catch (Exception err) {
             poses.clear();
@@ -148,9 +148,9 @@ public abstract class AbstractWormEntity extends CreatureEntity {
     }
     public float getEntityRotationHead() {
         float x1a=-(float)this.poses.get(0).x;
-        float x2a=-(float)this.posX;
+        float x2a=-(float)this.getPosX();
         float z1a=-(float)this.poses.get(0).z;
-        float z2a=-(float)this.posZ;
+        float z2a=-(float)this.getPosZ();
         return (float) (Math.atan2(x2a-x1a,z2a-z1a));
     }
 

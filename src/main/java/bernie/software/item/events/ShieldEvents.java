@@ -48,7 +48,7 @@ public class ShieldEvents
 						});
 					} catch (Exception err) {}
 					double speedFactor = 1;
-					stack.setTagInfo("COOLDOWN", new LongNBT(time+cooldown));
+					stack.setTagInfo("COOLDOWN", LongNBT.valueOf(time+cooldown));
 					playerEntity.setVelocity(playerEntity.getLookVec().scale(speedFactor).x, playerEntity.getLookVec().scale(speedFactor).y, playerEntity.getLookVec().scale(speedFactor).z);
 				}
 			}
@@ -60,12 +60,12 @@ public class ShieldEvents
 			if (!stack.hasTag()) {
 				Long time = new Date().getTime()+7500;
 				stack.getOrCreateTag();
-				stack.setTagInfo("COOLDOWN", new LongNBT(time));
+				stack.setTagInfo("COOLDOWN", LongNBT.valueOf(time));
 			}
 			if (!stack.getTag().contains("COOLDOWN")) {
 				Long time = new Date().getTime();
 				stack.getOrCreateChildTag("COOLDOWN");
-				stack.setTagInfo("COOLDOWN", new LongNBT(time));
+				stack.setTagInfo("COOLDOWN", LongNBT.valueOf(time));
 			}
 		}
 	}
@@ -98,7 +98,7 @@ public class ShieldEvents
 						}
 					});
 					double speedFactor = 2;
-					stack.setTagInfo("COOLDOWN", new LongNBT(time+cooldown));
+					stack.setTagInfo("COOLDOWN", LongNBT.valueOf(time+cooldown));
 					playerEntity.setVelocity(playerEntity.getLookVec().scale(speedFactor).x, playerEntity.getLookVec().scale(speedFactor).y, playerEntity.getLookVec().scale(speedFactor).z);
 				}
 			}
@@ -110,12 +110,12 @@ public class ShieldEvents
 			if (!stack.hasTag()) {
 				Long time = new Date().getTime()+7500;
 				stack.getOrCreateTag();
-				stack.setTagInfo("COOLDOWN", new LongNBT(time));
+				stack.setTagInfo("COOLDOWN", LongNBT.valueOf(time));
 			}
 			if (!stack.getTag().contains("COOLDOWN")) {
 				Long time = new Date().getTime();
 				stack.getOrCreateChildTag("COOLDOWN");
-				stack.setTagInfo("COOLDOWN", new LongNBT(time));
+				stack.setTagInfo("COOLDOWN", LongNBT.valueOf(time));
 			}
 		}
 	}

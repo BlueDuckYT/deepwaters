@@ -4,7 +4,7 @@ import net.minecraft.nbt.StringNBT;
 
 public class Hue extends StringNBT {
 
-    public Hue(String color) {
-        super(color);
+    public static Hue makeHue(String color) {
+        return super.valueOf(color);
     }
 }

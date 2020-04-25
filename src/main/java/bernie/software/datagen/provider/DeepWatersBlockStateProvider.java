@@ -19,7 +19,7 @@ public abstract class DeepWatersBlockStateProvider extends BlockStateProvider {
     public DeepWatersBlockStateProvider(DataGenerator dataGenerator, ExistingFileHelper fileHelper) {
         super(dataGenerator, DeepWatersMod.ModID, fileHelper);
 
-        provider = new DeepWatersBlockModelProvider(generator, fileHelper) {
+        provider = new DeepWatersBlockModelProvider(dataGenerator, fileHelper) {
             @Override
             public String getName() {
                 return DeepWatersBlockStateProvider.this.getName();
