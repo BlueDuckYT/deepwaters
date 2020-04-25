@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
 import net.minecraft.world.gen.feature.FlowersFeature;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ToolType;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class MossyOceanFloorBlock extends DeepWatersGrassBlock implements IGrowa
     }
 
     @Override
-    public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
         BlockState blockstate = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
 
