@@ -1,6 +1,8 @@
-package bernie.software.world.biome;
+package bernie.software.listeners;
 
 import bernie.software.registry.DeepWatersBiomes;
+import bernie.software.world.biome.CoralFieldsBiome;
+import bernie.software.world.biome.SunkenWastesBiome;
 
 public class DeepWatersBiomeListener
 {

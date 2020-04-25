@@ -2,6 +2,7 @@ package bernie.software;
 
 import bernie.software.client.renderer.model.*;
 import bernie.software.entity.vehicle.SurgeVehicle;
+import bernie.software.listeners.DeepWatersFeatureListener;
 import bernie.software.registry.DeepWatersStructures;
 import bernie.software.utils.GeneralUtils;
 import bernie.software.client.renderer.entity.*;
@@ -9,7 +10,8 @@ import bernie.software.entity.*;
 import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.item.events.SwordEventSubscriber;
 import bernie.software.world.DeepWatersModDimension;
-import bernie.software.world.biome.DeepWatersBiomeListener;
+import bernie.software.listeners.DeepWatersBiomeListener;
+import bernie.software.world.biome.SunkenWastesBiome;
 import bernie.software.world.biome.WaterBiomeBase;
 import bernie.software.world.gen.structures.StructureInit;
 import net.minecraft.entity.EntityType;
@@ -22,6 +24,8 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.CountConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,6 +40,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
+
+import static net.minecraft.world.biome.Biome.createDecoratedFeature;
 
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber
@@ -58,6 +64,12 @@ public class ModEventSubscriber
 	}
 
 	@SubscribeEvent
+	public static void onFeatureRegistryEvent(final RegistryEvent.Register<Feature<?>> event)
+	{
+		DeepWatersFeatureListener.addFeaturesToBiomes();
+	}
+
+	@SubscribeEvent
 	public static void onServerInit(final FMLCommonSetupEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(new SwordEventSubscriber());
@@ -68,8 +80,15 @@ public class ModEventSubscriber
 				Feature<NoFeatureConfig> portal = (Feature<NoFeatureConfig>) DeepWatersStructures.PORTAL_STRUCTURE.get();
 				biome.addStructure((Structure<NoFeatureConfig>) portal, IFeatureConfig.NO_FEATURE_CONFIG);
 				biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-						Biome.createDecoratedFeature(portal, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE,
+						createDecoratedFeature(portal, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE,
 								IPlacementConfig.NO_PLACEMENT_CONFIG));
+			}
+			if (biome instanceof SunkenWastesBiome)
+			{
+				Feature<CountConfig> crystaline = DeepWatersStructures.CRYSTALINE_CORAL.get();
+				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+						createDecoratedFeature(crystaline, new CountConfig(1),
+								Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(100)));
 			}
 		}
 	}

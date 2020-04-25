@@ -55,6 +55,8 @@ public abstract class WaterBiomeBase extends Biome
 		addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(0.4F)));
 	}
 
+	public abstract void addFeatures();
+
 	public abstract void addSpawns();
 
 	public abstract void addWorldCarvers();

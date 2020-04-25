@@ -17,9 +17,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class DeepWatersStructures
 {
-	public static final DeferredRegister<Feature<?>> STRUCTURES = new DeferredRegister<Feature<?>>(ForgeRegistries.FEATURES, DeepWatersMod.ModID);
+	public static final DeferredRegister<Feature<?>> STRUCTURES = new DeferredRegister<Feature<?>>(
+			ForgeRegistries.FEATURES, DeepWatersMod.ModID);
 
-	public static final Feature<CountConfig> CRYSTALINE_CORAL = STRUCTURES.register("crystalinecoral", ()->new DeepWatersCrystalineCoral(CountConfig::deserialize)).get();
+	public static final RegistryObject<Feature<CountConfig>> CRYSTALINE_CORAL = STRUCTURES.register("crystalinecoral",
+			() -> new DeepWatersCrystalineCoral(CountConfig::deserialize));
 
 	public static final RegistryObject<Feature<?>> PORTAL_STRUCTURE = STRUCTURES.register(
 			"deepwatersportal", () -> new DeepWatersPortalStructure(NoFeatureConfig::deserialize));

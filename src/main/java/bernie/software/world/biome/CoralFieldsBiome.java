@@ -79,4 +79,11 @@ public class CoralFieldsBiome extends WaterBiomeBase
 	{
 		return 0.2F;
 	}
+
+
+	@Override
+	public void addFeatures()
+	{
+
+	}
 }
