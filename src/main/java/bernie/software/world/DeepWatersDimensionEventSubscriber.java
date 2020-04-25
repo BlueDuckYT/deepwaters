@@ -373,7 +373,7 @@ public class DeepWatersDimensionEventSubscriber
 		density/=(totalLight/15f);
 		if (event instanceof EntityViewRenderEvent.FogDensity) {
 			if ((prevFogCount-density)!=0) {
-				if (blendProgress>=120) {
+				if (blendProgress>= 120) {
 					blendProgress=0;
 //					DeepWatersMod.logger.log(Level.INFO,"1:"+blendProgress);
 //					DeepWatersMod.logger.log(Level.INFO,"2:"+(double)(prevFogCount-density));
