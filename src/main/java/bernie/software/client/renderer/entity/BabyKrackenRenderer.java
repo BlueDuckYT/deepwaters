@@ -4,6 +4,7 @@ import bernie.software.client.renderer.model.BabyKrackenModel;
 import bernie.software.client.renderer.model.BlufferFishModel;
 import bernie.software.entity.BabyKracken;
 import bernie.software.entity.BlufferFish;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -22,14 +23,13 @@ public class BabyKrackenRenderer extends MobRenderer<BabyKracken, BabyKrackenMod
 
 	@Nullable
 	@Override
-	protected ResourceLocation getEntityTexture(BabyKracken entity)
+	public ResourceLocation getEntityTexture(BabyKracken entity)
 	{
 		return new ResourceLocation("deepwaters" +  ":textures/model/entity/babykracken.png");
 	}
 
 	@Override
-	protected void applyRotations(BabyKracken entityLiving, float ageInTicks, float rotationYaw, float partialTicks)
-	{
-		super.applyRotations(entityLiving, ageInTicks, rotationYaw, partialTicks);
+	protected void applyRotations(BabyKracken entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+		super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
 	}
 }

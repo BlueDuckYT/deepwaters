@@ -4,13 +4,14 @@ import bernie.software.nbt.Hue;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.StringNBT;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class ColorfulFish extends AbstractFishEntity
 {
 
-	Hue color;
+	StringNBT color;
 
 	public ColorfulFish(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
 	{
@@ -20,7 +21,7 @@ public class ColorfulFish extends AbstractFishEntity
 			String str = color.getString();
 		}
 		catch (Exception e) {
-			color = new Hue(colors[(int) (Math.random() * 5)]);
+			color = StringNBT.valueOf(colors[(int) (Math.random() * 5)]);
 		}
 	}
 
