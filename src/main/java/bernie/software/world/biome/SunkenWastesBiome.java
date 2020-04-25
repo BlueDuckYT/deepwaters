@@ -1,15 +1,15 @@
 package bernie.software.world.biome;
 
-import bernie.software.registry.DeepWatersBiomeFeatures;
-import bernie.software.registry.DeepWatersBlocks;
-import bernie.software.registry.DeepWatersEntities;
-import bernie.software.registry.DeepWatersWorldCarvers;
+import bernie.software.registry.*;
+import bernie.software.world.gen.structures.DeepWatersCrystalineCoral;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.feature.SeaGrassConfig;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.CountConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.DefaultSurfaceBuilder;
@@ -23,6 +23,7 @@ public class SunkenWastesBiome extends WaterBiomeBase
 		super((new Biome.Builder()).surfaceBuilder(new DefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize), new SurfaceBuilderConfig(DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState(), DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(), DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState())).precipitation(RainType.NONE).category(Category.OCEAN).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).waterColor(6952).waterFogColor(6952));
 
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(24, 3), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
+//		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(DeepWatersStructures.CRYSTALINE_CORAL, new CountConfig(1), Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(100)));
 		DeepWatersBiomeFeatures.addDeepWatersOres(this);
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
 		DeepWatersBiomeFeatures.addStoneVariants(this);

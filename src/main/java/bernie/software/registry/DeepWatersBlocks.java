@@ -60,9 +60,13 @@ public class DeepWatersBlocks
 			Material.ROCK, 1.5F, 6F, SoundType.STONE, 0, ToolType.PICKAXE), true);
 	public static final RegistryObject<Block> DEAD_CORAL_BLOCK_GREEN = registerNormalBlock("dead_coral_block_green", () -> new DeepWatersBlock(
 			Material.ROCK, 1.5F, 6F, SoundType.STONE, 0, ToolType.PICKAXE), true);
+	public static final RegistryObject<Block> DEAD_CRYSTALINE_CORAL = registerNormalBlock("decayed_coral_block_crystal", () -> new DeepWatersBlock(
+			Material.ROCK, 1.5F, 6F, SoundType.STONE, 0, ToolType.PICKAXE), false);
 
 	public static final RegistryObject<Block> CORAL_BLOCK_ORANGE = registerNormalBlock("coral_block_orange", () -> new DeepWatersCoralBlock(
 			DEAD_CORAL_BLOCK_ORANGE.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
+	public static final RegistryObject<Block> CRYSTALINE_CORAL = registerNormalBlock("coral_block_crystal", () -> new DeepWatersCoralBlock(
+			DEAD_CRYSTALINE_CORAL.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(12F, 24F).sound(SoundType.CORAL)), false);
 	public static final RegistryObject<Block> CORAL_BLOCK_GREEN = registerNormalBlock("coral_block_green", () -> new DeepWatersCoralBlock(
 			DEAD_CORAL_BLOCK_GREEN.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
 

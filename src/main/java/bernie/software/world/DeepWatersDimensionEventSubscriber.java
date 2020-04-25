@@ -319,8 +319,8 @@ public class DeepWatersDimensionEventSubscriber
 					GlStateManager.enableTexture();
 					GlStateManager.unsetProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
 				}
+				GlStateManager.popMatrix();
 			}
-			GlStateManager.popMatrix();
 		} catch (Exception err) {
 			DeepWatersMod.logger.log(Level.WARN,"Render Failiure.");
 		}

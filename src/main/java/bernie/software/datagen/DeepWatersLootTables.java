@@ -82,6 +82,8 @@ public class DeepWatersLootTables extends LootTableProvider
 			dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
 
 			dropWithFortune(DeepWatersBlocks.SALT_ORE, DeepWatersItems.SALT_CRYSTAL);
+			dropWithFortune(DeepWatersBlocks.CRYSTALINE_CORAL, DeepWatersItems.CRYSTALINE_CORAL);
+			dropWithFortune(DeepWatersBlocks.DEAD_CRYSTALINE_CORAL, DeepWatersItems.DEAD_CRYSTALINE_CORAL);
 		}
 
 		@Override

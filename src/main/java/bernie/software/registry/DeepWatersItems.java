@@ -50,7 +50,8 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> POWER_STONE = ITEMS.register("power_stone", () -> new DeepWatersAbstractRuneItem(new Item.Properties().maxStackSize(1).group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
 	public static final RegistryObject<Item> AQUASTONE_TORCH = ITEMS.register("aquastone_torch", () -> new RedstoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS)));
 
-	public static final RegistryObject<Item> CRYSTALINE_CORAL = ITEMS.register("crystaline_coral", () -> new RedstoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
+	public static final RegistryObject<Item> CRYSTALINE_CORAL = ITEMS.register("crystaline_coral", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> DEAD_CRYSTALINE_CORAL = ITEMS.register("decayed_crystaline_coral", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> SHARK_TOOTH = ITEMS.register("sharktooth", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PEAL_WAND = ITEMS.register("pearl_wand", () -> new DeepWatersItem()); //replace with PearlWandItem when the time comes
 

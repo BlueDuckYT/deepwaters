@@ -26,6 +26,7 @@ public class DeepWatersMod
 {
 	public static Logger logger;
 	public static final String ModID = "deepwaters";
+	public static boolean noFogMod=false;
 
 	public DeepWatersMod()
 	{
