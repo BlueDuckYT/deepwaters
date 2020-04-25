@@ -33,7 +33,7 @@ public class DeepWatersDimension extends Dimension
 {
 	public DeepWatersDimension(World worldIn, DimensionType typeIn)
 	{
-		super(worldIn, typeIn);
+		super(worldIn, typeIn, 0);
 
 	}
 
@@ -77,7 +77,7 @@ public class DeepWatersDimension extends Dimension
 	public BlockPos findSpawn(int posX, int posZ, boolean checkValid)
 	{
 
-		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(posX, 0, posZ);
+		BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable(posX, 0, posZ);
 		Biome biome = this.world.getBiome(blockpos$mutableblockpos);
 		BlockState blockstate = Blocks.SAND.getDefaultState();
 		BlockState blockstate2 = DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState();
@@ -149,12 +149,6 @@ public class DeepWatersDimension extends Dimension
 		return true;
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public float getStarBrightness(float par1)
-	{
-		return 50;
-	}
 
 	@Override
 	@OnlyIn(Dist.CLIENT)

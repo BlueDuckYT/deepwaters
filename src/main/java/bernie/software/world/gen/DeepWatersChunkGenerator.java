@@ -11,8 +11,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.gen.NoiseChunkGenerator;
 
-public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<DeepWatersGenSettings>
+public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenSettings>
 {
 	private final double[] field_222573_h = this.func_222572_j();
 
@@ -29,7 +30,7 @@ public class DeepWatersChunkGenerator extends DeepWatersNoiseChunkGenerator<Deep
 		double d3 = 34.2206D;
 		int i = -10;
 		int j = 3;
-		this.func_222546_a(noiseColumn, noiseX, noiseZ, 684.412D, 2053.236D, 8.555150000000001D, 34.2206D, 3, -10);
+		this.calcNoiseColumn(noiseColumn, noiseX, noiseZ, 684.412D, 2053.236D, 8.555150000000001D, 34.2206D, 3, -10);
 	}
 
 	protected double[] getBiomeNoiseColumn(int noiseX, int noiseZ)

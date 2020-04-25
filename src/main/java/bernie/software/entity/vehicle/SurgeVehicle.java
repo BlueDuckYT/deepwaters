@@ -138,8 +138,9 @@ public class SurgeVehicle extends WaterMobEntity
 				}
 			}
 
-			if(helditem != null && helditem.getItem().equals(Item.getItemById(152))){
-				player.inventory.decrStackSize(player.inventory.getSlotFor(helditem), 1);
+			ItemStack heldItem = this.getHeldItemMainhand();
+			if(heldItem != null && heldItem.getItem().getItem().equals(Item.getItemById(152))){
+				player.inventory.decrStackSize(player.inventory.getSlotFor(heldItem), 1);
 			}
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
