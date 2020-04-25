@@ -123,7 +123,7 @@ public class DeepWatersDimensionEventSubscriber
 	{
 //		try {
 //			PlayerEntity playerEntity = Minecraft.getInstance().player;
-//			if (playerEntity.posY<128) {
+//			if (playerEntity.getPosY()<128) {
 //				if (playerEntity.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())) {
 //					World world=playerEntity.world;
 //					GlStateManager.pushMatrix();
@@ -141,15 +141,15 @@ public class DeepWatersDimensionEventSubscriber
 ////				double fogCount=((1-(playerEntity.getPositionVec().y/256))*1);
 //					double fogCount=0;
 //					if (blendProgress>=120) {
-//						if (playerEntity.posY>=128&&fogCount1!=0) {
+//						if (playerEntity.getPosY()>=128&&fogCount1!=0) {
 //							fogCount=0;
 //							fogCount1=fogCount;
 //							blendProgress=0;
-//						} else if (playerEntity.posY>=64&&playerEntity.posY<128&&fogCount1!=0.5) {
+//						} else if (playerEntity.getPosY()>=64&&playerEntity.getPosY()<128&&fogCount1!=0.5) {
 //							fogCount=0.5;
 //							fogCount1=fogCount;
 //							blendProgress=0;
-//						} else if (fogCount1!=1&&playerEntity.posY<64) {
+//						} else if (fogCount1!=1&&playerEntity.getPosY()<64) {
 //							fogCount=1;
 //							fogCount1=fogCount;
 //							blendProgress=0;
@@ -220,8 +220,8 @@ public class DeepWatersDimensionEventSubscriber
 //									double colorGreen=MathHelper.lerp((amt2),fogColor.getGreen()/255f,prevfogColor.getGreen()/255f);
 //									double colorAlpha=MathHelper.lerp((amt2),fogColor.getAlpha()/255f,prevfogColor.getAlpha()/255f);
 //									double alphaMultiplier=1f;
-//									if (playerEntity.posY>=100) {
-//										alphaMultiplier=playerEntity.posY-100;
+//									if (playerEntity.getPosY()>=100) {
+//										alphaMultiplier=playerEntity.getPosY()-100;
 //										if (alphaMultiplier>=28) {
 //											alphaMultiplier=28;
 //										}
@@ -267,15 +267,15 @@ public class DeepWatersDimensionEventSubscriber
 		}
 		double fogCount = 0;
 //		if (blendProgress>=120) {
-//			if (playerEntity.posY>=128&&fogCount1!=0) {
+//			if (playerEntity.getPosY()>=128&&fogCount1!=0) {
 //				fogCount=0;
 //				fogCount1=fogCount;
 //				blendProgress=0;
-//			} else if (playerEntity.posY>=64&&playerEntity.posY<128&&fogCount1!=0.5) {
+//			} else if (playerEntity.getPosY()>=64&&playerEntity.getPosY()<128&&fogCount1!=0.5) {
 //				fogCount=0.5;
 //				fogCount1=fogCount;
 //				blendProgress=0;
-//			} else if (fogCount1!=1&&playerEntity.posY<64) {
+//			} else if (fogCount1!=1&&playerEntity.getPosY()<64) {
 //				fogCount=1;
 //				fogCount1=fogCount;
 //				blendProgress=0;
@@ -285,21 +285,21 @@ public class DeepWatersDimensionEventSubscriber
 //		} else {
 //			blendProgress+=1;
 //		}
-		float baseDensity = 1 - ((float) (playerEntity.posY) / 200);
+		float baseDensity = 1 - ((float) (playerEntity.getPosY()) / 200);
 		float density = 0;
-		if (playerEntity.posY <= 20)
+		if (playerEntity.getPosY() <= 20)
 		{
 			density = 1;
 		}
-		else if (playerEntity.posY <= 31)
+		else if (playerEntity.getPosY() <= 31)
 		{
 			density = baseDensity / 3;
 		}
-		if (playerEntity.posY <= 63)
+		if (playerEntity.getPosY() <= 63)
 		{
 			density = baseDensity / 6;
 		}
-		else if (playerEntity.posY <= 128)
+		else if (playerEntity.getPosY() <= 128)
 		{
 			density = baseDensity / 12;
 		}

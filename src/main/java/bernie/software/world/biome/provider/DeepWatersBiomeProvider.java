@@ -2,6 +2,7 @@ package bernie.software.world.biome.provider;
 
 import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.world.layer.DeepWatersLayerUtil;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -28,13 +29,14 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 	private final SharedSeedRandom random;
 	private final Layer genBiomes;
 	private final Layer biomeFactoryLayer;
-	private final Biome[] biomes = new Biome[]{
+	private static final Set<Biome> biomes = ImmutableSet.of(
 			DeepWatersBiomes.CoralFieldsBiome.get(),
 			DeepWatersBiomes.SunkenWastesBiome.get()
-	};
+	);
 
 	public DeepWatersBiomeProvider(DeepWatersBiomeProviderSettings settings)
 	{
+		super(biomes);
 		WorldInfo worldinfo = settings.getWorldInfo();
 		Layer[] alayer = DeepWatersLayerUtil.makeLayers(worldinfo.getSeed());
 		this.genBiomes = alayer[0];
@@ -135,5 +137,11 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 		}
 
 		return this.topBlocksCache;
+	}
+
+	@Override
+	public Biome getNoiseBiome(int x, int y, int z)
+	{
+		return this.genBiomes.func_215738_a(x, z);
 	}
 }

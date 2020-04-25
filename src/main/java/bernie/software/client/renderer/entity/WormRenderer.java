@@ -23,7 +23,7 @@ public class WormRenderer extends MobRenderer<AbstractWormEntity, EntityModel<Ab
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(AbstractWormEntity livingEntity) {
+    public ResourceLocation getEntityTexture(AbstractWormEntity livingEntity) {
         return location;
     }
 }
