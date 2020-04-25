@@ -1,20 +1,15 @@
 package bernie.software.entity;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.entity.ai.goal.HostileWaterEntityAttackGoal;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.LookController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -73,7 +68,7 @@ public class KillerWiggler extends AbstractWormEntity
 	public KillerWiggler(EntityType<? extends KillerWiggler> p_i48554_1_, World p_i48554_2_)
 	{
 		super(p_i48554_1_, p_i48554_2_);
-		this.setBoundingBox(new AxisAlignedBB(posX - 1.5625, posY, posZ - 5.3437, posX + 1.5625, posY + 2.4375, posZ + 5.3437));
+		this.setBoundingBox(new AxisAlignedBB(getPosX() - 1.5625, getPosY(), getPosZ() - 5.3437, getPosX() + 1.5625, getPosY() + 2.4375, getPosZ() + 5.3437));
 		AxisAlignedBB box = this.getBoundingBox();
 		this.experienceValue = 10;
 		this.moveController = new KillerWiggler.MoveHelperController(this);
@@ -85,7 +80,7 @@ public class KillerWiggler extends AbstractWormEntity
 	@Nullable
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox() {
-		return new AxisAlignedBB(posX - 1.5625, posY, posZ - 5.3437, posX + 1.5625, posY + 2.4375, posZ + 5.3437);
+		return new AxisAlignedBB(getPosX() - 1.5625, getPosY(), getPosZ() - 5.3437, getPosX() + 1.5625, getPosY() + 2.4375, getPosZ() + 5.3437);
 	}
 
 	@Override
@@ -347,7 +342,7 @@ public class KillerWiggler extends AbstractWormEntity
 					Vec3d vec3d = this.getMotion();
 					if (vec3d.y > 0.0D && this.clientSideTouchedGround && !this.isSilent())
 					{
-						this.world.playSound(this.posX, this.posY, this.posZ, this.getFlopSound(), this.getSoundCategory(), 1.0F, 1.0F, false);
+						this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), this.getFlopSound(), this.getSoundCategory(), 1.0F, 1.0F, false);
 					}
 					this.clientSideTouchedGround = vec3d.y < 0.0D && this.world.isTopSolid((new BlockPos(this)).down(), this);
 				}
@@ -388,7 +383,7 @@ public class KillerWiggler extends AbstractWormEntity
 
 					for (int i = 0; i < 2; ++i)
 					{
-						this.world.addParticle(ParticleTypes.BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.getWidth() - vec3d1.x * 1.5D, this.posY + this.rand.nextDouble() * (double) this.getHeight() - vec3d1.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.getWidth() - vec3d1.z * 1.5D, 0.0D, 0.0D, 0.0D);
+						this.world.addParticle(ParticleTypes.BUBBLE, this.getPosX() + (this.rand.nextDouble() - 0.5D) * (double) this.getWidth() - vec3d1.x * 1.5D, this.posY + this.rand.nextDouble() * (double) this.getHeight() - vec3d1.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.getWidth() - vec3d1.z * 1.5D, 0.0D, 0.0D, 0.0D);
 					}
 				}
 
@@ -405,9 +400,9 @@ public class KillerWiggler extends AbstractWormEntity
 						this.getLookController().setLookPositionWithEntity(livingentity, 90.0F, 90.0F);
 						this.getLookController().tick();
 						double d5 = (double) this.getAttackAnimationScale(0.0F);
-						double d0 = livingentity.posX - this.posX;
-						double d1 = livingentity.posY + (double) (livingentity.getHeight() * 0.5F) - (this.posY + (double) this.getEyeHeight());
-						double d2 = livingentity.posZ - this.posZ;
+						double d0 = livingentity.getPosX() - this.getPosX();
+						double d1 = livingentity.getPosY() + (double) (livingentity.getHeight() * 0.5F) - (this.getPosY() + (double) this.getEyeHeight());
+						double d2 = livingentity.getPosZ() - this.getPosZ();
 						double d3 = Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 						d0 = d0 / d3;
 						d1 = d1 / d3;
@@ -549,7 +544,7 @@ public class KillerWiggler extends AbstractWormEntity
 		{
 			if (this.action == MovementController.Action.MOVE_TO && !this.entityGuardian.getNavigator().noPath())
 			{
-				Vec3d vec3d = new Vec3d(this.posX - this.entityGuardian.posX, this.posY - this.entityGuardian.posY, this.posZ - this.entityGuardian.posZ);
+				Vec3d vec3d = new Vec3d(this.posX - this.entityGuardian.getPosX(), this.posY - this.entityGuardian.getPosY(), this.posZ - this.entityGuardian.getPosZ());
 				double d0 = vec3d.length();
 				double d1 = vec3d.x / d0;
 				double d2 = vec3d.y / d0;
@@ -566,9 +561,9 @@ public class KillerWiggler extends AbstractWormEntity
 				double d7 = Math.sin((double) (this.entityGuardian.ticksExisted + this.entityGuardian.getEntityId()) * 0.75D) * 0.05D;
 				this.entityGuardian.setMotion(this.entityGuardian.getMotion().add(d4 * d5, d7 * (d6 + d5) * 0.25D + (double) f2 * d2 * 0.1D, d4 * d6));
 				LookController lookcontroller = this.entityGuardian.getLookController();
-				double d8 = this.entityGuardian.posX + d1 * 2.0D;
-				double d9 = (double) this.entityGuardian.getEyeHeight() + this.entityGuardian.posY + d2 / d0;
-				double d10 = this.entityGuardian.posZ + d3 * 2.0D;
+				double d8 = this.entityGuardian.getPosX() + d1 * 2.0D;
+				double d9 = (double) this.entityGuardian.getEyeHeight() + this.entityGuardian.getPosY() + d2 / d0;
+				double d10 = this.entityGuardian.getPosZ() + d3 * 2.0D;
 				double d11 = lookcontroller.getLookPosX();
 				double d12 = lookcontroller.getLookPosY();
 				double d13 = lookcontroller.getLookPosZ();

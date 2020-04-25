@@ -15,6 +15,8 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.DefaultSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
+import java.awt.*;
+
 public class SunkenWastesBiome extends WaterBiomeBase
 {
 
@@ -41,6 +43,11 @@ public class SunkenWastesBiome extends WaterBiomeBase
 		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				createDecoratedFeature(DeepWatersStructures.CRYSTALINE_CORAL.get(), new CountConfig(1),
 						Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(100)));
+	}
+
+	@Override
+	public int getSkyColor() {
+		return new Color(67, 121, 96).getRGB();
 	}
 
 	@Override

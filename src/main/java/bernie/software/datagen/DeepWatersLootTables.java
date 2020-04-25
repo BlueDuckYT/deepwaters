@@ -11,7 +11,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.EntityLootTables;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.EntityHasProperty;
@@ -50,7 +49,7 @@ public class DeepWatersLootTables extends LootTableProvider
 	}
 
 	@Override
-	protected void validate(Map<ResourceLocation, LootTable> map, ValidationResults validationresults)
+	protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationresults)
 	{
 
 	}
