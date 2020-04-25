@@ -59,87 +59,111 @@ public class SurgeVehicle extends WaterMobEntity
 //	{
 //		return null;
 //	}
-	
+
 	/**
 	 * Called to update the entity's position/logic.
 	 */
 
-	public ItemStackHandler inventory = this.initInventory();
-	private LazyOptional<ItemStackHandler> itemHandler = LazyOptional.of(() -> this.inventory);
+	public ItemStackHandler inventory = initInventory();
+	private LazyOptional<ItemStackHandler> itemHandler = LazyOptional.of(() -> inventory);
 
-	protected ItemStackHandler initInventory() {
-		return new ItemStackHandler() {
+	protected ItemStackHandler initInventory()
+	{
+		return new ItemStackHandler()
+		{
 			@Override
-			protected void onContentsChanged(final int slot) {
+			protected void onContentsChanged(final int slot)
+			{
 				int tempload = 0;
-				for (int i = 0; i < this.getSlots(); i++) {
-					if (!this.getStackInSlot(i).isEmpty()) {
+				for (int i = 0; i < getSlots(); i++)
+				{
+					if (!getStackInSlot(i).isEmpty())
+					{
 						tempload++;
 					}
 				}
 				final int newValue;
 				if (tempload > 31)
+				{
 					newValue = 4;
+				}
 				else if (tempload > 16)
+				{
 					newValue = 3;
+				}
 				else if (tempload > 8)
+				{
 					newValue = 2;
+				}
 				else if (tempload > 3)
+				{
 					newValue = 1;
+				}
 				else
+				{
 					newValue = 0;
+				}
 			}
 		};
 	}
 
 	@Override
-	public boolean replaceItemInInventory(final int inventorySlot, final ItemStack itemStackIn) {
-		if (inventorySlot >= 0 && inventorySlot < this.inventory.getSlots()) {
-			this.inventory.setStackInSlot(inventorySlot, itemStackIn);
+	public boolean replaceItemInInventory(final int inventorySlot, final ItemStack itemStackIn)
+	{
+		if (inventorySlot >= 0 && inventorySlot < inventory.getSlots())
+		{
+			inventory.setStackInSlot(inventorySlot, itemStackIn);
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
 
 	@Override
-	public void remove(final boolean keepData) {
+	public void remove(final boolean keepData)
+	{
 		super.remove(keepData);
-		if (!keepData && this.itemHandler != null) {
-			this.itemHandler.invalidate();
-			this.itemHandler = null;
+		if (!keepData && itemHandler != null)
+		{
+			itemHandler.invalidate();
+			itemHandler = null;
 		}
 	}
 
 	@Override
-	public <T> LazyOptional<T> getCapability(final Capability<T> capability, @Nullable final Direction facing) {
-		if (this.isAlive() && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && this.itemHandler != null)
-			return this.itemHandler.cast();
+	public <T> LazyOptional<T> getCapability(final Capability<T> capability, @Nullable final Direction facing)
+	{
+		if (isAlive() && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && itemHandler != null)
+		{
+			return itemHandler.cast();
+		}
 		return super.getCapability(capability, facing);
 	}
 
 	@Override
 	public void tick()
 	{
-		Entity entity = this.getControllingPassenger();
-		if (this.getControllingPassenger() != null)
+		Entity entity = getControllingPassenger();
+		if (getControllingPassenger() != null)
 		{
 			LivingEntity player = (LivingEntity) entity;
-            Minecraft mc = Minecraft.getInstance();
+			Minecraft mc = Minecraft.getInstance();
 			Vec3d lookVec = entity.getLookVec();
-			if (this.inWater && KeyboardHandler.isKeyDown)
+			if (inWater && KeyboardHandler.isKeyDown)
 			{
-				this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
+				setMotion(getMotion().add(lookVec.x / 10, lookVec.y / 10, lookVec.z / 10));
 			}
-            if (KeyboardHandler.isKeyDown)
-            {
+			if (KeyboardHandler.isKeyDown)
+			{
 //                ((PlayerEntity) entity).openContainer();
-            }
+			}
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
-			this.prevRotationYawHead = player.prevRotationYawHead;
-			this.rotationYaw = entity.getRotationYawHead();
-			this.setRotationYawHead(entity.getRotationYawHead());
+			prevRotationYawHead = player.prevRotationYawHead;
+			rotationYaw = entity.getRotationYawHead();
+			setRotationYawHead(entity.getRotationYawHead());
 			float pitch = entity.getPitch(1);
 			//this.rotationPitch = pitch;
 		}
@@ -161,17 +185,17 @@ public class SurgeVehicle extends WaterMobEntity
 
 	private void tickLerp()
 	{
-		if (this.lerpSteps > 0 && !this.canPassengerSteer())
+		if (lerpSteps > 0 && !canPassengerSteer())
 		{
-			double d0 = this.posX + (this.lerpX - this.posX) / (double) this.lerpSteps;
-			double d1 = this.posY + (this.lerpY - this.posY) / (double) this.lerpSteps;
-			double d2 = this.posZ + (this.lerpZ - this.posZ) / (double) this.lerpSteps;
-			double d3 = MathHelper.wrapDegrees(this.lerpYaw - (double) this.rotationYaw);
-			this.rotationYaw = (float) ((double) this.rotationYaw + d3 / (double) this.lerpSteps);
-			this.rotationPitch = (float) ((double) this.rotationPitch + (this.lerpPitch - (double) this.rotationPitch) / (double) this.lerpSteps);
-			--this.lerpSteps;
-			this.setPosition(d0, d1, d2);
-			this.setRotation(this.rotationYaw, this.rotationPitch);
+			double d0 = posX + (lerpX - posX) / (double) lerpSteps;
+			double d1 = posY + (lerpY - posY) / (double) lerpSteps;
+			double d2 = posZ + (lerpZ - posZ) / (double) lerpSteps;
+			double d3 = MathHelper.wrapDegrees(lerpYaw - (double) rotationYaw);
+			rotationYaw = (float) ((double) rotationYaw + d3 / (double) lerpSteps);
+			rotationPitch = (float) ((double) rotationPitch + (lerpPitch - (double) rotationPitch) / (double) lerpSteps);
+			--lerpSteps;
+			setPosition(d0, d1, d2);
+			setRotation(rotationYaw, rotationPitch);
 		}
 	}
 
@@ -186,7 +210,7 @@ public class SurgeVehicle extends WaterMobEntity
 	{
 		if (super.attackEntityFrom(source, amount))
 		{
-			this.remove();
+			remove();
 		}
 		return false;
 	}
@@ -202,10 +226,10 @@ public class SurgeVehicle extends WaterMobEntity
 
 	protected void mountTo(PlayerEntity player)
 	{
-		if (!this.world.isRemote)
+		if (!world.isRemote)
 		{
-			player.rotationYaw = this.rotationYaw;
-			player.rotationPitch = this.rotationPitch;
+			player.rotationYaw = rotationYaw;
+			player.rotationPitch = rotationPitch;
 			player.startRiding(this);
 		}
 	}
@@ -222,8 +246,9 @@ public class SurgeVehicle extends WaterMobEntity
 	@Override
 	public void updatePassenger(Entity passenger)
 	{
-		Entity controllingPassenger = this.getControllingPassenger();
-		controllingPassenger.setPosition(this.posX, this.posY + this.getMountedYOffset() + controllingPassenger.getYOffset(), this.posZ);
+		Entity controllingPassenger = getControllingPassenger();
+		controllingPassenger.setPosition(posX,
+				posY + getMountedYOffset() + controllingPassenger.getYOffset(), posZ);
 	}
 
 
@@ -241,15 +266,17 @@ public class SurgeVehicle extends WaterMobEntity
 	}
 
 
+	@Override
 	@Nullable
 	public Entity getControllingPassenger()
 	{
-		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
+		return getPassengers().isEmpty() ? null : getPassengers().get(0);
 	}
 
+	@Override
 	public boolean canBeSteered()
 	{
-		return this.getControllingPassenger() instanceof LivingEntity;
+		return getControllingPassenger() instanceof LivingEntity;
 	}
 
 }

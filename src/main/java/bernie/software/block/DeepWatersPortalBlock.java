@@ -47,15 +47,23 @@ public class DeepWatersPortalBlock extends Block
 		);
 	}
 
+	@Override
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (rand.nextInt(100) == 0) {
-			worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
+	{
+		if (rand.nextInt(100) == 0)
+		{
+			worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D,
+					SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F,
+					false);
 		}
-		double d0 = (float)pos.getX() + rand.nextFloat();
-		double d1 = (float)pos.getY() + rand.nextFloat() + 1;
-		double d2 = (float)pos.getZ() + rand.nextFloat();
-		worldIn.addParticle(ParticleTypes.BUBBLE_POP, d0, d1, d2, 0.0D, -0.1D, 0.0D);
+		double d0 = (float) pos.getX() + rand.nextFloat();
+		double d1 = (float) pos.getY() + rand.nextFloat() + 1;
+		double d2 = (float) pos.getZ() + rand.nextFloat();
+		if (rand.nextInt(1) == 0)
+		{
+			worldIn.addParticle(ParticleTypes.BUBBLE_POP, d0, d1, d2, 0.0D, -0.04D, 0.0D);
+		}
 	}
 
 	@Override

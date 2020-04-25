@@ -14,9 +14,12 @@ public abstract class WaterBiomeBase extends Biome
 		super(biomeBuilder);
 	}
 
-	public static EntityClassification WATER_PASSIVE = EntityClassification.create("water_passive", "WATER_PASSIVE", 100, true, false);
-	public static EntityClassification WATER_MONSTER = EntityClassification.create("water_monster", "WATER_MONSTER", 100, false, false);
-	public static EntityClassification WATER_LAND_PASSIVE = EntityClassification.create("water_land_passive", "WATER_LAND_PASSIVE", 15, true, true);
+	public static EntityClassification WATER_PASSIVE = EntityClassification.create("water_passive", "WATER_PASSIVE",
+			100, true, false);
+	public static EntityClassification WATER_MONSTER = EntityClassification.create("water_monster", "WATER_MONSTER",
+			100, false, false);
+	public static EntityClassification WATER_LAND_PASSIVE = EntityClassification.create("water_land_passive",
+			"WATER_LAND_PASSIVE", 15, true, true);
 
 	@Override
 	public void addSpawn(EntityClassification type, SpawnListEntry spawnListEntry)
@@ -43,13 +46,13 @@ public abstract class WaterBiomeBase extends Biome
 
 	public void addWaterLandPassiveCreatureSpawn(SpawnListEntry spawnListEntry)
 	{
-		addSpawn(WATER_LAND_PASSIVE, spawnListEntry);
+		addSpawn(EntityClassification.CREATURE, spawnListEntry);
 	}
 
 	public void AddWorldCarver()
 	{
 		WorldCarver<ProbabilityConfig> carver = DeepWatersWorldCarvers.CORAL_CAVE_CARVER.get();
-		this.addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(0.4F)));
+		addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(0.4F)));
 	}
 
 	public abstract void addSpawns();

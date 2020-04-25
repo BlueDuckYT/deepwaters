@@ -45,9 +45,8 @@ public class ToolEventSubscriber
 				boolean isTouchingPortal = isPortal(world, offset);
 				boolean isTouchingPortalBelow = isPortal(world, offset.down(1));
 
-				boolean isPortalBelow = isPortal(world, pos.down(1));
 				boolean isPortalAbove = isPortal(world, pos.up(1));
-				if ((isTouchingPortal || isTouchingPortalBelow) && !(isPortalBelow || isPortalAbove))
+				if ((isTouchingPortal || isTouchingPortalBelow) && !(isPortalAbove))
 				{
 					event.setNewSpeed(0);
 					return;

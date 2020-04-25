@@ -23,7 +23,7 @@ public class EntityUtils
 	{
 		String name = entityClass.getSimpleName().toLowerCase();
 		return DeepWatersEntities.ENTITIES.register(name,
-				() -> EntityType.Builder.create(entity, WaterBiomeBase.WATER_LAND_PASSIVE)
+				() -> EntityType.Builder.create(entity, EntityClassification.CREATURE)
 						.size(width, height).build(name));
 	}
 

@@ -17,23 +17,40 @@ public class CoralFieldsBiome extends WaterBiomeBase
 {
 	public CoralFieldsBiome()
 	{
-		super((new Biome.Builder()).surfaceBuilder(new DefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize), new SurfaceBuilderConfig(Blocks.SAND.getDefaultState(), DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(), DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState())).precipitation(Biome.RainType.NONE).category(Category.OCEAN).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).waterColor(42892).waterFogColor(42892));
+		super((new Biome.Builder()).surfaceBuilder(new DefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize),
+				new SurfaceBuilderConfig(Blocks.SAND.getDefaultState(),
+						DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(),
+						DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState())).precipitation(
+				Biome.RainType.NONE).category(Category.OCEAN).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(
+				0.0F).waterColor(42892).waterFogColor(42892));
 
-		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(48, 0.3D), Placement.TOP_SOLID_HEIGHTMAP, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SingleRandomFeature(new Feature[]{Feature.CORAL_TREE, Feature.CORAL_CLAW, Feature.CORAL_MUSHROOM}, new IFeatureConfig[]{IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG}), Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED, new TopSolidWithNoiseConfig(20, 400.0D, 1.0D, Heightmap.Type.OCEAN_FLOOR_WG)));
-		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, createDecoratedFeature(Feature.SEA_PICKLE, new CountConfig(20), Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(16)));
+		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+				createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(48, 0.3D), Placement.TOP_SOLID_HEIGHTMAP,
+						IPlacementConfig.NO_PLACEMENT_CONFIG));
+		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+				createDecoratedFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SingleRandomFeature(
+								new Feature[]{Feature.CORAL_TREE, Feature.CORAL_CLAW, Feature.CORAL_MUSHROOM},
+								new IFeatureConfig[]{IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG}),
+						Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED,
+						new TopSolidWithNoiseConfig(20, 400.0D, 1.0D, Heightmap.Type.OCEAN_FLOOR_WG)));
+		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+				createDecoratedFeature(Feature.SEA_PICKLE, new CountConfig(20), Placement.CHANCE_TOP_SOLID_HEIGHTMAP,
+						new ChanceConfig(16)));
 		DefaultBiomeFeatures.addKelp(this);
 		DeepWatersBiomeFeatures.addDeepWatersOres(this);
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
 		DeepWatersBiomeFeatures.addStoneVariants(this);
+
 	}
 
+	@Override
 	public void addWorldCarvers()
 	{
 		WorldCarver<ProbabilityConfig> carver = DeepWatersWorldCarvers.CORAL_CAVE_CARVER.get();
-		this.addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(15F)));
+		addCarver(GenerationStage.Carving.AIR, createCarver(carver, new ProbabilityConfig(15F)));
 	}
 
+	@Override
 	public void addSpawns()
 	{
 		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.DONUT_FISH.get(), 3, 75, 100));
@@ -52,5 +69,14 @@ public class CoralFieldsBiome extends WaterBiomeBase
 		addWaterLandPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.CORAL_CRAWLER.get(), 30, 1, 4));
 
 
+	}
+
+	/**
+	 * returns the chance a creature has to spawn.
+	 */
+	@Override
+	public float getSpawningChance()
+	{
+		return 0.2F;
 	}
 }

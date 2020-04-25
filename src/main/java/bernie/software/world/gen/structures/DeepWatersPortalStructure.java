@@ -121,6 +121,7 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 	public static void placePortalAtLocation(IWorld world,
 	                                         Random rand, BlockPos position, NoFeatureConfig config)
 	{
+		position = position.down();
 		ChunkGenerator<?> generator = world.getChunkProvider().getChunkGenerator();
 		TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
 		Template template = templatemanager.getTemplate(GeneralUtils.Location("deepwatersportalactivated"));
@@ -164,7 +165,7 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 			int z = (chunkZ << 4) + 7;
 
 			//Finds the y value of the terrain at location.
-			int surfaceY = generator.getSeaLevel() - 1;
+			int surfaceY = generator.getSeaLevel() - 2;
 			BlockPos blockpos = new BlockPos(x, surfaceY, z);
 
 			//Now adds the structure pieces to this.components with all details such as where each part goes
