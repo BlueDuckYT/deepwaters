@@ -29,47 +29,48 @@ public class VehicleEventSubscriber
 {
 
 
-	@SubscribeEvent
-	public static void onPlayerModelEvent(PlayerModelEvent.SetupAngles event)
-	{
+    @SubscribeEvent
+    public static void onPlayerModelEvent(PlayerModelEvent.SetupAngles event)
+    {
 
-		if (!event.getPlayer().getEntityWorld().isRemote)
-		{
-			return;
-		}
-		Entity ridingEntity = event.getPlayer().getRidingEntity();
-		if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
-		{
-			PlayerModel modelPlayer = event.getModelPlayer();
-			modelPlayer.bipedLeftArm.rotateAngleX = -2.0F;
-			modelPlayer.bipedRightArm.rotateAngleX = -2.0F;
-			modelPlayer.bipedLeftLeg.rotateAngleX = MathHelper.sin(ridingEntity.ticksExisted * 0.3F) * 0.3F;
-			modelPlayer.bipedLeftLeg.rotateAngleY = 0;
-			modelPlayer.bipedRightLeg.rotateAngleX = MathHelper.cos(ridingEntity.ticksExisted * 0.3F) * 0.3F;
-			modelPlayer.bipedRightLeg.rotateAngleY = 0;
-			modelPlayer.bipedHead.rotateAngleX = -.5F;
-			GlStateManager.rotatef(20, 1, 0, 0);
+        if (!event.getPlayer().getEntityWorld().isRemote)
+        {
+            return;
+        }
+        Entity ridingEntity = event.getPlayer().getRidingEntity();
+        if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
+        {
+            PlayerModel modelPlayer = event.getModelPlayer();
+            modelPlayer.bipedLeftArm.rotateAngleX = -2.0F;
+            modelPlayer.bipedRightArm.rotateAngleX = -2.0F;
+            modelPlayer.bipedLeftLeg.rotateAngleX = MathHelper.sin(ridingEntity.ticksExisted * 0.3F) * 0.3F;
+            modelPlayer.bipedLeftLeg.rotateAngleY = 0;
+            modelPlayer.bipedRightLeg.rotateAngleX = MathHelper.cos(ridingEntity.ticksExisted * 0.3F) * 0.3F;
+            modelPlayer.bipedRightLeg.rotateAngleY = 0;
+            modelPlayer.bipedHead.rotateAngleX = -.5F;
+            GlStateManager.rotatef(20, 1, 0, 0);
 
-		}
-	}
+        }
+    }
 
-	@SubscribeEvent
-	public static void onRenderText(RenderGameOverlayEvent event)
-	{
-		if (event.getType() == RenderGameOverlayEvent.ElementType.HELMET)
-		{
-			Entity ridingEntity = Minecraft.getInstance().player.getRidingEntity();
-			if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
-			{
-
-				Minecraft.getInstance().fontRenderer.drawString("Battery: 100%",
-						event.getWindow().getScaledWidth() / 2 - 35, event.getWindow().getScaledHeight() - 40,
-						14103062);
-				//GlStateManager.disableTexture2D();
-				//Minecraft.getInstance().draw(0, 0, 0, 0, 10, 10, 255, 255, 255);
-				//GlStateManager.te();
-			}
-		}
-	}
+    @SubscribeEvent
+    public static void onRenderText(RenderGameOverlayEvent event)
+    {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.HELMET)
+        {
+            Entity ridingEntity = Minecraft.getInstance().player.getRidingEntity();
+            if (ridingEntity instanceof SurgeVehicle)
+            {
+                StringBuilder batteryFilled = new StringBuilder();
+                for(int i = 0;i <= ((SurgeVehicle) ridingEntity).battery;i += 10){
+                    batteryFilled.append("█");
+                }
+                Minecraft.getInstance().fontRenderer.drawString("Battery: " + batteryFilled.toString(), event.getWindow().getScaledWidth() / 2 - 60, event.getWindow().getScaledHeight() - 50, 14103062);
+                //GlStateManager.disableTexture2D();
+                //Minecraft.getInstance().draw(0, 0, 0, 0, 10, 10, 255, 255, 255);
+                //GlStateManager.te();
+            }
+        }
+    }
 
 }

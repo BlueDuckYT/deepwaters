@@ -1,3 +1,6 @@
 {
-    "parent": "deepwaters:item/aqualite_pickaxe"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "deepwaters:item/aqualite_pickaxe"
+    }
 }

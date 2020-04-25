@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.*;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
@@ -25,7 +24,6 @@ import net.minecraft.world.chunk.Chunk;
 import org.apache.logging.log4j.Level;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -871,33 +869,5 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type)
 	{
 		return true;
-	}
-
-	public static class Colors implements IBlockColor
-	{
-		@Override
-		public int getColor(BlockState p_getColor_1_, @Nullable IEnviromentBlockReader p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_)
-		{
-			try
-			{
-				float power = p_getColor_1_.get(POWER) / 15f;
-				int color1R = 2;
-				int color1G = 188;
-				int color1B = 255;
-				int color2R = 1;
-				int color2G = 29;
-				int color2B = 38;
-				float fade = ((power) * 1);
-				int red = (int) (((fade * color1R) + ((1 - fade) * color2R)) * 1);
-				int green = (int) (((fade * color1G) + ((1 - fade) * color2G)) * 1);
-				int blue = (int) (((fade * color1B) + ((1 - fade) * color2B)) * 1);
-				Color color = new Color(red, green, blue);
-				return color.getRGB();
-			}
-			catch (Exception err)
-			{
-				return 0;
-			}
-		}
 	}
 }

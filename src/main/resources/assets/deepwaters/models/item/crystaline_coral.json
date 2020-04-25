@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "deepwaters:item/aqualite_ingot"
+        "layer0": "deepwaters:item/crystaline_coral"
     }
 }
