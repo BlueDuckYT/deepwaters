@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
 import net.minecraft.world.gen.LazyAreaLayerContext;
 import net.minecraft.world.gen.area.IArea;
@@ -43,15 +44,17 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 		this.biomeFactoryLayer = agenlayer[1];
 	}
 
-	public DeepWatersBiomeProvider(DeepWatersBiomeProviderSettings settings)
-	{
-		this(settings.getSeed(),settings.getWorldInfo().getGenerator());
+	public DeepWatersBiomeProvider(DeepWatersBiomeProviderSettings settings) {
+		super(biomes);
+		Layer[] agenlayer = buildOverworldProcedure(settings.getSeed(), settings.getWorldInfo().getGenerator());
+		this.genBiomes = agenlayer[0];
+		this.biomeFactoryLayer = agenlayer[1];
 	}
 
 	@Override
 	public Biome getNoiseBiome(int i, int i1, int i2)
 	{
-		return null;
+		return getBiomeForNoiseGen(i,i1,i2);
 	}
 
 	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> repeat(long seed, IAreaTransformer1 parent, IAreaFactory<T> p_202829_3_, int count, LongFunction<C> contextFactory)

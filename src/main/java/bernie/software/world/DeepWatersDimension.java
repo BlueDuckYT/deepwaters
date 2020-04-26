@@ -51,10 +51,10 @@ public class DeepWatersDimension extends Dimension
 		WorldInfo worldInfo = this.world.getWorldInfo();
 		settings.setWorldInfo(worldInfo);
 		DeepWatersBiomeProvider provider = new DeepWatersBiomeProvider(settings);
-		SingleBiomeProviderSettings singleBiomeProviderSettings = new SingleBiomeProviderSettings(worldInfo);
-		singleBiomeProviderSettings.setBiome(DeepWatersBiomes.CoralFieldsBiome.get());
-		SingleBiomeProvider singleProvider = new SingleBiomeProvider(singleBiomeProviderSettings);
-		return new DeepWatersChunkGenerator(world, singleProvider, deepWatersGenSettings);
+//		DeepWatersBiomeProviderSettings BiomeProviderSettings = new DeepWatersBiomeProviderSettings();
+//		BiomeProviderSettings.setBiome(DeepWatersBiomes.CoralFieldsBiome.get());
+//		DeepWatersBiomeProvider singleProvider = new DeepWatersBiomeProvider(BiomeProviderSettings);
+		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
 	}
 
 	@Nullable
