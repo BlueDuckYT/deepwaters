@@ -3,9 +3,13 @@ buildscript {
         maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
     }
 }
 plugins {
@@ -13,6 +17,7 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: "com.wynprice.cursemaven"
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
@@ -182,5 +187,5 @@ repositories {
 }
 
 dependencies {
-    compile 'obfuscate:Obfuscate-0.4.0:1.15.2:deobf'
+    compile fg.deobf("curse.maven:obfuscate:2912283")
 }
