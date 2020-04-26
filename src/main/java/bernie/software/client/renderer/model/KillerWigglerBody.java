@@ -86,7 +86,7 @@ public class KillerWigglerBody extends AbstractWormPart
 
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		body_part1.render(matrixStack, buffer, packedLight, packedOverlay);
+//		body_part1.render(matrixStack, buffer, packedLight, packedOverlay);
 		LL1.render(matrixStack, buffer, packedLight, packedOverlay);
 		pt1_LL1.render(matrixStack, buffer, packedLight, packedOverlay);
 		pt2_LL1.render(matrixStack, buffer, packedLight, packedOverlay);

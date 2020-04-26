@@ -1,12 +1,15 @@
 package bernie.software.client.renderer.model;
 
+import bernie.software.DeepWatersMod;
 import bernie.software.entity.AbstractWormEntity;
+import bernie.software.utils.render.RenderHelper;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.Vec3d;
+import org.apache.logging.log4j.Level;
 
 import java.util.HashMap;
 
@@ -23,6 +26,7 @@ public class WormModel extends EntityModel<AbstractWormEntity>
 	public WormModel(AbstractWormPart mdlH, AbstractWormPart mdlS, AbstractWormPart mdlT, Class<? extends AbstractWormEntity> type, boolean wigglecorrect)
 	{
 		main.setRotationPoint(0, 0, 0);
+		main.addBox(0, 0, 0,10,10,10,0);
 		mdl1 = mdlH.getClass();
 		mdl2 = mdlS.getClass();
 		mdl3 = mdlT.getClass();
@@ -33,10 +37,23 @@ public class WormModel extends EntityModel<AbstractWormEntity>
 	@Override
 	public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha)
 	{
+//		main = new ModelRenderer(this);
+//		main.setRotationPoint(0, 0, 0);
+//		main.addBox(0, 0, 0,10,10,10,0);
+//		try {
+//			GlStateManager.pushMatrix();
+//			try {
+//				GlStateManager.translatef(0, type.newInstance().getYRenderOffset(), 0);
+//			} catch (Exception err) {}
+//			main.render(matrixStackIn,bufferIn,packedLightIn,packedOverlayIn,red,blue,green,alpha);
+//			GlStateManager.popMatrix();
+//		} catch (Exception err) {}
 		GlStateManager.pushMatrix();
 		try
 		{
-			GlStateManager.translatef(0, type.newInstance().getYRenderOffset(), 0);
+			try {
+				GlStateManager.translatef(0, type.newInstance().getYRenderOffset(), 0);
+			} catch (Exception err) {}
 			float offsetX = 0;
 			float offsetY = 0;
 			float offsetZ = 0;
@@ -44,7 +61,7 @@ public class WormModel extends EntityModel<AbstractWormEntity>
 			{
 				Object obj = EntityRendering.getClass().cast(EntityRendering);
 				AbstractWormPart modelW = mdl1.getConstructor().newInstance();
-				ModelRenderer model = modelW.getModel();
+				AbstractWormPart model = modelW;
 				main = new ModelRenderer(this);
 				main.setRotationPoint(0.0F, 0.0F, 0.0F);
 				HashMap<Integer, Vec3d> poses = EntityRendering.getClass().cast(obj).getPoses();
@@ -52,15 +69,16 @@ public class WormModel extends EntityModel<AbstractWormEntity>
 				float x2a = -(float) EntityRendering.getPosX();
 				float z1a = (float) poses.get(0).z;
 				float z2a = (float) EntityRendering.getPosZ();
-				model.rotateAngleY = (float) Math.atan2(x2a - x1a, z2a - z1a);
+				model.getModel().rotateAngleY = (float) Math.atan2(x2a - x1a, z2a - z1a);
 				if (wigglerCorrection)
 				{
 					offsetZ = -1;
 				}
-				GlStateManager.pushMatrix();
-				GlStateManager.translatef(offsetX, offsetY, offsetZ);
+				matrixStackIn.push();
+				matrixStackIn.translate(offsetX,offsetY,offsetZ);
 				model.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-				GlStateManager.popMatrix();
+				matrixStackIn.translate(-offsetX,-offsetY,-offsetZ);
+				matrixStackIn.pop();
 				int length = EntityRendering.getClass().cast(obj).getLength();
 				try
 				{
@@ -122,10 +140,11 @@ public class WormModel extends EntityModel<AbstractWormEntity>
 								}
 							}
 						}
-						GlStateManager.pushMatrix();
-						GlStateManager.translatef(offsetX, offsetY, offsetZ);
+						matrixStackIn.push();
+						matrixStackIn.translate(offsetX,offsetY,offsetZ);
 						model2.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
-						GlStateManager.popMatrix();
+						matrixStackIn.translate(-offsetX,-offsetY,-offsetZ);
+						matrixStackIn.pop();
 					}
 				}
 				catch (Exception err)
