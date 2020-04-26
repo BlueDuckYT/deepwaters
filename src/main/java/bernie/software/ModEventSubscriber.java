@@ -77,16 +77,7 @@ public class ModEventSubscriber
 			{
 				Feature<NoFeatureConfig> portal = (Feature<NoFeatureConfig>) DeepWatersStructures.PORTAL_STRUCTURE.get();
 				biome.addStructure(((Structure<NoFeatureConfig>) portal).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-				biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
-						createDecoratedFeature(portal, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE,
-								IPlacementConfig.NO_PLACEMENT_CONFIG));
-			}
-			if (biome instanceof SunkenWastesBiome)
-			{
-				Feature<CountConfig> crystaline = DeepWatersStructures.CRYSTALINE_CORAL.get();
-				biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-						createDecoratedFeature(crystaline, new CountConfig(1),
-								Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(100)));
+				biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, portal.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 			}
 		}
 	}

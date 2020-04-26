@@ -1,6 +1,7 @@
 package bernie.software.world.biome;
 
 import bernie.software.registry.*;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.Vec3d;
@@ -26,20 +27,10 @@ public class CoralFieldsBiome extends WaterBiomeBase
 						DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState())).precipitation(
 				Biome.RainType.NONE).category(Category.OCEAN).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(
 				0.0F).waterColor(42892).waterFogColor(42892));
-
-		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(48, 0.3D), Placement.TOP_SOLID_HEIGHTMAP,
-						IPlacementConfig.NO_PLACEMENT_CONFIG));
-		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				createDecoratedFeature(Feature.SIMPLE_RANDOM_SELECTOR, new SingleRandomFeature(
-								new Feature[]{Feature.CORAL_TREE, Feature.CORAL_CLAW, Feature.CORAL_MUSHROOM},
-								new IFeatureConfig[]{IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG, IFeatureConfig.NO_FEATURE_CONFIG}),
-						Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED,
-						new TopSolidWithNoiseConfig(20, 400.0D, 1.0D, Heightmap.Type.OCEAN_FLOOR_WG)));
-		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				createDecoratedFeature(Feature.SEA_PICKLE, new CountConfig(20), Placement.CHANCE_TOP_SOLID_HEIGHTMAP,
-						new ChanceConfig(16)));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(new SingleRandomFeature(ImmutableList.of(Feature.CORAL_TREE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG), Feature.CORAL_CLAW.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG), Feature.CORAL_MUSHROOM.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)))).withPlacement(Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED.configure(new TopSolidWithNoiseConfig(20, 400.0D, 1.0D, Heightmap.Type.OCEAN_FLOOR_WG))));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEA_PICKLE.withConfiguration(new CountConfig(20)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(16))));
 		DefaultBiomeFeatures.addKelp(this);
+		DefaultBiomeFeatures.addSeagrass(this);
 		DeepWatersBiomeFeatures.addDeepWatersOres(this);
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
 		DeepWatersBiomeFeatures.addStoneVariants(this);

@@ -2,6 +2,7 @@ package bernie.software.world.biome;
 
 import bernie.software.registry.*;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
@@ -27,10 +28,8 @@ public class SunkenWastesBiome extends WaterBiomeBase
 						DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState())).precipitation(RainType.NONE).category(
 				Category.OCEAN).depth(0.1F).scale(0.2F).temperature(2.0F).downfall(0.0F).waterColor(6952).waterFogColor(
 				6952));
-
-		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				createDecoratedFeature(Feature.SEAGRASS, new SeaGrassConfig(24, 3), Placement.TOP_SOLID_HEIGHTMAP,
-						IPlacementConfig.NO_PLACEMENT_CONFIG));
+		DefaultBiomeFeatures.addSeagrass(this);
+		DefaultBiomeFeatures.addTallSeagrassSparse(this);
 		DeepWatersBiomeFeatures.addDeepWatersOres(this);
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
 		DeepWatersBiomeFeatures.addStoneVariants(this);
@@ -39,9 +38,7 @@ public class SunkenWastesBiome extends WaterBiomeBase
 	@Override
 	public void addFeatures()
 	{
-		addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				createDecoratedFeature(DeepWatersStructures.CRYSTALINE_CORAL.get(), new CountConfig(1),
-						Placement.CHANCE_TOP_SOLID_HEIGHTMAP, new ChanceConfig(100)));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DeepWatersStructures.CRYSTALINE_CORAL.get().withConfiguration(new CountConfig(1)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(100))));
 	}
 
 	@Override
