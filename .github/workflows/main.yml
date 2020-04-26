@@ -21,10 +21,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-      
-    - name: Github Tag Bump
-      uses: anothrNick/github-tag-action@1.19.0
-    env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: true
-        DEFAULT_BUMP : patch
+    - name: Bump version and push tag
+      uses: mathieudutour/github-tag-action@v4
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
