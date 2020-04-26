@@ -36,54 +36,50 @@ public class MossyOceanFloorBlock extends DeepWatersGrassBlock implements IGrowa
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
-        return true;
+        return false;
     }
 
     @Override
-    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        BlockPos blockpos = pos.up();
-        BlockState blockstate = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
+    public void grow(ServerWorld serverWorld, Random random, BlockPos blockPos, BlockState blockState) {
+        BlockPos blockPosUp = blockPos.up();
+        BlockState BlockStateIn = DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState();
 
-        for(int i = 0; i < 128; ++i) {
-            BlockPos blockpos1 = blockpos;
-            int j = 0;
+        label48:
+        for(int lvt_7_1_ = 0; lvt_7_1_ < 128; ++lvt_7_1_) {
+            BlockPos posUp = blockPosUp;
 
-            while(true) {
-                if (j >= i / 16) {
-                    BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-                    if (blockstate2.getBlock() == blockstate.getBlock() && rand.nextInt(10) == 0) {
-                        ((IGrowable)blockstate.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
+            for(int lvt_9_1_ = 0; lvt_9_1_ < lvt_7_1_ / 16; ++lvt_9_1_) {
+                posUp = posUp.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
+                if (serverWorld.getBlockState(posUp.down()).getBlock() != this || serverWorld.getBlockState(posUp).isCollisionShapeOpaque(serverWorld, posUp)) {
+                    continue label48;
+                }
+            }
+
+            BlockState blockStateUp = serverWorld.getBlockState(posUp);
+            if (blockStateUp.getBlock() == BlockStateIn.getBlock() && random.nextInt(10) == 0) {
+                ((IGrowable)BlockStateIn.getBlock()).grow(serverWorld, random, posUp, blockStateUp);
+            }
+
+            if (blockStateUp.isAir()) {
+                BlockState lvt_10_2_;
+                if (random.nextInt(8) == 0) {
+                    List<ConfiguredFeature<?, ?>> lvt_11_1_ = serverWorld.getBiome(posUp).getFlowers();
+                    if (lvt_11_1_.isEmpty()) {
+                        continue;
                     }
 
-                    if (!blockstate2.isAir()) {
-                        break;
-                    }
-
-                    BlockState blockstate1;
-                    if (rand.nextInt(8) == 0) {
-                        List<ConfiguredFeature<?>> list = worldIn.getBiome(blockpos1).getFlowers();
-                        if (list.isEmpty()) {
-                            break;
-                        }
-
-                        blockstate1 = ((FlowersFeature)((DecoratedFeatureConfig)(list.get(0)).config).feature.feature).getRandomFlower(rand, blockpos1);
-                    } else {
-                        blockstate1 = blockstate;
-                    }
-
-                    if (blockstate1.isValidPosition(worldIn, blockpos1)) {
-                        worldIn.setBlockState(blockpos1, blockstate1, 3);
-                    }
-                    break;
+                    ConfiguredFeature<?, ?> lvt_12_1_ = ((DecoratedFeatureConfig)((ConfiguredFeature)lvt_11_1_.get(0)).config).feature;
+                    lvt_10_2_ = ((FlowersFeature)lvt_12_1_.feature).getFlowerToPlace(random, posUp, lvt_12_1_.config);
+                } else {
+                    lvt_10_2_ = BlockStateIn;
                 }
 
-                blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-                if (worldIn.getBlockState(blockpos1.down()).getBlock() != this || worldIn.getBlockState(blockpos1).func_224756_o(worldIn, blockpos1)) {
-                    break;
+                if (lvt_10_2_.isValidPosition(serverWorld, posUp)) {
+                    serverWorld.setBlockState(posUp, lvt_10_2_, 3);
                 }
-
-                ++j;
             }
         }
+
     }
+
 }
