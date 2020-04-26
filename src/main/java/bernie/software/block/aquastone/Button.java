@@ -11,61 +11,83 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
-public class Button {
-    public static Block constructBlock(AbstractButtonBlock button) {
-        return WaterloggedButton.toWaterlogged(button);
-    }
-    public static class WaterloggedButton extends AbstractButtonBlock implements IWaterLoggable {
-        public AbstractButtonBlock button;
-        public WaterloggedButton(boolean isWooden, Properties properties) {
-            super(isWooden, properties);
-        }
-        public static WaterloggedButton toWaterlogged(AbstractButtonBlock source) {
-            Properties prop=Properties.from(source);
-            return new WaterloggedButton(source instanceof WoodButtonBlock,prop).setSourceButton(source);
-        }
+public class Button
+{
+	public static Block constructBlock(AbstractButtonBlock button)
+	{
+		return WaterloggedButton.toWaterlogged(button);
+	}
 
-        public WaterloggedButton setSourceButton(AbstractButtonBlock sourceButton) {
-            this.button=sourceButton;
-            return this;
-        }
+	public static class WaterloggedButton extends AbstractButtonBlock implements IWaterLoggable
+	{
+		public AbstractButtonBlock button;
 
-        public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+		public WaterloggedButton(boolean isWooden, Properties properties)
+		{
+			super(isWooden, properties);
+		}
 
-        @Override
-        protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-            builder.add(HORIZONTAL_FACING, POWERED, FACE, WATERLOGGED);
-        }
+		public static WaterloggedButton toWaterlogged(AbstractButtonBlock source)
+		{
+			Properties prop = Properties.from(source);
+			return new WaterloggedButton(source instanceof WoodButtonBlock, prop).setSourceButton(source);
+		}
 
-        @Override
-        public BlockState getStateForPlacement(BlockItemUseContext context)
-        {
-            try {
-                return super.getStateForPlacement(context).with(WATERLOGGED, false);
-            } catch (Exception err) {
-                return super.getStateForPlacement(context);
-            }
-        }
+		public WaterloggedButton setSourceButton(AbstractButtonBlock sourceButton)
+		{
+			this.button = sourceButton;
+			return this;
+		}
 
-        public IFluidState getFluidState(BlockState state)
-        {
-            return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
-        }
+		public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-        @Override
-        protected SoundEvent getSoundEvent(boolean p_196369_1_) {
-            try {
-                if (button instanceof StoneButtonBlock) {
-                    return p_196369_1_ ? SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON : SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF;
-                } else if (button instanceof StoneButtonBlock) {
-                    return p_196369_1_ ? SoundEvents.BLOCK_WOODEN_BUTTON_CLICK_ON : SoundEvents.BLOCK_WOODEN_BUTTON_CLICK_OFF;
-                }
-            } catch (Exception err) {}
-            return null;
-        }
+		@Override
+		protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+		{
+			builder.add(HORIZONTAL_FACING, POWERED, FACE, WATERLOGGED);
+		}
 
-        public PushReaction getPushReaction(BlockState state) {
-            return PushReaction.DESTROY;
-        }
-    }
+		@Override
+		public BlockState getStateForPlacement(BlockItemUseContext context)
+		{
+			try
+			{
+				return super.getStateForPlacement(context).with(WATERLOGGED, false);
+			}
+			catch (Exception err)
+			{
+				return super.getStateForPlacement(context);
+			}
+		}
+
+		public IFluidState getFluidState(BlockState state)
+		{
+			return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+		}
+
+		@Override
+		protected SoundEvent getSoundEvent(boolean p_196369_1_)
+		{
+			try
+			{
+				if (button instanceof StoneButtonBlock)
+				{
+					return p_196369_1_ ? SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON : SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF;
+				}
+				else if (button instanceof StoneButtonBlock)
+				{
+					return p_196369_1_ ? SoundEvents.BLOCK_WOODEN_BUTTON_CLICK_ON : SoundEvents.BLOCK_WOODEN_BUTTON_CLICK_OFF;
+				}
+			}
+			catch (Exception err)
+			{
+			}
+			return null;
+		}
+
+		public PushReaction getPushReaction(BlockState state)
+		{
+			return PushReaction.DESTROY;
+		}
+	}
 }
