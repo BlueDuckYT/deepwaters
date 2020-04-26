@@ -66,10 +66,10 @@ public class LegFishModel extends EntityModel<LegFish> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		Body.render(matrixStack, buffer, packedLight, packedOverlay);
-		LLeg.render(matrixStack, buffer, packedLight, packedOverlay);
-		RLeg.render(matrixStack, buffer, packedLight, packedOverlay);
+//		LLeg.render(matrixStack, buffer, packedLight, packedOverlay);
+//		RLeg.render(matrixStack, buffer, packedLight, packedOverlay);
 		Fins.render(matrixStack, buffer, packedLight, packedOverlay);
-		Top.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Top.render(matrixStack, buffer, packedLight, packedOverlay);
 		Left.render(matrixStack, buffer, packedLight, packedOverlay);
 		Right.render(matrixStack, buffer, packedLight, packedOverlay);
 	}

@@ -119,10 +119,10 @@ public class SurgeModel extends EntityModel<SurgeVehicle> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		Main.render(matrixStack, buffer, packedLight, packedOverlay);
-		Hatch.render(matrixStack, buffer, packedLight, packedOverlay);
-		Body.render(matrixStack, buffer, packedLight, packedOverlay);
-		Right_Screw.render(matrixStack, buffer, packedLight, packedOverlay);
-		Left_Screw.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Hatch.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Body.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Right_Screw.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Left_Screw.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

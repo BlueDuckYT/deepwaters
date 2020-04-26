@@ -90,10 +90,10 @@ public class MuckGulperModel extends EntityModel<MuckGulper> {
 		Body.render(matrixStack, buffer, packedLight, packedOverlay);
 		Tail.render(matrixStack, buffer, packedLight, packedOverlay);
 		Head.render(matrixStack, buffer, packedLight, packedOverlay);
-		Tooth4.render(matrixStack, buffer, packedLight, packedOverlay);
-		Tooth2.render(matrixStack, buffer, packedLight, packedOverlay);
-		Tooth3.render(matrixStack, buffer, packedLight, packedOverlay);
-		Tooth1.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Tooth4.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Tooth2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Tooth3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Tooth1.render(matrixStack, buffer, packedLight, packedOverlay);
 		FinLeft.render(matrixStack, buffer, packedLight, packedOverlay);
 		FinRight.render(matrixStack, buffer, packedLight, packedOverlay);
 	}

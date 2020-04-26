@@ -236,31 +236,31 @@ public class BabyKrackenModel extends EntityModel<BabyKracken> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		hexapus.render(matrixStack, buffer, packedLight, packedOverlay);
-		head.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg1.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg1part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg1part3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg2part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg2part3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg3part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg3part3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg4.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg4part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg4part3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg5.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg5part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg5part3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg6.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg6part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg6part3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg7.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg7part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg7part3.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg8.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg8part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		leg8part4.render(matrixStack, buffer, packedLight, packedOverlay);
+//		head.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg1.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg1part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg1part3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg2part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg2part3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg3part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg3part3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg4.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg4part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg4part3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg5.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg5part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg5part3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg6.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg6part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg6part3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg7.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg7part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg7part3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg8.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg8part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leg8part4.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

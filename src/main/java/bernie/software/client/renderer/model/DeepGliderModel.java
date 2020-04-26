@@ -121,19 +121,19 @@ public class DeepGliderModel extends EntityModel<DeepGlider> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		Angler.render(matrixStack, buffer, packedLight, packedOverlay);
-		fronthead.render(matrixStack, buffer, packedLight, packedOverlay);
-		tail.render(matrixStack, buffer, packedLight, packedOverlay);
-		propeller.render(matrixStack, buffer, packedLight, packedOverlay);
-		rotator.render(matrixStack, buffer, packedLight, packedOverlay);
-		rotator2.render(matrixStack, buffer, packedLight, packedOverlay);
-		rotator3.render(matrixStack, buffer, packedLight, packedOverlay);
-		thinny.render(matrixStack, buffer, packedLight, packedOverlay);
-		thinny2.render(matrixStack, buffer, packedLight, packedOverlay);
-		sidefin.render(matrixStack, buffer, packedLight, packedOverlay);
-		lowerjaw.render(matrixStack, buffer, packedLight, packedOverlay);
-		teeth2.render(matrixStack, buffer, packedLight, packedOverlay);
-		teeth4.render(matrixStack, buffer, packedLight, packedOverlay);
-		sidefin2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		fronthead.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tail.render(matrixStack, buffer, packedLight, packedOverlay);
+//		propeller.render(matrixStack, buffer, packedLight, packedOverlay);
+//		rotator.render(matrixStack, buffer, packedLight, packedOverlay);
+//		rotator2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		rotator3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		thinny.render(matrixStack, buffer, packedLight, packedOverlay);
+//		thinny2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		sidefin.render(matrixStack, buffer, packedLight, packedOverlay);
+//		lowerjaw.render(matrixStack, buffer, packedLight, packedOverlay);
+//		teeth2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		teeth4.render(matrixStack, buffer, packedLight, packedOverlay);
+//		sidefin2.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

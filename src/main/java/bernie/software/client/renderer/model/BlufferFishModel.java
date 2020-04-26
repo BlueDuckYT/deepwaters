@@ -53,7 +53,7 @@ public class BlufferFishModel extends EntityModel<BlufferFish> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
-		jaw.render(matrixStack, buffer, packedLight, packedOverlay);
+//		jaw.render(matrixStack, buffer, packedLight, packedOverlay);
 		leftfin.render(matrixStack, buffer, packedLight, packedOverlay);
 		rightfin.render(matrixStack, buffer, packedLight, packedOverlay);
 		tail.render(matrixStack, buffer, packedLight, packedOverlay);

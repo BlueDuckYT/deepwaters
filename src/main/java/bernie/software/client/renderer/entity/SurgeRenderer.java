@@ -1,6 +1,7 @@
 package bernie.software.client.renderer.entity;
 
 import bernie.software.client.renderer.model.SurgeModel;
+import bernie.software.entity.MuckGulper;
 import bernie.software.entity.vehicle.SurgeVehicle;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -36,6 +37,8 @@ public class SurgeRenderer extends MobRenderer<SurgeVehicle, SurgeModel>
 
 	@Override
 	public void render(SurgeVehicle entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+		GlStateManager.pushMatrix();
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+		GlStateManager.popMatrix();
 	}
 }

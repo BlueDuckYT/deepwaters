@@ -62,11 +62,11 @@ public class JungleFishModel extends EntityModel<JungleFish> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		Fish.render(matrixStack, buffer, packedLight, packedOverlay);
-		fintop1.render(matrixStack, buffer, packedLight, packedOverlay);
-		fintop2.render(matrixStack, buffer, packedLight, packedOverlay);
-		finbottom1.render(matrixStack, buffer, packedLight, packedOverlay);
-		finbottom2.render(matrixStack, buffer, packedLight, packedOverlay);
-		mainfin.render(matrixStack, buffer, packedLight, packedOverlay);
+//		fintop1.render(matrixStack, buffer, packedLight, packedOverlay);
+//		fintop2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		finbottom1.render(matrixStack, buffer, packedLight, packedOverlay);
+//		finbottom2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		mainfin.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

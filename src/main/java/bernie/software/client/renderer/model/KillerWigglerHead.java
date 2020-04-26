@@ -116,16 +116,16 @@ public class KillerWigglerHead extends AbstractWormPart
 
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-//		head.render(matrixStack, buffer, packedLight, packedOverlay);
-		right_claws.render(matrixStack, buffer, packedLight, packedOverlay);
-		right_claws_top.render(matrixStack, buffer, packedLight, packedOverlay);
-		right_claws_bottom.render(matrixStack, buffer, packedLight, packedOverlay);
-		left_claws.render(matrixStack, buffer, packedLight, packedOverlay);
-		left_claws_top.render(matrixStack, buffer, packedLight, packedOverlay);
-		left_claws_bottom.render(matrixStack, buffer, packedLight, packedOverlay);
-		center_claws_up.render(matrixStack, buffer, packedLight, packedOverlay);
-		center_claws_down.render(matrixStack, buffer, packedLight, packedOverlay);
-		getModel.render(matrixStack, buffer, packedLight, packedOverlay);
+		head.render(matrixStack, buffer, packedLight, packedOverlay);
+//		right_claws.render(matrixStack, buffer, packedLight, packedOverlay);
+//		right_claws_top.render(matrixStack, buffer, packedLight, packedOverlay);
+//		right_claws_bottom.render(matrixStack, buffer, packedLight, packedOverlay);
+//		left_claws.render(matrixStack, buffer, packedLight, packedOverlay);
+//		left_claws_top.render(matrixStack, buffer, packedLight, packedOverlay);
+//		left_claws_bottom.render(matrixStack, buffer, packedLight, packedOverlay);
+//		center_claws_up.render(matrixStack, buffer, packedLight, packedOverlay);
+//		center_claws_down.render(matrixStack, buffer, packedLight, packedOverlay);
+//		getModel.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

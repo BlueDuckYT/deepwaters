@@ -1,5 +1,6 @@
 package bernie.software.client.renderer.entity;
 
+import bernie.software.client.renderer.Utils;
 import bernie.software.client.renderer.model.DonutFishModel;
 import bernie.software.entity.DonutFish;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -48,17 +49,14 @@ public class DonutFishRenderer extends MobRenderer<DonutFish, DonutFishModel>
 	@Override
 	protected void applyRotations(DonutFish entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
 		super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
-		float f = 4.3F * MathHelper.sin(0.6F * ageInTicks);
-		GlStateManager.rotatef(f, 0.0F, 1.0F, 0.0F);
-		if (!entityLiving.isInWater()) {
-			GlStateManager.translatef(0.1F, 0.1F, -0.1F);
-			GlStateManager.rotatef(90.0F, 0.0F, 0.0F, 1.0F);
-		}
+		Utils.applyFlop(entityLiving,matrixStackIn,ageInTicks,rotationYaw,partialTicks);
 	}
 
 	@Override
 	public void render(DonutFish entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+		GlStateManager.pushMatrix();
 		GlStateManager.scalef(2F, 2F, 2F);
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+		GlStateManager.popMatrix();
 	}
 }

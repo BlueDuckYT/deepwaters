@@ -136,21 +136,21 @@ public class StingrayModel extends EntityModel<Stingray> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		Stingray.render(matrixStack, buffer, packedLight, packedOverlay);
-		Body.render(matrixStack, buffer, packedLight, packedOverlay);
-		mouth.render(matrixStack, buffer, packedLight, packedOverlay);
-		Lefthand.render(matrixStack, buffer, packedLight, packedOverlay);
-		smallfinleft.render(matrixStack, buffer, packedLight, packedOverlay);
-		Righthand.render(matrixStack, buffer, packedLight, packedOverlay);
-		smallfinright.render(matrixStack, buffer, packedLight, packedOverlay);
-		Tail.render(matrixStack, buffer, packedLight, packedOverlay);
-		tail1.render(matrixStack, buffer, packedLight, packedOverlay);
-		tail2.render(matrixStack, buffer, packedLight, packedOverlay);
-		tail3.render(matrixStack, buffer, packedLight, packedOverlay);
-		tail4.render(matrixStack, buffer, packedLight, packedOverlay);
-		stinger.render(matrixStack, buffer, packedLight, packedOverlay);
-		bone.render(matrixStack, buffer, packedLight, packedOverlay);
-		AllExcept12.render(matrixStack, buffer, packedLight, packedOverlay);
-		AllExcept123.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Body.render(matrixStack, buffer, packedLight, packedOverlay);
+//		mouth.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Lefthand.render(matrixStack, buffer, packedLight, packedOverlay);
+//		smallfinleft.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Righthand.render(matrixStack, buffer, packedLight, packedOverlay);
+//		smallfinright.render(matrixStack, buffer, packedLight, packedOverlay);
+//		Tail.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tail1.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tail2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tail3.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tail4.render(matrixStack, buffer, packedLight, packedOverlay);
+//		stinger.render(matrixStack, buffer, packedLight, packedOverlay);
+//		bone.render(matrixStack, buffer, packedLight, packedOverlay);
+//		AllExcept12.render(matrixStack, buffer, packedLight, packedOverlay);
+//		AllExcept123.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

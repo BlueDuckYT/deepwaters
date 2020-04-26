@@ -110,17 +110,17 @@ public class CoralCrawlerModel extends EntityModel<CoralCrawler> {
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
-		body2.render(matrixStack, buffer, packedLight, packedOverlay);
-		tube1parts.render(matrixStack, buffer, packedLight, packedOverlay);
-		tube1part1.render(matrixStack, buffer, packedLight, packedOverlay);
-		tube1part2.render(matrixStack, buffer, packedLight, packedOverlay);
-		tube2.render(matrixStack, buffer, packedLight, packedOverlay);
-		tube2parts.render(matrixStack, buffer, packedLight, packedOverlay);
-		tube2part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		body2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tube1parts.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tube1part1.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tube1part2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tube2.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tube2parts.render(matrixStack, buffer, packedLight, packedOverlay);
+//		tube2part2.render(matrixStack, buffer, packedLight, packedOverlay);
 		rightleg.render(matrixStack, buffer, packedLight, packedOverlay);
 		leftlegs.render(matrixStack, buffer, packedLight, packedOverlay);
-		leftLegBack.render(matrixStack, buffer, packedLight, packedOverlay);
-		leftLegFront.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leftLegBack.render(matrixStack, buffer, packedLight, packedOverlay);
+//		leftLegFront.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
