@@ -22,14 +22,14 @@ public class DeepWatersFeatures {
         DeepWatersMod.logger.log(Level.INFO,"h");
         for (Biome biome:biomes) {
             DeepWatersMod.logger.log(Level.INFO,"h2");
-            biome.addFeature(deco,Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+            biome.addFeature(deco, feature.withConfiguration(new NoFeatureConfig()));
         }
     }
     public static void registerStructure(Structure structure, ArrayList<Biome> biomes) {
         DeepWatersMod.logger.log(Level.INFO,"h");
         for (Biome biome:biomes) {
             DeepWatersMod.logger.log(Level.INFO,"h2");
-            biome.addStructure(structure, new NoFeatureConfig());
+            biome.addStructure(structure.withConfiguration(new NoFeatureConfig()));
         }
     }
 }
