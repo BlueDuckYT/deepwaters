@@ -36,7 +36,7 @@ public class DeepWatersDimension extends Dimension
 {
 	public DeepWatersDimension(World worldIn, DimensionType typeIn)
 	{
-		super(worldIn, typeIn, 0);
+		super(worldIn, typeIn, 1);
 
 	}
 
@@ -51,11 +51,9 @@ public class DeepWatersDimension extends Dimension
 		WorldInfo worldInfo = this.world.getWorldInfo();
 		settings.setWorldInfo(worldInfo);
 		DeepWatersBiomeProvider provider = new DeepWatersBiomeProvider(settings);
-//		DeepWatersBiomeProviderSettings BiomeProviderSettings = new DeepWatersBiomeProviderSettings();
-//		BiomeProviderSettings.setBiome(DeepWatersBiomes.CoralFieldsBiome.get());
-//		DeepWatersBiomeProvider singleProvider = new DeepWatersBiomeProvider(BiomeProviderSettings);
 		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
 	}
+
 
 	@Nullable
 	@Override
@@ -76,6 +74,12 @@ public class DeepWatersDimension extends Dimension
 		return null;
 	}
 
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public double getVoidFogYFactor()
+	{
+		return super.getVoidFogYFactor();
+	}
 
 	@Nullable
 	@Override
