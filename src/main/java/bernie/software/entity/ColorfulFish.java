@@ -1,6 +1,5 @@
 package bernie.software.entity;
 
-import bernie.software.nbt.Hue;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.item.ItemStack;
