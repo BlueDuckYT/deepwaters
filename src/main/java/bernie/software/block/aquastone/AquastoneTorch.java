@@ -27,7 +27,7 @@ public class AquastoneTorch
             super(DeepWatersBlocks.AQUA_TORCH.get(),DeepWatersBlocks.AQUA_TORCH_WALL.get(),propertiesIn);
         }
     }
-    public static class AquastoneTorch extends RedstoneTorchBlock implements IWaterLoggable {
+    public static class AquastoneTorchBlock extends RedstoneTorchBlock implements IWaterLoggable {
         public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
         @Override
@@ -51,7 +51,7 @@ public class AquastoneTorch
             return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
         }
 
-        public AquastoneTorch() {
+        public AquastoneTorchBlock() {
             super(Block.Properties.create(Material.ROCK).doesNotBlockMovement());
         }
 
