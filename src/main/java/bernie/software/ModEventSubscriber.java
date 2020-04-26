@@ -1,7 +1,6 @@
 package bernie.software;
 
 import bernie.software.client.renderer.model.*;
-import bernie.software.listeners.DeepWatersFeatureListener;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersStructures;
 import bernie.software.utils.GeneralUtils;
@@ -11,7 +10,6 @@ import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.event.SwordEventSubscriber;
 import bernie.software.world.DeepWatersModDimension;
 import bernie.software.listeners.DeepWatersBiomeListener;
-import bernie.software.world.biome.SunkenWastesBiome;
 import bernie.software.world.biome.WaterBiomeBase;
 import bernie.software.world.gen.structures.DeepWatersStructureInit;
 import net.minecraft.entity.EntityType;
@@ -24,10 +22,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.CountConfig;
-import net.minecraft.world.gen.placement.IPlacementConfig;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -64,7 +58,7 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void onFeatureRegistryEvent(final RegistryEvent.Register<Feature<?>> event)
 	{
-		DeepWatersFeatureListener.addFeaturesToBiomes();
+		DeepWatersBiomeListener.addFeaturesToBiomes();
 	}
 
 	@SubscribeEvent
