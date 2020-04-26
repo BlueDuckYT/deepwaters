@@ -32,7 +32,7 @@ public class TeleportUtils
 			entity2.copyDataFromOld(entityIn);
 			entity2.moveToBlockPosAndAngles(spawnPos, entityIn.rotationYaw, entityIn.rotationPitch);
 			entity2.setMotion(entityIn.getMotion());
-			destinationWorld.func_217460_e(entity2);
+			destinationWorld.addFromAnotherDimension(entity2);
 		}
 		return entity2;
 	}
@@ -43,7 +43,7 @@ public class TeleportUtils
 	public static void SendDimensionChangePackets(DimensionType dimension, ServerPlayerEntity player, WorldInfo worldInfo)
 	{
 		player.connection.sendPacket(new SChangeGameStatePacket(4, 0.0F));
-		player.connection.sendPacket(new SRespawnPacket(dimension, worldInfo.getGenerator(),
+		player.connection.sendPacket(new SRespawnPacket(dimension, WorldInfo.byHashing(worldInfo.getSeed()), worldInfo.getGenerator(),
 				player.interactionManager.getGameType()));
 		player.connection.sendPacket(
 				new SServerDifficultyPacket(worldInfo.getDifficulty(), worldInfo.isDifficultyLocked()));

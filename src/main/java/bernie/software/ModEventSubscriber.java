@@ -3,6 +3,7 @@ package bernie.software;
 import bernie.software.client.renderer.model.*;
 import bernie.software.entity.vehicle.SurgeVehicle;
 import bernie.software.listeners.DeepWatersFeatureListener;
+import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersStructures;
 import bernie.software.utils.GeneralUtils;
 import bernie.software.client.renderer.entity.*;
@@ -40,8 +41,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
-
-import static net.minecraft.world.biome.Biome.createDecoratedFeature;
 
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber
@@ -104,29 +103,28 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void doClientStuff(final FMLClientSetupEvent event)
 	{
-		RenderingRegistry.registerEntityRenderingHandler(Eel.class,
-				manager -> new WormRenderer(manager, new EelHead(), new EelBody(), new EelTail(),
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.EEL.get(),
+				manager -> new WormRenderer(manager, new EelHead(), new EelBody(), new EelTail(),Eel.class,
 						new ResourceLocation("deepwaters" + ":textures/model/entity/eel.png"), false));
-		RenderingRegistry.registerEntityRenderingHandler(KillerWiggler.class,
-				manager -> new WormRenderer(manager, new KillerWigglerHead(), new KillerWigglerBody(),
-						new KillerWigglerTail(),
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.KILLER_WIGGLER.get(),
+				manager -> new WormRenderer(manager, new KillerWigglerHead(), new KillerWigglerBody(), new KillerWigglerTail(), KillerWiggler.class,
 						new ResourceLocation("deepwaters" + ":textures/model/entity/killerwiggler.png"), true));
-		RenderingRegistry.registerEntityRenderingHandler(BlufferFish.class,
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.BLUFFERFISH.get(),
 				manager -> new BlufferFishRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(Stingray.class, manager -> new StingrayRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(BabyKracken.class,
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.STING_RAY.get(), manager -> new StingrayRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.BABY_KRACKEN.get(),
 				manager -> new BabyKrackenRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(MuckGulper.class, manager -> new MuckGulperRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(CoralCrawler.class,
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.MUCK_GULPER.get(), manager -> new MuckGulperRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.CORAL_CRAWLER.get(),
 				manager -> new CoralCrawlerRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(DonutFish.class, manager -> new DonutFishRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(ColorfulFish.class,
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.DONUT_FISH.get(), manager -> new DonutFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.COLORFUL_FISH.get(),
 				manager -> new ColorfulFishRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(LegFish.class, manager -> new LegFishRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(DeepGlider.class, manager -> new DeepGliderRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(SkullFish.class, manager -> new SkullFishRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(SurgeVehicle.class, manager -> new SurgeRenderer(manager));
-		RenderingRegistry.registerEntityRenderingHandler(JungleFish.class, manager -> new JungleFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.LEG_FISH.get(), manager -> new LegFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.DEEP_GLIDER.get(), manager -> new DeepGliderRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SKULL_FISH.get(), manager -> new SkullFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SURGE.get(), manager -> new SurgeRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.JUNGLE_FISH.get(), manager -> new JungleFishRenderer(manager));
 	}
 
 	@SubscribeEvent

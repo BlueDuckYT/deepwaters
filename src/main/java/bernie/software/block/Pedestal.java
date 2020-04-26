@@ -1,15 +1,10 @@
 package bernie.software.block;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.ModEventSubscriber;
 import bernie.software.registry.DeepWatersBlocks;
-import com.google.common.base.Predicates;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.pattern.BlockMaterialMatcher;
 import net.minecraft.block.pattern.BlockPattern;
-import net.minecraft.block.pattern.BlockPatternBuilder;
-import net.minecraft.block.pattern.BlockStateMatcher;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -20,13 +15,11 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.CachedBlockInfo;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -109,12 +102,15 @@ public class Pedestal extends Block implements IWaterLoggable
 	}
 
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
-	                                BlockRayTraceResult hit)
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
+											 BlockRayTraceResult hit)
 	{
 		if (worldIn.isRemote)
 		{
-			return false;
+			if (player.getHeldItem(handIn).getItem().equals(Items.HEART_OF_THE_SEA)) {
+				return ActionResultType.SUCCESS;
+			}
+			return ActionResultType.FAIL;
 		}
 		if (player.getHeldItem(handIn).getItem().equals(Items.HEART_OF_THE_SEA))
 		{
@@ -152,7 +148,7 @@ public class Pedestal extends Block implements IWaterLoggable
 				}
 				else
 				{
-					return false;
+					return ActionResultType.SUCCESS;
 				}
 				RotatedPillarBlock activePillar = DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR.get();
 				Block portal = DeepWatersBlocks.DEEPWATERSPORTAL.get();
@@ -160,7 +156,10 @@ public class Pedestal extends Block implements IWaterLoggable
 				FillPortal(worldIn, centerBottom, activePillar, portal,
 						DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get());
 			}
-			return true;
+			if (!state.get(HASHEART)) {
+				return ActionResultType.SUCCESS;
+			}
+			return ActionResultType.FAIL;
 		}
 		return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
 	}
@@ -340,9 +339,13 @@ public class Pedestal extends Block implements IWaterLoggable
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer()
-	{
-		return BlockRenderLayer.CUTOUT_MIPPED;
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+
+	@Override
+	public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+		return getShape(state,worldIn,pos,null);
 	}
 
 	public BlockState getStateForPlacement(BlockItemUseContext context, boolean identifier)

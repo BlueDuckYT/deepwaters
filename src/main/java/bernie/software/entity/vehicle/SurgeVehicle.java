@@ -117,9 +117,9 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	{
 		if (this.lerpSteps > 0 && !this.canPassengerSteer())
 		{
-			double d0 = this.posX + (this.lerpX - this.posX) / (double) this.lerpSteps;
-			double d1 = this.posY + (this.lerpY - this.posY) / (double) this.lerpSteps;
-			double d2 = this.posZ + (this.lerpZ - this.posZ) / (double) this.lerpSteps;
+			double d0 = this.getPosX() + (this.lerpX - this.getPosX()) / (double) this.lerpSteps;
+			double d1 = this.getPosY() + (this.lerpY - this.getPosY()) / (double) this.lerpSteps;
+			double d2 = this.getPosZ() + (this.lerpZ - this.getPosZ()) / (double) this.lerpSteps;
 			double d3 = MathHelper.wrapDegrees(this.lerpYaw - (double) this.rotationYaw);
 			this.rotationYaw = (float) ((double) this.rotationYaw + d3 / (double) this.lerpSteps);
 			this.rotationPitch = (float) ((double) this.rotationPitch + (this.lerpPitch - (double) this.rotationPitch) / (double) this.lerpSteps);
@@ -177,7 +177,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	public void updatePassenger(Entity passenger)
 	{
 		Entity controllingPassenger = this.getControllingPassenger();
-		controllingPassenger.setPosition(this.posX, this.posY + this.getMountedYOffset() + controllingPassenger.getYOffset(), this.posZ);
+		controllingPassenger.setPosition(this.getPosX(), this.getPosY() + this.getMountedYOffset() + controllingPassenger.getYOffset(), this.getPosZ());
 	}
 
 	@Override

@@ -1,7 +1,11 @@
 package bernie.software.world.biome.provider;
 
 import bernie.software.registry.DeepWatersBiomes;
+import bernie.software.world.layer.DeepWatersBiomeLayer;
 import bernie.software.world.layer.DeepWatersLayerUtil;
+import bernie.software.world.layer.VoroniZoomLayer;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -9,11 +13,18 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.gen.IExtendedNoiseRandom;
+import net.minecraft.world.gen.LazyAreaLayerContext;
 import net.minecraft.world.gen.SimplexNoiseGenerator;
+import net.minecraft.world.gen.area.IArea;
+import net.minecraft.world.gen.area.IAreaFactory;
+import net.minecraft.world.gen.area.LazyArea;
 import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.layer.Layer;
+import net.minecraft.world.gen.layer.*;
+import net.minecraft.world.gen.layer.traits.IAreaTransformer1;
 import net.minecraft.world.storage.WorldInfo;
 
 import javax.annotation.Nullable;
@@ -21,69 +32,106 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.LongFunction;
 
 public class DeepWatersBiomeProvider extends BiomeProvider
 {
-	private final SimplexNoiseGenerator generator;
-	private final SharedSeedRandom random;
 	private final Layer genBiomes;
 	private final Layer biomeFactoryLayer;
-	private final Biome[] biomes = new Biome[]{
+	private static final Set<Biome> biomes = ImmutableSet.of(
 			DeepWatersBiomes.CoralFieldsBiome.get(),
 			DeepWatersBiomes.SunkenWastesBiome.get()
-	};
+	);
 
-	public DeepWatersBiomeProvider(DeepWatersBiomeProviderSettings settings)
+	protected DeepWatersBiomeProvider(long seed, WorldType worldType)
 	{
-		WorldInfo worldinfo = settings.getWorldInfo();
-		Layer[] alayer = DeepWatersLayerUtil.makeLayers(worldinfo.getSeed());
-		this.genBiomes = alayer[0];
-		this.biomeFactoryLayer = alayer[1];
+		super(biomes);
+		Layer[] agenlayer = buildOverworldProcedure(seed, worldType);
+		this.genBiomes = agenlayer[0];
+		this.biomeFactoryLayer = agenlayer[1];
+	}
 
-		this.random = new SharedSeedRandom(settings.getSeed());
-		this.random.skip(17292);
-		this.generator = new SimplexNoiseGenerator(this.random);
+	@Override
+	public Biome getNoiseBiome(int i, int i1, int i2)
+	{
+		return null;
+	}
 
-		getBiomesToSpawnIn().clear();
-		getBiomesToSpawnIn().add(DeepWatersBiomes.CoralFieldsBiome.get());
+	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> repeat(long seed, IAreaTransformer1 parent, IAreaFactory<T> p_202829_3_, int count, LongFunction<C> contextFactory)
+{
+	IAreaFactory<T> iareafactory = p_202829_3_;
+
+	for (int i = 0; i < count; ++i)
+	{
+		iareafactory = parent.apply(contextFactory.apply(seed + i), iareafactory);
+	}
+
+	return iareafactory;
+}
+
+
+	public static Layer[] buildOverworldProcedure(long seed, WorldType typeIn)
+	{
+		ImmutableList<IAreaFactory<LazyArea>> immutablelist = buildOverworldProcedure(typeIn, (p_215737_2_) ->
+		{
+			return new LazyAreaLayerContext(25, seed, p_215737_2_);
+		});
+		Layer genlayer = new Layer(immutablelist.get(0));
+		Layer genlayer1 = new Layer(immutablelist.get(1));
+		Layer genlayer2 = new Layer(immutablelist.get(2));
+		return new Layer[] { genlayer, genlayer1, genlayer2 };
+	}
+	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> buildOverworldProcedure(WorldType worldTypeIn, LongFunction<C> contextFactory)
+	{
+		IAreaFactory<T> biomes = new DeepWatersBiomeLayer().apply(contextFactory.apply(1L));
+
+		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1000), biomes);
+		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1001), biomes);
+		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1002), biomes);
+		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1003), biomes);
+		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1004), biomes);
+		biomes = ZoomLayer.NORMAL.apply(contextFactory.apply(1005), biomes);
+		biomes = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, biomes, 1, contextFactory);
+
+		IAreaFactory<T> genlayervoronoizoom = VoroniZoomLayer.INSTANCE.apply(contextFactory.apply(10L), biomes);
+		return ImmutableList.of(biomes, genlayervoronoizoom, biomes);
+
 	}
 
 
 	@Override
-	public Biome getBiome(int x, int y)
-	{
-		return this.biomeFactoryLayer.func_215738_a(x, y);
-	}
-
-	@Override
-	public Biome getBiomeAtFactorFour(int factorFourX, int factorFourZ)
-	{
-		return this.genBiomes.func_215738_a(factorFourX, factorFourZ);
-	}
-
-	@Override
-	public Biome[] getBiomes(int x, int z, int width, int length, boolean cacheFlag)
-	{
-		return this.biomeFactoryLayer.generateBiomes(x, z, width, length);
-	}
-
-
-	@Override
-	public Set<Biome> getBiomesInSquare(int centerX, int centerZ, int sideLength)
+	public Set<Biome> getBiomes(int centerX, int centerY, int centerZ, int sideLength)
 	{
 		int i = centerX - sideLength >> 2;
-		int j = centerZ - sideLength >> 2;
-		int k = centerX + sideLength >> 2;
-		int l = centerZ + sideLength >> 2;
-		int i1 = k - i + 1;
-		int j1 = l - j + 1;
+		int j = centerY - sideLength >> 2;
+		int k = centerZ - sideLength >> 2;
+		int l = centerX + sideLength >> 2;
+		int i1 = centerY + sideLength >> 2;
+		int j1 = centerZ + sideLength >> 2;
+		int k1 = l - i + 1;
+		int l1 = i1 - j + 1;
+		int i2 = j1 - k + 1;
 		Set<Biome> set = Sets.newHashSet();
-		Collections.addAll(set, this.genBiomes.generateBiomes(i, j, i1, j1));
+
+		for (int j2 = 0; j2 < i2; ++j2)
+		{
+			for (int k2 = 0; k2 < k1; ++k2)
+			{
+				for (int l2 = 0; l2 < l1; ++l2)
+				{
+					int i3 = i + k2;
+					int j3 = j + l2;
+					int k3 = k + j2;
+					set.add(this.getBiomeForNoiseGen(i3, j3, k3));
+				}
+			}
+		}
 		return set;
 	}
 
-	@Override
-	public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random)
+
+	@Nullable
+	public BlockPos locateBiome(int x, int z, int range, List<Biome> biomes, Random random)
 	{
 		int i = x - range >> 2;
 		int j = z - range >> 2;
@@ -91,15 +139,17 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 		int l = z + range >> 2;
 		int i1 = k - i + 1;
 		int j1 = l - j + 1;
-		Biome[] abiome = this.genBiomes.generateBiomes(i, j, i1, j1);
 		BlockPos blockpos = null;
 		int k1 = 0;
 
-		for (int l1 = 0; l1 < i1 * j1; ++l1) {
+		for (int l1 = 0; l1 < i1 * j1; ++l1)
+		{
 			int i2 = i + l1 % i1 << 2;
 			int j2 = j + l1 / i1 << 2;
-			if (biomes.contains(abiome[l1])) {
-				if (blockpos == null || random.nextInt(k1 + 1) == 0) {
+			if (biomes.contains(this.getBiomeForNoiseGen(i2, k1, j2)))
+			{
+				if (blockpos == null || random.nextInt(k1 + 1) == 0)
+				{
 					blockpos = new BlockPos(i2, 0, j2);
 				}
 
@@ -110,13 +160,16 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 		return blockpos;
 	}
 
+
 	@Override
 	public boolean hasStructure(Structure<?> structureIn)
 	{
-		return this.hasStructureCache.computeIfAbsent(structureIn, (p_205008_1_) ->
+		return this.hasStructureCache.computeIfAbsent(structureIn, (p_205006_1_) ->
 		{
-			for (Biome biome : this.biomes) {
-				if (biome.hasStructure(p_205008_1_)) {
+			for (Biome biome : this.biomes)
+			{
+				if (biome.hasStructure(p_205006_1_))
+				{
 					return true;
 				}
 			}
@@ -125,15 +178,22 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 		});
 	}
 
+
 	@Override
 	public Set<BlockState> getSurfaceBlocks()
 	{
-		if (this.topBlocksCache.isEmpty()) {
-			for (Biome biome : this.biomes) {
+		if (this.topBlocksCache.isEmpty())
+		{
+			for (Biome biome : this.biomes)
+			{
 				this.topBlocksCache.add(biome.getSurfaceBuilderConfig().getTop());
 			}
 		}
 
 		return this.topBlocksCache;
+	}
+
+	public Biome getBiomeForNoiseGen(int x, int y, int z) {
+		return this.genBiomes.func_215738_a(x, z);
 	}
 }

@@ -16,14 +16,14 @@ public class WormRenderer extends MobRenderer<AbstractWormEntity, EntityModel<Ab
         super(p_i50961_1_, p_i50961_2_, p_i50961_3_);
     }
 
-    public WormRenderer(EntityRendererManager rendererManager, EntityModel head, EntityModel segment, EntityModel tail,ResourceLocation texture,boolean correctForWiggler) {
-        super(rendererManager, new wormModel((AbstractWormPart) head,(AbstractWormPart)segment,(AbstractWormPart)tail,correctForWiggler), 0.5F);
+    public WormRenderer(EntityRendererManager rendererManager, EntityModel head, EntityModel segment, EntityModel tail,Class<? extends AbstractWormEntity> entityClassIn,ResourceLocation texture,boolean correctForWiggler) {
+        super(rendererManager, new wormModel((AbstractWormPart) head,(AbstractWormPart)segment,(AbstractWormPart)tail,entityClassIn,correctForWiggler), 0.5F);
         location=texture;
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(AbstractWormEntity livingEntity) {
+    public ResourceLocation getEntityTexture(AbstractWormEntity livingEntity) {
         return location;
     }
 }

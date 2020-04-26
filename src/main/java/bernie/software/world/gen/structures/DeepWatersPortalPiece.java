@@ -101,22 +101,14 @@ class DeepWatersPortalPiece
 
 		}
 
-		/**
-		 * second Part of Structure generating, this for example places Spiderwebs, Mob Spawners, it closes Mineshafts at the
-		 * end, it adds Fences...
-		 *
-		 * @param worldIn
-		 * @param randomIn
-		 * @param structureBoundingBoxIn
-		 * @param chunkPosIn
-		 */
+
 		@Override
-		public boolean addComponentParts(IWorld worldIn, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPosIn)
+		public boolean func_225577_a_(IWorld worldIn, ChunkGenerator<?> p_225577_2_, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos)
 		{
 			PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation).setMirror(Mirror.NONE);
 			BlockPos blockpos = new BlockPos(0, 0, 0);
 			templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(0 - blockpos.getX(), 0, 0 - blockpos.getZ())));
-			return super.addComponentParts(worldIn, randomIn, structureBoundingBoxIn, chunkPosIn);
+			return super.func_225577_a_(worldIn, p_225577_2_, randomIn, structureBoundingBoxIn, chunkPos);
 		}
 	}
 }

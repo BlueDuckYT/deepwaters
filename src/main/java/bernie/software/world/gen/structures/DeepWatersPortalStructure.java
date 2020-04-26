@@ -14,6 +14,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -99,13 +100,14 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 		return new ChunkPos(validChunkX, validChunkZ);
 	}
 
+
+
 	@Override
-	public boolean hasStartAt(ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ)
+	public boolean func_225558_a_(BiomeManager biomeManager, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome)
 	{
 		ChunkPos chunkpos = getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
 		if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z)
 		{
-			Biome biome = chunkGen.getBiomeProvider().getBiome(new BlockPos(chunkPosX * 16 + 9, 0, chunkPosZ * 16 + 9));
 			if (chunkGen.hasStructure(biome, this))
 			{
 				return true;
@@ -118,11 +120,11 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 			Rotation.NONE).setIgnoreEntities(false).setChunk(
 			null);
 
-	public static void placePortalAtLocation(IWorld world,
+	public static void placePortalAtLocation(ServerWorld world,
 	                                         Random rand, BlockPos position, NoFeatureConfig config)
 	{
 		position = position.down();
-		ChunkGenerator<?> generator = world.getChunkProvider().getChunkGenerator();
+		ChunkGenerator<?> generator = world.getChunkProvider().generator;
 		TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
 		Template template = templatemanager.getTemplate(GeneralUtils.Location("deepwatersportalactivated"));
 		Dimension dimension = world.getDimension();
@@ -143,10 +145,9 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 	public static class Start extends StructureStart
 	{
 
-		Start(Structure<?> structureIn, int chunkX, int chunkZ, Biome biomeIn, MutableBoundingBox boundsIn,
-		      int referenceIn, long seed)
+		public Start(Structure<?> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn)
 		{
-			super(structureIn, chunkX, chunkZ, biomeIn, boundsIn, referenceIn, seed);
+			super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
 		}
 
 		@Override

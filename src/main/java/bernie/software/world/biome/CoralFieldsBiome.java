@@ -3,6 +3,7 @@ package bernie.software.world.biome;
 import bernie.software.registry.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
@@ -12,6 +13,8 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.DefaultSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+
+import java.awt.*;
 
 public class CoralFieldsBiome extends WaterBiomeBase
 {
@@ -41,6 +44,11 @@ public class CoralFieldsBiome extends WaterBiomeBase
 		DeepWatersBiomeFeatures.addSedimentDisks(this);
 		DeepWatersBiomeFeatures.addStoneVariants(this);
 
+	}
+
+	@Override
+	public int getSkyColor() {
+		return new Color(125, 235, 220).getRGB();
 	}
 
 	@Override
