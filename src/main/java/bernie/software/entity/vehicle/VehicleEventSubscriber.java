@@ -63,6 +63,8 @@ public class VehicleEventSubscriber
             if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
             {
                 event.getMatrixStack().rotate(new Quaternion(75, 0, 0, true));
+                event.getMatrixStack().rotate(new Quaternion(event.getPlayer().rotationPitch/2f, 0, 0, true));
+                event.getMatrixStack().translate(0, -event.getHeadPitch()/500, -event.getHeadPitch()/1200);
             }
         }
     }
