@@ -37,7 +37,6 @@ public class DeepWatersDimension extends Dimension
 	public DeepWatersDimension(World worldIn, DimensionType typeIn)
 	{
 		super(worldIn, typeIn, 1);
-
 	}
 
 	@Override
