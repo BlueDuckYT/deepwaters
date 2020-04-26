@@ -1,5 +1,6 @@
 package bernie.software.world;
 
+import bernie.software.registry.DeepWatersBiomes;
 import bernie.software.world.biome.provider.DeepWatersBiomeProvider;
 import bernie.software.world.biome.provider.DeepWatersBiomeProviderSettings;
 import bernie.software.registry.DeepWatersBlocks;
@@ -16,6 +17,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.provider.SingleBiomeProvider;
+import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
@@ -48,7 +51,10 @@ public class DeepWatersDimension extends Dimension
 		WorldInfo worldInfo = this.world.getWorldInfo();
 		settings.setWorldInfo(worldInfo);
 		DeepWatersBiomeProvider provider = new DeepWatersBiomeProvider(settings);
-		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
+		SingleBiomeProviderSettings singleBiomeProviderSettings = new SingleBiomeProviderSettings(worldInfo);
+		singleBiomeProviderSettings.setBiome(DeepWatersBiomes.CoralFieldsBiome.get());
+		SingleBiomeProvider singleProvider = new SingleBiomeProvider(singleBiomeProviderSettings);
+		return new DeepWatersChunkGenerator(world, singleProvider, deepWatersGenSettings);
 	}
 
 	@Nullable
