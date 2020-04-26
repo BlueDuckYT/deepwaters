@@ -1,7 +1,7 @@
 package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.world.gen.structures.CrystalineCoral;
+import bernie.software.world.gen.features.CrystalineCoral;
 import bernie.software.world.gen.structures.DeepWatersPortalStructure;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;

@@ -33,7 +33,8 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 	private final Layer biomeFactoryLayer;
 	private static final Set<Biome> biomes = ImmutableSet.of(
 			DeepWatersBiomes.CoralFieldsBiome.get(),
-			DeepWatersBiomes.SunkenWastesBiome.get()
+			DeepWatersBiomes.SunkenWastesBiome.get(),
+			DeepWatersBiomes.ThickKelpForst.get()
 	);
 
 	protected DeepWatersBiomeProvider(long seed, WorldType worldType)
