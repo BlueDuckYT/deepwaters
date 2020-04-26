@@ -11,6 +11,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MinecartItem;
@@ -27,7 +28,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 
-public class SurgeVehicle extends WaterMobEntity
+public class SurgeVehicle extends AbstractInventoryEntity
 {
 
 	private boolean forwardInputDown;
@@ -51,6 +52,11 @@ public class SurgeVehicle extends WaterMobEntity
 		battery = 100;
 	}
 
+	@Override
+	protected ItemStackHandler initInventory() {
+		return new ItemStackHandler(54);
+	}
+
 //	@Override
 //	protected ItemStack getFishBucket()
 //	{
@@ -67,60 +73,6 @@ public class SurgeVehicle extends WaterMobEntity
 	 * Called to update the entity's position/logic.
 	 */
 
-	public ItemStackHandler inventory = this.initInventory();
-	private LazyOptional<ItemStackHandler> itemHandler = LazyOptional.of(() -> this.inventory);
-
-	protected ItemStackHandler initInventory() {
-		return new ItemStackHandler() {
-			@Override
-			protected void onContentsChanged(final int slot) {
-				int tempload = 0;
-				for (int i = 0; i < this.getSlots(); i++) {
-					if (!this.getStackInSlot(i).isEmpty()) {
-						tempload++;
-					}
-				}
-				final int newValue;
-				if (tempload > 31)
-					newValue = 4;
-				else if (tempload > 16)
-					newValue = 3;
-				else if (tempload > 8)
-					newValue = 2;
-				else if (tempload > 3)
-					newValue = 1;
-				else
-					newValue = 0;
-			}
-		};
-	}
-
-	@Override
-	public boolean replaceItemInInventory(final int inventorySlot, final ItemStack itemStackIn) {
-		if (inventorySlot >= 0 && inventorySlot < this.inventory.getSlots()) {
-			this.inventory.setStackInSlot(inventorySlot, itemStackIn);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public void remove(final boolean keepData) {
-		super.remove(keepData);
-		if (!keepData && this.itemHandler != null) {
-			this.itemHandler.invalidate();
-			this.itemHandler = null;
-		}
-	}
-
-	@Override
-	public <T> LazyOptional<T> getCapability(final Capability<T> capability, @Nullable final Direction facing) {
-		if (this.isAlive() && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && this.itemHandler != null)
-			return this.itemHandler.cast();
-		return super.getCapability(capability, facing);
-	}
-
 	@Override
 	public void tick()
 	{
@@ -136,11 +88,6 @@ public class SurgeVehicle extends WaterMobEntity
 					battery -= 0.01;
 					this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
 				}
-			}
-
-			ItemStack heldItem = this.getHeldItemMainhand();
-			if(heldItem != null && heldItem.getItem().getItem().equals(Item.getItemById(152))){
-				player.inventory.decrStackSize(player.inventory.getSlotFor(heldItem), 1);
 			}
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
@@ -236,14 +183,21 @@ public class SurgeVehicle extends WaterMobEntity
 	@Override
 	protected boolean processInteract(PlayerEntity player, Hand hand)
 	{
-		ItemStack item = player.getHeldItemMainhand();
-		if(battery <= 0 && item.getItem() == DeepWatersItems.POWER_STONE.get()){
-			player.inventory.decrStackSize(player.inventory.getSlotFor(item), 1);
-			battery = 100;
-		}
-		else{
+		if (player.isSneaking()) {
+			player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> {
+				return new SurgeContainer(id, inv, this);
+			}, this.getDisplayName()));
+		} else {
 			mountTo(player);
 		}
+//		ItemStack item = player.getHeldItemMainhand();
+//		if(battery <= 0 && item.getItem() == DeepWatersItems.POWER_STONE.get()){
+//			player.inventory.decrStackSize(player.inventory.getSlotFor(item), 1);
+//			battery = 100;
+//		}
+//		else{
+//			mountTo(player);
+//		}
 		return true;
 	}
 
