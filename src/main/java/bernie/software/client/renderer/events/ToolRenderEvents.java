@@ -30,10 +30,11 @@ public class ToolRenderEvents
 					GlStateManager.disableTexture();
 					GlStateManager.disableLighting();
 					GlStateManager.pushMatrix();
-					GlStateManager.translatef(-0.65f, -0.2f, -0.5f);
-					GlStateManager.rotatef(20f, 0, 1, 0);
-					GlStateManager.rotatef(15, 1, 0, 0);
-					GlStateManager.translatef(-0.03f, 0, 0);
+					GlStateManager.depthMask(false);
+					GlStateManager.disableCull();
+					GlStateManager.disableDepthTest();
+					GlStateManager.translatef(-0.39f, -0.2f, 0.5f);
+					GlStateManager.rotatef(41f, 0, 1, 0);
 					RenderHelper.drawRect(0, -0.05, 1.08, 0.1, 0, 0, 0, 1);
 					RenderHelper.drawRect(0, 0, 1.08, 0.1, 0.25, 0.5, 1, 1);
 					RenderHelper.drawRect(0, 0, ((((float) Math.abs(cooldown) / DeepWatersShieldItem.getEvent(
@@ -41,6 +42,9 @@ public class ToolRenderEvents
 							1);
 					GlStateManager.popMatrix();
 					GlStateManager.enableLighting();
+					GlStateManager.enableCull();
+					GlStateManager.enableDepthTest();
+					GlStateManager.depthMask(true);
 					GlStateManager.enableTexture();
 				}
 			}

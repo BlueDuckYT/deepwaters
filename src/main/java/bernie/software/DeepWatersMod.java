@@ -1,10 +1,12 @@
 package bernie.software;
 
 import bernie.software.block.aquastone.AquastoneColor;
+import bernie.software.client.renderer.events.WorldRenderEvents;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
 import bernie.software.datagen.DeepWatersRecipes;
+import bernie.software.event.SwordEventSubscriber;
 import bernie.software.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.data.DataGenerator;
@@ -12,6 +14,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;

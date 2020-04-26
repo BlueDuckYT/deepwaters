@@ -5,6 +5,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
@@ -48,8 +49,23 @@ public class VehicleEventSubscriber
             modelPlayer.bipedRightLeg.rotateAngleX = MathHelper.cos(ridingEntity.ticksExisted * 0.3F) * 0.3F;
             modelPlayer.bipedRightLeg.rotateAngleY = 0;
             modelPlayer.bipedHead.rotateAngleX = -.5F;
-            GlStateManager.rotatef(20, 1, 0, 0);
-
+        }
+    }
+    @SubscribeEvent
+    public static void onPlayerModelEvent(PlayerModelEvent.Render event)
+    {
+        if (!event.getPlayer().getEntityWorld().isRemote)
+        {
+            return;
+        }
+        if (event instanceof PlayerModelEvent.Render.Pre) {
+            Entity ridingEntity = event.getPlayer().getRidingEntity();
+            if (ridingEntity != null && ridingEntity instanceof SurgeVehicle)
+            {
+                event.getMatrixStack().rotate(new Quaternion(75, 0, 0, true));
+                event.getMatrixStack().rotate(new Quaternion(event.getPlayer().rotationPitch/2f, 0, 0, true));
+                event.getMatrixStack().translate(0, -event.getHeadPitch()/500, -event.getHeadPitch()/1200);
+            }
         }
     }
 

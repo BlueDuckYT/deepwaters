@@ -3,11 +3,14 @@
 // Paste this class into your mod and generate all required imports
 package bernie.software.client.renderer.model;
 
+import bernie.software.DeepWatersMod;
 import bernie.software.entity.vehicle.SurgeVehicle;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import org.apache.logging.log4j.Level;
 
 public class SurgeModel extends EntityModel<SurgeVehicle> {
 	private final ModelRenderer Main;
@@ -99,30 +102,31 @@ public class SurgeModel extends EntityModel<SurgeVehicle> {
 		Left_Screw.setTextureOffset(0, 0).addBox(-2.0F, 0.0F, -9.0F, 2.0F, 2.0F, 1.0F, 0.0F, false);
 	}
 
+	float pitch=0;
+
 	@Override
 	public void setRotationAngles(SurgeVehicle entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
 		if (entity.getControllingPassenger() != null)
 		{
-			this.Right_Screw.rotateAngleZ = ageInTicks * 0.3F;
-			this.Left_Screw.rotateAngleZ = ageInTicks * 0.3F;
+			Right_Screw.rotateAngleZ = ageInTicks * 0.3F;
+			Left_Screw.rotateAngleZ = ageInTicks * 0.3F;
 
 		}
 
-		this.Main.rotateAngleY = entity.rotationYaw * ((float) Math.PI / 180F) / 180;
-		//float pitch = entityIn.rotationPitch * ((float) Math.PI / 180F);
-		//this.Main.rotateAngleX = pitch;
-
-//		this.Main.rotateAngleX = 0;
-		//his.Main.rotateAngleY = entityIn.rotationYaw * ((float) Math.PI / 180F);
+		Main.rotateAngleY = entity.rotationYaw * ((float) Math.PI / 180F) / 180;
+		try {
+			pitch = entity.getControllingPassenger().rotationPitch;
+		} catch (Exception err) {
+			pitch = 0;
+		}
 	}
 
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+		matrixStack.rotate(new Quaternion(pitch/2, 0, 0, true));
+		matrixStack.translate(0,(pitch/1280),-(pitch/128)+0.15f);
+		Main.rotateAngleZ=0;
 		Main.render(matrixStack, buffer, packedLight, packedOverlay);
-//		Hatch.render(matrixStack, buffer, packedLight, packedOverlay);
-//		Body.render(matrixStack, buffer, packedLight, packedOverlay);
-//		Right_Screw.render(matrixStack, buffer, packedLight, packedOverlay);
-//		Left_Screw.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

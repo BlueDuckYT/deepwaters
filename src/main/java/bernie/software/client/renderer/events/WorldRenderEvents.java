@@ -1,5 +1,6 @@
 package bernie.software.client.renderer.events;
 
+import bernie.software.DeepWatersMod;
 import bernie.software.ModEventSubscriber;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
@@ -14,9 +15,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import org.apache.logging.log4j.Level;
 
 import java.awt.*;
 
+@Mod.EventBusSubscriber(Dist.CLIENT)
 public class WorldRenderEvents {
 
     static double fogDensity = 0;
@@ -168,7 +172,8 @@ public class WorldRenderEvents {
         Vec3d vec = playerEntity.getPositionVec();
         if (playerEntity.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())&&event.getInfo().getBlockAtCamera().getMaterial().isLiquid()) {
             float baseDensity = 1 - ((float) (playerEntity.getPosY()) / 200);
-            float density = 0;
+            float defaultDensity=0.01f;
+            float density = defaultDensity;
             if (playerEntity.getPosY() <= 20)
             {
                 density = 1;
@@ -219,14 +224,24 @@ public class WorldRenderEvents {
                 double renderDensity = (MathHelper.lerp(amt, prevFogDensity, fogDensity));
                 ((EntityViewRenderEvent.FogDensity) event).setDensity((float) renderDensity);
             }
-            else if (event instanceof EntityViewRenderEvent.FogColors)
+
+            if (event instanceof EntityViewRenderEvent.FogColors&&playerEntity.getPosY()<=256)
             {
                 if (colorBlendProgress >= 120)
                 {
                     fogColor = prevfogColor;
                     if (fogColor.getRGB() != world.getBiome(playerEntity.getPosition()).getWaterFogColor())
                     {
+                        double amt = blendProgress / 120f;
+                        double renderDensity = (MathHelper.lerp(amt, prevFogDensity, fogDensity));
                         prevfogColor = new Color(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
+                        if (playerEntity.getPosY()<=128) {
+                            prevfogColor = new Color(
+                                    (int)(prevfogColor.getRed()*1-(renderDensity*4)),
+                                    (int)(prevfogColor.getGreen()*1-(renderDensity*4)),
+                                    (int)(prevfogColor.getBlue()*1-(renderDensity*4))
+                            );
+                        }
                         colorBlendProgress = 0;
                     }
                 }
@@ -238,6 +253,15 @@ public class WorldRenderEvents {
                 double colorRed = MathHelper.lerp((amt2), fogColor.getRed() / 255f, prevfogColor.getRed() / 255f);
                 double colorBlue = MathHelper.lerp((amt2), fogColor.getBlue() / 255f, prevfogColor.getBlue() / 255f);
                 double colorGreen = MathHelper.lerp((amt2), fogColor.getGreen() / 255f, prevfogColor.getGreen() / 255f);
+//                DeepWatersMod.logger.log(Level.INFO,renderDensity);
+//                if (playerEntity.getPosY()>=128) {
+//                    DeepWatersMod.logger.log(Level.INFO,1-renderDensity);
+//                    DeepWatersMod.logger.log(Level.INFO,colorBlue);
+//                    colorRed = MathHelper.lerp((renderDensity), colorRed, fogColor.getRed() / 255f);
+//                    colorBlue = MathHelper.lerp((renderDensity), colorBlue, fogColor.getBlue() / 255f);
+//                    colorGreen = MathHelper.lerp((renderDensity), colorGreen, fogColor.getGreen() / 255f);
+//                    DeepWatersMod.logger.log(Level.INFO,colorBlue);
+//                }
                 ((EntityViewRenderEvent.FogColors) event).setRed((float) colorRed);
                 ((EntityViewRenderEvent.FogColors) event).setBlue((float) colorBlue);
                 ((EntityViewRenderEvent.FogColors) event).setGreen((float) colorGreen);
@@ -245,7 +269,7 @@ public class WorldRenderEvents {
             else if (event instanceof EntityViewRenderEvent.RenderFogEvent)
             {
             }
-            if (event.isCancelable() && density != 0)
+            if (event.isCancelable())
             {
                 GlStateManager.fogStart((1 - density));
                 GlStateManager.fogEnd((1 - density));
