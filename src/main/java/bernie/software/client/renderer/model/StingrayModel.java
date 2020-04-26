@@ -120,17 +120,17 @@ public class StingrayModel extends EntityModel<Stingray> {
 
 	@Override
 	public void setRotationAngles(Stingray entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-		this.bone.rotateAngleY = (float) (MathHelper.sin((float) limbSwing) * 0.2);
-		this.AllExcept12.rotateAngleY = (float) (MathHelper.sin((float) limbSwing) * 0.3);
-		this.AllExcept123.rotateAngleY = (float) (MathHelper.sin((float) limbSwing) * 0.4);
+		this.bone.rotateAngleY = (MathHelper.sin(limbSwing) * 0.2f);
+		this.AllExcept12.rotateAngleY = (MathHelper.sin(limbSwing) * 0.3f);
+		this.AllExcept123.rotateAngleY = (MathHelper.sin(limbSwing) * 0.4f);
 		this.stinger.rotateAngleY = 0;
 
 		//this.Lefthand.rotateAngleZ = (float) (abs(MathHelper.sin((float) limbSwing) * 0.2));
 		//this.smallfinleft.rotateAngleZ = (float) (abs(MathHelper.sin((float) limbSwing) * 0.3));
-		this.Lefthand.rotateAngleZ = (float) (MathHelper.sin((float) limbSwing) * 0.3);
-		this.smallfinleft.rotateAngleZ = (float) (MathHelper.sin((float) limbSwing) * 0.4);
-		this.Righthand.rotateAngleZ = (float) (-1 * MathHelper.sin((float) limbSwing) * 0.3);
-		this.smallfinright.rotateAngleZ = (float) (-1 * MathHelper.sin((float) limbSwing) * 0.4);
+		this.Lefthand.rotateAngleZ = (MathHelper.sin(limbSwing) * 0.3f);
+		this.smallfinleft.rotateAngleZ = (MathHelper.sin(limbSwing) * 0.4f);
+		this.Righthand.rotateAngleZ = (-1 * MathHelper.sin(limbSwing) * 0.3f);
+		this.smallfinright.rotateAngleZ = (-1 * MathHelper.sin(limbSwing) * 0.4f);
 	}
 
 	@Override

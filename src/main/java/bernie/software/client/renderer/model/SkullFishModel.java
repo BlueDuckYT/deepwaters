@@ -49,8 +49,8 @@ public class SkullFishModel extends EntityModel<SkullFish> {
 	public void setRotationAngles(SkullFish entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
         this.LeftFin.rotateAngleZ = MathHelper.sin(limbSwing);
         this.RightFin.rotateAngleZ = MathHelper.sin(limbSwing) * -1;
-        this.Tail.rotateAngleY = (float) (MathHelper.sin(limbSwing) * 0.75);
-        this.Head.rotateAngleX = (float) (Math.abs(MathHelper.sin(limbSwing)) * -.05);
+        this.Tail.rotateAngleY = (MathHelper.sin(limbSwing) * 0.75f);
+        this.Head.rotateAngleX = (Math.abs(MathHelper.sin(limbSwing)) * -.05f);
 	}
 
 	@Override

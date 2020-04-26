@@ -75,14 +75,14 @@ public class MuckGulperModel extends EntityModel<MuckGulper> {
 
 	@Override
 	public void setRotationAngles(MuckGulper entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-		this.Tooth4.rotateAngleY = (float) (MathHelper.sin((float) (limbSwing * 1.5)) * 0.5);
-		this.Tooth3.rotateAngleY = (float) (-1 * MathHelper.sin((float) (limbSwing * 1.5)) * 0.5);
+		this.Tooth4.rotateAngleY = (MathHelper.sin(limbSwing * 1.5f) * 0.5f);
+		this.Tooth3.rotateAngleY = (-1 * MathHelper.sin(limbSwing * 1.5f) * 0.5f);
 
-		this.Tooth1.rotateAngleX = (float) (MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
-		this.Tooth2.rotateAngleX = (float) (-1 * MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
-		this.FinLeft.rotateAngleZ = (float) (MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
-		this.FinRight.rotateAngleZ = (float) (-1 * MathHelper.cos((float) (limbSwing * 1.5)) * 0.5);
-		this.Head.rotateAngleZ = (float) (MathHelper.sin(limbSwing) * 5);
+		this.Tooth1.rotateAngleX = (MathHelper.cos(limbSwing * 1.5f) * 0.5f);
+		this.Tooth2.rotateAngleX = (-1 * MathHelper.cos(limbSwing * 1.5f) * 0.5f);
+		this.FinLeft.rotateAngleZ = (MathHelper.cos(limbSwing * 1.5f) * 0.5f);
+		this.FinRight.rotateAngleZ = (-1 * MathHelper.cos(limbSwing * 1.5f) * 0.5f);
+		this.Head.rotateAngleZ = (MathHelper.sin(limbSwing) * 5);
 	}
 
 	@Override

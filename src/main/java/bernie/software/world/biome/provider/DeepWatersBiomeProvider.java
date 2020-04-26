@@ -45,10 +45,7 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 
 	public DeepWatersBiomeProvider(DeepWatersBiomeProviderSettings settings)
 	{
-		super(biomes);
-		Layer[] agenlayer = buildOverworldProcedure(settings.getSeed(), settings.getWorldInfo().getGenerator());
-		this.genBiomes = agenlayer[0];
-		this.biomeFactoryLayer = agenlayer[1];
+		this(settings.getSeed(),settings.getWorldInfo().getGenerator());
 	}
 
 	@Override

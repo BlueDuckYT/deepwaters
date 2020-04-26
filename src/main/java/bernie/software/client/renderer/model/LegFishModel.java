@@ -59,8 +59,8 @@ public class LegFishModel extends EntityModel<LegFish> {
 
 	@Override
 	public void setRotationAngles(LegFish entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-        this.LLeg.rotateAngleX = MathHelper.sin(limbSwing) * (float) .5;
-        this.RLeg.rotateAngleX = MathHelper.sin(limbSwing) * (float) -.5;
+        this.LLeg.rotateAngleX = MathHelper.sin(limbSwing) * .5f;
+        this.RLeg.rotateAngleX = MathHelper.sin(limbSwing) * -.5f;
 	}
 
 	@Override

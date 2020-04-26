@@ -113,9 +113,9 @@ public class DeepGliderModel extends EntityModel<DeepGlider> {
 	@Override
 	public void setRotationAngles(DeepGlider entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
         this.propeller.rotateAngleZ += 0.5;
-        this.lowerjaw.rotateAngleX = (float) Math.abs(MathHelper.sin(limbSwing) * .5);
-        this.sidefin.rotateAngleY = (float) Math.abs(MathHelper.sin(limbSwing) * .25) * -1;
-        this.sidefin2.rotateAngleY = (float) Math.abs(MathHelper.sin(limbSwing) * .25);
+        this.lowerjaw.rotateAngleX = Math.abs(MathHelper.sin(limbSwing) * .5f);
+        this.sidefin.rotateAngleY = Math.abs(MathHelper.sin(limbSwing) * .25f) * -1;
+        this.sidefin2.rotateAngleY = Math.abs(MathHelper.sin(limbSwing) * .25f);
 	}
 
 	@Override

@@ -46,8 +46,8 @@ public class DonutFishModel extends EntityModel<DonutFish> {
 
 	@Override
 	public void setRotationAngles(DonutFish entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-		this.Tail.rotateAngleY = (MathHelper.sin((float) (limbSwing * 2.5)) * 0.5F);
-		this.Fin.rotateAngleZ = (MathHelper.sin((float) (limbSwing * 2.5)) * 0.5F);
+		this.Tail.rotateAngleY = (MathHelper.sin(limbSwing * 2.5f) * 0.5F);
+		this.Fin.rotateAngleZ = (MathHelper.sin(limbSwing * 2.5f) * 0.5F);
 	}
 
 	@Override
