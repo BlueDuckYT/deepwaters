@@ -27,6 +27,5 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<SkullFish>> SKULL_FISH = EntityUtils.BuildWaterEntity(SkullFish::new, SkullFish.class, 0.3F, 0.3F);
 	public static final RegistryObject<EntityType<SurgeVehicle>> SURGE = EntityUtils.BuildEntity(SurgeVehicle::new, SurgeVehicle.class, 1.5F, 0.5F);
 	public static final RegistryObject<EntityType<JungleFish>> JUNGLE_FISH = EntityUtils.BuildWaterEntity(JungleFish::new, JungleFish.class, 0.3F, 0.3F);
-	public static final RegistryObject<EntityType<Eel>> EEL = EntityUtils.BuildWaterEntity(Eel::new, Eel.class, 0.3F, 0.2f);
 
 }

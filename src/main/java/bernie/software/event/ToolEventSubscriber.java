@@ -19,11 +19,11 @@ import java.util.Arrays;
 public class ToolEventSubscriber
 {
 
-	private static Block[] PortalBlocks = {DeepWatersBlocks.PEDESTAL.get(), DeepWatersBlocks.PORTAL_PILLAR.get(), DeepWatersBlocks.PORTAL_PILLAR_END.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get(), DeepWatersBlocks.DEEPWATERSPORTAL.get(), Blocks.PRISMARINE_BRICKS, Blocks.PRISMARINE_BRICK_STAIRS, Blocks.DARK_PRISMARINE};
 
 	@SubscribeEvent
 	public static void onBreakSpeedEvent(final PlayerEvent.BreakSpeed event)
 	{
+		Block[] PortalBlocks = {DeepWatersBlocks.PEDESTAL.get(), DeepWatersBlocks.PORTAL_PILLAR.get(), DeepWatersBlocks.PORTAL_PILLAR_END.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get(), DeepWatersBlocks.DEEPWATERSPORTAL.get(), Blocks.PRISMARINE_BRICKS, Blocks.PRISMARINE_BRICK_STAIRS, Blocks.DARK_PRISMARINE};
 
 		PlayerEntity player = event.getPlayer();
 
