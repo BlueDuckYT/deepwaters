@@ -1,4 +1,4 @@
-package bernie.software.event;
+package bernie.software.client.renderer.events;
 
 import bernie.software.item.DeepWatersAbstractRuneItem;
 import bernie.software.item.tool.DeepWatersShieldItem;

@@ -76,7 +76,7 @@ public class ModEventSubscriber
 			if (biome.getCategory() == Biome.Category.OCEAN && !(biome instanceof WaterBiomeBase))
 			{
 				Feature<NoFeatureConfig> portal = (Feature<NoFeatureConfig>) DeepWatersStructures.PORTAL_STRUCTURE.get();
-				biome.addStructure((Structure<NoFeatureConfig>) portal, IFeatureConfig.NO_FEATURE_CONFIG);
+				biome.addStructure(((Structure<NoFeatureConfig>) portal).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
 				biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 						createDecoratedFeature(portal, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE,
 								IPlacementConfig.NO_PLACEMENT_CONFIG));

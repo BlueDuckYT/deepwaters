@@ -47,7 +47,6 @@ public class DeepWatersDimension extends Dimension
 		DeepWatersBiomeProviderSettings settings = new DeepWatersBiomeProviderSettings();
 		WorldInfo worldInfo = this.world.getWorldInfo();
 		settings.setWorldInfo(worldInfo);
-		long seed = worldInfo.getSeed();
 		DeepWatersBiomeProvider provider = new DeepWatersBiomeProvider(settings);
 		return new DeepWatersChunkGenerator(world, provider, deepWatersGenSettings);
 	}

@@ -15,7 +15,7 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Iterator;
 import java.util.Random;
 
-import static bernie.software.block.aquastone.AquastoneTorch.AquastoneTorch.WATERLOGGED;
+import static bernie.software.block.aquastone.AquastoneRepeater.WATERLOGGED;
 
 public class PressurePlate {
     public static PressurePlateBlock makeWaterloggable(PressurePlateBlock source) {
