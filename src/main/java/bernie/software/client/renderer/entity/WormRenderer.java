@@ -21,11 +21,6 @@ public class WormRenderer extends MobRenderer<AbstractWormEntity, EntityModel<Ab
         location=texture;
     }
 
-    public WormRenderer(EntityRendererManager rendererManager, EntityModel head, EntityModel segment, EntityModel tail,ResourceLocation texture,boolean correctForWiggler) {
-        super(rendererManager, new wormModel((AbstractWormPart) head,(AbstractWormPart)segment,(AbstractWormPart)tail,entityClassIn,correctForWiggler), 0.5F);
-        location=texture;
-    }
-
     @Nullable
     @Override
     public ResourceLocation getEntityTexture(AbstractWormEntity livingEntity) {
