@@ -17,11 +17,11 @@ import static bernie.software.event.ToolEventSubscriber.isPortal;
 @Mod.EventBusSubscriber
 public class BlockEventSusbcriber
 {
-	private static Block[] PortalBlocks = {DeepWatersBlocks.PEDESTAL.get(), DeepWatersBlocks.PORTAL_PILLAR.get(), DeepWatersBlocks.PORTAL_PILLAR_END.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get(), DeepWatersBlocks.DEEPWATERSPORTAL.get(), Blocks.PRISMARINE_BRICKS, Blocks.PRISMARINE_BRICK_STAIRS, Blocks.DARK_PRISMARINE};
 
 	@SubscribeEvent
 	public static void onBlockPushEvent(PistonEvent.Pre event)
 	{
+		Block[] PortalBlocks = {DeepWatersBlocks.PEDESTAL.get(), DeepWatersBlocks.PORTAL_PILLAR.get(), DeepWatersBlocks.PORTAL_PILLAR_END.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR.get(), DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get(), DeepWatersBlocks.DEEPWATERSPORTAL.get(), Blocks.PRISMARINE_BRICKS, Blocks.PRISMARINE_BRICK_STAIRS, Blocks.DARK_PRISMARINE};
 
 		BlockPos pos = event.getPos().offset(event.getDirection(), 2);
 		World world = (World) event.getWorld();
