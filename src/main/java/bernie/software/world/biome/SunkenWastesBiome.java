@@ -1,7 +1,6 @@
 package bernie.software.world.biome;
 
 import bernie.software.registry.*;
-import bernie.software.world.gen.structures.DeepWatersCrystalineCoral;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;

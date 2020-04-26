@@ -1,10 +1,7 @@
 package bernie.software.world.gen.structures;
 
 import bernie.software.utils.GeneralUtils;
-import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ChestTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -58,7 +55,7 @@ class DeepWatersPortalPiece
 
 		Piece(TemplateManager templateManagerIn, ResourceLocation resourceLocationIn, BlockPos pos, Rotation rotationIn)
 		{
-			super(StructureInit.PortalPieceType, 0);
+			super(DeepWatersStructureInit.PortalPieceType, 0);
 			resourceLocation = resourceLocationIn;
 			BlockPos blockpos = new BlockPos(0, 0, 0);
 			templatePosition = pos.add(blockpos.getX(), blockpos.getY(), blockpos.getZ());
@@ -69,7 +66,7 @@ class DeepWatersPortalPiece
 
 		Piece(TemplateManager templateManagerIn, CompoundNBT tagCompound)
 		{
-			super(StructureInit.PortalPieceType, tagCompound);
+			super(DeepWatersStructureInit.PortalPieceType, tagCompound);
 			resourceLocation = new ResourceLocation(tagCompound.getString("Template"));
 			rotation = Rotation.valueOf(tagCompound.getString("Rot"));
 			setupPiece(templateManagerIn);

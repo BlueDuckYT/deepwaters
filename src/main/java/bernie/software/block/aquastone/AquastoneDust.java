@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.List;
 
-import static bernie.software.block.DeepWatersPortalPillarEnd.FACING;
+import static bernie.software.block.blockbase.DeepWatersPortalPillarEnd.FACING;
 import static net.minecraft.block.RedstoneDiodeBlock.POWERED;
 
 public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable

@@ -1,5 +1,6 @@
 package bernie.software.block;
 
+import bernie.software.block.blockbase.DeepWatersGrassBlock;
 import bernie.software.registry.DeepWatersBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;

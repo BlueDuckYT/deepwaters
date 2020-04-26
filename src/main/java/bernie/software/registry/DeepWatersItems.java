@@ -1,12 +1,12 @@
 package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.block.aquastone.RedstoneTorch;
+import bernie.software.block.aquastone.AquastoneTorch;
 import bernie.software.item.DeepWatersAbstractRuneItem;
 import bernie.software.item.DeepWatersItem;
 import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.item.armor.DeepWatersArmorItem;
-import bernie.software.item.events.ShieldEvents;
+import bernie.software.item.event.ShieldEvents;
 import bernie.software.item.tool.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
@@ -39,7 +39,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> AQUALITE_PICKAXE = ITEMS.register("aqualite_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_SHOVEL = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
-	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new ShieldEvents.Prismarine().getClass()).addToolTip("Allows you to dash in water."));
+	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new ShieldEvents.PrismarineShielfEvent().getClass()).addToolTip("Allows you to dash in water."));
 	public static final RegistryObject<Item> DARK_PRISMARINE_SHIELD = ITEMS.register("dark_prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.DARKPRISMARINE,new ShieldEvents.DarkPrismarine().getClass()).addToolTip("Allows you to dash in water.\nHalf the cooldown of the prismarine shield.\nDouble the speed of the prismarine shield."));
 
 	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
@@ -48,7 +48,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_BOOTS = ITEMS.register("prismarine_boots", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.FEET));
 
 	public static final RegistryObject<Item> POWER_STONE = ITEMS.register("power_stone", () -> new DeepWatersAbstractRuneItem(new Item.Properties().maxStackSize(1).group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
-	public static final RegistryObject<Item> AQUASTONE_TORCH = ITEMS.register("aquastone_torch", () -> new RedstoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS)));
+	public static final RegistryObject<Item> AQUASTONE_TORCH = ITEMS.register("aquastone_torch", () -> new AquastoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS)));
 
 	public static final RegistryObject<Item> CRYSTALINE_CORAL = ITEMS.register("crystaline_coral", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> DEAD_CRYSTALINE_CORAL = ITEMS.register("decayed_crystaline_coral", () -> new DeepWatersItem());

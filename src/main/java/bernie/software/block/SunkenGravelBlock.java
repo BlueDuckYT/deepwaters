@@ -1,10 +1,12 @@
 package bernie.software.block;
 
+import bernie.software.block.blockbase.DeepWatersFallingBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
-public class SunkenGravelBlock extends DeepWatersFallingBlock {
+public class SunkenGravelBlock extends DeepWatersFallingBlock
+{
 
     public SunkenGravelBlock() {
         super(Properties.create(Material.EARTH)

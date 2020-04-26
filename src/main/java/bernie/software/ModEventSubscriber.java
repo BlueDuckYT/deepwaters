@@ -1,7 +1,6 @@
 package bernie.software;
 
 import bernie.software.client.renderer.model.*;
-import bernie.software.entity.vehicle.SurgeVehicle;
 import bernie.software.listeners.DeepWatersFeatureListener;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersStructures;
@@ -9,12 +8,12 @@ import bernie.software.utils.GeneralUtils;
 import bernie.software.client.renderer.entity.*;
 import bernie.software.entity.*;
 import bernie.software.item.ModdedSpawnEggItem;
-import bernie.software.item.events.SwordEventSubscriber;
+import bernie.software.event.SwordEventSubscriber;
 import bernie.software.world.DeepWatersModDimension;
 import bernie.software.listeners.DeepWatersBiomeListener;
 import bernie.software.world.biome.SunkenWastesBiome;
 import bernie.software.world.biome.WaterBiomeBase;
-import bernie.software.world.gen.structures.StructureInit;
+import bernie.software.world.gen.structures.DeepWatersStructureInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -128,6 +127,6 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void onRegisterFeaturesEvent(final RegistryEvent.Register<Feature<?>> event)
 	{
-		Registry.register(Registry.STRUCTURE_PIECE, "portal_piece", StructureInit.PortalPieceType);
+		Registry.register(Registry.STRUCTURE_PIECE, "portal_piece", DeepWatersStructureInit.PortalPieceType);
 	}
 }

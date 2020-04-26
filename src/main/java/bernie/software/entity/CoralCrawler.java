@@ -1,6 +1,6 @@
 package bernie.software.entity;
 
-import bernie.software.tags.DeepWatersTags;
+import bernie.software.tag.DeepWatersTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;

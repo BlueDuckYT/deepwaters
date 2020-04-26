@@ -3,19 +3,11 @@ package bernie.software.block.aquastone;
 import net.minecraft.block.*;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -23,7 +15,7 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Iterator;
 import java.util.Random;
 
-import static bernie.software.block.aquastone.RedstoneTorch.AquastoneTorch.WATERLOGGED;
+import static bernie.software.block.aquastone.AquastoneTorch.AquastoneTorch.WATERLOGGED;
 
 public class PressurePlate {
     public static PressurePlateBlock makeWaterloggable(PressurePlateBlock source) {

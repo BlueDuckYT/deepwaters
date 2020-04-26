@@ -1,7 +1,7 @@
 package bernie.software.utils;
 
-import bernie.software.ForgeBusEventSubscriber;
-import bernie.software.block.DeepWatersPortalPillarEnd;
+import bernie.software.event.ForgeBusEventSubscriber;
+import bernie.software.block.blockbase.DeepWatersPortalPillarEnd;
 import bernie.software.registry.DeepWatersBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;

@@ -1,5 +1,6 @@
 package bernie.software;
 
+import bernie.software.block.aquastone.AquastoneColor;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
@@ -53,7 +54,7 @@ public class DeepWatersMod
 	@OnlyIn(Dist.CLIENT)
 	private void clientSetup(FMLClientSetupEvent event)
 	{
-		Minecraft.getInstance().getBlockColors().register(new bernie.software.block.Colors(), DeepWatersBlocks.AQUA_STONE.get());
+		Minecraft.getInstance().getBlockColors().register(new AquastoneColor(), DeepWatersBlocks.AQUA_STONE.get());
 	}
 
 	private void setup(FMLCommonSetupEvent event)

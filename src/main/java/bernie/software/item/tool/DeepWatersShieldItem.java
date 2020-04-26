@@ -27,7 +27,7 @@ public class DeepWatersShieldItem extends ShieldItem {
         super(prop.toProperty().group(DeepWatersItemGroups.DEEPWATERS_ITEMS));
         thisProperties=prop;
     }
-    public DeepWatersShieldItem(DeepWatersShieldProperties prop,Class<? extends shieldEvent> event) {
+    public DeepWatersShieldItem(DeepWatersShieldProperties prop,Class<? extends ShieldEvent> event) {
         super(prop.toProperty().group(DeepWatersItemGroups.DEEPWATERS_ITEMS));
         thisProperties=prop;
         DeepWatersShieldItem.registerEvent(prop,event);
@@ -47,7 +47,7 @@ public class DeepWatersShieldItem extends ShieldItem {
         return this;
     }
 
-    public static shieldEvent getEvent(DeepWatersShieldItem item) {
+    public static ShieldEvent getEvent(DeepWatersShieldItem item) {
         try {
             return events.get(item.thisProperties).newInstance();
         } catch (Exception err) {
@@ -71,7 +71,7 @@ public class DeepWatersShieldItem extends ShieldItem {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    public static void registerEvent(DeepWatersShieldProperties prop, Class<? extends shieldEvent> event) {
+    public static void registerEvent(DeepWatersShieldProperties prop, Class<? extends ShieldEvent> event) {
         events.put(prop,event);
     }
 
@@ -80,9 +80,10 @@ public class DeepWatersShieldItem extends ShieldItem {
         return true;
     }
 
-    private static HashMap<DeepWatersShieldProperties,Class<? extends shieldEvent>> events = new HashMap<>();
+    private static HashMap<DeepWatersShieldProperties,Class<? extends ShieldEvent>> events = new HashMap<>();
 
-    public static abstract class shieldEvent {
+    public static abstract class ShieldEvent
+    {
         public abstract int cooldown();
         public abstract void onUse(World world, PlayerEntity playerEntity, Hand hand);
         public abstract void inInv(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected);

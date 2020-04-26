@@ -1,6 +1,6 @@
 package bernie.software.item;
 
-import bernie.software.utils.Lazy;
+import bernie.software.utils.misc.Lazy;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
