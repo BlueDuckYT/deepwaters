@@ -29,7 +29,7 @@ steps:
 
 - task: Cache@2
   inputs:
-    key: 'gradle | "$(Agent.OS)"'
+    key: 'version2 | gradle | "$(Agent.OS)"'
     restoreKeys: gradle
     path: $(GRADLE_USER_HOME)
   displayName: Gradle build cache
@@ -39,10 +39,7 @@ steps:
     # stop the Gradle daemon to ensure no files are left open (impacting the save cache operation later)
     ./gradlew --stop    
   displayName: Build
-- task: UseGitVersion@5
-  inputs:
-    versionSpec: '5.0.0'
-    includePrerelease: true
+
 - task: Gradle@2
   inputs:
     workingDirectory: ''
@@ -70,7 +67,7 @@ steps:
             "title": "Version $(tag)",
             "url": "https://tincrayon.visualstudio.com/DeepWaters/_build/results?buildId=$(Build.BuildId)&view=artifacts&type=publishedArtifacts",
 
-            "description": "A new build was just created because of a push to the github.\nYou must install Minecraft 1.14 and all dependencies in order to run the mod.\n\n",
+            "description": "A new build was just created because of a push to the github.\nYou must install Minecraft 1.15.2 and all dependencies in order to run the mod.\n\n",
             "color": 3120127,
             "thumbnail": {
               "url": "https://cdn.discordapp.com/icons/695117761956937779/4e5dde3ad1c8254fb27e8316cdc30a37.webp"
@@ -80,7 +77,7 @@ steps:
             "fields": [
               {
                 "name": "Dependencies:",
-                "value": "**Minecraft Forge** >= [28.2.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html)\n**Obfuscate Library** >= [0.3.3](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2831155)"
+                "value": "**Minecraft Forge** >= [31.0.0](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.15.2.html)\n**Obfuscate Library** >= [0.4.1](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2912288)"
               }
               
             ]
