@@ -3,6 +3,8 @@ package bernie.software.client.renderer.events;
 import bernie.software.DeepWatersMod;
 import bernie.software.ModEventSubscriber;
 import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.block.CoralFanBlock;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effects;
@@ -170,7 +172,13 @@ public class WorldRenderEvents {
         PlayerEntity playerEntity = Minecraft.getInstance().player;
         World world = playerEntity.world;
         Vec3d vec = playerEntity.getPositionVec();
-        if (playerEntity.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())&&event.getInfo().getBlockAtCamera().getMaterial().isLiquid()) {
+        boolean waterlogged=false;
+        if (event.getInfo().getBlockAtCamera().getBlock() instanceof IWaterLoggable) {
+            waterlogged=event.getInfo().getBlockAtCamera().getBlockState().get(CoralFanBlock.WATERLOGGED);
+        }
+        if (playerEntity.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())&&
+            (event.getInfo().getBlockAtCamera().getMaterial().isLiquid()||
+            waterlogged)) {
             float baseDensity = 1 - ((float) (playerEntity.getPosY()) / 200);
             float defaultDensity=0.01f;
             float density = defaultDensity;

@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
 import net.minecraft.world.gen.LazyAreaLayerContext;
 import net.minecraft.world.gen.area.IArea;
@@ -33,20 +32,21 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 	private final Layer biomeFactoryLayer;
 	private static final Set<Biome> biomes = ImmutableSet.of(
 			DeepWatersBiomes.CoralFieldsBiome.get(),
-			DeepWatersBiomes.SunkenWastesBiome.get()
+			DeepWatersBiomes.SunkenWastesBiome.get(),
+			DeepWatersBiomes.ThickKelpForest.get()
 	);
 
 	protected DeepWatersBiomeProvider(long seed, WorldType worldType)
 	{
 		super(biomes);
-		Layer[] agenlayer = buildOverworldProcedure(seed, worldType);
+		Layer[] agenlayer = buildDeepWaters(seed, worldType);
 		this.genBiomes = agenlayer[0];
 		this.biomeFactoryLayer = agenlayer[1];
 	}
 
 	public DeepWatersBiomeProvider(DeepWatersBiomeProviderSettings settings) {
 		super(biomes);
-		Layer[] agenlayer = buildOverworldProcedure(settings.getSeed(), settings.getWorldInfo().getGenerator());
+		Layer[] agenlayer = buildDeepWaters(settings.getSeed(), settings.getWorldInfo().getGenerator());
 		this.genBiomes = agenlayer[0];
 		this.biomeFactoryLayer = agenlayer[1];
 	}
@@ -70,9 +70,9 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 }
 
 
-	public static Layer[] buildOverworldProcedure(long seed, WorldType typeIn)
+	public static Layer[] buildDeepWaters(long seed, WorldType typeIn)
 	{
-		ImmutableList<IAreaFactory<LazyArea>> immutablelist = buildOverworldProcedure(typeIn, (p_215737_2_) ->
+		ImmutableList<IAreaFactory<LazyArea>> immutablelist = buildDeepWaters(typeIn, (p_215737_2_) ->
 		{
 			return new LazyAreaLayerContext(25, seed, p_215737_2_);
 		});
@@ -81,7 +81,7 @@ public class DeepWatersBiomeProvider extends BiomeProvider
 		Layer genlayer2 = new Layer(immutablelist.get(2));
 		return new Layer[] { genlayer, genlayer1, genlayer2 };
 	}
-	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> buildOverworldProcedure(WorldType worldTypeIn, LongFunction<C> contextFactory)
+	public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> buildDeepWaters(WorldType worldTypeIn, LongFunction<C> contextFactory)
 	{
 		IAreaFactory<T> biomes = new DeepWatersBiomeLayer().apply(contextFactory.apply(1L));
 

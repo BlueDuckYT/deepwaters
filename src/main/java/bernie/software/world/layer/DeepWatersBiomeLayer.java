@@ -13,7 +13,8 @@ public class DeepWatersBiomeLayer implements IAreaTransformer0
 	private static final int RARE_BIOME_CHANCE = 16;
 	protected LazyInt[] commonBiomes = new LazyInt[]{
 			DeepWatersLayerUtil.lazyId(DeepWatersBiomes.CoralFieldsBiome),
-			DeepWatersLayerUtil.lazyId(DeepWatersBiomes.SunkenWastesBiome)
+			DeepWatersLayerUtil.lazyId(DeepWatersBiomes.SunkenWastesBiome),
+			DeepWatersLayerUtil.lazyId(DeepWatersBiomes.ThickKelpForest)
 
 	};
 	protected LazyInt[] uncommonBiomes = (new LazyInt[]{

@@ -27,10 +27,6 @@ public class DeepWatersLayerUtil
 {
 	private static final List<LazyInt> CACHES = new ArrayList<>();
 
-	protected static final LazyInt CORALFIELDS = lazyId(DeepWatersBiomes.CoralFieldsBiome);
-	protected static final LazyInt SUNKENWASTES = lazyId(DeepWatersBiomes.SunkenWastesBiome);
-
-
 	public static LazyInt lazyId(RegistryObject<Biome> biome)
 	{
 		LazyInt lazyInt = new LazyInt(biome.lazyMap(Registry.BIOME::getId));

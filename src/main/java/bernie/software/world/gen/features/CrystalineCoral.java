@@ -1,4 +1,4 @@
-package bernie.software.world.gen.structures;
+package bernie.software.world.gen.features;
 
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.utils.GeneralUtils;

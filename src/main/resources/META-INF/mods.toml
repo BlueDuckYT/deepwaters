@@ -24,7 +24,7 @@ displayURL="http://bernie.software/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="https://i.softwarelocker.net/wiggler.JPG" #optional
 # A text field displayed in the mod UI
-credits="Thank you to all the texture designers, modelers, animators, builders, and creative people who made this mod possible." #optional
+credits="Thank you to all the texture designers, modelers, animators, builders, musicians, and creative people who made this mod possible." #optional
 # A text field displayed in the mod UI
 authors="Gecko, GiantLuigi4, Quek, BlueDuck" #optional
 # The description text for the mod (multi line!) (#mandatory)
