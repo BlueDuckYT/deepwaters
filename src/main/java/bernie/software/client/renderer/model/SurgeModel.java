@@ -3,14 +3,12 @@
 // Paste this class into your mod and generate all required imports
 package bernie.software.client.renderer.model;
 
-import bernie.software.DeepWatersMod;
-import bernie.software.entity.vehicle.SurgeVehicle;
+import bernie.software.entity.SurgeVehicle;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import org.apache.logging.log4j.Level;
 
 public class SurgeModel extends EntityModel<SurgeVehicle> {
 	private final ModelRenderer Main;

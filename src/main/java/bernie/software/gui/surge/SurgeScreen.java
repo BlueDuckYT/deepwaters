@@ -1,4 +1,4 @@
-package bernie.software.entity.vehicle;
+package bernie.software.gui.surge;
 
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;

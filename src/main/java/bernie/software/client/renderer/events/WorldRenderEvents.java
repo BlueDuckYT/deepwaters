@@ -174,7 +174,11 @@ public class WorldRenderEvents {
         Vec3d vec = playerEntity.getPositionVec();
         boolean waterlogged=false;
         if (event.getInfo().getBlockAtCamera().getBlock() instanceof IWaterLoggable) {
-            waterlogged=event.getInfo().getBlockAtCamera().getBlockState().get(CoralFanBlock.WATERLOGGED);
+            try {
+                waterlogged=event.getInfo().getBlockAtCamera().getBlockState().get(CoralFanBlock.WATERLOGGED);
+            } catch (Exception err) {
+                waterlogged=true;
+            }
         }
         if (playerEntity.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())&&
             (event.getInfo().getBlockAtCamera().getMaterial().isLiquid()||

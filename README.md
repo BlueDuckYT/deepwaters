@@ -11,7 +11,7 @@ Deep Waters is a twilight-forest style underwater dimension for Minecraft Forge 
 
 Currently, the mod is in development and only prereleases are available. Keep in mind a majority of the content is not implemented yet, and most things are still very work in progress. If you'd still like to try out the mod, you can grab the most recent build in the discord or from the most recent passing [azure pipeline artifact.](https://tincrayon.visualstudio.com/DeepWaters/_build?definitionId=1&_a=summary)
 
-The mod is for Minecraft **1.14.4**, and we will probably be updating to 1.15 soon.
+The mod is for Minecraft **1.15.2**, although older forge versions *might* work.
 
 ## Features
 
@@ -30,8 +30,8 @@ The mod is for Minecraft **1.14.4**, and we will probably be updating to 1.15 so
 ![Underwater base](https://media.discordapp.net/attachments/695117761956937782/699803276249661470/2020-04-14_22.08.08.png?width=1204&height=677)
 ## Dependencies
 
-* [Minecraft Forge](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.14.4.html) >= 1.14.4-28.2.0
-* [Obfuscate](https://www.curseforge.com/minecraft/mc-mods/obfuscate) >= 1.14.4-0.3.3
+* [Minecraft Forge](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.15.2.html) >= 1.15.2-31.0.0
+* [Obfuscate](https://www.curseforge.com/minecraft/mc-mods/obfuscate/files/2912283) >= 1.15.2-0.4.1
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
