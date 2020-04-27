@@ -1,40 +1,28 @@
 package bernie.software.world.gen.structures;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.ModEventSubscriber;
 import bernie.software.utils.GeneralUtils;
-import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.Mirror;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeManager;
-import net.minecraft.world.dimension.Dimension;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
-import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraft.world.server.ServerWorld;
 import org.apache.logging.log4j.Level;
 
 import java.util.Random;
-import java.util.function.Function;
 
-public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
+public class SunkenShipStructure extends Structure<NoFeatureConfig>
 {
-	public DeepWatersPortalStructure()
+	public SunkenShipStructure()
 	{
 		super(NoFeatureConfig::deserialize);
 	}
@@ -42,7 +30,7 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 	@Override
 	public String getStructureName()
 	{
-		return GeneralUtils.Location("deepwatersportal").toString();
+		return GeneralUtils.Location("sunkenship").toString();
 	}
 
 
@@ -62,7 +50,7 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 	@Override
 	public Structure.IStartFactory getStartFactory()
 	{
-		return DeepWatersPortalStructure.Start::new;
+		return SunkenShipStructure.Start::new;
 	}
 
 
@@ -72,14 +60,14 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 	 */
 	private int getSeedModifier()
 	{
-		return 123456789;
+		return 543749857;
 	}
 
 	@Override
 	protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z,
 	                                               int spacingOffsetsX, int spacingOffsetsZ)
 	{
-		//this means Portals cannot be closer than 7 chunks or more than 12 chunks
+		//this means shipwrecks cannot be closer than 7 chunks or more than 12 chunks
 		int maxDistance = 20;
 		int minDistance = 7;
 
@@ -120,27 +108,6 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 			Rotation.NONE).setIgnoreEntities(false).setChunk(
 			null);
 
-	public static void placePortalAtLocation(ServerWorld world,
-	                                         Random rand, BlockPos position, NoFeatureConfig config)
-	{
-		position = position.down();
-		ChunkGenerator<?> generator = world.getChunkProvider().generator;
-		TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
-		Template template = templatemanager.getTemplate(GeneralUtils.Location("deepwatersportalactivated"));
-		Dimension dimension = world.getDimension();
-		DimensionType type = dimension.getType();
-		ResourceLocation registryName = type.getRegistryName();
-		if (template == null)
-		{
-			DeepWatersMod.logger.warn("Portal NTB does not exist!");
-			return;
-		}
-
-		BlockPos finalPosition = world.getHeight(Heightmap.Type.WORLD_SURFACE, position);
-
-		template.addBlocksToWorld(world, position, placementSettings);
-		finalPosition = finalPosition.down();
-	}
 
 	public static class Start extends StructureStart
 	{
@@ -164,21 +131,21 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 			//Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
-
+			Random random = new Random();
 			//Finds the y value of the terrain at location.
-			int surfaceY = generator.getSeaLevel() - 2;
-			BlockPos blockpos = new BlockPos(x, surfaceY, z);
+			int yPos = random.nextInt(generator.getSeaLevel() - 20) + 20;
+			BlockPos blockpos = new BlockPos(x, yPos, z);
 
 			//Now adds the structure pieces to this.components with all details such as where each part goes
 			//so that the structure can be added to the world by worldgen.
-			DeepWatersPortalPiece.start(templateManagerIn, blockpos, rotation, components, rand);
+			SunkenShipPiece.start(templateManagerIn, blockpos, rotation, components, rand);
 
 			//Sets the bounds of the structure.
 			recalculateStructureSize();
 
 			//I use to debug and quickly find out if the structure is spawning or not and where it is.
 			DeepWatersMod.logger.log(Level.DEBUG,
-					"Portal spawned at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
+					"Shipwreck spawned at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
 		}
 
 	}

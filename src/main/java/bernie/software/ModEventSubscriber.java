@@ -8,20 +8,18 @@ import bernie.software.client.renderer.entity.*;
 import bernie.software.entity.*;
 import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.event.SwordEventSubscriber;
+import bernie.software.utils.StructureUtils;
 import bernie.software.world.DeepWatersModDimension;
 import bernie.software.listeners.DeepWatersBiomeListener;
+import bernie.software.world.biome.SunkenWastesBiome;
 import bernie.software.world.biome.WaterBiomeBase;
 import bernie.software.world.gen.structures.DeepWatersStructureInit;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -69,9 +67,11 @@ public class ModEventSubscriber
 		{
 			if (biome.getCategory() == Biome.Category.OCEAN && !(biome instanceof WaterBiomeBase))
 			{
-				Feature<NoFeatureConfig> portal = (Feature<NoFeatureConfig>) DeepWatersStructures.PORTAL_STRUCTURE.get();
-				biome.addStructure(((Structure<NoFeatureConfig>) portal).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-				biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, portal.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+				StructureUtils.addStructure().accept(biome, DeepWatersStructures.PORTAL_STRUCTURE);
+			}
+			if(biome instanceof SunkenWastesBiome)
+			{
+				StructureUtils.addStructure().accept(biome, DeepWatersStructures.SUNKEN_SHIP);
 			}
 		}
 	}
@@ -115,5 +115,7 @@ public class ModEventSubscriber
 	public static void onRegisterFeaturesEvent(final RegistryEvent.Register<Feature<?>> event)
 	{
 		Registry.register(Registry.STRUCTURE_PIECE, "portal_piece", DeepWatersStructureInit.PortalPieceType);
+		Registry.register(Registry.STRUCTURE_PIECE, "sunken_ship", DeepWatersStructureInit.SunkenShipPieceType);
+
 	}
 }
