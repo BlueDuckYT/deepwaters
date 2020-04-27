@@ -6,11 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class SeaUrchin extends AbstractFishEntity
+public class SeaUrchin extends AbstractUnderwaterEntity
 {
-	public SeaUrchin(EntityType<? extends AbstractFishEntity> type, World worldIn)
+	public SeaUrchin(EntityType<? extends AbstractUnderwaterEntity> type, World worldIn)
 	{
-		super(type, worldIn);
+		super(type, worldIn, false, false);
 	}
 
 	@Override

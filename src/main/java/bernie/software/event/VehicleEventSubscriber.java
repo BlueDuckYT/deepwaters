@@ -1,6 +1,7 @@
-package bernie.software.entity.vehicle;
+package bernie.software.event;
 
 import bernie.software.DeepWatersMod;
+import bernie.software.entity.vehicle.SurgeVehicle;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mrcrayfish.obfuscate.client.event.PlayerModelEvent;
 import net.minecraft.client.Minecraft;

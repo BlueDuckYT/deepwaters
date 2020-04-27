@@ -30,7 +30,7 @@ public class DeepWatersMod
 {
 	public static Logger logger;
 	public static final String ModID = "deepwaters";
-	public static boolean noFogMod=false;
+	public static boolean noFogMod = false;
 
 	public DeepWatersMod()
 	{
@@ -63,8 +63,7 @@ public class DeepWatersMod
 	private void setup(FMLCommonSetupEvent event)
 	{
 		DeepWatersBiomes.addBiomeTypes();
-		ArrayList<Biome> biomes = new ArrayList<>();
-		biomes.add(Biomes.DEEP_OCEAN);
+		DeepWatersEntities.spawnPlacements();
 	}
 
 

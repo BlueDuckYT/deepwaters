@@ -37,6 +37,13 @@ public class DeepWatersDimension extends Dimension
 	public DeepWatersDimension(World worldIn, DimensionType typeIn)
 	{
 		super(worldIn, typeIn, 1);
+		float f = 0.1F;
+
+		for (int i = 0; i <= 15; ++i)
+		{
+			float f1 = 1.0F - (float) i / 15.0F;
+			this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * 0.9F + 0.1F;
+		}
 	}
 
 	@Override
@@ -73,12 +80,6 @@ public class DeepWatersDimension extends Dimension
 		return null;
 	}
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public double getVoidFogYFactor()
-	{
-		return super.getVoidFogYFactor();
-	}
 
 	@Nullable
 	@Override

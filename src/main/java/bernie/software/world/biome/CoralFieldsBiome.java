@@ -3,6 +3,7 @@ package bernie.software.world.biome;
 import bernie.software.registry.*;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.biome.Biome;
@@ -64,10 +65,7 @@ public class CoralFieldsBiome extends WaterBiomeBase
 		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.MUCK_GULPER.get(), 30, 1, 10));
 		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.DONUT_FISH.get(), 30, 5, 20));
 		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.COLORFUL_FISH.get(), 30, 6, 20));
-
 		addWaterLandPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.CORAL_CRAWLER.get(), 30, 1, 4));
-
-
 	}
 
 	/**
@@ -81,8 +79,7 @@ public class CoralFieldsBiome extends WaterBiomeBase
 
 
 	@Override
-	public void addFeatures()
-	{
+	public void addFeatures() { }
 
-	}
+
 }

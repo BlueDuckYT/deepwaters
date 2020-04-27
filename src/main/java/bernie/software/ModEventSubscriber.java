@@ -107,6 +107,8 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SKULL_FISH.get(), manager -> new SkullFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SURGE.get(), manager -> new SurgeRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.JUNGLE_FISH.get(), manager -> new JungleFishRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SEA_URCHIN.get(), manager -> new SeaUrchinRenderer(manager));
+
 	}
 
 	@SubscribeEvent
