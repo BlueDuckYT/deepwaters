@@ -1,4 +1,4 @@
-package bernie.software.entity.vehicle;
+package bernie.software.gui;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

@@ -2,7 +2,7 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.entity.*;
-import bernie.software.entity.vehicle.SurgeVehicle;
+import bernie.software.entity.SurgeVehicle;
 import bernie.software.utils.EntityUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
