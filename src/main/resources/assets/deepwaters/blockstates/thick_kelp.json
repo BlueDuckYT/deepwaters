@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bottom=true": {
+      "model": "deepwaters:block/thick_kelp_bottom"
+    },
+    "bottom=false": {
+      "model": "deepwaters:block/thick_kelp_middle"
+    }
+  }
+}

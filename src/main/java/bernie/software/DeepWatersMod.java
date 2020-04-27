@@ -1,5 +1,6 @@
 package bernie.software;
 
+import bernie.software.block.ThickKelpBlock;
 import bernie.software.block.aquastone.AquastoneColor;
 import bernie.software.client.renderer.events.WorldRenderEvents;
 import bernie.software.datagen.DeepWatersBlockStates;
@@ -58,6 +59,7 @@ public class DeepWatersMod
 	private void clientSetup(FMLClientSetupEvent event)
 	{
 		Minecraft.getInstance().getBlockColors().register(new AquastoneColor(), DeepWatersBlocks.AQUA_STONE.get());
+		Minecraft.getInstance().getBlockColors().register(new ThickKelpBlock.Colors(), DeepWatersBlocks.THICK_KELP.get());
 	}
 
 	private void setup(FMLCommonSetupEvent event)
