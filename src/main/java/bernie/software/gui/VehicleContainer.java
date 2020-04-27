@@ -1,5 +1,6 @@
-package bernie.software.entity.vehicle;
+package bernie.software.gui;
 
+import bernie.software.entity.SurgeVehicle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
@@ -8,14 +9,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 public abstract class VehicleContainer extends Container {
-    protected final ItemStackHandler cartInv;
+    protected final ItemStackHandler inventory;
 
     protected final SurgeVehicle vehicle;
 
     public VehicleContainer(final ContainerType<?> type, final int id, final SurgeVehicle vehicle) {
         super(type, id);
         this.vehicle = vehicle;
-        this.cartInv = vehicle.inventory;
+        this.inventory = vehicle.inventory;
     }
 
     @Override
@@ -29,11 +30,11 @@ public abstract class VehicleContainer extends Container {
         final Slot slot = this.inventorySlots.get(index);
         if (slot != null && slot.getHasStack()) {
             final ItemStack itemstack1 = slot.getStack();
-            if (index < this.cartInv.getSlots()) {
-                if (!this.mergeItemStack(itemstack1, this.cartInv.getSlots(), this.inventorySlots.size(), true)) {
+            if (index < this.inventory.getSlots()) {
+                if (!this.mergeItemStack(itemstack1, this.inventory.getSlots(), this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, this.cartInv.getSlots(), false)) {
+            } else if (!this.mergeItemStack(itemstack1, 0, this.inventory.getSlots(), false)) {
                 return ItemStack.EMPTY;
             }
             if (itemstack1.isEmpty()) {

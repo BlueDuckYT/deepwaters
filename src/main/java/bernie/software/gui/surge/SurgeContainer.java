@@ -1,13 +1,10 @@
-package bernie.software.entity.vehicle;
+package bernie.software.gui.surge;
 
-import net.minecraft.entity.player.PlayerEntity;
+import bernie.software.entity.SurgeVehicle;
+import bernie.software.gui.VehicleContainer;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class SurgeContainer extends VehicleContainer {
@@ -18,7 +15,7 @@ public class SurgeContainer extends VehicleContainer {
 
         for (int i = 0; i < 6; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new SlotItemHandler(this.cartInv, j + i * 9, 8 + j * 18, 18 + i * 18));
+                this.addSlot(new SlotItemHandler(this.inventory, j + i * 9, 8 + j * 18, 18 + i * 18));
             }
         }
 

@@ -1,14 +1,12 @@
 package bernie.software.client.renderer.entity;
 
 import bernie.software.client.renderer.model.SurgeModel;
-import bernie.software.entity.MuckGulper;
-import bernie.software.entity.vehicle.SurgeVehicle;
+import bernie.software.entity.SurgeVehicle;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
