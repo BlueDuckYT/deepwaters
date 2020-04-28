@@ -15,15 +15,15 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 
@@ -54,6 +54,48 @@ public class PedestalBlock extends Block implements IWaterLoggable
 				.sound(SoundType.STONE)
 				.noDrops()
 		);
+	}
+
+	@Override
+	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+		worldIn.setBlockState(pos,state(state,worldIn,pos));
+		super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
+	}
+
+	public BlockState state(BlockState state,IBlockReader world,BlockPos pos) {
+		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.WEST,2)).getBlock() instanceof PortalPillarBlock) {
+			return state.with(ROTATION,Direction.SOUTH);
+		}
+		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.WEST,2)).getBlock() instanceof PortalPillarBlock) {
+			return state.with(ROTATION,Direction.EAST);
+		}
+		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.EAST,2)).getBlock() instanceof PortalPillarBlock) {
+			return state.with(ROTATION,Direction.WEST);
+		}
+		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.EAST,2)).getBlock() instanceof PortalPillarBlock) {
+			return state.with(ROTATION,Direction.NORTH);
+		}
+		return state;
+	}
+
+	@Override
+	public BlockState getStateAtViewpoint(BlockState state, IBlockReader world, BlockPos pos, Vec3d viewpoint) {
+		return state(state,world,pos);
+	}
+
+	@Override
+	public BlockState rotate(BlockState state, IWorld world, BlockPos pos, Rotation direction) {
+		return rotate(state,direction);
+	}
+
+	@Override
+	public BlockState rotate(BlockState state, Rotation direction) {
+		return state.with(ROTATION,direction.rotate((Direction)state.get(ROTATION)));
+	}
+
+	@Override
+	public BlockState mirror(BlockState state, Mirror mirrorIn) {
+		return state.with(ROTATION,mirrorIn.mirror((Direction)state.get(ROTATION)));
 	}
 
 	@Override
