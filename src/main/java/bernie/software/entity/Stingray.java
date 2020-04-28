@@ -9,13 +9,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class Stingray extends AbstractUnderwaterEntity
+public class Stingray extends AbstractFishEntity
 {
 
 
-	public Stingray(EntityType<? extends AbstractUnderwaterEntity> type, World worldIn)
+	public Stingray(EntityType<? extends AbstractFishEntity> type, World worldIn)
 	{
-		super(type, worldIn, true, true);
+		super(type, worldIn);
 	}
 
 	@Override

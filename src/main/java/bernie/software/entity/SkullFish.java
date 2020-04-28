@@ -15,13 +15,13 @@ import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class SkullFish extends AbstractUnderwaterEntity
+public class SkullFish extends AbstractFishEntity
 {
 	public UnderwaterCreatureAttackGoal attackGoal;
 
-	public SkullFish(EntityType<? extends AbstractUnderwaterEntity> p_i50248_1_, World p_i50248_2_)
+	public SkullFish(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
 	{
-		super(p_i50248_1_, p_i50248_2_, true, true);
+		super(p_i50248_1_, p_i50248_2_);
 	}
 
 	@Override

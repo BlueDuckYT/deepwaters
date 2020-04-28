@@ -8,14 +8,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class DonutFish extends AbstractUnderwaterEntity
+public class DonutFish extends AbstractGroupFishEntity
 {
 	public net.minecraft.util.ResourceLocation ResourceLocation;
 
-	public DonutFish(EntityType<? extends AbstractUnderwaterEntity> type, World worldIn)
+	public DonutFish(EntityType<? extends AbstractGroupFishEntity> type, World worldIn)
 	{
-		super(type, worldIn, true, true);
-
+		super(type, worldIn);
 	}
 
 	@Override

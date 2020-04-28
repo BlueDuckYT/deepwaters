@@ -8,12 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class BlufferFish extends AbstractUnderwaterEntity
+public class BlufferFish extends AbstractGroupFishEntity
 {
 
-	public BlufferFish(EntityType<? extends AbstractUnderwaterEntity> entityTyp, World world)
+	public BlufferFish(EntityType<? extends AbstractGroupFishEntity> p_i50248_1_, World p_i50248_2_)
 	{
-		super(entityTyp, world, true, true);
+		super(p_i50248_1_, p_i50248_2_);
 	}
 
 	@Override

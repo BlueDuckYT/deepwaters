@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class MuckGulper extends AbstractUnderwaterEntity
+public class MuckGulper extends AbstractGroupFishEntity
 {
-	public MuckGulper(EntityType<? extends AbstractUnderwaterEntity> type, World worldIn)
+	public MuckGulper(EntityType<? extends AbstractGroupFishEntity> type, World worldIn)
 	{
-		super(type, worldIn, true, true);
+		super(type, worldIn);
 	}
 
 	@Override
