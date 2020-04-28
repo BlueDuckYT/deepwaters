@@ -33,6 +33,7 @@ public class DeepWatersBlocks
 	public static final RegistryObject<Block> SALT_ORE = registerNormalBlock("salt_ore", () -> new DeepWatersOreBlock(1), false);
 	public static final RegistryObject<Block> PRISMARINE_CRYSTAL_ORE = registerNormalBlock("prismarine_crystal_ore", () -> new DeepWatersOreBlock(2), true);
 	public static final RegistryObject<Block> AQUALITE_ORE = registerNormalBlock("aqualite_ore", () -> new DeepWatersOreBlock(2), true);
+	public static final RegistryObject<Block> AQUASTONE_ORE = registerNormalBlock("aquastone_ore", () -> new DeepWatersOreBlock(1), false);
 	public static final RegistryObject<Block> SUNKEN_GRAVEL = registerNormalBlock("sunken_gravel", () -> new SunkenGravelBlock(), true);
 	public static final RegistryObject<Block> PEARL_BLOCK = registerNormalBlock("pearl_block", () -> new DeepWatersBlock(
 			Material.IRON, 1.0F, 0F, SoundType.GLASS, 0, ToolType.PICKAXE), true);
@@ -72,7 +73,7 @@ public class DeepWatersBlocks
 			DEAD_CORAL_BLOCK_GREEN.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
 
 	public static final RegistryObject<Block> THICK_KELP = registerBlock("thick_kelp", () -> new ThickKelpBlock());
-	public static final RegistryObject<Block> THICK_KELP_TOP = registerBlock("thick_top", () -> new ThickKelpTopBlock());
+	public static final RegistryObject<Block> THICK_KELP_TOP = registerBlock("thick_kelp_top", () -> new ThickKelpTopBlock());
 	public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
 	public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new AquastoneDust(Block.Properties.create(Material.ROCK).doesNotBlockMovement()));
 	public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new AquastoneComparator(Block.Properties.create(Material.ROCK)));
