@@ -98,7 +98,6 @@ class SunkenShipPiece
 
 		}
 
-
 		@Override
 		public boolean func_225577_a_(IWorld worldIn, ChunkGenerator<?> p_225577_2_, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos)
 		{

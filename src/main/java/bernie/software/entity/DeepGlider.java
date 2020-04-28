@@ -12,14 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class DeepGlider extends AbstractFishEntity
+public class DeepGlider extends AbstractUnderwaterEntity
 {
 
 	public UnderwaterCreatureAttackGoal attackGoal;
 
-	public DeepGlider(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
+	public DeepGlider(EntityType<? extends AbstractUnderwaterEntity> entityType, World world)
 	{
-		super(p_i50248_1_, p_i50248_2_);
+		super(entityType, world, true, true);
 	}
 
 	@Override

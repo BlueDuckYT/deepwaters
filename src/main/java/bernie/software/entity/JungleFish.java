@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class JungleFish extends AbstractGroupFishEntity
+public class JungleFish extends AbstractUnderwaterEntity
 {
-	public JungleFish(EntityType<? extends AbstractGroupFishEntity> type, World worldIn)
+	public JungleFish(EntityType<? extends AbstractUnderwaterEntity> type, World worldIn)
 	{
-		super(type, worldIn);
+		super(type, worldIn, true, true);
 	}
 
 	@Override
@@ -24,12 +24,5 @@ public class JungleFish extends AbstractGroupFishEntity
 	protected SoundEvent getFlopSound()
 	{
 		return null;
-	}
-
-	protected void registerAttributes()
-	{
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
 	}
 }
