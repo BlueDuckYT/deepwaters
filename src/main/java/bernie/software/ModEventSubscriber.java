@@ -1,6 +1,9 @@
 package bernie.software;
 
 import bernie.software.client.renderer.model.*;
+import bernie.software.gui.VehicleContainer;
+import bernie.software.gui.VehicleContainerTypes;
+import bernie.software.gui.surge.SurgeScreen;
 import bernie.software.listeners.DeepWatersFeatureListener;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersStructures;
@@ -14,6 +17,7 @@ import bernie.software.listeners.DeepWatersBiomeListener;
 import bernie.software.world.biome.SunkenWastesBiome;
 import bernie.software.world.biome.WaterBiomeBase;
 import bernie.software.world.gen.structures.DeepWatersStructureInit;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -41,7 +45,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventSubscriber
 {
 
@@ -87,6 +91,12 @@ public class ModEventSubscriber
 	{
 		ModdedSpawnEggItem.initUnaddedEggs();
 		DeepWatersBiomeListener.addSpawnsToBiomes();
+	}
+
+
+	@SubscribeEvent
+	public static void clientSetup(FMLClientSetupEvent event){
+		ScreenManager.registerFactory(VehicleContainerTypes.SURGE.get(), SurgeScreen::new);
 	}
 
 	@OnlyIn(Dist.CLIENT)

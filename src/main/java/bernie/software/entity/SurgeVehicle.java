@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
@@ -17,6 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
@@ -47,7 +49,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
 
 	@Override
 	protected ItemStackHandler initInventory() {
-		return new ItemStackHandler(54);
+		return new ItemStackHandler(27);
 	}
 
 //	@Override
@@ -176,13 +178,20 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	@Override
 	protected boolean processInteract(PlayerEntity player, Hand hand)
 	{
-		if (player.isSneaking()) {
-			player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> {
-				return new SurgeContainer(id, inv, this);
-			}, this.getDisplayName()));
-		} else {
-			mountTo(player);
+		World world = player.getEntityWorld();
+		if(!world.isRemote){
+			if (player.isSneaking()) {
+				player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> {
+					return new SurgeContainer(id, inv, this);
+				}, this.getDisplayName()));
+//				NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, inv, plyr) -> {
+//					return new SurgeContainer(id, inv, this);
+//				}, this.getDisplayName()));
+			} else {
+				mountTo(player);
+			}
 		}
+
 //		ItemStack item = player.getHeldItemMainhand();
 //		if(battery <= 0 && item.getItem() == DeepWatersItems.POWER_STONE.get()){
 //			player.inventory.decrStackSize(player.inventory.getSlotFor(item), 1);
