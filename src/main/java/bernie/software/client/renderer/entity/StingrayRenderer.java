@@ -1,5 +1,6 @@
 package bernie.software.client.renderer.entity;
 
+import bernie.software.client.renderer.Utils;
 import bernie.software.client.renderer.model.BlufferFishModel;
 import bernie.software.client.renderer.model.StingrayModel;
 import bernie.software.entity.BlufferFish;
@@ -34,6 +35,8 @@ public class StingrayRenderer extends MobRenderer<Stingray, StingrayModel>
 	@Override
 	protected void applyRotations(Stingray entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
 		super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+		Utils.applyFlop(entityLiving,matrixStackIn,ageInTicks,rotationYaw,partialTicks);
+
 	}
 
 	@Override

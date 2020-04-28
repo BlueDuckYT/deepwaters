@@ -2,6 +2,8 @@ package bernie.software.world.gen.structures;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.utils.GeneralUtils;
+import bernie.software.utils.WorldUtils;
+import bernie.software.world.gen.DeepWatersChunkGenerator;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
@@ -67,9 +69,8 @@ public class SunkenShipStructure extends Structure<NoFeatureConfig>
 	protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z,
 	                                               int spacingOffsetsX, int spacingOffsetsZ)
 	{
-		//this means shipwrecks cannot be closer than 7 chunks or more than 12 chunks
-		int maxDistance = 20;
-		int minDistance = 7;
+		int maxDistance = 5;
+		int minDistance = 3;
 
 		int xTemp = x + maxDistance * spacingOffsetsX;
 		int ztemp = z + maxDistance * spacingOffsetsZ;
@@ -98,7 +99,12 @@ public class SunkenShipStructure extends Structure<NoFeatureConfig>
 		{
 			if (chunkGen.hasStructure(biome, this))
 			{
-				return true;
+				int x = (chunkPosX << 4) + 7;
+				int z = (chunkPosZ << 4) + 7;
+
+				DeepWatersChunkGenerator deepWatersChunkGenerator = (DeepWatersChunkGenerator) chunkGen;
+				int yPos = WorldUtils.getRandomLedgeYPos(deepWatersChunkGenerator, x, z);
+				return yPos != 0;
 			}
 		}
 		return false;
@@ -121,32 +127,21 @@ public class SunkenShipStructure extends Structure<NoFeatureConfig>
 		public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ,
 		                 Biome biomeIn)
 		{
-			//Check out vanilla's WoodlandMansionStructure for how they offset the x and z
-			//so that they get the y value of the land at the mansion's entrance, no matter
-			//which direction the mansion is rotated.
-			//
-			//However, for most purposes, getting the y value of land with the default x and z is good enough.
+			if(!(generator instanceof DeepWatersChunkGenerator))
+			{
+				return;
+			}
 			Rotation rotation = Rotation.values()[rand.nextInt(Rotation.values().length)];
-
-			//Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
 			int x = (chunkX << 4) + 7;
 			int z = (chunkZ << 4) + 7;
-			Random random = new Random();
-			//Finds the y value of the terrain at location.
-			int yPos = random.nextInt(generator.getSeaLevel() - 20) + 20;
+
+			DeepWatersChunkGenerator deepWatersChunkGenerator = (DeepWatersChunkGenerator) generator;
+			int yPos = WorldUtils.getRandomLedgeYPos(deepWatersChunkGenerator, x, z);
 			BlockPos blockpos = new BlockPos(x, yPos, z);
-
-			//Now adds the structure pieces to this.components with all details such as where each part goes
-			//so that the structure can be added to the world by worldgen.
 			SunkenShipPiece.start(templateManagerIn, blockpos, rotation, components, rand);
-
-			//Sets the bounds of the structure.
 			recalculateStructureSize();
-
-			//I use to debug and quickly find out if the structure is spawning or not and where it is.
 			DeepWatersMod.logger.log(Level.DEBUG,
-					"Shipwreck spawned at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
+					"Sunken ship spawned at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
 		}
-
 	}
 }

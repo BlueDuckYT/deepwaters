@@ -87,7 +87,6 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void doClientStuff(final FMLClientSetupEvent event)
 	{
-
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.KILLER_WIGGLER.get(),
 				manager -> new WormRenderer(manager, new KillerWigglerHead(), new KillerWigglerBody(), new KillerWigglerTail(), KillerWiggler.class,
 						new ResourceLocation("deepwaters" + ":textures/model/entity/killerwiggler.png"), true));
