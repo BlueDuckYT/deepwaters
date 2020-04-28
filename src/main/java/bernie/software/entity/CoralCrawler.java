@@ -2,18 +2,18 @@ package bernie.software.entity;
 
 import bernie.software.tag.DeepWatersTags;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class CoralCrawler extends AnimalEntity
 {
@@ -49,17 +49,11 @@ public class CoralCrawler extends AnimalEntity
 		getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
 	}
 
-	@Override
-	public float getBlockPathWeight(BlockPos pos, IWorldReader worldIn)
-	{
-		boolean first = pos.getY() > worldIn.getSeaLevel();
-		boolean second = worldIn.getBlockState(pos.down()).getBlock() != Blocks.WATER;
-		boolean third = worldIn.getBlockState(pos.down()).getBlock() != Blocks.AIR;
 
-		if (first && second && third)
-		{
-			return 10.0F;
-		}
-		return worldIn.getBrightness(pos) - 0.5F;
-	}
+
+	public static <T extends MobEntity> boolean canCoralCrawlerSpawn(EntityType<T> type, IWorld world, SpawnReason spawnReason, BlockPos blockPos, Random random)
+{
+	return true;
+	//return blockPos.getY() > world.getSeaLevel();
+}
 }

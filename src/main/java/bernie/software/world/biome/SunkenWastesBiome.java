@@ -56,6 +56,11 @@ public class SunkenWastesBiome extends WaterBiomeBase
 	}
 
 	@Override
+	public double getNoiseFactor() {
+		return 1.2d;
+	}
+
+	@Override
 	public void addWorldCarvers()
 	{
 		WorldCarver<ProbabilityConfig> carver = DeepWatersWorldCarvers.CORAL_CAVE_CARVER.get();

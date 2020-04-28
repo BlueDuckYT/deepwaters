@@ -49,7 +49,7 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
 	{
-		builder.add(NORTH, EAST, SOUTH, WEST, POWER, WATERLOGGED, LEVEL);
+		builder.add(NORTH, EAST, SOUTH, WEST, POWER, WATERLOGGED);
 	}
 
 	@Override
@@ -130,21 +130,13 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 				}
 			} catch (Exception err) {}
 		}
-		return super.getStateForPlacement(context).with(WATERLOGGED, logged).with(LEVEL,level);
+		return super.getStateForPlacement(context).with(WATERLOGGED, logged);
 	}
 
 	@Override
 	public IFluidState getFluidState(BlockState state)
 	{
-		if (state.get(LEVEL)==0) {
-			return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
-		} else {
-			try {
-				return state.get(WATERLOGGED) ? Fluids.WATER.getFlowingFluidState(state.get(LEVEL),false) : super.getFluidState(state);
-			} catch (Exception err) {
-				return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
-			}
-		}
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
 	}
 
 	private RedstoneSide getSide(IBlockReader worldIn, BlockPos pos, Direction face)

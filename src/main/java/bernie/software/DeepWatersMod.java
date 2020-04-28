@@ -1,5 +1,6 @@
 package bernie.software;
 
+import bernie.software.block.ThickKelpBlock;
 import bernie.software.block.aquastone.AquastoneColor;
 import bernie.software.client.renderer.events.WorldRenderEvents;
 import bernie.software.datagen.DeepWatersBlockStates;
@@ -31,7 +32,7 @@ public class DeepWatersMod
 {
 	public static Logger logger;
 	public static final String ModID = "deepwaters";
-	public static boolean noFogMod=false;
+	public static boolean noFogMod = false;
 
 	public DeepWatersMod()
 	{
@@ -60,13 +61,14 @@ public class DeepWatersMod
 	private void clientSetup(FMLClientSetupEvent event)
 	{
 		Minecraft.getInstance().getBlockColors().register(new AquastoneColor(), DeepWatersBlocks.AQUA_STONE.get());
+		Minecraft.getInstance().getBlockColors().register(new ThickKelpBlock.Colors(), DeepWatersBlocks.THICK_KELP.get());
+		ClientEvents.registerBlockRenderers();
 	}
 
 	private void setup(FMLCommonSetupEvent event)
 	{
 		DeepWatersBiomes.addBiomeTypes();
-		ArrayList<Biome> biomes = new ArrayList<>();
-		biomes.add(Biomes.DEEP_OCEAN);
+		DeepWatersEntities.spawnPlacements();
 	}
 
 

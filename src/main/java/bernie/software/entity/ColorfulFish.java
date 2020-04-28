@@ -7,14 +7,14 @@ import net.minecraft.nbt.StringNBT;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class ColorfulFish extends AbstractFishEntity
+public class ColorfulFish extends AbstractUnderwaterEntity
 {
 
 	StringNBT color;
 
-	public ColorfulFish(EntityType<? extends AbstractFishEntity> p_i50248_1_, World p_i50248_2_)
+	public ColorfulFish(EntityType<? extends AbstractUnderwaterEntity> entityType, World world)
 	{
-		super(p_i50248_1_, p_i50248_2_);
+		super(entityType, world, true, true);
 		String[] colors = {"blue", "red", "green", "purple", "yellow"};
 		try {
 			String str = color.getString();

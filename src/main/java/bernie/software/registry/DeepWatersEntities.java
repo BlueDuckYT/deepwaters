@@ -4,7 +4,9 @@ import bernie.software.DeepWatersMod;
 import bernie.software.entity.*;
 import bernie.software.entity.SurgeVehicle;
 import bernie.software.utils.EntityUtils;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -27,5 +29,11 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<SkullFish>> SKULL_FISH = EntityUtils.BuildWaterEntity(SkullFish::new, SkullFish.class, 0.3F, 0.3F);
 	public static final RegistryObject<EntityType<SurgeVehicle>> SURGE = EntityUtils.BuildEntity(SurgeVehicle::new, SurgeVehicle.class, 1.5F, 0.5F);
 	public static final RegistryObject<EntityType<JungleFish>> JUNGLE_FISH = EntityUtils.BuildWaterEntity(JungleFish::new, JungleFish.class, 0.3F, 0.3F);
+	public static final RegistryObject<EntityType<SeaUrchin>> SEA_URCHIN = EntityUtils.BuildWaterEntity(SeaUrchin::new, SeaUrchin.class, 1F, 0.4F);
 
+
+	public static void spawnPlacements() {
+		EntityType<CoralCrawler> entityTypeIn = CORAL_CRAWLER.get();
+		EntitySpawnPlacementRegistry.register(entityTypeIn, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, CoralCrawler::canCoralCrawlerSpawn);
+	}
 }
