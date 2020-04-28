@@ -27,6 +27,10 @@ public abstract class WaterBiomeBase extends Biome
 		super.addSpawn(type, spawnListEntry);
 	}
 
+	public double getNoiseFactor() {
+		return 1;
+	}
+
 	public void addWaterPassiveCreatureSpawn(SpawnListEntry spawnListEntry)
 	{
 		boolean animal = WATER_PASSIVE.getAnimal();

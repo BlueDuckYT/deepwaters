@@ -5,6 +5,7 @@ import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.world.gen.features.ThickKelp;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluids;
@@ -16,12 +17,10 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.ILightReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -30,6 +29,8 @@ import org.apache.logging.log4j.Level;
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.Random;
+
+import static bernie.software.block.ThickKelpTopBlock.NEW;
 
 public class ThickKelpBlock extends Block implements IWaterLoggable
 {
@@ -65,6 +66,9 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(COLOR, BOTTOM, GROWAQUASTONE);
+        if (this instanceof ThickKelpTopBlock) {
+            builder.add(NEW);
+        }
     }
 
     @Override
@@ -101,9 +105,11 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
     public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
         if (state.get(BOTTOM)) {
-//            if (worldIn.getBlockState(pos.up()).getBlock() instanceof AirBlock) {
-                worldIn.setBlockState(pos.up(), DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState().with(BOTTOM,false));
-//            }
+            if (worldIn.getBlockState(pos.up()).getFluidState().getFluid() instanceof WaterFluid.Source) {
+                if (worldIn.getBlockState(pos.up()).getBlock().toString().equals("Block{minecraft:water}")) {
+                    worldIn.setBlockState(pos.up(), DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState().with(BOTTOM,false));
+                }
+            }
         }
     }
 
@@ -135,18 +141,39 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        DeepWatersMod.logger.log(Level.INFO,"h0");
-        if (state.getBlock() instanceof ThickKelpBlock && (state.getBlock().getClass().toString().toLowerCase().contains("top"))) {
-            DeepWatersMod.logger.log(Level.INFO,"h1");
-            if (!state.get(BOTTOM)) {
-                DeepWatersMod.logger.log(Level.INFO,"h2");
-                if (worldIn.getBlockState(pos.up()).getFluidState().equals(Fluids.WATER.getStillFluidState(false))) {
-                    DeepWatersMod.logger.log(Level.INFO,"h3");
-                    worldIn.setBlockState(pos.up(),DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState().with(BOTTOM,false));
+        if (worldIn.getLightFor(LightType.BLOCK,pos)<=5) {
+            if (state.getBlock() instanceof ThickKelpTopBlock) {
+                if (!state.get(BOTTOM)) {
+                    if (worldIn.getBlockState(pos.up()).getBlock().toString().equals("Block{minecraft:water}")) {
+                        worldIn.setBlockState(pos.up(),DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState()
+                                .with(BOTTOM,false)
+                                .with(GROWAQUASTONE,state.get(GROWAQUASTONE))
+                                .with(COLOR,state.get(COLOR)));
+                    }
                 }
             }
         }
         super.randomTick(state, worldIn, pos, random);
+    }
+
+    public BlockState getStateForGeneration(BlockState state, IWorld world, BlockPos pos) {
+        try {
+            KelpColor color=KelpColor.values()[new Random(pos.toLong()).nextInt(KelpColor.values().length)];
+            if (world.getBlockState(pos.down()).getBlock() instanceof ThickKelpBlock) {
+                color=(KelpColor)world.getBlockState(pos.down()).get(COLOR);
+            }
+            boolean bottom=world.getBlockState(pos.down()).getBlock() instanceof ThickKelpBlock;
+            boolean grows_aquastone=world.getBlockState(pos.down()).getBlock() instanceof ThickKelpBlock&&
+                    world.getBlockState(pos.down()).get(GROWAQUASTONE);
+            return getDefaultState()
+                    .with(COLOR, color)
+                    .with(BOTTOM, !bottom)
+                    .with(GROWAQUASTONE, grows_aquastone);
+        } catch (Exception err) {}
+        return getDefaultState()
+                .with(COLOR, KelpColor.GREEN)
+                .with(BOTTOM, true)
+                .with(GROWAQUASTONE, false);
     }
 
     @Override
@@ -162,15 +189,36 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
             } else {
                 worldIn.setBlockState(pos,getBlockState(state,worldIn,pos));
             }
+            if (worldIn.getBlockState(pos.down()).getBlock().getRegistryName().equals(DeepWatersBlocks.AQUASTONE_ORE.get().getRegistryName())) {
+                worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(GROWAQUASTONE,true));
+            } else {
+                try {
+                    BlockState reference=worldIn.getBlockState(pos.down());
+                    worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(GROWAQUASTONE,reference.get(GROWAQUASTONE)));
+                } catch (Exception err) {
+                    worldIn.setBlockState(pos,worldIn.getBlockState(pos).with(GROWAQUASTONE,false));
+                }
+            }
         } catch (Exception err) {}
     }
 
     public BlockState getBlockState(BlockState currentState,IWorldReader worldReader,BlockPos pos) {
         BlockState reference=worldReader.getBlockState(pos.down());
+        if (!(worldReader.getBlockState(pos.up()).getBlock() instanceof ThickKelpBlock)) {
+            return DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState()
+                    .with(BOTTOM,false)
+                    .with(COLOR,reference.get(COLOR))
+                    .with(GROWAQUASTONE,reference.get(GROWAQUASTONE));
+        }
         return currentState
                 .with(BOTTOM,false)
                 .with(COLOR,reference.get(COLOR))
                 .with(GROWAQUASTONE,reference.get(GROWAQUASTONE));
+    }
+
+    @Override
+    public PushReaction getPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
     }
 
     public static final EnumProperty COLOR = EnumProperty.create("color",KelpColor.class);
@@ -179,9 +227,10 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
 
     public enum KelpColor implements IStringSerializable {
         GREEN("green",new Color(0x506B00).getRGB()),
+        DARKGREEN("darkgreen",new Color(0x264000).getRGB()),
         ORANGE("orange",new Color(0x6B6000).getRGB()),
         DEEPORANGE("deeporange",new Color(0x6B560A).getRGB()),
-        LIME("lime",new Color(0x338F00).getRGB()),
+        LIME("lime",new Color(0x2C7700).getRGB()),
         YELLOW("yellow",new Color(0x656B00).getRGB())
         ;
 
@@ -202,7 +251,57 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
     public static class Colors implements IBlockColor {
         @Override
         public int getColor(BlockState p_getColor_1_, @Nullable ILightReader p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_) {
-            return ((KelpColor)p_getColor_1_.get(COLOR)).Color;
+            if (p_getColor_2_.getLightFor(LightType.BLOCK,p_getColor_3_)>=5) {
+                return new Color(((KelpColor)p_getColor_1_.get(COLOR)).Color).darker().darker().getRGB();
+            }
+            if (p_getColor_2_.getLightFor(LightType.BLOCK,p_getColor_3_.up())>=5) {
+                return new Color(((KelpColor)p_getColor_1_.get(COLOR)).Color).darker().getRGB();
+            }
+            if (p_getColor_2_.getLightFor(LightType.BLOCK,p_getColor_3_.down())>=5) {
+                return new Color(((KelpColor)p_getColor_1_.get(COLOR)).Color).darker().getRGB();
+            }
+            int end=255;
+            int light=15;
+            for (int i=end;i>=0;i--) {
+                try {
+                    BlockPos bp=new BlockPos(p_getColor_3_.getX(),i,p_getColor_3_.getZ());
+                    light-=1-(p_getColor_2_.getBlockState(bp).getOpacity(p_getColor_2_,bp));
+                    if (bp.equals(p_getColor_3_)||light<=0) {
+                        i=0;
+                        break;
+                    }
+                } catch (Exception err) {}
+            }
+            if (light<=0) {
+                light=0;
+            }
+//            Color col=new Color(((KelpColor)p_getColor_1_.get(COLOR)).Color);
+//            Color col2=new Color(((KelpColor)p_getColor_1_.get(COLOR)).Color).darker().darker().darker();
+//            int red=(int)Math.floor(MathHelper.lerp((light/15f),col.getRed(),col2.getRed()));
+//            int green=(int)Math.floor(MathHelper.lerp((light/15f),col.getGreen(),col2.getGreen()));
+//            int blue=(int)Math.floor(MathHelper.lerp((light/15f),col.getBlue(),col2.getBlue()));
+//            if (red>=255) {
+//                red=255;
+//            }
+//            if (green>=255) {
+//                green=255;
+//            }
+//            if (blue>=255) {
+//                blue=255;
+//            }
+//            try {
+//                return new Color(red,green,blue).getRGB();
+//            } catch (Exception err) {}
+            Color col1=new Color(((KelpColor)p_getColor_1_.get(COLOR)).Color);
+            Color col2=new Color(0x00EBFF);
+            if (p_getColor_1_.get(GROWAQUASTONE)) {
+                return new Color(
+                        (int)col1.getRed(),
+                        (int)MathHelper.lerp(0.2f,col1.getGreen(),col2.getGreen()),
+                        (int)MathHelper.lerp(0.2f,col1.getBlue(),col2.getBlue())
+                ).getRGB();
+            }
+            return col1.getRGB();
         }
     }
 }

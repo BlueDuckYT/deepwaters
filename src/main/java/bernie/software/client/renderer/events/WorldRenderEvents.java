@@ -7,6 +7,7 @@ import net.minecraft.block.CoralFanBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -27,10 +28,10 @@ public class WorldRenderEvents {
 
     static double fogDensity = 0;
     static double prevFogDensity = 0;
-    static double blendProgress = 0;
-    static double colorBlendProgress = 0;
-    static Color fogColor = Color.GREEN;
-    static Color prevfogColor = Color.RED;
+    static double blendProgress = 120;
+    static double colorBlendProgress = 120;
+    static Color fogColor = Color.BLUE;
+    static Color prevfogColor = Color.BLUE;
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
@@ -179,12 +180,15 @@ public class WorldRenderEvents {
             } catch (Exception err) {
                 waterlogged=true;
             }
+
+        } else if (event.getInfo().getBlockAtCamera().getFluidState().getFluid().equals(Fluids.WATER.getFluid())) {
+            waterlogged=true;
         }
         if (playerEntity.dimension.getRegistryName().equals(ModEventSubscriber.DeepWatersDimension.getRegistryName())&&
             (event.getInfo().getBlockAtCamera().getMaterial().isLiquid()||
             waterlogged)) {
             float baseDensity = 1 - ((float) (playerEntity.getPosY()) / 200);
-            float defaultDensity=0.01f;
+            float defaultDensity=0.025f;
             float density = defaultDensity;
             if (playerEntity.getPosY() <= 20)
             {
@@ -211,6 +215,9 @@ public class WorldRenderEvents {
             }
             int totalLight = world.getLight(new BlockPos(vec.x, vec.y, vec.z)) + 6;
             density /= (totalLight / 6f);
+            if (density<=defaultDensity) {
+                density=defaultDensity;
+            }
             if (event instanceof EntityViewRenderEvent.FogDensity)
             {
                 if ((prevFogDensity - density) != 0)
@@ -239,19 +246,19 @@ public class WorldRenderEvents {
 
             if (event instanceof EntityViewRenderEvent.FogColors&&playerEntity.getPosY()<=256)
             {
+                double amt = blendProgress / 120f;
+                double renderDensity = (MathHelper.lerp(amt, prevFogDensity, fogDensity));
                 if (colorBlendProgress >= 120)
                 {
                     fogColor = prevfogColor;
                     if (fogColor.getRGB() != world.getBiome(playerEntity.getPosition()).getWaterFogColor())
                     {
-                        double amt = blendProgress / 120f;
-                        double renderDensity = (MathHelper.lerp(amt, prevFogDensity, fogDensity));
                         prevfogColor = new Color(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
                         if (playerEntity.getPosY()<=128) {
                             prevfogColor = new Color(
-                                    (int)(prevfogColor.getRed()*1-(renderDensity*4)),
-                                    (int)(prevfogColor.getGreen()*1-(renderDensity*4)),
-                                    (int)(prevfogColor.getBlue()*1-(renderDensity*4))
+                                (int)(prevfogColor.getRed()*1-(renderDensity*2)),
+                                (int)(prevfogColor.getGreen()*1-(renderDensity*2)),
+                                (int)(prevfogColor.getBlue()*1-(renderDensity*2))
                             );
                         }
                         colorBlendProgress = 0;
@@ -265,6 +272,9 @@ public class WorldRenderEvents {
                 double colorRed = MathHelper.lerp((amt2), fogColor.getRed() / 255f, prevfogColor.getRed() / 255f);
                 double colorBlue = MathHelper.lerp((amt2), fogColor.getBlue() / 255f, prevfogColor.getBlue() / 255f);
                 double colorGreen = MathHelper.lerp((amt2), fogColor.getGreen() / 255f, prevfogColor.getGreen() / 255f);
+                colorRed=MathHelper.lerp(renderDensity*4,colorRed,fogColor.darker().darker().darker().getRed()/255f);
+                colorBlue=MathHelper.lerp(renderDensity*4,colorBlue,fogColor.darker().darker().darker().getBlue()/255f);
+                colorGreen=MathHelper.lerp(renderDensity*4,colorGreen,fogColor.darker().darker().darker().getGreen()/255f);
 //                DeepWatersMod.logger.log(Level.INFO,renderDensity);
 //                if (playerEntity.getPosY()>=128) {
 //                    DeepWatersMod.logger.log(Level.INFO,1-renderDensity);
@@ -287,6 +297,10 @@ public class WorldRenderEvents {
                 GlStateManager.fogEnd((1 - density));
                 event.setCanceled(true);
             }
+        } else {
+            prevfogColor = new Color(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
+            fogColor = prevfogColor;
+            colorBlendProgress = 0;
         }
     }
 }
