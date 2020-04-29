@@ -8,6 +8,7 @@ import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
 import bernie.software.datagen.DeepWatersRecipes;
 import bernie.software.event.SwordEventSubscriber;
+import bernie.software.gui.VehicleContainerTypes;
 import bernie.software.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.data.DataGenerator;
@@ -52,6 +53,7 @@ public class DeepWatersMod
 		DeepWatersEntities.ENTITIES.register(bus);
 		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
 		DeepWatersStructures.STRUCTURES.register(bus);
+		VehicleContainerTypes.CONTAINER_TYPES.register(bus);
 
 	}
 

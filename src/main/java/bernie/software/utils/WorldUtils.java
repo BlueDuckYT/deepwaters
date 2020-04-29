@@ -3,6 +3,7 @@ package bernie.software.utils;
 import bernie.software.event.ForgeBusEventSubscriber;
 import bernie.software.block.blockbase.DeepWatersPortalPillarEnd;
 import bernie.software.registry.DeepWatersBlocks;
+import bernie.software.world.gen.DeepWatersChunkGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +11,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class WorldUtils
 {
@@ -63,5 +68,20 @@ public class WorldUtils
 	public static DimensionType getDeepWatersDimension()
 	{
 		return DimensionType.byName(ForgeBusEventSubscriber.DEEPWATERSDIMENSION);
+	}
+
+	public static int getRandomLedgeYPos(DeepWatersChunkGenerator generator, int x, int z)
+	{
+		Random random = new Random();
+		List<Integer> possiblePositions = new ArrayList();
+		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 20, 50));
+		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 50, 70));
+		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 70, 90));
+		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 110, 130));
+		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 130, 160));
+		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 160, 190));
+		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 190, 205));
+		possiblePositions.removeIf(i -> i == 0);
+		return possiblePositions.size() == 0 ? 0 : possiblePositions.get(random.nextInt(possiblePositions.size()));
 	}
 }

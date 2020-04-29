@@ -148,7 +148,7 @@ public abstract class AbstractUnderwaterEntity extends WaterMobEntity
 			this.move(MoverType.SELF, this.getMotion());
 			this.setMotion(this.getMotion().scale(0.9D));
 			if (this.getAttackTarget() == null) {
-				this.setMotion(this.getMotion().add(0.0D, 0D, 0.0D));
+				this.setMotion(this.getMotion().add(0.0D, IsSwimmingCreature ? -0.005D : 0, 0.0D));
 			}
 		} else {
 			super.travel(p_213352_1_);
