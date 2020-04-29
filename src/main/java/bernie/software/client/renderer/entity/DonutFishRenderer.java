@@ -54,9 +54,7 @@ public class DonutFishRenderer extends MobRenderer<DonutFish, DonutFishModel>
 
 	@Override
 	public void render(DonutFish entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		GlStateManager.pushMatrix();
-		GlStateManager.scalef(10F, 10F, 10F);
+		matrixStackIn.scale(2f,2f,2f);
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-		GlStateManager.popMatrix();
 	}
 }

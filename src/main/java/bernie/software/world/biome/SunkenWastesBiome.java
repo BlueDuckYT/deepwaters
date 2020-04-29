@@ -4,14 +4,12 @@ import bernie.software.registry.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraft.world.gen.feature.SeaGrassConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.CountConfig;
-import net.minecraft.world.gen.placement.IPlacementConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.DefaultSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
@@ -38,7 +36,7 @@ public class SunkenWastesBiome extends WaterBiomeBase
 	@Override
 	public void addFeatures()
 	{
-		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DeepWatersStructures.CRYSTALINE_CORAL.get().withConfiguration(new CountConfig(1)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(100))));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DeepWatersStructures.CRYSTALINE_CORAL.get().withConfiguration(new CountConfig(5)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED.configure(new TopSolidWithNoiseConfig(20, 200.0D, 0.0D, Heightmap.Type.OCEAN_FLOOR_WG))));
 	}
 
 	@Override
