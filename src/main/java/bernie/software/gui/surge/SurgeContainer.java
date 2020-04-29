@@ -9,15 +9,14 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.Objects;
 
 public class SurgeContainer extends VehicleContainer {
 
-    public SurgeContainer(final int id, final PlayerInventory playerInv, final SurgeVehicle surge) {
-        super(VehicleContainerTypes.SURGE.get(), id, surge);
+    public SurgeContainer(final int id, final PlayerInventory playerInv, final AbstractInventoryEntity entity) {
+        super(VehicleContainerTypes.SURGE.get(), id, entity);
 
         //Surge Inventory
         for(int r = 0;r < 3; r++){
@@ -47,6 +46,6 @@ public class SurgeContainer extends VehicleContainer {
     }
 
     public SurgeContainer(final int windowId, final PlayerInventory playerInventory, final PacketBuffer data) {
-        this(windowId, playerInventory, (SurgeVehicle) playerInventory.player.world.getEntityByID(data.readInt()));
+        this(windowId, playerInventory, (AbstractInventoryEntity) playerInventory.player.world.getEntityByID(data.readInt()));
     }
 }

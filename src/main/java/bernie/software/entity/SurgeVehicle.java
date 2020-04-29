@@ -4,10 +4,12 @@ package bernie.software.entity;
 import bernie.software.KeyboardHandler;
 import bernie.software.gui.AbstractInventoryEntity;
 import bernie.software.gui.surge.SurgeContainer;
+import bernie.software.registry.DeepWatersItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -67,6 +69,11 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	protected void registerAttributes() {
+		super.registerAttributes();
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+		this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
+	}
 
 	@Override
 	public void tick()
@@ -130,15 +137,15 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	 * @param source
 	 * @param amount
 	 */
-	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
-		if (super.attackEntityFrom(source, amount))
-		{
-			this.remove();
-		}
-		return false;
-	}
+//	@Override
+//	public boolean attackEntityFrom(DamageSource source, float amount)
+//	{
+//		if (super.attackEntityFrom(source, amount))
+//		{
+//			this.remove();
+//		}
+//		return false;
+//	}
 
 	public void lerp(float prevRotationYaw, float rotationYaw, float partialTicks)
 	{
@@ -181,12 +188,11 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		World world = player.getEntityWorld();
 		if(!world.isRemote){
 			if (player.isSneaking()) {
-				player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> {
-					return new SurgeContainer(id, inv, this);
-				}, this.getDisplayName()));
-//				NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, inv, plyr) -> {
+				player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> new SurgeContainer(id, inv, this), this.getDisplayName()));
+//				SimpleNamedContainerProvider containerProvider = new SimpleNamedContainerProvider((id, inv, plyr) -> {
 //					return new SurgeContainer(id, inv, this);
-//				}, this.getDisplayName()));
+//				}, this.getDisplayName());
+//				NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider);
 			} else {
 				mountTo(player);
 			}
