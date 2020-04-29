@@ -1,12 +1,13 @@
 package bernie.software;
 
 import bernie.software.client.renderer.model.*;
+import bernie.software.client.renderer.tileentity.renderer.aquafan;
 import bernie.software.gui.VehicleContainer;
 import bernie.software.gui.VehicleContainerTypes;
 import bernie.software.gui.surge.SurgeScreen;
-import bernie.software.listeners.DeepWatersFeatureListener;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersStructures;
+import bernie.software.registry.DeepWatersTileEntities;
 import bernie.software.utils.GeneralUtils;
 import bernie.software.client.renderer.entity.*;
 import bernie.software.entity.*;
@@ -19,7 +20,10 @@ import bernie.software.world.biome.SunkenWastesBiome;
 import bernie.software.world.biome.WaterBiomeBase;
 import bernie.software.world.gen.structures.DeepWatersStructureInit;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.entity.EntityType;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -31,12 +35,15 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
+
+import java.util.function.Function;
 
 @Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventSubscriber
@@ -118,6 +125,12 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SURGE.get(), manager -> new SurgeRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.JUNGLE_FISH.get(), manager -> new JungleFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SEA_URCHIN.get(), manager -> new SeaUrchinRenderer(manager));
+//		ClientRegistry.bindTileEntityRenderer(DeepWatersTileEntities.AQUASTONE_FAN.get(), new Function<TileEntityRendererDispatcher, TileEntityRenderer<? super TileEntity>>() {
+//			@Override
+//			public TileEntityRenderer<? super TileEntity> apply(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+//				return (TileEntityRenderer)new aquafan(tileEntityRendererDispatcher);
+//			}
+//		});
 
 	}
 
