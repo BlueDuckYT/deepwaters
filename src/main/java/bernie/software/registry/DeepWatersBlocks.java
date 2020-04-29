@@ -26,9 +26,6 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class DeepWatersBlocks
 {
-	public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<TileEntityType>(ForgeRegistries.TILE_ENTITIES, DeepWatersMod.ModID);
-
-
 	public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, DeepWatersMod.ModID);
 	public static final RegistryObject<Block> MOSSY_OCEAN_FLOOR = registerNormalBlock("mossy_ocean_floor", () -> new MossyOceanFloorBlock(), false);
 	public static final RegistryObject<Block> OCEAN_FLOOR = registerNormalBlock("ocean_floor", () -> new DeepWatersBlock(

@@ -70,7 +70,6 @@ public class DeepWatersPortalBlock extends Block
 	@Override
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	{
-		TileEntityType.Builder.create()
 		if (TeleportUtils.canEntityBeTeleported(state, worldIn, pos, entityIn))
 		{
 			MinecraftServer server = entityIn.getServer();
