@@ -1,10 +1,8 @@
 package bernie.software;
 
 import bernie.software.client.renderer.model.*;
-import bernie.software.gui.VehicleContainer;
 import bernie.software.gui.VehicleContainerTypes;
 import bernie.software.gui.surge.SurgeScreen;
-import bernie.software.listeners.DeepWatersFeatureListener;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersStructures;
 import bernie.software.utils.GeneralUtils;
