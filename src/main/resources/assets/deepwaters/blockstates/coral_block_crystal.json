@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "":  { "model": "deepwaters:block/coral_block_crystal" }
+  }
+}
