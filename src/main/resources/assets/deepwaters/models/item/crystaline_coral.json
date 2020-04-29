@@ -1,3 +1,6 @@
 {
-    "parent": "deepwaters:block/crystaline_coral"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "deepwaters:item/crystaline_coral"
+    }
 }
