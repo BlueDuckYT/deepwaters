@@ -50,10 +50,8 @@ public class CoralCrawler extends AnimalEntity
 	}
 
 
-
 	public static <T extends MobEntity> boolean canCoralCrawlerSpawn(EntityType<T> type, IWorld world, SpawnReason spawnReason, BlockPos blockPos, Random random)
-{
-	return true;
-	//return blockPos.getY() > world.getSeaLevel();
-}
+	{
+		return blockPos.getY() > world.getSeaLevel() && world.getBlockState(blockPos.down()).isSolid();
+	}
 }

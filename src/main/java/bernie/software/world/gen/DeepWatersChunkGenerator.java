@@ -7,17 +7,23 @@ import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.NoiseChunkGenerator;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.*;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.spawner.WorldEntitySpawner;
+import net.minecraftforge.common.BiomeDictionary;
 
 public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenSettings>
 {
@@ -30,6 +36,21 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 	{
 		super(p_i48694_1_, p_i48694_2_, 2, 16, 250, p_i48694_3_, false);
 		this.surfaceDepthNoise = (new DeepWatersNoiseGenerator(this.randomSeed, 3, 0));
+	}
+
+	@Override
+	public void spawnMobs(WorldGenRegion region)
+	{
+		region.getWorld().getProfiler().startSection("spawn");
+		int i = region.getMainChunkX();
+		int j = region.getMainChunkZ();
+
+		Biome biome = Registry.BIOME.getByValue(region.getChunk(i, j).getBiomes().getBiomeIds()[0]);
+		SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
+		sharedseedrandom.setDecorationSeed(region.getSeed(), i << 4, j << 4);
+		WorldEntitySpawner.performWorldGenSpawning(region, biome, i, j, sharedseedrandom);
+		region.getWorld().getProfiler().endSection();
+
 	}
 
 	protected void fillNoiseColumn(double[] noiseColumn, int noiseX, int noiseZ)
@@ -118,7 +139,6 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 	{
 		return 230;
 	}
-
 
 	public int getTopBlock(int p_222529_1_, int p_222529_2_, Heightmap.Type heightmapType, int minYValue, int maxYValue)
 	{

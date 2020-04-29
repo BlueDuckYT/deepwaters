@@ -1,266 +1,318 @@
-// Made with Blockbench 3.5.0
+package bernie.software.client.renderer.model;// Made with Blockbench 3.5.1
 // Exported for Minecraft version 1.15
 // Paste this class into your mod and generate all required imports
-package bernie.software.client.renderer.model;
+
 
 import bernie.software.entity.BabyKracken;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 import static java.lang.Math.abs;
 
-public class BabyKrackenModel extends EntityModel<BabyKracken> {
-	private final ModelRenderer hexapus;
-	private final ModelRenderer head;
-	private final ModelRenderer leg1;
-	private final ModelRenderer leg1part2;
-	private final ModelRenderer leg1part3;
-	private final ModelRenderer leg2;
-	private final ModelRenderer leg2part2;
-	private final ModelRenderer leg2part3;
-	private final ModelRenderer leg3;
-	private final ModelRenderer leg3part2;
-	private final ModelRenderer leg3part3;
-	private final ModelRenderer leg4;
-	private final ModelRenderer leg4part2;
-	private final ModelRenderer leg4part3;
-	private final ModelRenderer leg5;
-	private final ModelRenderer leg5part2;
-	private final ModelRenderer leg5part3;
-	private final ModelRenderer leg6;
-	private final ModelRenderer leg6part2;
-	private final ModelRenderer leg6part3;
-	private final ModelRenderer leg7;
-	private final ModelRenderer leg7part2;
-	private final ModelRenderer leg7part3;
-	private final ModelRenderer leg8;
-	private final ModelRenderer leg8part2;
-	private final ModelRenderer leg8part4;
+public class BabyKrackenModel extends EntityModel<BabyKracken>
+{
+	private final ModelRenderer Main;
+	private final ModelRenderer Head;
+	private final ModelRenderer Arm1;
+	private final ModelRenderer Arm11;
+	private final ModelRenderer Arm12;
+	private final ModelRenderer Arm13;
+	private final ModelRenderer Arm2;
+	private final ModelRenderer Arm21;
+	private final ModelRenderer Arm22;
+	private final ModelRenderer Arm23;
+	private final ModelRenderer Arm3;
+	private final ModelRenderer Arm31;
+	private final ModelRenderer Arm32;
+	private final ModelRenderer Arm33;
+	private final ModelRenderer Arm4;
+	private final ModelRenderer Arm41;
+	private final ModelRenderer Arm42;
+	private final ModelRenderer Arm43;
+	private final ModelRenderer Arm5;
+	private final ModelRenderer Arm51;
+	private final ModelRenderer Arm52;
+	private final ModelRenderer Arm53;
+	private final ModelRenderer Arm6;
+	private final ModelRenderer Arm61;
+	private final ModelRenderer Arm62;
+	private final ModelRenderer Arm63;
+	private final ModelRenderer Arm7;
+	private final ModelRenderer Arm71;
+	private final ModelRenderer Arm72;
+	private final ModelRenderer Arm73;
+	private final ModelRenderer Arm8;
+	private final ModelRenderer Arm81;
+	private final ModelRenderer Arm82;
+	private final ModelRenderer Arm83;
 
 	public BabyKrackenModel() {
-		textureWidth = 128;
-		textureHeight = 128;
+		textureWidth = 64;
+		textureHeight = 64;
 
-		hexapus = new ModelRenderer(this);
-		hexapus.setRotationPoint(0.0F, -2.0F, 1.0F);
-		
+		Main = new ModelRenderer(this);
+		Main.setRotationPoint(0.0F, 23.0F, 0.0F);
 
-		head = new ModelRenderer(this);
-		head.setRotationPoint(0.0F, 1.0F, -1.0F);
-		hexapus.addChild(head);
-		head.setTextureOffset(0, 0).addBox(-8.0F, -10.0F, -8.0F, 16.0F, 17.0F, 16.0F, 0.0F, false);
-		head.setTextureOffset(58, 44).addBox(-5.0F, -7.0F, 9.0F, 10.0F, 11.0F, 1.0F, 0.0F, false);
-		head.setTextureOffset(26, 48).addBox(9.0F, -6.0F, -4.0F, 1.0F, 9.0F, 8.0F, 0.0F, false);
-		head.setTextureOffset(42, 33).addBox(-5.0F, -12.0F, -5.0F, 10.0F, 1.0F, 10.0F, 0.0F, false);
-		head.setTextureOffset(44, 44).addBox(-9.0F, -8.0F, -6.0F, 1.0F, 13.0F, 12.0F, 0.0F, false);
-		head.setTextureOffset(0, 33).addBox(-7.0F, -11.0F, -7.0F, 14.0F, 1.0F, 14.0F, 0.0F, false);
-		head.setTextureOffset(62, 62).addBox(-10.0F, -6.0F, -4.0F, 1.0F, 9.0F, 8.0F, 0.0F, false);
-		head.setTextureOffset(48, 0).addBox(-7.0F, -9.0F, 8.0F, 14.0F, 15.0F, 1.0F, 0.0F, false);
-		head.setTextureOffset(0, 48).addBox(8.0F, -8.0F, -6.0F, 1.0F, 13.0F, 12.0F, 0.0F, false);
-		head.setTextureOffset(0, 0).addBox(-3.0F, -7.0F, -9.0F, 6.0F, 10.0F, 1.0F, 0.0F, false);
 
-		leg1 = new ModelRenderer(this);
-		leg1.setRotationPoint(7.0F, 8.0F, -8.0F);
-		hexapus.addChild(leg1);
-		leg1.setTextureOffset(40, 77).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Head = new ModelRenderer(this);
+		Head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Main.addChild(Head);
+		Head.setTextureOffset(0, 21).addBox(-4.0F, -14.0F, -4.0F, 8.0F, 3.0F, 8.0F, 0.0F, false);
+		Head.setTextureOffset(0, 0).addBox(-5.0F, -25.0F, -5.0F, 10.0F, 11.0F, 10.0F, 0.0F, false);
 
-		leg1part2 = new ModelRenderer(this);
-		leg1part2.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg1.addChild(leg1part2);
-		leg1part2.setTextureOffset(32, 73).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm1 = new ModelRenderer(this);
+		Arm1.setRotationPoint(-3.0F, -11.0F, 3.0F);
+		Main.addChild(Arm1);
 
-		leg1part3 = new ModelRenderer(this);
-		leg1part3.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg1part2.addChild(leg1part3);
-		leg1part3.setTextureOffset(24, 73).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
 
-		leg2 = new ModelRenderer(this);
-		leg2.setRotationPoint(7.0F, 8.0F, -1.0F);
-		hexapus.addChild(leg2);
-		leg2.setTextureOffset(16, 73).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm11 = new ModelRenderer(this);
+		Arm11.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm1.addChild(Arm11);
+		Arm11.setTextureOffset(0, 44).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg2part2 = new ModelRenderer(this);
-		leg2part2.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg2.addChild(leg2part2);
-		leg2part2.setTextureOffset(8, 73).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm12 = new ModelRenderer(this);
+		Arm12.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm11.addChild(Arm12);
+		Arm12.setTextureOffset(16, 38).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg2part3 = new ModelRenderer(this);
-		leg2part3.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg2part2.addChild(leg2part3);
-		leg2part3.setTextureOffset(0, 73).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm13 = new ModelRenderer(this);
+		Arm13.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm12.addChild(Arm13);
+		Arm13.setTextureOffset(8, 32).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg3 = new ModelRenderer(this);
-		leg3.setRotationPoint(7.0F, 8.0F, 6.0F);
-		hexapus.addChild(leg3);
-		leg3.setTextureOffset(72, 56).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm2 = new ModelRenderer(this);
+		Arm2.setRotationPoint(-3.0F, -11.0F, 0.0F);
+		Main.addChild(Arm2);
 
-		leg3part2 = new ModelRenderer(this);
-		leg3part2.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg3.addChild(leg3part2);
-		leg3part2.setTextureOffset(72, 32).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
 
-		leg3part3 = new ModelRenderer(this);
-		leg3part3.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg3part2.addChild(leg3part3);
-		leg3part3.setTextureOffset(72, 24).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm21 = new ModelRenderer(this);
+		Arm21.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm2.addChild(Arm21);
+		Arm21.setTextureOffset(38, 40).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg4 = new ModelRenderer(this);
-		leg4.setRotationPoint(-7.0F, 8.0F, 6.0F);
-		hexapus.addChild(leg4);
-		leg4.setTextureOffset(72, 16).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm22 = new ModelRenderer(this);
+		Arm22.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm21.addChild(Arm22);
+		Arm22.setTextureOffset(32, 36).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg4part2 = new ModelRenderer(this);
-		leg4part2.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg4.addChild(leg4part2);
-		leg4part2.setTextureOffset(50, 69).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm23 = new ModelRenderer(this);
+		Arm23.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm22.addChild(Arm23);
+		Arm23.setTextureOffset(24, 21).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg4part3 = new ModelRenderer(this);
-		leg4part3.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg4part2.addChild(leg4part3);
-		leg4part3.setTextureOffset(42, 69).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm3 = new ModelRenderer(this);
+		Arm3.setRotationPoint(-3.0F, -11.0F, -3.0F);
+		Main.addChild(Arm3);
 
-		leg5 = new ModelRenderer(this);
-		leg5.setRotationPoint(-7.0F, 8.0F, -1.0F);
-		hexapus.addChild(leg5);
-		leg5.setTextureOffset(34, 65).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
 
-		leg5part2 = new ModelRenderer(this);
-		leg5part2.setRotationPoint(0.0F, 7.0F, 0.0F);
-		leg5.addChild(leg5part2);
-		leg5part2.setTextureOffset(26, 65).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm31 = new ModelRenderer(this);
+		Arm31.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm3.addChild(Arm31);
+		Arm31.setTextureOffset(42, 0).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg5part3 = new ModelRenderer(this);
-		leg5part3.setRotationPoint(0.0F, 5.0F, 0.0F);
-		leg5part2.addChild(leg5part3);
-		leg5part3.setTextureOffset(64, 24).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm32 = new ModelRenderer(this);
+		Arm32.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm31.addChild(Arm32);
+		Arm32.setTextureOffset(8, 38).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg6 = new ModelRenderer(this);
-		leg6.setRotationPoint(-7.0F, 8.0F, -8.0F);
-		hexapus.addChild(leg6);
-		leg6.setTextureOffset(64, 16).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm33 = new ModelRenderer(this);
+		Arm33.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm32.addChild(Arm33);
+		Arm33.setTextureOffset(0, 32).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg6part2 = new ModelRenderer(this);
-		leg6part2.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg6.addChild(leg6part2);
-		leg6part2.setTextureOffset(44, 48).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm4 = new ModelRenderer(this);
+		Arm4.setRotationPoint(0.0F, -11.0F, -3.0F);
+		Main.addChild(Arm4);
 
-		leg6part3 = new ModelRenderer(this);
-		leg6part3.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg6part2.addChild(leg6part3);
-		leg6part3.setTextureOffset(36, 48).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
 
-		leg7 = new ModelRenderer(this);
-		leg7.setRotationPoint(0.0F, 8.0F, 6.0F);
-		hexapus.addChild(leg7);
-		leg7.setTextureOffset(22, 48).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm41 = new ModelRenderer(this);
+		Arm41.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm4.addChild(Arm41);
+		Arm41.setTextureOffset(40, 10).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg7part2 = new ModelRenderer(this);
-		leg7part2.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg7.addChild(leg7part2);
-		leg7part2.setTextureOffset(14, 48).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm42 = new ModelRenderer(this);
+		Arm42.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm41.addChild(Arm42);
+		Arm42.setTextureOffset(36, 4).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg7part3 = new ModelRenderer(this);
-		leg7part3.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg7part2.addChild(leg7part3);
-		leg7part3.setTextureOffset(0, 48).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm43 = new ModelRenderer(this);
+		Arm43.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm42.addChild(Arm43);
+		Arm43.setTextureOffset(30, 30).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		leg8 = new ModelRenderer(this);
-		leg8.setRotationPoint(0.0F, 8.0F, -8.0F);
-		hexapus.addChild(leg8);
-		leg8.setTextureOffset(42, 33).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm5 = new ModelRenderer(this);
+		Arm5.setRotationPoint(3.0F, -11.0F, -3.0F);
+		Main.addChild(Arm5);
 
-		leg8part2 = new ModelRenderer(this);
-		leg8part2.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg8.addChild(leg8part2);
-		leg8part2.setTextureOffset(6, 39).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
 
-		leg8part4 = new ModelRenderer(this);
-		leg8part4.setRotationPoint(0.0F, 6.0F, 0.0F);
-		leg8part2.addChild(leg8part4);
-		leg8part4.setTextureOffset(0, 33).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F, 0.0F, false);
+		Arm51 = new ModelRenderer(this);
+		Arm51.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm5.addChild(Arm51);
+		Arm51.setTextureOffset(40, 16).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm52 = new ModelRenderer(this);
+		Arm52.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm51.addChild(Arm52);
+		Arm52.setTextureOffset(0, 38).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm53 = new ModelRenderer(this);
+		Arm53.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm52.addChild(Arm53);
+		Arm53.setTextureOffset(30, 0).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm6 = new ModelRenderer(this);
+		Arm6.setRotationPoint(3.0F, -11.0F, 0.0F);
+		Main.addChild(Arm6);
+
+
+		Arm61 = new ModelRenderer(this);
+		Arm61.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm6.addChild(Arm61);
+		Arm61.setTextureOffset(38, 31).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm62 = new ModelRenderer(this);
+		Arm62.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm61.addChild(Arm62);
+		Arm62.setTextureOffset(32, 21).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm63 = new ModelRenderer(this);
+		Arm63.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm62.addChild(Arm63);
+		Arm63.setTextureOffset(0, 0).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm7 = new ModelRenderer(this);
+		Arm7.setRotationPoint(3.0F, -11.0F, 3.0F);
+		Main.addChild(Arm7);
+
+
+		Arm71 = new ModelRenderer(this);
+		Arm71.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm7.addChild(Arm71);
+		Arm71.setTextureOffset(8, 44).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm72 = new ModelRenderer(this);
+		Arm72.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm71.addChild(Arm72);
+		Arm72.setTextureOffset(38, 25).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm73 = new ModelRenderer(this);
+		Arm73.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm72.addChild(Arm73);
+		Arm73.setTextureOffset(16, 32).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm8 = new ModelRenderer(this);
+		Arm8.setRotationPoint(0.0F, -11.0F, 3.0F);
+		Main.addChild(Arm8);
+
+
+		Arm81 = new ModelRenderer(this);
+		Arm81.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Arm8.addChild(Arm81);
+		Arm81.setTextureOffset(24, 40).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm82 = new ModelRenderer(this);
+		Arm82.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm81.addChild(Arm82);
+		Arm82.setTextureOffset(24, 34).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
+
+		Arm83 = new ModelRenderer(this);
+		Arm83.setRotationPoint(0.0F, 4.0F, 0.0F);
+		Arm82.addChild(Arm83);
+		Arm83.setTextureOffset(0, 21).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 	}
 
 	@Override
-	public void setRotationAngles(BabyKracken entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.hexapus.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+	public void setRotationAngles(BabyKracken entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
+		this.Main.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+		this.Main.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 
-		this.leg2.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg2part2.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing)) * 0.4f);
-		this.leg2part3.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing)) * 0.5f);
+		this.Arm2.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm22.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.4f);
+		this.Arm23.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.5f);
 
-		this.leg5.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg5part2.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.4f);
-		this.leg5part3.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.5f);
+		this.Arm6.rotateAngleZ = (-1 *abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm62.rotateAngleZ = (-1 *abs(MathHelper.sin(limbSwing)) * 0.4f);
+		this.Arm63.rotateAngleZ = (-1 *abs(MathHelper.sin(limbSwing)) * 0.5f);
 
-		this.leg8.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg8part2.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.4f);
-		this.leg8part4.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.5f);
+		this.Arm4.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm42.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.4f);
+		this.Arm43.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.5f);
 
-		this.leg7.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg7part2.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.4f);
-		this.leg7part3.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.5f);
+		this.Arm8.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm82.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.4f);
+		this.Arm83.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.5f);
 
 
-		this.leg1.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg1.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
-		this.leg1part2.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg1part2.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg1part3.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg1part3.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm5.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm5.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm52.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm52.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm53.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm53.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
 
-		this.leg4.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg4.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
-		this.leg4part2.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg4part2.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg4part3.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg4part3.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm1.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm1.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm12.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm12.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm13.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm13.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
 
-		this.leg6.rotateAngleX = (-1 *abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg6.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
-		this.leg6part2.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg6part2.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg6part3.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg6part3.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm3.rotateAngleX = (-1 *abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm3.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm32.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm32.rotateAngleZ = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm33.rotateAngleX = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm33.rotateAngleZ = (abs(MathHelper.sin(limbSwing )) * 0.3f);
 
-		this.leg3.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg3.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
-		this.leg3part2.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg3part2.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg3part3.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
-		this.leg3part3.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm7.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm7.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
+		this.Arm72.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm72.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm73.rotateAngleX = (abs(MathHelper.sin(limbSwing)) * 0.3f);
+		this.Arm73.rotateAngleZ = (-1 * abs(MathHelper.sin(limbSwing )) * 0.3f);
+
 	}
 
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		hexapus.render(matrixStack, buffer, packedLight, packedOverlay);
-//		head.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg1.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg1part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg1part3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg2part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg2part3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg3part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg3part3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg4.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg4part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg4part3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg5.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg5part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg5part3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg6.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg6part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg6part3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg7.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg7part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg7part3.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg8.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg8part2.render(matrixStack, buffer, packedLight, packedOverlay);
-//		leg8part4.render(matrixStack, buffer, packedLight, packedOverlay);
+		Main.render(matrixStack, buffer, packedLight, packedOverlay);
+/*		Head.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm1.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm11.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm12.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm13.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm2.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm21.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm22.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm23.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm3.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm31.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm32.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm33.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm4.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm41.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm42.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm43.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm5.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm51.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm52.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm53.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm6.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm61.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm62.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm63.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm7.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm71.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm72.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm73.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm8.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm81.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm82.render(matrixStack, buffer, packedLight, packedOverlay);
+		Arm83.render(matrixStack, buffer, packedLight, packedOverlay);*/
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

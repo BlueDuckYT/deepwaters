@@ -14,6 +14,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -69,6 +70,7 @@ public class DeepWatersPortalBlock extends Block
 	@Override
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	{
+		TileEntityType.Builder.create()
 		if (TeleportUtils.canEntityBeTeleported(state, worldIn, pos, entityIn))
 		{
 			MinecraftServer server = entityIn.getServer();

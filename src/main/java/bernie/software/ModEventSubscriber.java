@@ -107,6 +107,8 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SURGE.get(), manager -> new SurgeRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.JUNGLE_FISH.get(), manager -> new JungleFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SEA_URCHIN.get(), manager -> new SeaUrchinRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SEA_ANGEL.get(), manager -> new SeaAngelRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SHARK.get(), manager -> new SharkRenderer(manager));
 
 	}
 
@@ -115,6 +117,5 @@ public class ModEventSubscriber
 	{
 		Registry.register(Registry.STRUCTURE_PIECE, "portal_piece", DeepWatersStructureInit.PortalPieceType);
 		Registry.register(Registry.STRUCTURE_PIECE, "sunken_ship", DeepWatersStructureInit.SunkenShipPieceType);
-
 	}
 }

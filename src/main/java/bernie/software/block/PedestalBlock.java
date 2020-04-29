@@ -45,8 +45,6 @@ public class PedestalBlock extends Block implements IWaterLoggable
 	// s = prismarine brick stairs
 
 
-	private static BlockPattern portalShape;
-
 	public PedestalBlock()
 	{
 		super(Properties.create(Material.ROCK)
