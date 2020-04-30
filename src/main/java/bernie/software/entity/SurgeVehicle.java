@@ -14,16 +14,18 @@ import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.item.ChorusFruitItem;
+import net.minecraft.item.Item;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class SurgeVehicle extends AbstractInventoryEntity
 {
@@ -36,6 +38,9 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	private double lerpYaw;
 	private double lerpPitch;
 	public double battery;
+	public int speedMultiplier;
+//	public int healthMultiplier;
+//	public int armorMultiplier;
 
 	@Override
 	protected void registerGoals()
@@ -47,6 +52,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	{
 		super(type, worldIn);
 		battery = 100;
+		speedMultiplier = 1;
 	}
 
 	@Override
@@ -88,8 +94,18 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			{
 				if(battery > 0.000){
 					battery -= 0.01;
-					this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
+					this.setMotion(this.getMotion().add(lookVec.x / 13 * speedMultiplier, lookVec.y / 13 * speedMultiplier, lookVec.z / 13 * speedMultiplier));
 				}
+			}
+			for(int i = 4;i < 8;i++){
+				if(this.inventory.getStackInSlot(i).getItem() instanceof ChorusFruitItem){ //replace with forge stones
+					//speed stone
+					speedMultiplier *= 1.5;
+				}
+			}
+
+			if(this.inventory.getStackInSlot(17).getItem() instanceof ChorusFruitItem){ //replace with power stone
+
 			}
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
@@ -208,6 +224,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
 //		}
 		return true;
 	}
+
 
 	public void openContainer(final PlayerEntity player) {
 		player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> new SurgeContainer(id, inv, this), this.getDisplayName()));

@@ -2,6 +2,7 @@ package bernie.software.gui.surge;
 
 import bernie.software.entity.SurgeVehicle;
 import bernie.software.gui.AbstractInventoryEntity;
+import bernie.software.gui.SlotUpgrade;
 import bernie.software.gui.VehicleContainer;
 import bernie.software.registry.DeepWatersContainerTypes;
 import net.minecraft.entity.EntityPredicate;
@@ -22,10 +23,10 @@ public class SurgeContainer extends VehicleContainer {
                     this.addSlot(new SlotItemHandler(this.inventory, r * 9 + c, 8 + c * 18, 18 + r * 18));
                 }
                 else if(c > 4 && r == 0){
-                    this.addSlot(new SlotItemHandler(this.inventory, r * 9 + c, 8 + c * 18, 18 + r * 18));
+                    this.addSlot(new SlotUpgrade(this.inventory, r * 9 + c, 8 + c * 18, 18 + r * 18));
                 }
                 else if(c == 8 && r == 2){
-                    this.addSlot(new SlotItemHandler(this.inventory, r * 9 + c, 8 + c * 18, 18 + r * 18));
+                    this.addSlot(new SlotPower(this.inventory, r * 9 + c, 8 + c * 18, 18 + r * 18));
                 }
             }
         }
