@@ -4,7 +4,6 @@ import bernie.software.client.renderer.model.*;
 import bernie.software.registry.DeepWatersContainerTypes;
 import bernie.software.client.renderer.tileentity.renderer.aquafan;
 import bernie.software.gui.VehicleContainer;
-import bernie.software.gui.VehicleContainerTypes;
 import bernie.software.gui.surge.SurgeScreen;
 import bernie.software.registry.DeepWatersEntities;
 import bernie.software.registry.DeepWatersStructures;
