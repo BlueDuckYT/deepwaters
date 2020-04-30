@@ -1,5 +1,6 @@
 package bernie.software.gui.surge;
 
+import bernie.software.utils.GeneralUtils;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -14,9 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class SurgeScreen extends ContainerScreen<SurgeContainer>
 {
-    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("textures/gui/surgegui.png");
-
-    private final int rows=3;
+    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(GeneralUtils.Location("textures/gui/surgegui.png") + "");
 
     public SurgeScreen(SurgeContainer surgeContainer, PlayerInventory playerInventory, ITextComponent titleIn)
     {
@@ -39,7 +38,7 @@ public class SurgeScreen extends ContainerScreen<SurgeContainer>
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         this.font.drawString(this.title.getFormattedText(), 8.0F, 6.0F, 0x404040);
         this.font.drawString("Upgrades", 98.0F, 6.0F, 0x404040);
-        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 98), 0x404040);
+        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 92), 0x404040);
     }
 
     @Override

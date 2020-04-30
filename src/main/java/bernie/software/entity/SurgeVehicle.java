@@ -209,6 +209,10 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		return true;
 	}
 
+	public void openContainer(final PlayerEntity player) {
+		player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> new SurgeContainer(id, inv, this), this.getDisplayName()));
+	}
+
 	@Override
 	public boolean isPushedByWater()
 	{
