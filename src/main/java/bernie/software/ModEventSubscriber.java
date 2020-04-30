@@ -1,6 +1,7 @@
 package bernie.software;
 
 import bernie.software.client.renderer.model.*;
+import bernie.software.registry.DeepWatersContainerTypes;
 import bernie.software.client.renderer.tileentity.renderer.aquafan;
 import bernie.software.gui.VehicleContainer;
 import bernie.software.gui.VehicleContainerTypes;
@@ -98,7 +99,7 @@ public class ModEventSubscriber
 
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event){
-		ScreenManager.registerFactory(VehicleContainerTypes.SURGE.get(), SurgeScreen::new);
+		ScreenManager.registerFactory(DeepWatersContainerTypes.SURGE.get(), SurgeScreen::new);
 	}
 
 	@OnlyIn(Dist.CLIENT)
