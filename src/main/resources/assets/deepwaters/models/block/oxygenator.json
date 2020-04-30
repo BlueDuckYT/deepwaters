@@ -6,6 +6,7 @@
     "north": "deepwaters:block/oxygenator",
     "east": "deepwaters:block/oxygenator_sides",
     "south": "deepwaters:block/oxygenator_sides",
-    "west": "deepwaters:block/oxygenator_sides"
+    "west": "deepwaters:block/oxygenator_sides",
+    "particle": "deepwaters:block/oxygenator_sides"
   }
 }
