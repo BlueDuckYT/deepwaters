@@ -72,12 +72,10 @@ public class Shark extends AbstractFishEntity
 	protected void registerAttributes()
 	{
 		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(16.0D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
+		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(30.0D);
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.0D);
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3);
+		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.5);
 	}
 
 	@Override
@@ -135,12 +133,30 @@ public class Shark extends AbstractFishEntity
 	}
 	static class SwimGoal extends RandomSwimmingGoal
 	{
-		private final AbstractFishEntity fish;
+		private final Shark fish;
 
-		public SwimGoal(AbstractFishEntity fish) {
+		public SwimGoal(Shark fish) {
 			super(fish, 1.0D, 40);
 			this.fish = fish;
 		}
 
+		/**
+		 * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+		 * method as well.
+		 */
+		@Override
+		public boolean shouldExecute()
+		{
+			return super.shouldExecute() && fish.isAttacking();
+		}
+
+		/**
+		 * Returns whether an in-progress EntityAIBase should continue executing
+		 */
+		@Override
+		public boolean shouldContinueExecuting()
+		{
+			return super.shouldContinueExecuting() && fish.isAttacking();
+		}
 	}
 }
