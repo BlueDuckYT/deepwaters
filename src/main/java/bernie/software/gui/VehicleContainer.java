@@ -11,7 +11,7 @@ import net.minecraftforge.items.ItemStackHandler;
 public abstract class VehicleContainer extends Container {
     protected final ItemStackHandler inventory;
 
-    protected final AbstractInventoryEntity vehicle;
+    public final AbstractInventoryEntity vehicle;
 
     public VehicleContainer(final ContainerType<?> type, final int id, final AbstractInventoryEntity vehicle) {
         super(type, id);

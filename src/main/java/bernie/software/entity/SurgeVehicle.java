@@ -13,13 +13,17 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.ChorusFruitItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.items.ItemStackHandler;
@@ -39,8 +43,9 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	private double lerpPitch;
 	public double battery;
 	public int speedMultiplier;
-//	public int healthMultiplier;
-//	public int armorMultiplier;
+	public int healthMultiplier;
+	public int armorMultiplier;
+	public PlayerEntity playerInteracted;
 
 	@Override
 	protected void registerGoals()
@@ -90,23 +95,29 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			PlayerEntity player = (PlayerEntity) entity;
             Minecraft mc = Minecraft.getInstance();
 			Vec3d lookVec = entity.getLookVec();
-			if (this.inWater && KeyboardHandler.isKeyDown)
-			{
-				if(battery > 0.000){
-					battery -= 0.01;
-					this.setMotion(this.getMotion().add(lookVec.x / 13 * speedMultiplier, lookVec.y / 13 * speedMultiplier, lookVec.z / 13 * speedMultiplier));
-				}
-			}
+
 			for(int i = 4;i < 8;i++){
-				if(this.inventory.getStackInSlot(i).getItem() instanceof ChorusFruitItem){ //replace with forge stones
+				if(this.inventory.getStackInSlot(i).getItem() == Items.QUARTZ_BLOCK){ //replace with forge stones
 					//speed stone
 					speedMultiplier *= 1.5;
 				}
 			}
 
-			if(this.inventory.getStackInSlot(17).getItem() instanceof ChorusFruitItem){ //replace with power stone
-
+			if(this.inventory.getStackInSlot(17).getItem() == Items.REDSTONE_BLOCK){ //replace with power stone
+				battery = 100;
 			}
+			for(int i = 0; i < this.inventory.getSlots();i++){
+				System.out.println(this.inventory.getStackInSlot(i).getDisplayName().getFormattedText());
+			}
+
+			if (this.inWater && KeyboardHandler.isKeyDown)
+			{
+				if(battery > 0.000){
+					battery -= 0.02;
+					this.setMotion(this.getMotion().add(lookVec.x / 13 * speedMultiplier, lookVec.y / 13 * speedMultiplier, lookVec.z / 13 * speedMultiplier));
+				}
+			}
+
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
 			this.prevRotationYawHead = player.prevRotationYawHead;
@@ -201,6 +212,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	@Override
 	protected boolean processInteract(PlayerEntity player, Hand hand)
 	{
+		playerInteracted = player;
 		World world = player.getEntityWorld();
 		if(!world.isRemote){
 			if (player.isSneaking()) {
@@ -213,18 +225,23 @@ public class SurgeVehicle extends AbstractInventoryEntity
 				mountTo(player);
 			}
 		}
-
-//		ItemStack item = player.getHeldItemMainhand();
-//		if(battery <= 0 && item.getItem() == DeepWatersItems.POWER_STONE.get()){
-//			player.inventory.decrStackSize(player.inventory.getSlotFor(item), 1);
-//			battery = 100;
-//		}
-//		else{
-//			mountTo(player);
-//		}
 		return true;
 	}
 
+	@Override
+	public void onDeath(DamageSource cause) {
+		super.onDeath(cause);
+		if (this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
+			for (int i = 0; i < this.inventory.getSlots(); i++) {
+				InventoryHelper.spawnItemStack(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), this.inventory.getStackInSlot(i));
+			}
+		}
+	}
+
+	@Override
+	protected void onDeathUpdate() {
+		super.onDeathUpdate();
+	}
 
 	public void openContainer(final PlayerEntity player) {
 		player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> new SurgeContainer(id, inv, this), this.getDisplayName()));
