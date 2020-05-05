@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "":  { "model": "deepwaters:block/stones/forge/yellow_forge_stone" }
+  }
+}

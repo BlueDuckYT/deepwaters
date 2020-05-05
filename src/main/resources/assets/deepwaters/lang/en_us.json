@@ -62,6 +62,13 @@
   "block.deepwaters.thick_kelp": "Thick Kelp",
   "block.deepwaters.thick_kelp_top": "Thick Kelp",
 
+  "block.deepwaters.blue_forge_stone": "Blue Forge Stone",
+  "block.deepwaters.green_forge_stone": "Green Forge Stone",
+  "block.deepwaters.orange_forge_stone": "Orange Forge Stone",
+  "block.deepwaters.purple_forge_stone": "Purple Forge Stone",
+  "block.deepwaters.red_forge_stone": "Red Forge Stone",
+  "block.deepwaters.yellow_forge_stone": "Yellow Forge Stone",
+
   "item.deepwaters.crystaline_coral": "Crystaline Coral",
   "item.deepwaters.decayed_crystaline_coral": "Decayed Crystaline Coral",
 
