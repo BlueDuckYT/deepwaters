@@ -1,9 +1,7 @@
 package bernie.software.entity;
 
 import bernie.software.entity.ai.goal.UnderwaterCreatureAttackGoal;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.RandomSwimmingGoal;
@@ -15,9 +13,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -51,6 +52,35 @@ public class Shark extends AbstractFishEntity
 		this.dataManager.register(IS_ATTACKING, false);
 	}
 
+
+	@Override
+	public AxisAlignedBB getBoundingBox()
+	{
+		Direction horizontalFacing = this.getHorizontalFacing();
+		if(horizontalFacing == Direction.SOUTH || horizontalFacing == Direction.NORTH)
+		{
+			return super.getBoundingBox().grow(0, 0, -2);
+		}
+		else
+		{
+			return super.getBoundingBox().grow(-2, 0, 0);
+		}
+	}
+
+	@Override
+	protected AxisAlignedBB getBoundingBox(Pose p_213321_1_)
+	{
+		Direction horizontalFacing = this.getHorizontalFacing();
+		if(horizontalFacing == Direction.SOUTH || horizontalFacing == Direction.NORTH)
+		{
+			return super.getBoundingBox().grow(0, 0, -2);
+		}
+		else
+		{
+			return super.getBoundingBox().grow(-2, 0, 0);
+		}
+	}
+
 	public boolean isAttacking()
 	{
 		return this.dataManager.get(IS_ATTACKING);
@@ -81,7 +111,7 @@ public class Shark extends AbstractFishEntity
 	@Override
 	protected void registerGoals() {
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal(this, PlayerEntity.class, true));
-		this.goalSelector.addGoal(0, new UnderwaterCreatureAttackGoal(this, 3.0D, false));
+		this.goalSelector.addGoal(0, new UnderwaterCreatureAttackGoal(this, 3.5D, false, -2F));
 		this.goalSelector.addGoal(4, new SwimGoal(this));
 
 	}
@@ -147,7 +177,7 @@ public class Shark extends AbstractFishEntity
 		@Override
 		public boolean shouldExecute()
 		{
-			return super.shouldExecute() && fish.isAttacking();
+			return super.shouldExecute() && !fish.isAttacking();
 		}
 
 		/**
@@ -156,7 +186,7 @@ public class Shark extends AbstractFishEntity
 		@Override
 		public boolean shouldContinueExecuting()
 		{
-			return super.shouldContinueExecuting() && fish.isAttacking();
+			return super.shouldContinueExecuting() && !fish.isAttacking();
 		}
 	}
 }

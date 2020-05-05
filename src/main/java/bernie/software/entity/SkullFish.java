@@ -48,7 +48,7 @@ public class SkullFish extends AbstractFishEntity
 	@Override
 	protected void registerGoals()
 	{
-		attackGoal = new UnderwaterCreatureAttackGoal(this, .75D, false);
+		attackGoal = new UnderwaterCreatureAttackGoal(this, .75D, false, 0);
 		this.goalSelector.addGoal(1, attackGoal);
 		this.goalSelector.addGoal(8, new FishSwimGoal(this));
 

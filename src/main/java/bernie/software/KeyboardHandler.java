@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class KeyboardHandler
 {
-	public static boolean isKeyDown = false;
+	public static boolean isForwardKeyDown = false;
 
 	@SubscribeEvent
 	public static void onKeyPress(final InputEvent.KeyInputEvent event)
@@ -17,7 +17,7 @@ public class KeyboardHandler
 		Minecraft mc = Minecraft.getInstance();
 		if (mc.player != null)
 		{
-			isKeyDown = mc.gameSettings.keyBindForward.isKeyDown();
+			isForwardKeyDown = mc.gameSettings.keyBindForward.isKeyDown();
 		}
 	}
 }

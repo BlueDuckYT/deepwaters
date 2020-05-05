@@ -53,7 +53,7 @@ public class ColorfulFishModel extends EntityModel<ColorfulFish> {
         this.RFin.rotateAngleX = MathHelper.sin(limbSwing) * -1;
 
         this.Backfin.rotateAngleY = MathHelper.sin(ageInTicks)/2;
-	}
+		}
 
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){

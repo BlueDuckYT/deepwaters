@@ -127,6 +127,7 @@ public class DeepWatersPortalStructure extends Structure<NoFeatureConfig>
 		ChunkGenerator<?> generator = world.getChunkProvider().generator;
 		TemplateManager templatemanager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureTemplateManager();
 		Template template = templatemanager.getTemplate(GeneralUtils.Location("deepwatersportalactivated"));
+
 		Dimension dimension = world.getDimension();
 		DimensionType type = dimension.getType();
 		ResourceLocation registryName = type.getRegistryName();

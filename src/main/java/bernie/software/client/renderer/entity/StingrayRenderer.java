@@ -8,6 +8,7 @@ import bernie.software.entity.MuckGulper;
 import bernie.software.entity.Stingray;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -41,8 +42,8 @@ public class StingrayRenderer extends MobRenderer<Stingray, StingrayModel>
 
 	@Override
 	public void render(Stingray entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-		GlStateManager.pushMatrix();
+		RenderSystem.pushMatrix();
 		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-		GlStateManager.popMatrix();
+		RenderSystem.popMatrix();
 	}
 }

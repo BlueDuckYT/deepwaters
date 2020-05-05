@@ -4,23 +4,22 @@ package bernie.software.entity;
 import bernie.software.KeyboardHandler;
 import bernie.software.gui.AbstractInventoryEntity;
 import bernie.software.gui.surge.SurgeContainer;
-import bernie.software.registry.DeepWatersItems;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
@@ -35,7 +34,9 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	private double lerpZ;
 	private double lerpYaw;
 	private double lerpPitch;
-	public double battery;
+
+	private static final DataParameter<Float> BATTERY = EntityDataManager.createKey(SurgeVehicle.class, DataSerializers.FLOAT);
+
 
 	@Override
 	protected void registerGoals()
@@ -46,7 +47,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	public SurgeVehicle(EntityType<? extends WaterMobEntity> type, World worldIn)
 	{
 		super(type, worldIn);
-		battery = 100;
 	}
 
 	@Override
@@ -54,18 +54,23 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		return new ItemStackHandler(27);
 	}
 
-//	@Override
-//	protected ItemStack getFishBucket()
-//	{
-//		return null;
-//	}
-//
-//	@Override
-//	protected SoundEvent getFlopSound()
-//	{
-//		return null;
-//	}
-	
+	@Override
+	protected void registerData()
+	{
+		super.registerData();
+		this.dataManager.register(BATTERY, 100F);
+	}
+
+	public float getBattery()
+	{
+		return dataManager.get(BATTERY);
+	}
+
+	public void setBattery(float level)
+	{
+		this.dataManager.set(BATTERY, level);
+	}
+
 	/**
 	 * Called to update the entity's position/logic.
 	 */
@@ -82,25 +87,19 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		if (this.getControllingPassenger() != null)
 		{
 			PlayerEntity player = (PlayerEntity) entity;
-            Minecraft mc = Minecraft.getInstance();
 			Vec3d lookVec = entity.getLookVec();
-			if (this.inWater && KeyboardHandler.isKeyDown)
+			if (this.inWater && KeyboardHandler.isForwardKeyDown)
 			{
-				if(battery > 0.000){
-					battery -= 0.01;
+				if(getBattery() > 0.000){
+					setBattery(getBattery() - 0.01F);
 					this.setMotion(this.getMotion().add(lookVec.x / 13, lookVec.y / 13, lookVec.z / 13));
 				}
 			}
-
-			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
 			this.prevRotationYawHead = player.prevRotationYawHead;
 			this.rotationYaw = entity.getRotationYawHead();
 			this.setRotationYawHead(entity.getRotationYawHead());
-			float pitch = entity.getPitch(1);
-			//this.rotationPitch = pitch;
 		}
 		super.tick();
-
 	}
 
 	/**
@@ -130,22 +129,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			this.setRotation(this.rotationYaw, this.rotationPitch);
 		}
 	}
-
-	/**
-	 * Called when the entity is attacked.
-	 *
-	 * @param source
-	 * @param amount
-	 */
-//	@Override
-//	public boolean attackEntityFrom(DamageSource source, float amount)
-//	{
-//		if (super.attackEntityFrom(source, amount))
-//		{
-//			this.remove();
-//		}
-//		return false;
-//	}
 
 	public void lerp(float prevRotationYaw, float rotationYaw, float partialTicks)
 	{
@@ -230,5 +213,33 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	{
 		return this.getControllingPassenger() instanceof LivingEntity;
 	}
+
+	public void writeAdditional(CompoundNBT p_213281_1_)
+	{
+		super.writeAdditional(p_213281_1_);
+		p_213281_1_.putFloat("battery", getBattery());
+	}
+
+	@Override
+	public void readAdditional(CompoundNBT p_70037_1_)
+	{
+		super.readAdditional(p_70037_1_);
+		setBattery(p_70037_1_.getFloat("battery"));
+	}
+
+	@Override
+	public void deserializeNBT(CompoundNBT nbt)
+	{
+		readAdditional(nbt);
+	}
+
+	@Override
+	public CompoundNBT serializeNBT()
+	{
+		CompoundNBT nbt = new CompoundNBT();
+		writeAdditional(nbt);
+		return nbt;
+	}
+
 
 }

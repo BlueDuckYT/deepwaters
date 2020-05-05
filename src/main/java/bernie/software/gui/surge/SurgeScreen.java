@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class SurgeScreen extends ContainerScreen<SurgeContainer>
 {
-    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(GeneralUtils.Location("textures/gui/surgegui.png") + "");
+    private static final ResourceLocation GUI_TEXTURE = GeneralUtils.Location("textures/gui/surgegui.png");
 
     public SurgeScreen(SurgeContainer surgeContainer, PlayerInventory playerInventory, ITextComponent titleIn)
     {
@@ -51,4 +51,6 @@ public class SurgeScreen extends ContainerScreen<SurgeContainer>
         this.blit(startX, startY, 0, 0, this.xSize, this.ySize);
 //        this.blit(startX, startY + this.rows * 18 + 17, 0, 126, this.xSize, 96);
     }
+
+
 }

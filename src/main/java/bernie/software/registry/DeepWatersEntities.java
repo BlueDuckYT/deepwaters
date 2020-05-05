@@ -31,7 +31,7 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<JungleFish>> JUNGLE_FISH = EntityUtils.BuildWaterEntity(JungleFish::new, JungleFish.class, 0.3F, 0.3F);
 	public static final RegistryObject<EntityType<SeaUrchin>> SEA_URCHIN = EntityUtils.BuildWaterEntity(SeaUrchin::new, SeaUrchin.class, 1F, 0.4F);
 	public static final RegistryObject<EntityType<SeaAngel>> SEA_ANGEL = EntityUtils.BuildWaterEntity(SeaAngel::new, SeaAngel.class, 0.3F, 0.9F);
-	public static final RegistryObject<EntityType<Shark>> SHARK = EntityUtils.BuildWaterEntity(Shark::new, Shark.class, 2.7F, 2F);
+	public static final RegistryObject<EntityType<Shark>> SHARK = EntityUtils.BuildWaterEntity(Shark::new, Shark.class, .7F, .8F);
 
 
 	public static void spawnPlacements() {

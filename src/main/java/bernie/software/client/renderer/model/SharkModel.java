@@ -178,6 +178,8 @@ public class SharkModel extends EntityModel<Shark>
 		{
 			this.Jaw.rotateAngleX = -1 * abs(MathHelper.sin(limbSwing * 0.2F)) * 0.9F + 0.5F;
 		}
+
+
 		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
 	}
 

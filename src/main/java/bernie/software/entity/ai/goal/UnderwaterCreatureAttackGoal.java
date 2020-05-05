@@ -7,12 +7,12 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 public class UnderwaterCreatureAttackGoal extends MeleeAttackGoal
 {
 	protected final CreatureEntity attacker;
-
-	public UnderwaterCreatureAttackGoal(CreatureEntity creature, double speedIn, boolean useLongMemory)
+	protected final float ReachModifier;
+	public UnderwaterCreatureAttackGoal(CreatureEntity creature, double speedIn, boolean useLongMemory, float reachModifier)
 	{
 		super(creature, speedIn, useLongMemory);
 		attacker = creature;
-
+		ReachModifier = reachModifier;
 	}
 
 	@Override
@@ -23,6 +23,8 @@ public class UnderwaterCreatureAttackGoal extends MeleeAttackGoal
 		if (width < 1) {
 			width = 1.5f;
 		}
-		return (double) (this.attacker.getWidth() * 2.0F * this.attacker.getWidth() * 2.0F + attackTarget.getWidth());
+		return (double) (this.attacker.getWidth() * 2.0F * this.attacker.getWidth() * 2.0F + attackTarget.getWidth() + ReachModifier);
 	}
+
+
 }
