@@ -3,6 +3,7 @@ package bernie.software.event;
 import bernie.software.ModEventSubscriber;
 import bernie.software.commands.DeepWatersCommand;
 import bernie.software.commands.ForceSpawnCommand;
+import bernie.software.registry.DeepWatersCommands;
 import bernie.software.utils.GeneralUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
@@ -31,9 +32,6 @@ public class ForgeBusEventSubscriber
 	@SubscribeEvent
 	public static void onServerStartingEvent(FMLServerStartingEvent event)
 	{
-		CommandDispatcher<CommandSource> commandDispatcher = event.getCommandDispatcher();
-		DeepWatersCommand.register(commandDispatcher);
-		ForceSpawnCommand.register(commandDispatcher);
-
+		DeepWatersCommands.register(event.getCommandDispatcher());
 	}
 }

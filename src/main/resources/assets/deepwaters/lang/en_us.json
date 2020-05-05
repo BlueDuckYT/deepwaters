@@ -127,5 +127,7 @@
   "entity.deepwaters.coralcrawler": "Coral Crawler",
   "entity.deepwaters.surgevehicle": "Surge",
 
-  "feature.deepwaters.deepwatersportal": "Deep Waters Portal"
+  "feature.deepwaters.deepwatersportal": "Deep Waters Portal",
+
+  "command.deepwaters.wrong_dimension": "§3You must be in the Overworld to teleport to the Deep Waters.§r"
 }
