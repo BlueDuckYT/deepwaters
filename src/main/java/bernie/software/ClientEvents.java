@@ -36,5 +36,12 @@ public class ClientEvents {
         render(DeepWatersBlocks.SCRAP_LADDER, cutout);
         render(DeepWatersBlocks.IRON_HATCH, cutout);
 
+        render(DeepWatersBlocks.BLUE_FORGE_STONE, cutout);
+        render(DeepWatersBlocks.GREEN_FORGE_STONE, cutout);
+        render(DeepWatersBlocks.ORANGE_FORGE_STONE, cutout);
+        render(DeepWatersBlocks.PURPLE_FORGE_STONE, cutout);
+        render(DeepWatersBlocks.RED_FORGE_STONE, cutout);
+        render(DeepWatersBlocks.YELLOW_FORGE_STONE, cutout);
+
     }
 }

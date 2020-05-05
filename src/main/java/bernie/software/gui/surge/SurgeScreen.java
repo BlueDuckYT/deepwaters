@@ -1,9 +1,13 @@
 package bernie.software.gui.surge;
 
+import bernie.software.entity.SurgeVehicle;
 import bernie.software.utils.GeneralUtils;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,6 +20,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class SurgeScreen extends ContainerScreen<SurgeContainer>
 {
     private static final ResourceLocation GUI_TEXTURE = GeneralUtils.Location("textures/gui/surgegui.png");
+    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(GeneralUtils.Location("textures/gui/surgegui.png") + "");
+    private static final ResourceLocation RECIPE_BUTTON_TEXTURE = new ResourceLocation("textures/gui/recipe_button.png");
 
     public SurgeScreen(SurgeContainer surgeContainer, PlayerInventory playerInventory, ITextComponent titleIn)
     {
@@ -39,6 +45,12 @@ public class SurgeScreen extends ContainerScreen<SurgeContainer>
         this.font.drawString(this.title.getFormattedText(), 8.0F, 6.0F, 0x404040);
         this.font.drawString("Upgrades", 98.0F, 6.0F, 0x404040);
         this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 92), 0x404040);
+//        this.addButton(new ImageButton(this.guiLeft + 90, this.height / 2 - 49, 20, 18, 0, 0, 19, RECIPE_BUTTON_TEXTURE, (button) -> {
+//            ((SurgeVehicle) this.container.vehicle).playerInteracted.closeScreen();
+//            this.container.vehicle.getEntityWorld().addParticle(ParticleTypes.EXPLOSION, this.container.vehicle.getPosX(), this.container.vehicle.getPosY(), this.container.vehicle.getPosZ(), 0, 0, 0);
+//            this.container.vehicle.setHealth(0);
+//            ((ImageButton)button).setPosition(this.guiLeft + 90, this.height / 2 - 49);
+//        }));
     }
 
     @Override

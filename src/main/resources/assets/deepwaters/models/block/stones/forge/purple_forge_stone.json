@@ -1,0 +1,9 @@
+{
+  "parent": "deepwaters:block/stones/forge/forge_stone_base",
+  "textures": {
+    "0": "deepwaters:block/stones/forge/stone_purple",
+    "1": "deepwaters:block/stones/forge/corner_purple",
+    "2": "deepwaters:block/stones/forge/imbed_purple",
+    "particle": "deepwaters:block/stones/forge/stone_purple"
+  }
+}

@@ -1,5 +1,6 @@
 package bernie.software;
 
+import bernie.software.block.aquastone.AquastoneFan;
 import bernie.software.client.renderer.model.*;
 import bernie.software.registry.DeepWatersContainerTypes;
 import bernie.software.client.renderer.tileentity.renderer.aquafan;
@@ -21,6 +22,7 @@ import bernie.software.world.biome.WaterBiomeBase;
 import bernie.software.world.gen.structures.DeepWatersStructureInit;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -134,15 +136,16 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SURGE.get(), manager -> new SurgeRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.JUNGLE_FISH.get(), manager -> new JungleFishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SEA_URCHIN.get(), manager -> new SeaUrchinRenderer(manager));
-//		ClientRegistry.bindTileEntityRenderer(DeepWatersTileEntities.AQUASTONE_FAN.get(), new Function<TileEntityRendererDispatcher, TileEntityRenderer<? super TileEntity>>() {
-//			@Override
-//			public TileEntityRenderer<? super TileEntity> apply(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
-//				return (TileEntityRenderer)new aquafan(tileEntityRendererDispatcher);
-//			}
-//		});
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SEA_ANGEL.get(), manager -> new SeaAngelRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SHARK.get(), manager -> new SharkRenderer(manager));
-
+//		try {
+//			ClientRegistry.bindTileEntityRenderer(DeepWatersTileEntities.AQUASTONE_FAN.get(), new Function<TileEntityRendererDispatcher, TileEntityRenderer<? super TileEntity>>() {
+//				@Override
+//				public TileEntityRenderer<? super TileEntity> apply(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+//					return new aquafan(tileEntityRendererDispatcher);
+//				}
+//			});
+//		} catch (Exception err) {}
 	}
 
 	@SubscribeEvent
