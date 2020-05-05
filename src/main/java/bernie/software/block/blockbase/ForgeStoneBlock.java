@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -21,5 +23,10 @@ public class ForgeStoneBlock extends Block {
         double posZ = (double)pos.getZ() + rand.nextDouble();
 
         worldIn.addParticle(ParticleTypes.ENCHANT, posX, posY, posZ, rand.nextDouble() / 2.0D, 2.0D, rand.nextDouble() / 2.0D);
+    }
+
+    @Override
+    public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return Block.makeCuboidShape(0,0,0,0,0,0);
     }
 }
