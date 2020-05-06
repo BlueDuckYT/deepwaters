@@ -2,8 +2,6 @@ package bernie.software.entity;
 
 
 import bernie.software.KeyboardHandler;
-import bernie.software.block.blockbase.DeepWatersBlock;
-import bernie.software.gui.AbstractInventoryEntity;
 import bernie.software.gui.surge.SurgeContainer;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersItems;
@@ -14,17 +12,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.ChorusFruitItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
@@ -36,7 +27,6 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
 
 public class SurgeVehicle extends AbstractInventoryEntity
 {
@@ -129,7 +119,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
             this.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 1, healthMultiplier, false, false, false));
             this.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 1, armorMultiplier, false, false, false));
 
-			if(this.inventory.getStackInSlot(17).getItem() == DeepWatersItems.POWER_STONE.get()){ //replace with power stone
+			if(this.inventory.getStackInSlot(17).getItem() == DeepWatersItems.POWER_STONE.get()){
 				//to be implemented
 			}
 			for(int i = 0; i < this.inventory.getSlots();i++){

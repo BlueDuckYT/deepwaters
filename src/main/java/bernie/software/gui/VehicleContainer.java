@@ -1,6 +1,6 @@
 package bernie.software.gui;
 
-import bernie.software.entity.SurgeVehicle;
+import bernie.software.entity.AbstractInventoryEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
