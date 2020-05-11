@@ -2,6 +2,7 @@ package bernie.software;
 
 import bernie.software.block.aquastone.AquastoneFan;
 import bernie.software.client.renderer.model.*;
+import bernie.software.event.PlayerEventSubscriber;
 import bernie.software.registry.DeepWatersContainerTypes;
 import bernie.software.client.renderer.tileentity.renderer.aquafan;
 import bernie.software.gui.VehicleContainer;
@@ -77,6 +78,7 @@ public class ModEventSubscriber
 	public static void onServerInit(final FMLCommonSetupEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(new SwordEventSubscriber());
+		MinecraftForge.EVENT_BUS.register(new PlayerEventSubscriber());
 		for (Biome biome : ForgeRegistries.BIOMES)
 		{
 			if (biome.getCategory() == Biome.Category.OCEAN && !(biome instanceof WaterBiomeBase))
