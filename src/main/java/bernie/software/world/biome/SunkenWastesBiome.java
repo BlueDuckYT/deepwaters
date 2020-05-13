@@ -11,12 +11,13 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class SunkenWastesBiome extends WaterBiomeBase {
 
     public SunkenWastesBiome() {
-        super((new Biome.Builder()).surfaceBuilder(new SurfaceBuilderBase(SurfaceBuilderConfig::deserialize),
+        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT,
                 new SurfaceBuilderConfig(DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState(),
                         DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(),
                         DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState())).precipitation(RainType.NONE).category(

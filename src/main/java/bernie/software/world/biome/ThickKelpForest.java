@@ -13,11 +13,12 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.CountConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidWithNoiseConfig;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class ThickKelpForest extends WaterBiomeBase {
     public ThickKelpForest() {
-        super((new Biome.Builder()).surfaceBuilder(new SurfaceBuilderBase(SurfaceBuilderConfig::deserialize),
+        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT,
                 new SurfaceBuilderConfig(Blocks.SAND.getDefaultState(),
                         DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(),
                         Blocks.SAND.getDefaultState())).precipitation(RainType.NONE).category(

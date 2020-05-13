@@ -14,13 +14,14 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class CoralFieldsBiome extends WaterBiomeBase
 {
 	public CoralFieldsBiome()
 	{
-		super((new Biome.Builder()).surfaceBuilder(new SurfaceBuilderBase(SurfaceBuilderConfig::deserialize),
+		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT,
 				new SurfaceBuilderConfig(Blocks.SAND.getDefaultState(),
 						DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(),
 						DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState())).precipitation(

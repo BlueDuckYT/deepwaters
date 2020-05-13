@@ -70,7 +70,7 @@ public class WorldUtils
 		return DimensionType.byName(ForgeBusEventSubscriber.DEEPWATERSDIMENSION);
 	}
 
-	public static int getRandomLedgeYPos(DeepWatersChunkGenerator generator, int x, int z)
+	/*public static int getRandomLedgeYPos(DeepWatersChunkGenerator generator, int x, int z)
 	{
 		Random random = new Random();
 		List<Integer> possiblePositions = new ArrayList();
@@ -83,5 +83,5 @@ public class WorldUtils
 		possiblePositions.add(generator.getTopBlock(x, z, Heightmap.Type.OCEAN_FLOOR_WG, 190, 205));
 		possiblePositions.removeIf(i -> i == 0);
 		return possiblePositions.size() == 0 ? 0 : possiblePositions.get(random.nextInt(possiblePositions.size()));
-	}
+	}*/
 }

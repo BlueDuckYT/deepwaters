@@ -2,6 +2,7 @@ package bernie.software.commands;
 
 import bernie.software.event.ForgeBusEventSubscriber;
 import bernie.software.registry.DeepWatersBiomes;
+import bernie.software.utils.TeleportUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.ArgumentBuilder;
@@ -32,11 +33,13 @@ public class TeleportDimensionCommand implements Command<CommandSource> {
         int x = player.getPosition().getX();
         int z = player.getPosition().getZ();
         DimensionType deepWatersDimensionType = DimensionType.byName(ForgeBusEventSubscriber.DEEPWATERSDIMENSION);
+
         if (player.dimension.equals(DimensionType.OVERWORLD))
         {
             ServerWorld deepWatersWorld = player.server.getWorld(deepWatersDimensionType);
             ChunkPos pos = new ChunkPos(0, 0);
             BlockPos spawnPos = new BlockPos(0, 230, 0);
+            TeleportUtils.SendDimensionChangePackets(deepWatersDimensionType, player, player.getEntityWorld().getWorldInfo());
 
             xLoop:
             for (int i = 0; i < 300; i++)

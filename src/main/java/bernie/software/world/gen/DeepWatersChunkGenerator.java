@@ -1,215 +1,169 @@
 package bernie.software.world.gen;
 
-import java.util.Random;
-
-import bernie.software.registry.DeepWatersBlocks;
-import bernie.software.world.biome.ThickKelpForest;
-import bernie.software.world.biome.WaterBiomeBase;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import java.util.List;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.SharedSeedRandom;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.village.VillageSiege;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.NoiseChunkGenerator;
-import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.OctavesNoiseGenerator;
+import net.minecraft.world.gen.OverworldGenSettings;
+import net.minecraft.world.gen.WorldGenRegion;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.spawner.CatSpawner;
+import net.minecraft.world.spawner.PatrolSpawner;
+import net.minecraft.world.spawner.PhantomSpawner;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 
 public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenSettings>
 {
-	private final double[] field_222573_h = this.func_222572_j();
-	private final DeepWatersNoiseGenerator surfaceDepthNoise;
+	private static final float[] field_222576_h = Util.make(new float[25], (p_222575_0_) -> {
+		for(int i = -2; i <= 2; ++i) {
+			for(int j = -2; j <= 2; ++j) {
+				float f = 10.0F / MathHelper.sqrt((float)(i * i + j * j) + 0.2F);
+				p_222575_0_[i + 2 + (j + 2) * 5] = f;
+			}
+		}
 
-	private OverworldChunkGenerator gen1;
+	});
+	private final OctavesNoiseGenerator depthNoise;
+	private final boolean isAmplified;
 
-	private int verticalNoiseGranularity = 16;
-	private int horizontalNoiseGranularity = 2;
-	public DeepWatersChunkGenerator(World p_i48694_1_, BiomeProvider p_i48694_2_, DeepWatersGenSettings p_i48694_3_)
-	{
-		super(p_i48694_1_, p_i48694_2_, 2, 16, 250, p_i48694_3_, false);
-		this.surfaceDepthNoise = (new DeepWatersNoiseGenerator(this.randomSeed, 3, 0));
-		gen1=new OverworldChunkGenerator(p_i48694_1_,p_i48694_2_,new OverworldGenSettings());
+
+	public DeepWatersChunkGenerator(IWorld worldIn, BiomeProvider provider, DeepWatersGenSettings settingsIn) {
+		super(worldIn, provider, 4, 8, 256, settingsIn, true);
+		this.randomSeed.skip(2620);
+		this.depthNoise = new OctavesNoiseGenerator(this.randomSeed, 15, 0);
+		this.isAmplified = true;
 	}
 
-	@Override
-	public void spawnMobs(WorldGenRegion region)
-	{
-		region.getWorld().getProfiler().startSection("spawn");
+	public void spawnMobs(WorldGenRegion region) {
 		int i = region.getMainChunkX();
 		int j = region.getMainChunkZ();
-
-		Biome biome = Registry.BIOME.getByValue(region.getChunk(i, j).getBiomes().getBiomeIds()[0]);
+		Biome biome = region.getBiome((new ChunkPos(i, j)).asBlockPos());
 		SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
 		sharedseedrandom.setDecorationSeed(region.getSeed(), i << 4, j << 4);
 		WorldEntitySpawner.performWorldGenSpawning(region, biome, i, j, sharedseedrandom);
-		region.getWorld().getProfiler().endSection();
-
 	}
 
-	protected void fillNoiseColumn(double[] noiseColumn, int noiseX, int noiseZ)
-	{
-		double d0 = 684.412D;
-		double d1 = 2053.236D;
-		double d2 = 8.555150000000001D;
-		double d3 = 34.2206D;
+	protected void fillNoiseColumn(double[] noiseColumn, int noiseX, int noiseZ) {
+		double d0 = (double)684.412F;
+		double d1 = (double)684.412F;
+		double d2 = 8.555149841308594D;
+		double d3 = 4.277574920654297D;
 		int i = -10;
 		int j = 3;
-		this.calcNoiseColumn(noiseColumn, noiseX, noiseZ, d0, d1, d2, d3, j, i);
+		this.calcNoiseColumn(noiseColumn, noiseX, noiseZ, (double)684.412F, (double)684.412F, 8.555149841308594D, 4.277574920654297D, 3, -10);
 	}
 
-	protected double[] getBiomeNoiseColumn(int noiseX, int noiseZ)
-	{
-		return new double[]{0.0D, 0.0D};
-	}
-
-	@Override
-	public void generateSurface(WorldGenRegion p_225551_1_, IChunk chunk) {
-
-		ChunkPos chunkpos = chunk.getPos();
-		int i = chunkpos.x;
-		int j = chunkpos.z;
-		SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
-		sharedseedrandom.setBaseChunkSeed(i, j);
-		ChunkPos chunkpos1 = chunk.getPos();
-		int k = chunkpos1.getXStart();
-		int l = chunkpos1.getZStart();
-		double d0 = 0.0625D;
-		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-		
-		for(int i1 = 0; i1 < 16; ++i1) {
-			for(int j1 = 0; j1 < 16; ++j1) {
-				int blockX = k + i1;
-				int blockY = l + j1;
-				int height = chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE_WG, i1, j1) +1;
-				double noise = this.surfaceDepthNoise.noiseAt((double)blockX * 0.0625D, (double)blockY * 0.0625D, 0.0625D, (double)i1 * 0.0625D,p_225551_1_.getBiome(new BlockPos((blockX),0,(blockY)))) * 15.0D;
-				p_225551_1_.getBiome(blockpos$mutable.setPos(k + i1, height, l + j1)).buildSurface(sharedseedrandom, chunk, blockX, blockY, height, noise, this.getSettings().getDefaultBlock(), this.getSettings().getDefaultFluid(), this.getSeaLevel(), this.world.getSeed());
-			}
+	protected double func_222545_a(double p_222545_1_, double p_222545_3_, int p_222545_5_) {
+		double d0 = 8.5D;
+		double d1 = ((double)p_222545_5_ - (8.5D + p_222545_1_ * 8.5D / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / p_222545_3_;
+		if (d1 < 0.0D) {
+			d1 *= 4.0D;
 		}
-		this.makeBedrock(chunk, sharedseedrandom);
+
+		return d1;
 	}
 
-	protected void makeBedrock(IChunk chunkIn, Random rand) {
-		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-		int i = chunkIn.getPos().getXStart();
-		int j = chunkIn.getPos().getZStart();
-		int k = settings.getBedrockFloorHeight();
-		int l = settings.getBedrockRoofHeight();
+	protected double[] getBiomeNoiseColumn(int noiseX, int noiseZ) {
+		double[] adouble = new double[2];
+		float f = 0.0F;
+		float f1 = 0.0F;
+		float f2 = 0.0F;
+		int i = 2;
+		int j = this.getSeaLevel();
+		float f3 = this.biomeProvider.getNoiseBiome(noiseX, j, noiseZ).getDepth();
 
-		for(BlockPos blockpos : BlockPos.getAllInBoxMutable(i, 0, j, i + 15, 0, j + 15)) {
-			if (l > 0) {
-				for(int i1 = l; i1 >= l - 4; --i1) {
-					if (i1 >= l - rand.nextInt(5)) {
-						chunkIn.setBlockState(blockpos$mutable.setPos(blockpos.getX(), i1, blockpos.getZ()), DeepWatersBlocks.MAGMATIC_ROCK.get().getDefaultState(), false);
-					}
+		for(int k = -2; k <= 2; ++k) {
+			for(int l = -2; l <= 2; ++l) {
+				Biome biome = this.biomeProvider.getNoiseBiome(noiseX + k, j, noiseZ + l);
+				float f4 = biome.getDepth();
+				float f5 = biome.getScale();
+				if (this.isAmplified && f4 > 0.0F) {
+					f4 = 1.0F + f4 * 2.0F;
+					f5 = 1.0F + f5 * 4.0F;
 				}
-			}
 
-			if (k < 256) {
-				for(int j1 = k + 4; j1 >= k; --j1) {
-					if (j1 <= k + rand.nextInt(5)) {
-						chunkIn.setBlockState(blockpos$mutable.setPos(blockpos.getX(), j1, blockpos.getZ()), DeepWatersBlocks.MAGMATIC_ROCK.get().getDefaultState(), false);
-					}
+				float f6 = field_222576_h[k + 2 + (l + 2) * 5] / (f4 + 2.0F);
+				if (biome.getDepth() > f3) {
+					f6 /= 2.0F;
 				}
+
+				f += f5 * f6;
+				f1 += f4 * f6;
+				f2 += f6;
 			}
 		}
 
-	}
-
-	protected double func_222545_a(double p_222545_1_, double p_222545_3_, int p_222545_5_)
-	{
-		try {
-			return this.field_222573_h[p_222545_5_];
-		} catch (Exception err) {
-			return 0;
-		}
-	}
-
-	private double[] func_222572_j()
-	{
-		double[] adouble = new double[this.noiseSizeY()];
-
-		for (int i = 0; i < this.noiseSizeY(); ++i)
-		{
-			adouble[i] = Math.cos((double) i * Math.PI * 6.0D / (double) this.noiseSizeY()) * 2.0D;
-			double d0 = (double) i;
-			if (i > this.noiseSizeY() / 2)
-			{
-				d0 = (double) (this.noiseSizeY() - 1 - i);
-			}
-
-			// Mess around with this number cause apparently its magical
-			if (d0 < 1.0D)
-			{
-				d0 = 4.0D - d0;
-				adouble[i] -= d0 * d0 * d0 * 10.0D;
-			}
-		}
-
+		f = f / f2;
+		f1 = f1 / f2;
+		f = f * 0.9F + 0.1F;
+		f1 = (f1 * 4.0F - 1.0F) / 8.0F;
+		adouble[0] = (double)f1 + this.getNoiseDepthAt(noiseX, noiseZ);
+		adouble[1] = (double)f;
 		return adouble;
 	}
 
-	public int getGroundHeight()
-	{
-		return this.world.getSeaLevel() + 1;
+	private double getNoiseDepthAt(int noiseX, int noiseZ) {
+		double d0 = this.depthNoise.getValue((double)(noiseX * 200), 10.0D, (double)(noiseZ * 200), 1.0D, 0.0D, true) * 65535.0D / 8000.0D;
+		if (d0 < 0.0D) {
+			d0 = -d0 * 0.3D;
+		}
+
+		d0 = d0 * 3.0D - 2.0D;
+		if (d0 < 0.0D) {
+			d0 = d0 / 28.0D;
+		} else {
+			if (d0 > 1.0D) {
+				d0 = 1.0D;
+			}
+
+			d0 = d0 / 40.0D;
+		}
+
+		return d0;
 	}
 
-	public int getMaxHeight()
-	{
-		return 256;
-	}
+	public List<Biome.SpawnListEntry> getPossibleCreatures(EntityClassification creatureType, BlockPos pos) {
+		if (Feature.SWAMP_HUT.func_202383_b(this.world, pos)) {
+			if (creatureType == EntityClassification.MONSTER) {
+				return Feature.SWAMP_HUT.getSpawnList();
+			}
 
-	public int getSeaLevel()
-	{
-		return 230;
-	}
+			if (creatureType == EntityClassification.CREATURE) {
+				return Feature.SWAMP_HUT.getCreatureSpawnList();
+			}
+		} else if (creatureType == EntityClassification.MONSTER) {
+			if (Feature.PILLAGER_OUTPOST.isPositionInStructure(this.world, pos)) {
+				return Feature.PILLAGER_OUTPOST.getSpawnList();
+			}
 
-	public int getTopBlock(int p_222529_1_, int p_222529_2_, Heightmap.Type heightmapType, int minYValue, int maxYValue)
-	{
-		int i = Math.floorDiv(p_222529_1_, this.horizontalNoiseGranularity);
-		int j = Math.floorDiv(p_222529_2_, this.horizontalNoiseGranularity);
-		int k = Math.floorMod(p_222529_1_, this.horizontalNoiseGranularity);
-		int l = Math.floorMod(p_222529_2_, this.horizontalNoiseGranularity);
-		double d0 = (double)k / (double)this.horizontalNoiseGranularity;
-		double d1 = (double)l / (double)this.horizontalNoiseGranularity;
-		double[][] adouble = new double[][]{this.func_222547_b(i, j), this.func_222547_b(i, j + 1), this.func_222547_b(i + 1, j), this.func_222547_b(i + 1, j + 1)};
-		int i1 = this.getSeaLevel();
-
-		for(int j1 = this.noiseSizeY() - 2; j1 >= 0; --j1) {
-			double d2 = adouble[0][j1];
-			double d3 = adouble[1][j1];
-			double d4 = adouble[2][j1];
-			double d5 = adouble[3][j1];
-			double d6 = adouble[0][j1 + 1];
-			double d7 = adouble[1][j1 + 1];
-			double d8 = adouble[2][j1 + 1];
-			double d9 = adouble[3][j1 + 1];
-
-			for(int k1 = this.verticalNoiseGranularity - 1; k1 >= 0; --k1) {
-				double d10 = (double)k1 / (double)this.verticalNoiseGranularity;
-				double d11 = MathHelper.lerp3(d10, d0, d1, d2, d6, d4, d8, d3, d7, d5, d9);
-				int yPos = j1 * this.verticalNoiseGranularity + k1;
-
-				if ((d11 > 0.0D || yPos < i1) && yPos <= maxYValue && yPos >= minYValue) {
-					BlockState blockstate;
-					if (d11 > 0.0D) {
-						blockstate = this.defaultBlock;
-					} else {
-						blockstate = this.defaultFluid;
-					}
-
-					if (heightmapType.getHeightLimitPredicate().test(blockstate)) {
-						return yPos + 1;
-					}
-				}
+			if (Feature.OCEAN_MONUMENT.isPositionInStructure(this.world, pos)) {
+				return Feature.OCEAN_MONUMENT.getSpawnList();
 			}
 		}
 
-		return 0;
+		return super.getPossibleCreatures(creatureType, pos);
+	}
+
+	public void spawnMobs(ServerWorld worldIn, boolean spawnHostileMobs, boolean spawnPeacefulMobs) {
+
+	}
+
+	public int getGroundHeight() {
+		return this.world.getSeaLevel() + 1;
+	}
+
+	public int getSeaLevel() {
+		return 229;
 	}
 }

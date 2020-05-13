@@ -103,8 +103,8 @@ public class SunkenShipStructure extends Structure<NoFeatureConfig>
 				int z = (chunkPosZ << 4) + 7;
 
 				DeepWatersChunkGenerator deepWatersChunkGenerator = (DeepWatersChunkGenerator) chunkGen;
-				int yPos = WorldUtils.getRandomLedgeYPos(deepWatersChunkGenerator, x, z);
-				return yPos != 0;
+				//int yPos = WorldUtils.getRandomLedgeYPos(deepWatersChunkGenerator, x, z);
+				//return yPos != 0;
 			}
 		}
 		return false;
@@ -136,8 +136,8 @@ public class SunkenShipStructure extends Structure<NoFeatureConfig>
 			int z = (chunkZ << 4) + 7;
 
 			DeepWatersChunkGenerator deepWatersChunkGenerator = (DeepWatersChunkGenerator) generator;
-			int yPos = WorldUtils.getRandomLedgeYPos(deepWatersChunkGenerator, x, z);
-			BlockPos blockpos = new BlockPos(x, yPos, z);
+			//int yPos = WorldUtils.getRandomLedgeYPos(deepWatersChunkGenerator, x, z);
+			BlockPos blockpos = new BlockPos(x, 0, z);
 			SunkenShipPiece.start(templateManagerIn, blockpos, rotation, components, rand);
 			recalculateStructureSize();
 			DeepWatersMod.logger.log(Level.DEBUG,

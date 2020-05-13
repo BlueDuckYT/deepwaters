@@ -22,7 +22,6 @@ public class CoralFieldsCaveWorldCarver extends UnderwaterCaveWorldCarver
 		super(p_i49927_1_);
 		this.carvableBlocks = ImmutableSet.of(Blocks.WATER, DeepWatersBlocks.OCEAN_FLOOR.get(), DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get(), DeepWatersBlocks.SUNKEN_GRAVEL.get(), DeepWatersBlocks.SALT_ORE.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), DeepWatersBlocks.AQUALITE_ORE.get());
 		this.carvableFluids = ImmutableSet.of(Fluids.WATER);
-
 	}
 
 	@Override
