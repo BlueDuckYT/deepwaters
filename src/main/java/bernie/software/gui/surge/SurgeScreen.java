@@ -20,7 +20,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class SurgeScreen extends ContainerScreen<SurgeContainer>
 {
     private static final ResourceLocation GUI_TEXTURE = GeneralUtils.Location("textures/gui/surgegui.png");
-    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(GeneralUtils.Location("textures/gui/surgegui.png") + "");
     private static final ResourceLocation RECIPE_BUTTON_TEXTURE = new ResourceLocation("textures/gui/recipe_button.png");
 
     public SurgeScreen(SurgeContainer surgeContainer, PlayerInventory playerInventory, ITextComponent titleIn)

@@ -4,6 +4,7 @@ package bernie.software.entity;
 import bernie.software.KeyboardHandler;
 import bernie.software.gui.AbstractInventoryEntity;
 import bernie.software.gui.surge.SurgeContainer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -113,13 +114,13 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			}
 
 			if(this.inventory.getStackInSlot(17).getItem() == Items.REDSTONE_BLOCK){ //replace with power stone
-				battery = 100;
+				setBattery(100);
 			}
 			for(int i = 0; i < this.inventory.getSlots();i++){
 				System.out.println(this.inventory.getStackInSlot(i).getDisplayName().getFormattedText());
 			}
 
-			if (this.inWater && KeyboardHandler.isKeyDown)
+			if (this.inWater && KeyboardHandler.isForwardKeyDown)
 			{
 				if(getBattery() > 0.000){
 					setBattery(getBattery() - 0.02F);

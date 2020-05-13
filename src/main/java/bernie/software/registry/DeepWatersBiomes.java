@@ -27,6 +27,5 @@ public class DeepWatersBiomes
 		BiomeDictionary.addTypes(CoralFieldsBiome.get(), BiomeDictionary.Type.OCEAN);
 		BiomeDictionary.addTypes(SunkenWastesBiome.get(), BiomeDictionary.Type.OCEAN);
 		BiomeDictionary.addTypes(ThickKelpForest.get(), BiomeDictionary.Type.OCEAN);
-
 	}
 }
