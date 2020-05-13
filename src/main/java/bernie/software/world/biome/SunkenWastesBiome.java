@@ -55,6 +55,8 @@ public class SunkenWastesBiome extends WaterBiomeBase {
         addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.SKULL_FISH.get(), 30, 3, 7));
         addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.LEG_FISH.get(), 10, 1, 3));
         addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.JUNGLE_FISH.get(), 10, 4, 10));
+        addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.SUNKEN_WANDERER.get(), 5, 1, 2));
+
     }
 
     @Override

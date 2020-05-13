@@ -21,7 +21,6 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<Stingray>> STING_RAY = EntityUtils.BuildWaterEntity(Stingray::new, Stingray.class, 2.845F, 0.3125F);
 	public static final RegistryObject<EntityType<BabyKracken>> BABY_KRACKEN = EntityUtils.BuildWaterEntity(BabyKracken::new, BabyKracken.class, 1, 2);
 	public static final RegistryObject<EntityType<MuckGulper>> MUCK_GULPER = EntityUtils.BuildWaterEntity(MuckGulper::new, MuckGulper.class, .7F, .2F);
-	public static final RegistryObject<EntityType<CoralCrawler>> CORAL_CRAWLER = EntityUtils.BuildWaterLandEntity(CoralCrawler::new, CoralCrawler.class, .8F, 1.5F);
 	public static final RegistryObject<EntityType<DonutFish>> DONUT_FISH = EntityUtils.BuildWaterEntity(DonutFish::new, DonutFish.class, .6F, .6F);
 	public static final RegistryObject<EntityType<ColorfulFish>> COLORFUL_FISH = EntityUtils.BuildWaterEntity(ColorfulFish::new, ColorfulFish.class, .3F, .1F);
 	public static final RegistryObject<EntityType<LegFish>> LEG_FISH = EntityUtils.BuildWaterEntity(LegFish::new, LegFish.class, 1.3F, .7F);
@@ -32,10 +31,19 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<SeaUrchin>> SEA_URCHIN = EntityUtils.BuildWaterEntity(SeaUrchin::new, SeaUrchin.class, 1F, 0.4F);
 	public static final RegistryObject<EntityType<SeaAngel>> SEA_ANGEL = EntityUtils.BuildWaterEntity(SeaAngel::new, SeaAngel.class, 0.3F, 0.9F);
 	public static final RegistryObject<EntityType<Shark>> SHARK = EntityUtils.BuildWaterEntity(Shark::new, Shark.class, .7F, .8F);
+	public static final RegistryObject<EntityType<Jellyfish>> JELLYFISH = EntityUtils.BuildWaterEntity(Jellyfish::new, Jellyfish.class, .5F, .9F);
+	public static final RegistryObject<EntityType<SunkenWanderer>> SUNKEN_WANDERER = EntityUtils.BuildWaterEntity(SunkenWanderer::new, SunkenWanderer.class, .5F, .9F);
+
+
+	public static final RegistryObject<EntityType<CoralCrawler>> CORAL_CRAWLER = EntityUtils.BuildWaterLandEntity(CoralCrawler::new, CoralCrawler.class, .8F, 1.5F);
+	public static final RegistryObject<EntityType<Sneagle>> SNEAGLE = EntityUtils.BuildWaterLandEntity(Sneagle::new, Sneagle.class, 1.2F, .3F);
 
 
 	public static void spawnPlacements() {
-		EntityType<CoralCrawler> entityTypeIn = CORAL_CRAWLER.get();
-		EntitySpawnPlacementRegistry.register(entityTypeIn, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, CoralCrawler::canCoralCrawlerSpawn);
+		EntityType<CoralCrawler> coral_crawler = CORAL_CRAWLER.get();
+		EntitySpawnPlacementRegistry.register(coral_crawler, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, CoralCrawler::canCoralCrawlerSpawn);
+
+		EntityType<Sneagle> sneagle = SNEAGLE.get();
+		EntitySpawnPlacementRegistry.register(sneagle, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.WORLD_SURFACE, Sneagle::canSpawn);
 	}
 }
