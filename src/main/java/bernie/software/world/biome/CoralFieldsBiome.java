@@ -68,7 +68,7 @@ public class CoralFieldsBiome extends WaterBiomeBase
 		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.JELLYFISH.get(), 15, 5, 15));
 		addWaterPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.COLORFUL_FISH.get(), 30, 6, 20));
 		addWaterLandPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.CORAL_CRAWLER.get(), 30, 1, 4));
-		addWaterLandPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.SNEAGLE.get(), 5, 1, 3));
+		addWaterLandPassiveCreatureSpawn(new Biome.SpawnListEntry(DeepWatersEntities.SNEAGLE.get(), 10, 1, 3));
 
 	}
 

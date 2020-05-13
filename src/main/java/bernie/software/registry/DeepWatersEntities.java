@@ -32,11 +32,12 @@ public class DeepWatersEntities
 	public static final RegistryObject<EntityType<SeaAngel>> SEA_ANGEL = EntityUtils.BuildWaterEntity(SeaAngel::new, SeaAngel.class, 0.3F, 0.9F);
 	public static final RegistryObject<EntityType<Shark>> SHARK = EntityUtils.BuildWaterEntity(Shark::new, Shark.class, .7F, .8F);
 	public static final RegistryObject<EntityType<Jellyfish>> JELLYFISH = EntityUtils.BuildWaterEntity(Jellyfish::new, Jellyfish.class, .5F, .9F);
-	public static final RegistryObject<EntityType<SunkenWanderer>> SUNKEN_WANDERER = EntityUtils.BuildWaterEntity(SunkenWanderer::new, SunkenWanderer.class, .5F, .9F);
+	public static final RegistryObject<EntityType<SunkenWanderer>> SUNKEN_WANDERER = EntityUtils.BuildWaterEntity(SunkenWanderer::new, SunkenWanderer.class, 1.2F, .3F);
+	public static final RegistryObject<EntityType<PhantomStingray>> PHANTOM_STINGRAY = EntityUtils.BuildWaterEntity(PhantomStingray::new, PhantomStingray.class, 1.5F, .2F);
 
 
 	public static final RegistryObject<EntityType<CoralCrawler>> CORAL_CRAWLER = EntityUtils.BuildWaterLandEntity(CoralCrawler::new, CoralCrawler.class, .8F, 1.5F);
-	public static final RegistryObject<EntityType<Sneagle>> SNEAGLE = EntityUtils.BuildWaterLandEntity(Sneagle::new, Sneagle.class, 1.2F, .3F);
+	public static final RegistryObject<EntityType<Sneagle>> SNEAGLE = EntityUtils.BuildWaterLandEntity(Sneagle::new, Sneagle.class, 0.5F, 0.8F);
 
 
 	public static void spawnPlacements() {

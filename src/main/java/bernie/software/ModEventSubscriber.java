@@ -143,6 +143,7 @@ public class ModEventSubscriber
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.JELLYFISH.get(), manager -> new JellyfishRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SNEAGLE.get(), manager -> new SneagleRenderer(manager));
 		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.SUNKEN_WANDERER.get(), manager -> new SunkenWandererRenderer(manager));
+		RenderingRegistry.registerEntityRenderingHandler(DeepWatersEntities.PHANTOM_STINGRAY.get(), manager -> new PhantomStingrayRenderer(manager));
 
 //		try {
 //			ClientRegistry.bindTileEntityRenderer(DeepWatersTileEntities.AQUASTONE_FAN.get(), new Function<TileEntityRendererDispatcher, TileEntityRenderer<? super TileEntity>>() {

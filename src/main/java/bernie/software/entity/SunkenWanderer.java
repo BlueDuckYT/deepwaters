@@ -82,7 +82,7 @@ public class SunkenWanderer extends AbstractFishEntity
 	@Override
 	protected void registerGoals() {
 		this.targetSelector.addGoal(0, new NearestAttackableTargetGoal(this, PlayerEntity.class, true));
-		this.goalSelector.addGoal(0, new UnderwaterCreatureAttackGoal(this, 2D, false, -2F));
+		this.goalSelector.addGoal(0, new UnderwaterCreatureAttackGoal(this, 2D, false, 0F));
 		this.goalSelector.addGoal(4, new SwimGoal(this));
 
 	}

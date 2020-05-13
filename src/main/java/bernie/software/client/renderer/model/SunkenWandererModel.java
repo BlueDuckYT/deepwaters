@@ -8,6 +8,9 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.math.MathHelper;
+
+import static java.lang.Math.abs;
 
 public class SunkenWandererModel extends EntityModel<SunkenWanderer>
 {
@@ -141,7 +144,15 @@ public class SunkenWandererModel extends EntityModel<SunkenWanderer>
 
 	@Override
 	public void setRotationAngles(SunkenWanderer entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-		//previously the render function, render code was moved to a method below
+		this.Tail.rotateAngleY = MathHelper.sin(limbSwing * 0.2F) * 0.3F;
+		this.Tail2.rotateAngleY = MathHelper.sin(limbSwing * 0.2F) * 0.3F;
+		this.TailFin.rotateAngleY = MathHelper.sin(limbSwing * 0.2F) * 0.3F;
+
+
+		this.LPectoralFin.rotateAngleZ = abs(MathHelper.sin(limbSwing * 0.2F) * 0.7f);
+		this.LPectoralFin2.rotateAngleZ = abs(MathHelper.sin(limbSwing * 0.2F) * 0.7f);
+		this.RPectoralFin.rotateAngleZ = -1 * abs(MathHelper.sin(limbSwing * 0.2F) * 0.7f);
+		this.RPectoralFin2.rotateAngleZ = -1 * abs(MathHelper.sin(limbSwing * 0.2F) * 0.7f);
 	}
 
 	@Override
@@ -153,5 +164,14 @@ public class SunkenWandererModel extends EntityModel<SunkenWanderer>
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
+	}
+
+	@Override
+	public void setLivingAnimations(SunkenWanderer entityIn, float limbSwing, float limbSwingAmount, float partialTick)
+	{
+		if(entityIn.isAttacking() || (this.Jaw.rotateAngleX >= -6.1F && this.Jaw.rotateAngleX <= -5.9))
+		{
+			this.Jaw.rotateAngleX = -1 * abs(MathHelper.sin(limbSwing * 0.2F)) * 0.9F + 0.5F;
+		}
 	}
 }
