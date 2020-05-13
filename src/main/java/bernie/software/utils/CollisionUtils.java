@@ -1,11 +1,9 @@
 package bernie.software.utils;
 
-import bernie.software.DeepWatersMod;
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 
