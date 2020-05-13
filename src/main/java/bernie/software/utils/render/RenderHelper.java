@@ -1,5 +1,6 @@
 package bernie.software.utils.render;
 
+import bernie.software.client.renderer.Utils;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -80,7 +81,7 @@ public class RenderHelper {
         buffer.pos(triangle.x3,triangle.y3,triangle.z3).color((float)red,(float)green,(float)blue,(float)alpha).endVertex();
         tessellator.draw();
     }
-    public static void drawMultiColoredTexturedRect(double x, double y, double u, double v, double texWidth, double texHeight, double width, double height, Color col1,Color col2,Color col3,Color col4) {
+    public static void drawMultiColoredTexturedRect(double x, double y, double u, double v, double texWidth, double texHeight, double width, double height, Utils.ColorHelper col1, Utils.ColorHelper col2, Utils.ColorHelper col3, Utils.ColorHelper col4) {
         Tessellator tessellator=Tessellator.getInstance();
         BufferBuilder buffer=tessellator.getBuffer();
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);

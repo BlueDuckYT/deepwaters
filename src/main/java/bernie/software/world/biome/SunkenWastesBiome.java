@@ -1,5 +1,6 @@
 package bernie.software.world.biome;
 
+import bernie.software.client.renderer.Utils;
 import bernie.software.registry.*;
 import bernie.software.world.gen.features.DeadwoodTree;
 import com.google.common.collect.ImmutableList;
@@ -10,15 +11,12 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
-import net.minecraft.world.gen.surfacebuilders.DefaultSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.awt.*;
 
 public class SunkenWastesBiome extends WaterBiomeBase {
 
     public SunkenWastesBiome() {
-        super((new Biome.Builder()).surfaceBuilder(new DefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize),
+        super((new Biome.Builder()).surfaceBuilder(new SurfaceBuilderBase(SurfaceBuilderConfig::deserialize),
                 new SurfaceBuilderConfig(DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState(),
                         DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(),
                         DeepWatersBlocks.SUNKEN_GRAVEL.get().getDefaultState())).precipitation(RainType.NONE).category(
@@ -33,7 +31,7 @@ public class SunkenWastesBiome extends WaterBiomeBase {
 
     @Override
     public void addFeatures() {
-        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DeepWatersStructures.CRYSTALINE_CORAL.get().withConfiguration(new CountConfig(5)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED.configure(new TopSolidWithNoiseConfig(20, 200.0D, 0.0D, Heightmap.Type.OCEAN_FLOOR_WG))));
+        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DeepWatersStructures.CRYSTALINE_CORAL.get().withConfiguration(new CountConfig(1)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED.configure(new TopSolidWithNoiseConfig(1, 200.0D, 0.0D, Heightmap.Type.OCEAN_FLOOR_WG))));
 
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
                 DeepWatersStructures.DEADWOOD_TREE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
@@ -46,7 +44,7 @@ public class SunkenWastesBiome extends WaterBiomeBase {
 
     @Override
     public int getSkyColor() {
-        return new Color(67, 121, 96).getRGB();
+        return new Utils.ColorHelper(67, 121, 96).getRGB();
     }
 
     @Override

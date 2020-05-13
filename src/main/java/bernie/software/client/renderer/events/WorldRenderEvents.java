@@ -2,7 +2,9 @@ package bernie.software.client.renderer.events;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.ModEventSubscriber;
+import bernie.software.client.renderer.Utils;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.block.CoralFanBlock;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.client.Minecraft;
@@ -30,8 +32,8 @@ public class WorldRenderEvents {
     static double prevFogDensity = 0;
     static double blendProgress = 120;
     static double colorBlendProgress = 120;
-    static Color fogColor = Color.BLUE;
-    static Color prevfogColor = Color.BLUE;
+    static Utils.ColorHelper fogColor = Utils.ColorHelper.BLUE;
+    static Utils.ColorHelper prevfogColor = Utils.ColorHelper.BLUE;
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
@@ -253,12 +255,12 @@ public class WorldRenderEvents {
                     fogColor = prevfogColor;
                     if (fogColor.getRGB() != world.getBiome(playerEntity.getPosition()).getWaterFogColor())
                     {
-                        prevfogColor = new Color(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
+                        prevfogColor = new Utils.ColorHelper(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
                         if (playerEntity.getPosY()<=128) {
-                            prevfogColor = new Color(
-                                (int)(prevfogColor.getRed()*1-(renderDensity*2)),
-                                (int)(prevfogColor.getGreen()*1-(renderDensity*2)),
-                                (int)(prevfogColor.getBlue()*1-(renderDensity*2))
+                            prevfogColor = new Utils.ColorHelper(
+                                    (int) (prevfogColor.getRed() * (1 - (renderDensity * 4))),
+                                    (int) (prevfogColor.getGreen() * (1 - (renderDensity * 4))),
+                                    (int) (prevfogColor.getBlue() * (1 - (renderDensity * 4)))
                             );
                         }
                         colorBlendProgress = 0;
@@ -272,9 +274,9 @@ public class WorldRenderEvents {
                 double colorRed = MathHelper.lerp((amt2), fogColor.getRed() / 255f, prevfogColor.getRed() / 255f);
                 double colorBlue = MathHelper.lerp((amt2), fogColor.getBlue() / 255f, prevfogColor.getBlue() / 255f);
                 double colorGreen = MathHelper.lerp((amt2), fogColor.getGreen() / 255f, prevfogColor.getGreen() / 255f);
-                colorRed=MathHelper.lerp(renderDensity*4,colorRed,fogColor.darker().darker().darker().getRed()/255f);
-                colorBlue=MathHelper.lerp(renderDensity*4,colorBlue,fogColor.darker().darker().darker().getBlue()/255f);
-                colorGreen=MathHelper.lerp(renderDensity*4,colorGreen,fogColor.darker().darker().darker().getGreen()/255f);
+                colorRed=MathHelper.lerp(renderDensity*4,colorRed,fogColor.darker(0.23).getRed()/255f);
+                colorBlue=MathHelper.lerp(renderDensity*4,colorBlue,fogColor.darker(0.23).getBlue()/255f);
+                colorGreen=MathHelper.lerp(renderDensity*5,colorGreen,fogColor.darker(0.23).getGreen()/255f);
 //                DeepWatersMod.logger.log(Level.INFO,renderDensity);
 //                if (playerEntity.getPosY()>=128) {
 //                    DeepWatersMod.logger.log(Level.INFO,1-renderDensity);
@@ -293,12 +295,12 @@ public class WorldRenderEvents {
             }
             if (event.isCancelable())
             {
-                GlStateManager.fogStart((1 - density));
-                GlStateManager.fogEnd((1 - density));
+                RenderSystem.fogStart((1 - density));
+                RenderSystem.fogEnd((1 - density));
                 event.setCanceled(true);
             }
         } else {
-            prevfogColor = new Color(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
+            prevfogColor = new Utils.ColorHelper(world.getBiome(playerEntity.getPosition()).getWaterFogColor());
             fogColor = prevfogColor;
             colorBlendProgress = 0;
         }

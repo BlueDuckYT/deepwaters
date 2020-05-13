@@ -1,5 +1,6 @@
 package bernie.software.world.biome;
 
+import bernie.software.client.renderer.Utils;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersStructures;
 import net.minecraft.block.Blocks;
@@ -12,20 +13,17 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.CountConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidWithNoiseConfig;
-import net.minecraft.world.gen.surfacebuilders.DefaultSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.awt.*;
 
 public class ThickKelpForest extends WaterBiomeBase {
     public ThickKelpForest() {
-        super((new Biome.Builder()).surfaceBuilder(new DefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize),
+        super((new Biome.Builder()).surfaceBuilder(new SurfaceBuilderBase(SurfaceBuilderConfig::deserialize),
                 new SurfaceBuilderConfig(Blocks.SAND.getDefaultState(),
                         DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(),
                         Blocks.SAND.getDefaultState())).precipitation(RainType.NONE).category(
                 Category.OCEAN).depth(0.1F).scale(0.05F).temperature(2.0F).downfall(0.0F).waterColor(
-                new Color(0x01B87B).getRGB()).waterFogColor(
-                new Color(0x01B87B).getRGB()));
+                new Utils.ColorHelper(0x01B87B).getRGB()).waterFogColor(
+                new Utils.ColorHelper(0x01B87B).getRGB()));
     }
 
     @Override
@@ -43,6 +41,6 @@ public class ThickKelpForest extends WaterBiomeBase {
 
     @Override
     public double getNoiseFactor() {
-        return 0.01d;
+        return 1;
     }
 }

@@ -1,5 +1,6 @@
 package bernie.software.world.biome;
 
+import bernie.software.client.renderer.Utils;
 import bernie.software.registry.*;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
@@ -13,16 +14,13 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
-import net.minecraft.world.gen.surfacebuilders.DefaultSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-
-import java.awt.*;
 
 public class CoralFieldsBiome extends WaterBiomeBase
 {
 	public CoralFieldsBiome()
 	{
-		super((new Biome.Builder()).surfaceBuilder(new DefaultSurfaceBuilder(SurfaceBuilderConfig::deserialize),
+		super((new Biome.Builder()).surfaceBuilder(new SurfaceBuilderBase(SurfaceBuilderConfig::deserialize),
 				new SurfaceBuilderConfig(Blocks.SAND.getDefaultState(),
 						DeepWatersBlocks.OCEAN_FLOOR.get().getDefaultState(),
 						DeepWatersBlocks.MOSSY_OCEAN_FLOOR.get().getDefaultState())).precipitation(
@@ -41,7 +39,7 @@ public class CoralFieldsBiome extends WaterBiomeBase
 
 	@Override
 	public int getSkyColor() {
-		return new Color(125, 235, 220).getRGB();
+		return new Utils.ColorHelper(125, 235, 220).getRGB();
 	}
 
 	@Override

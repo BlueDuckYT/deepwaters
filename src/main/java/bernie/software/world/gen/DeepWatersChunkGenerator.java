@@ -4,6 +4,8 @@ import java.util.Random;
 
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.world.biome.ThickKelpForest;
+import bernie.software.world.biome.WaterBiomeBase;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -58,7 +60,7 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 		double d3 = 34.2206D;
 		int i = -10;
 		int j = 3;
-		this.calcNoiseColumn(noiseColumn, noiseX, noiseZ, 684.412D, 2053.236D, 8.555150000000001D, 34.2206D, 3, -10);
+		this.calcNoiseColumn(noiseColumn, noiseX, noiseZ, d0, d1, d2, d3, j, i);
 	}
 
 	protected double[] getBiomeNoiseColumn(int noiseX, int noiseZ)
@@ -67,33 +69,29 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 	}
 
 	@Override
-	public void generateSurface(WorldGenRegion p_225551_1_, IChunk p_225551_2_) {
+	public void generateSurface(WorldGenRegion p_225551_1_, IChunk chunk) {
 
-		ChunkPos chunkpos = p_225551_2_.getPos();
+		ChunkPos chunkpos = chunk.getPos();
 		int i = chunkpos.x;
 		int j = chunkpos.z;
 		SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
 		sharedseedrandom.setBaseChunkSeed(i, j);
-		if (p_225551_1_.getBiome(p_225551_2_.getPos().asBlockPos()) instanceof ThickKelpForest) {
-			gen1.generateSurface(p_225551_1_,p_225551_2_);
-		} else {
-			ChunkPos chunkpos1 = p_225551_2_.getPos();
-			int k = chunkpos1.getXStart();
-			int l = chunkpos1.getZStart();
-			double d0 = 0.0625D;
-			BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-
-			for(int i1 = 0; i1 < 16; ++i1) {
-				for(int j1 = 0; j1 < 16; ++j1) {
-					int k1 = k + i1;
-					int l1 = l + j1;
-					int i2 = p_225551_2_.getTopBlockY(Heightmap.Type.WORLD_SURFACE_WG, i1, j1) + 1;
-					double d1 = this.surfaceDepthNoise.noiseAt((double)k1 * 0.0625D, (double)l1 * 0.0625D, 0.0625D, (double)i1 * 0.0625D,p_225551_1_.getBiome(new BlockPos((k1),0,(l1)))) * 15.0D;
-					p_225551_1_.getBiome(blockpos$mutable.setPos(k + i1, i2, l + j1)).buildSurface(sharedseedrandom, p_225551_2_, k1, l1, i2, d1, this.getSettings().getDefaultBlock(), this.getSettings().getDefaultFluid(), this.getSeaLevel(), this.world.getSeed());
-				}
+		ChunkPos chunkpos1 = chunk.getPos();
+		int k = chunkpos1.getXStart();
+		int l = chunkpos1.getZStart();
+		double d0 = 0.0625D;
+		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+		
+		for(int i1 = 0; i1 < 16; ++i1) {
+			for(int j1 = 0; j1 < 16; ++j1) {
+				int blockX = k + i1;
+				int blockY = l + j1;
+				int height = chunk.getTopBlockY(Heightmap.Type.WORLD_SURFACE_WG, i1, j1) +1;
+				double noise = this.surfaceDepthNoise.noiseAt((double)blockX * 0.0625D, (double)blockY * 0.0625D, 0.0625D, (double)i1 * 0.0625D,p_225551_1_.getBiome(new BlockPos((blockX),0,(blockY)))) * 15.0D;
+				p_225551_1_.getBiome(blockpos$mutable.setPos(k + i1, height, l + j1)).buildSurface(sharedseedrandom, chunk, blockX, blockY, height, noise, this.getSettings().getDefaultBlock(), this.getSettings().getDefaultFluid(), this.getSeaLevel(), this.world.getSeed());
 			}
 		}
-		this.makeBedrock(p_225551_2_, sharedseedrandom);
+		this.makeBedrock(chunk, sharedseedrandom);
 	}
 
 	protected void makeBedrock(IChunk chunkIn, Random rand) {
@@ -125,7 +123,11 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 
 	protected double func_222545_a(double p_222545_1_, double p_222545_3_, int p_222545_5_)
 	{
-		return this.field_222573_h[p_222545_5_];
+		try {
+			return this.field_222573_h[p_222545_5_];
+		} catch (Exception err) {
+			return 0;
+		}
 	}
 
 	private double[] func_222572_j()
@@ -151,7 +153,6 @@ public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenS
 
 		return adouble;
 	}
-
 
 	public int getGroundHeight()
 	{
