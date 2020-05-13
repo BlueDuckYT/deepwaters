@@ -2,12 +2,13 @@ package bernie.software.gui.surge;
 
 import bernie.software.entity.SurgeVehicle;
 import bernie.software.gui.VehicleContainer;
+import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersContainerTypes;
+import bernie.software.registry.DeepWatersItems;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ChorusFruitItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -58,7 +59,13 @@ class SlotUpgrade extends SlotItemHandler {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return super.isItemValid(stack) && (stack.getItem() == Items.QUARTZ_BLOCK);
+        return super.isItemValid(stack)
+                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get()))
+                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get()))
+                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get()))
+                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get()))
+                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get()))
+                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get()));
     }
 
 }
@@ -71,7 +78,7 @@ class SlotPower extends SlotItemHandler {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return super.isItemValid(stack) && (stack.getItem() == Items.REDSTONE_BLOCK);
+        return super.isItemValid(stack) && (stack.getItem() == DeepWatersItems.POWER_STONE.get());
     }
 
 }

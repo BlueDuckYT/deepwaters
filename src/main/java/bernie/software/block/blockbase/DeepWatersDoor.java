@@ -7,9 +7,12 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
@@ -37,8 +40,22 @@ public class DeepWatersDoor extends DoorBlock {
     @Override
     public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
+        Direction[] dirs=new Direction[]{
+                Direction.NORTH,
+                Direction.SOUTH,
+                Direction.EAST,
+                Direction.WEST
+        };
+        int sidesWithWater=0;
+        for (Direction direction:dirs) {
+            if (worldIn.getBlockState(pos.offset(direction)).getFluidState().getFluid() instanceof WaterFluid) {
+                sidesWithWater+=1;
+            }
+        }
         if (!(oldState.getBlock() instanceof DeepWatersDoor)) {
-            worldIn.setBlockState(pos,state.with(WATERLOGGED,false));
+            if (sidesWithWater<=2) {
+                worldIn.setBlockState(pos,state.with(WATERLOGGED,false));
+            }
         }
     }
 
@@ -49,6 +66,11 @@ public class DeepWatersDoor extends DoorBlock {
                 .harvestLevel(harvestlvl)
                 .harvestTool(tool)
         );
+    }
+
+    @Override
+    public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return Block.makeCuboidShape(0,0,0,0,0,0);
     }
 
     @Override

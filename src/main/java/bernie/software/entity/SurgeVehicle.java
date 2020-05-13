@@ -2,8 +2,9 @@ package bernie.software.entity;
 
 
 import bernie.software.KeyboardHandler;
-import bernie.software.gui.AbstractInventoryEntity;
 import bernie.software.gui.surge.SurgeContainer;
+import bernie.software.registry.DeepWatersBlocks;
+import bernie.software.registry.DeepWatersItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -11,8 +12,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,6 +21,9 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.item.ChorusFruitItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.BlockItem;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -32,7 +34,6 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
 
 public class SurgeVehicle extends AbstractInventoryEntity
 {
@@ -62,6 +63,8 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	{
 		super(type, worldIn);
 		speedMultiplier = 1;
+		healthMultiplier = 1;
+		armorMultiplier = 1;
 	}
 
 	@Override
@@ -104,17 +107,33 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			PlayerEntity player = (PlayerEntity) entity;
             Minecraft mc = Minecraft.getInstance();
 			Vec3d lookVec = entity.getLookVec();
-			if (this.inWater && KeyboardHandler.isForwardKeyDown)
 
 			for(int i = 4;i < 8;i++){
-				if(this.inventory.getStackInSlot(i).getItem() == Items.QUARTZ_BLOCK){ //replace with forge stones
-					//speed stone
-					speedMultiplier *= 1.5;
+				if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get())){
+					healthMultiplier *= 2;
 				}
+				else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get())){
+                    armorMultiplier *= 2;
+                }
+                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get())){
+                    speedMultiplier *= 2;
+                }
+                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get())){
+                    //to be implemented
+                }
+                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get())){
+                    //to be implemented
+                }
+                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get())){
+                    //to be implemented
+                }
 			}
 
-			if(this.inventory.getStackInSlot(17).getItem() == Items.REDSTONE_BLOCK){ //replace with power stone
-				setBattery(100);
+            this.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 1, healthMultiplier, false, false, false));
+            this.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 1, armorMultiplier, false, false, false));
+
+			if(this.inventory.getStackInSlot(17).getItem() == DeepWatersItems.POWER_STONE.get()){
+				//to be implemented
 			}
 			for(int i = 0; i < this.inventory.getSlots();i++){
 				System.out.println(this.inventory.getStackInSlot(i).getDisplayName().getFormattedText());
@@ -128,13 +147,17 @@ public class SurgeVehicle extends AbstractInventoryEntity
 				}
 			}
 
-
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
 			this.prevRotationYawHead = player.prevRotationYawHead;
 			this.rotationYaw = entity.getRotationYawHead();
 			this.setRotationYawHead(entity.getRotationYawHead());
+			float pitch = entity.getPitch(1);
+			//this.rotationPitch = pitch;
 		}
 		super.tick();
+		speedMultiplier = 1;
+		healthMultiplier = 1;
+		armorMultiplier = 1;
 	}
 
 	/**

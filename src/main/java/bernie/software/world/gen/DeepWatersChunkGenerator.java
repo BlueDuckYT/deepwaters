@@ -1,17 +1,10 @@
 package bernie.software.world.gen;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import bernie.software.registry.DeepWatersBlocks;
-import bernie.software.registry.DeepWatersEntities;
 import bernie.software.world.biome.ThickKelpForest;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -24,9 +17,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.NoiseChunkGenerator;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.*;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.WorldEntitySpawner;
-import net.minecraftforge.common.BiomeDictionary;
 
 public class DeepWatersChunkGenerator extends NoiseChunkGenerator<DeepWatersGenSettings>
 {
