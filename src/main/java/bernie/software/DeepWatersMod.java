@@ -65,6 +65,7 @@ public class DeepWatersMod
 	{
 		Minecraft.getInstance().getBlockColors().register(new AquastoneColor(), DeepWatersBlocks.AQUA_STONE.get());
 		Minecraft.getInstance().getBlockColors().register(new ThickKelpBlock.Colors(), DeepWatersBlocks.THICK_KELP.get());
+		Minecraft.getInstance().getBlockColors().register(new ThickKelpBlock.Colors(), DeepWatersBlocks.THICK_KELP_TOP.get());
 		ClientEvents.registerBlockRenderers();
 	}
 
