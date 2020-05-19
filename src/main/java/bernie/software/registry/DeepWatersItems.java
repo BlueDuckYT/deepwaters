@@ -2,7 +2,9 @@ package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.block.aquastone.AquastoneTorch;
+import bernie.software.client.renderer.Utils;
 import bernie.software.item.DeepWatersAbstractRuneItem;
+import bernie.software.item.DeepWatersIngotItem;
 import bernie.software.item.DeepWatersItem;
 import bernie.software.item.ModdedSpawnEggItem;
 import bernie.software.item.armor.DeepWatersArmorItem;
@@ -23,7 +25,7 @@ public class DeepWatersItems
 
 	public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
-	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersIngotItem(779,5,1.6f, new Utils.ColorHelper(143, 195, 181).getRGB()));
 	public static final RegistryObject<Item> AQUALITE_INGOT = ITEMS.register("aqualite_ingot", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_NUGGET = ITEMS.register("prismarine_nugget", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> BLUFFERFISH = ITEMS.register("blufferfish", () -> new DeepWatersItem(DeepWatersFoods.BLUFFERFISH));
