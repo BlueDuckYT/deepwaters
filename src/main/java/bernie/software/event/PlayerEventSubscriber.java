@@ -1,9 +1,14 @@
 package bernie.software.event;
 
+import bernie.software.entity.SurgeVehicle;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class PlayerEventSubscriber {
 
@@ -17,6 +22,17 @@ public class PlayerEventSubscriber {
             }
         }
 
+    }
+
+    @SubscribeEvent
+    public void PlayerInteractEvent(PlayerInteractEvent event){
+        if(event.getPlayer().getDisplayName().toString().equals("Dev")){
+            List<SurgeVehicle> surroundingSurges = event.getPlayer().world.getEntitiesWithinAABB(SurgeVehicle.class, event.getPlayer().getBoundingBox().grow(2.0D, 2.0D, 2.0D));
+            for (SurgeVehicle surge : surroundingSurges) {
+                System.out.println(Arrays.toString(surge.getActivePotionEffects().toArray()));
+            }
+
+        }
     }
 
 

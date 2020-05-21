@@ -65,7 +65,7 @@ public class VehicleEventSubscriber
             if (ridingEntity instanceof SurgeVehicle)
             {
                 StringBuilder batteryFilled = new StringBuilder();
-                for(int i = 0;i <= ((SurgeVehicle) ridingEntity).getBattery();i += 10){
+                for(int i = 0;i <= ((SurgeVehicle) ridingEntity).battery;i += 10){
                     batteryFilled.append("█");
                 }
                 StringBuilder healthFilled = new StringBuilder();

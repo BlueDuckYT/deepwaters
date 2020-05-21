@@ -60,12 +60,12 @@ class SlotUpgrade extends SlotItemHandler {
     @Override
     public boolean isItemValid(ItemStack stack) {
         return super.isItemValid(stack)
-                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get()))
-                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get()))
-                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get()))
-                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get()))
-                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get()))
-                && (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get()));
+                && ((stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get()))
+                || (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get()))
+                || (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get()))
+                || (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get()))
+                || (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get()))
+                || (stack.getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get())));
     }
 
 }
