@@ -6,10 +6,7 @@ import bernie.software.gui.surge.SurgeContainer;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -25,7 +22,9 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.items.ItemStackHandler;
@@ -49,7 +48,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	public int unknownMultiplier2;
 	public int unknownMultiplier3;
 	public PlayerEntity playerInteracted;
-	public float battery;
 
 	private static final DataParameter<Float> BATTERY = EntityDataManager.createKey(SurgeVehicle.class, DataSerializers.FLOAT);
 
@@ -63,7 +61,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	public SurgeVehicle(EntityType<? extends WaterMobEntity> type, World worldIn)
 	{
 		super(type, worldIn);
-		battery = 100;
 	}
 
 	@Override
@@ -75,7 +72,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	protected void registerData()
 	{
 		super.registerData();
-		this.dataManager.register(BATTERY, battery);
+		this.dataManager.register(BATTERY, 100F);
 	}
 
 	public float getBattery()
@@ -104,6 +101,12 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		unknownMultiplier1 = 1;
 		unknownMultiplier2 = 1;
 		unknownMultiplier3 = 1;
+	}
+
+	@Nullable
+	@Override
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	@Override
@@ -135,12 +138,11 @@ public class SurgeVehicle extends AbstractInventoryEntity
 
 			if (this.inWater && KeyboardHandler.isForwardKeyDown)
 			{
-				if(battery > 0.000){
-					battery -= 0.02;
-					setBattery(battery);
+				if(getBattery() > 0.000){
+					setBattery(getBattery() - 0.02F);
 					this.setMotion(this.getMotion().add(lookVec.x / 13 * speedMultiplier, lookVec.y / 13 * speedMultiplier, lookVec.z / 13 * speedMultiplier));
 				}
-				System.out.println(getBattery() + " : " + battery + " : " + this.getMotion().getX() + "," + this.getMotion().getY() + "," + this.getMotion().getZ());
+				System.out.println(getBattery() + " : " + this.getMotion().getX() + "," + this.getMotion().getY() + "," + this.getMotion().getZ());
 			}
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();

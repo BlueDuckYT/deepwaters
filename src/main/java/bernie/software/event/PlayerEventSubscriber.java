@@ -14,11 +14,10 @@ public class PlayerEventSubscriber {
 
     @SubscribeEvent
     public void PlayerTickEvent(TickEvent.PlayerTickEvent event){
-
         if(event.player.lastTickPosY < 100){
             if(event.player.isPotionActive(Effects.WATER_BREATHING)){
                 event.player.removePotionEffect(Effects.WATER_BREATHING);
-                event.player.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE, 0.5F, (float) (Math.random() * 0.4F + 0.8F));
+                event.player.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE, 0.5F, (float) (0.4 + (Math.random() * (0.8 - 0.4))));
             }
         }
 
