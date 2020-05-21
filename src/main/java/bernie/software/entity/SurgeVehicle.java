@@ -97,6 +97,15 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
 	}
 
+	private void resetMultipliers(){
+		healthMultiplier = 1;
+		armorMultiplier = 1;
+		speedMultiplier = 1;
+		unknownMultiplier1 = 1;
+		unknownMultiplier2 = 1;
+		unknownMultiplier3 = 1;
+	}
+
 	@Override
 	public void tick()
 	{
@@ -107,13 +116,14 @@ public class SurgeVehicle extends AbstractInventoryEntity
             Minecraft mc = Minecraft.getInstance();
 			Vec3d lookVec = entity.getLookVec();
 
+			resetMultipliers();
 			for(int i = 5;i < 8;i++){
-				healthMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get()) ? healthMultiplier *= 2 : 1;
-				armorMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get()) ? armorMultiplier *= 2 : 1;
-				speedMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get()) ? speedMultiplier *= 2 : 1;
-				unknownMultiplier1 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get()) ? unknownMultiplier1 *= 2 : 1;
-				unknownMultiplier2 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get()) ? unknownMultiplier2 *= 2 : 1;
-				unknownMultiplier3 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get()) ? unknownMultiplier3 *= 2 : 1;
+				healthMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get()) ? healthMultiplier *= 2 : healthMultiplier;
+				armorMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get()) ? armorMultiplier *= 2 : armorMultiplier;
+				speedMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get()) ? speedMultiplier *= 2 : speedMultiplier;
+				unknownMultiplier1 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get()) ? unknownMultiplier1 *= 2 : unknownMultiplier1;
+				unknownMultiplier2 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get()) ? unknownMultiplier2 *= 2 : unknownMultiplier2;
+				unknownMultiplier3 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get()) ? unknownMultiplier3 *= 2 : unknownMultiplier3;
 			}
 
             this.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 1, healthMultiplier, false, false, false));
@@ -141,9 +151,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			//this.rotationPitch = pitch;
 		}
 		super.tick();
-		speedMultiplier = 1;
-		healthMultiplier = 1;
-		armorMultiplier = 1;
 	}
 
 	/**
