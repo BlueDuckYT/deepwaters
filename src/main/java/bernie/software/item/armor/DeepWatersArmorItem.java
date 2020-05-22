@@ -9,17 +9,21 @@ import net.minecraft.item.ItemStack;
 
 public class DeepWatersArmorItem extends ArmorItem {
 
-    public DeepWatersArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot) {
+    public DeepWatersArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot)
+    {
         super(materialIn, slot, new Properties()
                 .group(DeepWatersItemGroups.DEEPWATERS_ITEMS)
         );
     }
 
     @Override
-    public String getArmorTexture(ItemStack itemstack, Entity entity, EquipmentSlotType slot, String layer) {
-        if (slot == EquipmentSlotType.LEGS) {
+    public String getArmorTexture(ItemStack itemstack, Entity entity, EquipmentSlotType slot, String layer)
+    {
+        if (slot == EquipmentSlotType.LEGS)
+        {
             return "deepwaters:textures/armor/" + material.getName() + "_layer_2.png";
-        } else {
+        } else
+            {
             return "deepwaters:textures/armor/" + material.getName() + "_layer_1.png";
         }
     }
