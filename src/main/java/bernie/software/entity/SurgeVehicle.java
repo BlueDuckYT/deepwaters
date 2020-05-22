@@ -6,10 +6,7 @@ import bernie.software.gui.surge.SurgeContainer;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -18,9 +15,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.item.ChorusFruitItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.item.BlockItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -28,7 +22,9 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.items.ItemStackHandler;
@@ -48,6 +44,9 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	public int speedMultiplier;
 	public int healthMultiplier;
 	public int armorMultiplier;
+	public int unknownMultiplier1;
+	public int unknownMultiplier2;
+	public int unknownMultiplier3;
 	public PlayerEntity playerInteracted;
 
 	private static final DataParameter<Float> BATTERY = EntityDataManager.createKey(SurgeVehicle.class, DataSerializers.FLOAT);
@@ -62,9 +61,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 	public SurgeVehicle(EntityType<? extends WaterMobEntity> type, World worldIn)
 	{
 		super(type, worldIn);
-		speedMultiplier = 1;
-		healthMultiplier = 1;
-		armorMultiplier = 1;
 	}
 
 	@Override
@@ -98,6 +94,21 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
 	}
 
+	private void resetMultipliers(){
+		healthMultiplier = 1;
+		armorMultiplier = 1;
+		speedMultiplier = 1;
+		unknownMultiplier1 = 1;
+		unknownMultiplier2 = 1;
+		unknownMultiplier3 = 1;
+	}
+
+	@Nullable
+	@Override
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+
 	@Override
 	public void tick()
 	{
@@ -108,25 +119,14 @@ public class SurgeVehicle extends AbstractInventoryEntity
             Minecraft mc = Minecraft.getInstance();
 			Vec3d lookVec = entity.getLookVec();
 
-			for(int i = 4;i < 8;i++){
-				if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get())){
-					healthMultiplier *= 2;
-				}
-				else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get())){
-                    armorMultiplier *= 2;
-                }
-                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get())){
-                    speedMultiplier *= 2;
-                }
-                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get())){
-                    //to be implemented
-                }
-                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get())){
-                    //to be implemented
-                }
-                else if(this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get())){
-                    //to be implemented
-                }
+			resetMultipliers();
+			for(int i = 5;i < 8;i++){
+				healthMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.RED_FORGE_STONE.get()) ? healthMultiplier *= 2 : healthMultiplier;
+				armorMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.BLUE_FORGE_STONE.get()) ? armorMultiplier *= 2 : armorMultiplier;
+				speedMultiplier = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.GREEN_FORGE_STONE.get()) ? speedMultiplier *= 2 : speedMultiplier;
+				unknownMultiplier1 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.ORANGE_FORGE_STONE.get()) ? unknownMultiplier1 *= 2 : unknownMultiplier1;
+				unknownMultiplier2 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.PURPLE_FORGE_STONE.get()) ? unknownMultiplier2 *= 2 : unknownMultiplier2;
+				unknownMultiplier3 = this.inventory.getStackInSlot(i).getItem() == BlockItem.BLOCK_TO_ITEM.get(DeepWatersBlocks.YELLOW_FORGE_STONE.get()) ? unknownMultiplier3 *= 2 : unknownMultiplier3;
 			}
 
             this.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 1, healthMultiplier, false, false, false));
@@ -135,9 +135,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			if(this.inventory.getStackInSlot(17).getItem() == DeepWatersItems.POWER_STONE.get()){
 				//to be implemented
 			}
-			for(int i = 0; i < this.inventory.getSlots();i++){
-				System.out.println(this.inventory.getStackInSlot(i).getDisplayName().getFormattedText());
-			}
 
 			if (this.inWater && KeyboardHandler.isForwardKeyDown)
 			{
@@ -145,6 +142,7 @@ public class SurgeVehicle extends AbstractInventoryEntity
 					setBattery(getBattery() - 0.02F);
 					this.setMotion(this.getMotion().add(lookVec.x / 13 * speedMultiplier, lookVec.y / 13 * speedMultiplier, lookVec.z / 13 * speedMultiplier));
 				}
+				System.out.println(getBattery() + " : " + this.getMotion().getX() + "," + this.getMotion().getY() + "," + this.getMotion().getZ());
 			}
 
 			Vec3i directionVec = entity.getHorizontalFacing().getDirectionVec();
@@ -155,9 +153,6 @@ public class SurgeVehicle extends AbstractInventoryEntity
 			//this.rotationPitch = pitch;
 		}
 		super.tick();
-		speedMultiplier = 1;
-		healthMultiplier = 1;
-		armorMultiplier = 1;
 	}
 
 	/**
@@ -230,6 +225,9 @@ public class SurgeVehicle extends AbstractInventoryEntity
 		World world = player.getEntityWorld();
 		if(!world.isRemote){
 			if (player.isSneaking()) {
+				for(int i = 0; i < this.inventory.getSlots();i++){
+					System.out.println(this.inventory.getStackInSlot(i).getItem() + " : " + i);
+				}
 				player.openContainer(new SimpleNamedContainerProvider((id, inv, plyr) -> new SurgeContainer(id, inv, this), this.getDisplayName()));
 //				SimpleNamedContainerProvider containerProvider = new SimpleNamedContainerProvider((id, inv, plyr) -> {
 //					return new SurgeContainer(id, inv, this);

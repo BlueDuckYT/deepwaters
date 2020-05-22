@@ -101,8 +101,10 @@ public class SunkenShipStructure extends Structure<NoFeatureConfig>
 			{
 				int x = (chunkPosX << 4) + 7;
 				int z = (chunkPosZ << 4) + 7;
-
-				DeepWatersChunkGenerator deepWatersChunkGenerator = (DeepWatersChunkGenerator) chunkGen;
+				if(chunkGen instanceof  DeepWatersChunkGenerator)
+				{
+					DeepWatersChunkGenerator deepWatersChunkGenerator = (DeepWatersChunkGenerator) chunkGen;
+				}
 				//int yPos = WorldUtils.getRandomLedgeYPos(deepWatersChunkGenerator, x, z);
 				//return yPos != 0;
 			}
