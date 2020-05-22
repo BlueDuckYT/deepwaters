@@ -25,7 +25,7 @@ public class SurgeRenderer extends MobRenderer<SurgeVehicle, SurgeModel>
 	@Override
 	public ResourceLocation getEntityTexture(SurgeVehicle entity)
 	{
-		return entity.getBattery() <= 0.01 ? new ResourceLocation("deepwaters" + ":textures/model/entity/surge_default.png") : new ResourceLocation("deepwaters" + ":textures/model/entity/surge_default.png");
+		return entity.getBattery() <= 0.01 ? new ResourceLocation("deepwaters" + ":textures/model/entity/surge_outofpower.png") : new ResourceLocation("deepwaters" + ":textures/model/entity/surge_default.png");
 	}
 
 	@Override
