@@ -1,11 +1,19 @@
 package bernie.software.item.tool;
 
+import bernie.software.item.DeepWatersIngotItem;
 import bernie.software.registry.DeepWatersItemGroups;
+import bernie.software.registry.DeepWatersItemTiers;
+import com.google.common.collect.Multimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,16 +31,68 @@ import java.util.List;
 
 public class DeepWatersSwordItem extends SwordItem
 {
-
-	public DeepWatersSwordItem(IItemTier tier)
+	Item material;
+	
+	public DeepWatersSwordItem(DeepWatersItemTiers tier)
 	{
+		
 		super(tier, 3, -2.4F, new Properties()
 				.maxStackSize(1)
 				.defaultMaxDamage(tier.getMaxUses())
 				.group(DeepWatersItemGroups.DEEPWATERS_ITEMS)
 		);
+		this.material=tier.getBaseMaterial();
 	}
-
+	
+	@Override
+	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
+		
+		if (material instanceof DeepWatersIngotItem)
+		{
+			
+			((DeepWatersIngotItem)material).InvTick.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
+		}
+		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+	}
+	
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot, ItemStack stack)
+	{
+		
+		if (slot == EquipmentSlotType.MAINHAND)
+		{
+			
+			float amt=1;
+			Multimap<String,AttributeModifier> modifiers = this.getAttributeModifiers(EquipmentSlotType.MAINHAND);
+			if (material instanceof DeepWatersIngotItem)
+			{
+				
+				amt=((DeepWatersIngotItem)material).AttackBoost.apply(stack);
+				AttributeModifier modifierAttack = new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", amt, AttributeModifier.Operation.ADDITION);
+				modifiers.clear();
+				modifiers.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), modifierAttack);
+				modifiers.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).MatWeight, AttributeModifier.Operation.ADDITION));
+			}
+			return modifiers;
+		}
+		return super.getAttributeModifiers(slot,stack);
+	}
+	
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot)
+	{
+		
+		Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
+		if (equipmentSlot == EquipmentSlotType.MAINHAND)
+		{
+			
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).MatStrength, AttributeModifier.Operation.ADDITION));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).MatWeight, AttributeModifier.Operation.ADDITION));
+		}
+		return multimap;
+	}
+	
 	private List<StringTextComponent> tooltips = new ArrayList<>();
 
 	@Override
@@ -41,7 +101,9 @@ public class DeepWatersSwordItem extends SwordItem
 	{
 
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		for (ITextComponent component : tooltips) {
+		for (ITextComponent component : tooltips)
+		{
+			
 			tooltip.add(component);
 		}
 	}
