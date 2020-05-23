@@ -102,6 +102,8 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> MAGMATIC_ROCK = registerNormalBlock("magmatic_rock", () -> new DeepWatersBlock(
             Material.ROCK, -1F, -1F, SoundType.STONE, 8, ToolType.PICKAXE), true);
 
+    public static final RegistryObject<Block> BUBBLE_MACHINE = registerNormalBlock("bubble_machine", () -> new BubbleMachineBlock(Material.IRON, 4F, 20.0F, SoundType.METAL, 0, ToolType.PICKAXE), true);
+
     public static final RegistryObject<Block> BLUE_FORGE_STONE = registerBlock("blue_forge_stone", () -> new ForgeStoneBlock(
             Block.Properties.create(Material.ROCK)
                     .hardnessAndResistance(1.5F)
@@ -137,6 +139,8 @@ public class DeepWatersBlocks {
                     .hardnessAndResistance(1.5F)
                     .sound(SoundType.STONE)
                     .harvestTool(ToolType.PICKAXE)));
+
+
 
 
     private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
