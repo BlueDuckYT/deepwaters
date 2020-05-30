@@ -57,6 +57,7 @@ public class DeepWatersMod
 		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
 		DeepWatersStructures.STRUCTURES.register(bus);
 		DeepWatersContainerTypes.CONTAINER_TYPES.register(bus);
+		DeepWatersTileEntities.TILE_ENTITIES.register(bus);
 
 	}
 

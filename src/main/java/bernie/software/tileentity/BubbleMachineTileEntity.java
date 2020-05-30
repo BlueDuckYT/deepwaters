@@ -1,11 +1,14 @@
 package bernie.software.tileentity;
 
+import bernie.software.DeepWatersMod;
 import bernie.software.registry.DeepWatersTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -31,7 +34,7 @@ public class BubbleMachineTileEntity extends TileEntity implements ITickableTile
             initialize();
         }
         tick++;
-        if(tick == 40){
+        if(tick == 10){
             tick = 0;
             execute();
         }
@@ -39,13 +42,14 @@ public class BubbleMachineTileEntity extends TileEntity implements ITickableTile
 
     private void initialize() {
         initialized = true;
-        x = this.pos.getX() + 7;
-        y = this.pos.getY() + 7;
-        z = this.pos.getZ() + 7;
+        x = this.pos.getX()+1;
+        y = this.pos.getY()+1;
+        z = this.pos.getZ()+1;
         tick = 0;
     }
 
     private void execute() {
+        DeepWatersMod.logger.info("Executed");
         for (int x = 0; x < 7; x++){
             for(int y = 0; y < 7; y++){
                 for (int z = 0; z < 7; z++) {
@@ -60,13 +64,13 @@ public class BubbleMachineTileEntity extends TileEntity implements ITickableTile
     private boolean destroyBlock(BlockPos pos, @Nullable Entity entity) {
         BlockState state = world.getBlockState(pos);
         IFluidState fluidState = world.getFluidState(pos);
-        if(state.getBlock() == Blocks.WATER.getBlock()){
+//        if(state.getBlock() == Blocks.WATER.getBlock()){
+            world.setBlockState(pos, fluidState.getBlockState(), 3);
 //            world.playEvent(2001, pos, Block.getStateId(state));
-            return world.setBlockState(pos, fluidState.getBlockState(), 3);
-        }
-        else{
-            return false;
-        }
+            return true;
+//        }
+//        world.addParticle(ParticleTypes.FLAME, pos.getX(), pos.getY(), pos.getZ(), 0, 0, 0);
+//        return false;
     }
 
 }
