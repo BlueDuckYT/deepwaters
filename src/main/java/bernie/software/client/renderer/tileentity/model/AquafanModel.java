@@ -1,15 +1,18 @@
-// Made with Blockbench 3.5.1
+package bernie.software.client.renderer.tileentity.model;// Made with Blockbench 3.5.1
 // Exported for Minecraft version 1.15
 // Paste this class into your mod and generate all required imports
 
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.entity.Entity;
 
-public class aquafan extends EntityModel<Entity> {
+public class AquafanModel extends EntityModel<Entity> {
 	private final ModelRenderer aquafan_model;
 	private final ModelRenderer main_ring;
 	private final ModelRenderer top_east;
@@ -18,7 +21,7 @@ public class aquafan extends EntityModel<Entity> {
 	private final ModelRenderer top_west;
 	private final ModelRenderer eye_rotation;
 
-	public aquafan() {
+	public AquafanModel() {
 		textureWidth = 64;
 		textureHeight = 64;
 
@@ -70,14 +73,11 @@ public class aquafan extends EntityModel<Entity> {
 	}
 
 	@Override
-	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		aquafan_model.render(matrixStack, buffer, packedLight, packedOverlay);
-//		main_ring.render(matrixStack, buffer, packedLight, packedOverlay);
-//		top_east.render(matrixStack, buffer, packedLight, packedOverlay);
-//		bottom_east.render(matrixStack, buffer, packedLight, packedOverlay);
-//		bottom_west.render(matrixStack, buffer, packedLight, packedOverlay);
-//		top_west.render(matrixStack, buffer, packedLight, packedOverlay);
-//		eye_rotation.render(matrixStack, buffer, packedLight, packedOverlay);
+	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		RenderSystem.color4f(red,green,blue,alpha);
+		main_ring.render(matrixStack, buffer, packedLight, packedOverlay);
+		eye_rotation.render(matrixStack, buffer, packedLight, packedOverlay);
+		RenderSystem.clearCurrentColor();
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
