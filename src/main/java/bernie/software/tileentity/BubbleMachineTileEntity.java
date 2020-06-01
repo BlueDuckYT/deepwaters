@@ -5,10 +5,14 @@ import bernie.software.registry.DeepWatersTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.inventory.IClearable;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -34,7 +38,7 @@ public class BubbleMachineTileEntity extends TileEntity implements ITickableTile
             initialize();
         }
         tick++;
-        if(tick == 10){
+        if(tick == 1){
             tick = 0;
             execute();
         }
@@ -42,17 +46,17 @@ public class BubbleMachineTileEntity extends TileEntity implements ITickableTile
 
     private void initialize() {
         initialized = true;
-        x = this.pos.getX()+1;
-        y = this.pos.getY()+1;
-        z = this.pos.getZ()+1;
+        x = this.pos.getX()-7;
+        y = this.pos.getY()-7;
+        z = this.pos.getZ()-7;
         tick = 0;
     }
 
     private void execute() {
         DeepWatersMod.logger.info("Executed");
-        for (int x = 0; x < 7; x++){
-            for(int y = 0; y < 7; y++){
-                for (int z = 0; z < 7; z++) {
+        for (int x = 0; x < 15; x++){
+            for(int y = 0; y < 15; y++){
+                for (int z = 0; z < 15; z++) {
                     BlockPos posToBreak = new BlockPos(this.x+x, this.y+y, this.z+z);
                     destroyBlock(posToBreak, null);
                 }
@@ -63,14 +67,16 @@ public class BubbleMachineTileEntity extends TileEntity implements ITickableTile
 
     private boolean destroyBlock(BlockPos pos, @Nullable Entity entity) {
         BlockState state = world.getBlockState(pos);
+        BlockState newState  = world.getBlockState(new BlockPos(pos.getX(), pos.getY()+255, pos.getZ()));
         IFluidState fluidState = world.getFluidState(pos);
-//        if(state.getBlock() == Blocks.WATER.getBlock()){
-            world.setBlockState(pos, fluidState.getBlockState(), 3);
-//            world.playEvent(2001, pos, Block.getStateId(state));
+        if(state.getBlock() instanceof IWaterLoggable){
+            world.setBlockState(pos, state.with(BlockStateProperties.WATERLOGGED, Boolean.FALSE), 3);
+        }
+        else if((fluidState.getFluid().equals(Fluids.WATER) || fluidState.getFluid().equals(Fluids.FLOWING_WATER))){
+            world.setBlockState(pos, newState, 3);
             return true;
-//        }
-//        world.addParticle(ParticleTypes.FLAME, pos.getX(), pos.getY(), pos.getZ(), 0, 0, 0);
-//        return false;
+        }
+        return false;
     }
 
 }

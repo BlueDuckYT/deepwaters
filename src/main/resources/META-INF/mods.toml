@@ -26,7 +26,7 @@ displayURL="http://bernie.software/" #optional
 # A text field displayed in the mod UI
 credits="Thank you to all the texture designers, modelers, animators, builders, musicians, and creative people who made this mod possible." #optional
 # A text field displayed in the mod UI
-authors="Gecko, GiantLuigi4, Quek, BlueDuck" #optional
+authors="Gecko, GiantLuigi4, Quek, BlueDuck, SuperControler" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 An underwater dimension inspired by Subnautica.'''
