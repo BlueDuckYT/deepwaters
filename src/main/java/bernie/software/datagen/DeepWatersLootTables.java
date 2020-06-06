@@ -1,6 +1,5 @@
 package bernie.software.datagen;
 
-import bernie.software.block.blockbase.DeepWatersBlock;
 import bernie.software.datagen.provider.DeepWatersBlockLootTableProvider;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersEntities;
@@ -71,7 +70,7 @@ public class DeepWatersLootTables extends LootTableProvider
 			dropSelf(DeepWatersBlocks.SCRAP_DOOR);
 			dropSelf(DeepWatersBlocks.AQUA_STONE);
 			dropSelf(DeepWatersBlocks.AQUA_COMPARE);
-			dropSelf(DeepWatersBlocks.AQUA_REPEAT);
+			dropSelf(DeepWatersBlocks.AQUA_REPEATER);
 			dropSelf(DeepWatersBlocks.AQUA_BLOCK);
 			dropSelf(DeepWatersBlocks.AQUA_TORCH);
 			dropSelf(DeepWatersBlocks.AQUA_TORCH_WALL);

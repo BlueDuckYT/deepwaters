@@ -69,12 +69,10 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> CORAL_BLOCK_GREEN = registerNormalBlock("coral_block_green", () -> new DeepWatersCoralBlock(
             DEAD_CORAL_BLOCK_GREEN.get(), Block.Properties.create(Material.CORAL).hardnessAndResistance(2F, 6F).sound(SoundType.CORAL)), true);
 
-    public static final RegistryObject<Block> THICK_KELP = registerBlock("thick_kelp", () -> new ThickKelpBlock());
-    public static final RegistryObject<Block> THICK_KELP_TOP = registerBlock("thick_kelp_top", () -> new ThickKelpTopBlock());
     public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
     public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new AquastoneDust(Block.Properties.create(Material.ROCK).doesNotBlockMovement()));
     public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new AquastoneComparator(Block.Properties.create(Material.ROCK)));
-    public static final RegistryObject<Block> AQUA_REPEAT = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(Block.Properties.create(Material.ROCK)));
+    public static final RegistryObject<Block> AQUA_REPEATER = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(Block.Properties.create(Material.ROCK)));
     public static final RegistryObject<Block> AQUA_FAN = registerBlock("aquastone_fan", () -> new AquastoneFan(Block.Properties.create(Material.ROCK)));
     public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new AquastoneBlock(Block.Properties.create(Material.ROCK)));
     public static final RegistryObject<Block> AQUA_TORCH = registerOnlyBlock("aquastone_torch", () -> new AquastoneTorch.AquastoneTorchBlock());
@@ -82,20 +80,20 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> AQUA_STONE_BUTTON = registerBlock("aquastone_stone_button", () -> AquastoneButton.constructBlock((AbstractButtonBlock) Blocks.STONE_BUTTON));
     //	public static final RegistryObject<Block> AQUA_STONE_PLATE = registerBlock("aquastone_stone_pressureplate", () -> PressurePlate.makeWaterloggable((PressurePlateBlock) Blocks.STONE_PRESSURE_PLATE));
 //	pubalic static final RegistryObject<Block> AQUA_IRON_PLATE = registerBlock("aquastone_iron_pressureplate", () -> PressurePlate.makeWaterloggable((WeightedPressurePlateBlock) Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE));
-    public static final RegistryObject<Block> IRON_HATCH = registerNormalBlock("iron_hatch", () -> new DeepWatersTrapdoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE), true);
+    public static final RegistryObject<DeepWatersTrapdoor> IRON_HATCH = registerBlockAndItem("iron_hatch", () -> new DeepWatersTrapdoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE));
     public static final RegistryObject<DoorBlock> SCRAP_DOOR = registerBlock("iron_hatch_door", () -> new DeepWatersDoor(Material.IRON, 3.5F, 12.0F, SoundType.METAL, 0, ToolType.PICKAXE));
     public static final RegistryObject<Block> SCRAP_LADDER = registerBlock("scrap_ladder", () -> new DeepWatersLadder(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.PICKAXE));
     public static final RegistryObject<Block> SCRAP_LANTERN = registerBlock("scrap_lantern", () -> new DeepWatersLantern(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.PICKAXE));
     public static final RegistryObject<LogBlock> DEADWOOD_LOG = registerBlock("deadwood_log", () -> new DeepWatersLogBlock(MaterialColor.WHITE_TERRACOTTA));
     public static final RegistryObject<Block> DEADWOOD_PLANKS = registerNormalBlock("deadwood_planks", () -> new DeepWatersBlock(
             Material.WOOD, 2F, 3F, SoundType.WOOD, 0, ToolType.AXE), true);
-    public static final RegistryObject<Block> DEADWOOD_TRAPDOOR = registerNormalBlock("deadwood_trapdoor", () -> new DeepWatersTrapdoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE), true);
+    public static final RegistryObject<DeepWatersTrapdoor> DEADWOOD_TRAPDOOR = registerBlockAndItem("deadwood_trapdoor", () -> new DeepWatersTrapdoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE));
     public static final RegistryObject<DoorBlock> DEADWOOD_DOOR = registerBlock("deadwood_door", () -> new DeepWatersDoor(Material.WOOD, 0.5F, 3.0F, SoundType.WOOD, 0, ToolType.AXE));
     public static final RegistryObject<PedestalBlock> PEDESTAL = registerBlock("pedestal", () -> new PedestalBlock());
-    public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlock("portal_pillar", () -> new PillarBlock());
-    public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlock("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));
-    public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlock("activated_portal_pillar", () -> new PillarBlock(15));
-    public static final RegistryObject<DeepWatersPortalPillarEnd> ACTIVATED_PORTAL_PILLAR_END = registerBlock("activated_portal_pillar_end", () -> new DeepWatersPortalPillarEnd(15));
+    public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlockAndItem("portal_pillar", () -> new PillarBlock());
+    public static final RegistryObject<DeepWatersPortalPillarEnd> PORTAL_PILLAR_END = registerBlockAndItem("portal_pillar_end", () -> new DeepWatersPortalPillarEnd(0));
+    public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlockAndItem("activated_portal_pillar", () -> new PillarBlock(15));
+    public static final RegistryObject<DeepWatersPortalPillarEnd> ACTIVATED_PORTAL_PILLAR_END = registerBlockAndItem("activated_portal_pillar_end", () -> new DeepWatersPortalPillarEnd(15));
 
     public static final RegistryObject<RotatedPillarBlock> DARK_PRISMARINE_PILLAR = registerBlockAndItem("dark_prismarine_pillar", () -> new PillarBlock());
     public static final RegistryObject<RotatedPillarBlock> CHISELED_DARK_PRISMARINE = registerBlockAndItem("dark_prismarine_chiseled", () -> new PillarBlock());
@@ -109,7 +107,7 @@ public class DeepWatersBlocks {
             Material.ROCK, -1F, -1F, SoundType.STONE, 8, ToolType.PICKAXE), true);
 
     public static final RegistryObject<Block> BLUE_FORGE_STONE = registerBlock("blue_forge_stone", () -> new ForgeStoneBlock(
-            Block.Properties.create(Material.ROCK)
+            Block.Prope rties.create(Material.ROCK)
                     .hardnessAndResistance(1.5F)
                     .sound(SoundType.STONE)
                     .harvestTool(ToolType.PICKAXE)));

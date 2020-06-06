@@ -1,14 +1,10 @@
 package bernie.software.world.gen.features;
 
 import bernie.software.block.ThickKelpBlock;
-import bernie.software.block.ThickKelpTopBlock;
 import bernie.software.registry.DeepWatersBlocks;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.KelpTopBlock;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -34,8 +30,8 @@ public class ThickKelp extends KelpFeature {
         BlockPos blockpos = new BlockPos(pos.getX(), j, pos.getZ());
         if (worldIn.getBlockState(blockpos).getBlock() == Blocks.WATER&&
             !(worldIn.getBlockState(blockpos.down()).getBlock() instanceof ThickKelpBlock)) {
-            BlockState blockstate1 = DeepWatersBlocks.THICK_KELP.get().getDefaultState();
-            BlockState blockstate = DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState();
+            BlockState blockstate1 = DeepWatersBlocks.AQUA_REPEATER.get().getDefaultState();
+            BlockState blockstate = DeepWatersBlocks.AQUA_REPEATER.get().getDefaultState();
             int k = 1 + rand.nextInt(10);
 
             if (rand.nextInt(1000)<=1) {

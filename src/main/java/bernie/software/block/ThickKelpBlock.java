@@ -108,7 +108,7 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
         if (state.get(BOTTOM)) {
             if (worldIn.getBlockState(pos.up()).getFluidState().getFluid() instanceof WaterFluid.Source) {
                 if (worldIn.getBlockState(pos.up()).getBlock().toString().equals("Block{minecraft:water}")) {
-                    worldIn.setBlockState(pos.up(), DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState().with(BOTTOM,false));
+                    worldIn.setBlockState(pos.up(), DeepWatersBlocks.AQUA_REPEATER.get().getDefaultState().with(BOTTOM,false));
                 }
             }
         }
@@ -146,7 +146,7 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
             if (state.getBlock() instanceof ThickKelpTopBlock) {
                 if (!state.get(BOTTOM)) {
                     if (worldIn.getBlockState(pos.up()).getBlock().toString().equals("Block{minecraft:water}")) {
-                        worldIn.setBlockState(pos.up(),DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState()
+                        worldIn.setBlockState(pos.up(),DeepWatersBlocks.AQUA_REPEATER.get().getDefaultState()
                                 .with(BOTTOM,false)
                                 .with(GROWAQUASTONE,state.get(GROWAQUASTONE))
                                 .with(COLOR,state.get(COLOR)));
@@ -206,7 +206,7 @@ public class ThickKelpBlock extends Block implements IWaterLoggable
     public BlockState getBlockState(BlockState currentState,IWorldReader worldReader,BlockPos pos) {
         BlockState reference=worldReader.getBlockState(pos.down());
         if (!(worldReader.getBlockState(pos.up()).getBlock() instanceof ThickKelpBlock)) {
-            return DeepWatersBlocks.THICK_KELP_TOP.get().getDefaultState()
+            return DeepWatersBlocks.AQUA_REPEATER.get().getDefaultState()
                     .with(BOTTOM,false)
                     .with(COLOR,reference.get(COLOR))
                     .with(GROWAQUASTONE,reference.get(GROWAQUASTONE));

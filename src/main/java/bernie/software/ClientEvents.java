@@ -23,12 +23,10 @@ public class ClientEvents {
         RenderType cutout = RenderType.getCutout();
         RenderType translucent = RenderType.getTranslucent();
 
-        render(DeepWatersBlocks.THICK_KELP, cutout);
-        render(DeepWatersBlocks.THICK_KELP_TOP, cutout);
         render(DeepWatersBlocks.AQUA_STONE, cutout);
         render(DeepWatersBlocks.AQUA_TORCH, cutout);
         render(DeepWatersBlocks.AQUA_TORCH_WALL, cutout);
-        render(DeepWatersBlocks.AQUA_REPEAT, cutout);
+        render(DeepWatersBlocks.AQUA_REPEATER, cutout);
         render(DeepWatersBlocks.AQUA_COMPARE, cutout);
         render(DeepWatersBlocks.SCRAP_DOOR, cutout);
         render(DeepWatersBlocks.DEADWOOD_DOOR, cutout);

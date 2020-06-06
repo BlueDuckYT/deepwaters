@@ -29,7 +29,7 @@ public class ThickKelpForest extends WaterBiomeBase {
 
     @Override
     public void addFeatures() {
-        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DeepWatersStructures.THICK_KELP.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED.configure(new TopSolidWithNoiseConfig(200, 80.0D, 0.0D, Heightmap.Type.OCEAN_FLOOR_WG))));
+        //this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DeepWatersStructures.THICK_KELP.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.TOP_SOLID_HEIGHTMAP_NOISE_BIASED.configure(new TopSolidWithNoiseConfig(200, 80.0D, 0.0D, Heightmap.Type.OCEAN_FLOOR_WG))));
     }
 
     @Override

@@ -50,7 +50,7 @@ public class ThickKelpTopBlock extends ThickKelpBlock {
         if (worldReader.getBlockState(pos.down()).getBlock() instanceof ThickKelpBlock&&
             (worldReader.getBlockState(pos.up().up()).getBlock() instanceof ThickKelpTopBlock)&&
             !(worldReader.getBlockState(pos.down()).getBlock() instanceof ThickKelpTopBlock)) {
-            newState=DeepWatersBlocks.THICK_KELP.get().getDefaultState()
+            newState=DeepWatersBlocks.AQUA_REPEATER.get().getDefaultState()
                     .with(BOTTOM,false)
                     .with(COLOR,reference.get(COLOR))
                     .with(GROWAQUASTONE,reference.get(GROWAQUASTONE));
@@ -61,7 +61,7 @@ public class ThickKelpTopBlock extends ThickKelpBlock {
                 newState=newState.with(BOTTOM,false).with(NEW,true);
             }
             if (worldReader.getBlockState(pos.up()).getBlock() instanceof ThickKelpBlock) {
-                newState=DeepWatersBlocks.THICK_KELP.get().getDefaultState()
+                newState=DeepWatersBlocks.AQUA_REPEATER.get().getDefaultState()
                         .with(BOTTOM,false)
                         .with(COLOR,reference.get(COLOR))
                         .with(GROWAQUASTONE,reference.get(GROWAQUASTONE));

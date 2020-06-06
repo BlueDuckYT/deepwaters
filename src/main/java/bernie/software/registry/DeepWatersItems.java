@@ -16,7 +16,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.awt.*;
 
 public class DeepWatersItems
 {
@@ -43,13 +42,12 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_SHOVEL = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new ShieldEvents.PrismarineShielfEvent().getClass()).addToolTip("Allows you to dash in water."));
 	public static final RegistryObject<Item> DARK_PRISMARINE_SHIELD = ITEMS.register("dark_prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.DARKPRISMARINE,new ShieldEvents.DarkPrismarine().getClass()).addToolTip("Allows you to dash in water.\nHalf the cooldown of the prismarine shield.\nDouble the speed of the prismarine shield."));
-
+	public static final RegistryObject<Item> POWER_STONE = ITEMS.register("power_stone", () -> new DeepWatersAbstractRuneItem(new Item.Properties().maxStackSize(1).group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
 	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
 	public static final RegistryObject<Item> PRISMARINE_CHESTPLATE = ITEMS.register("prismarine_chestplate", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.CHEST));
 	public static final RegistryObject<Item> PRISMARINE_LEGGINGS = ITEMS.register("prismarine_leggings", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.LEGS));
 	public static final RegistryObject<Item> PRISMARINE_BOOTS = ITEMS.register("prismarine_boots", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.FEET));
 
-	public static final RegistryObject<Item> POWER_STONE = ITEMS.register("power_stone", () -> new DeepWatersAbstractRuneItem(new Item.Properties().maxStackSize(1).group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
 	public static final RegistryObject<Item> AQUASTONE_TORCH = ITEMS.register("aquastone_torch", () -> new AquastoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS)));
 
 	public static final RegistryObject<Item> CRYSTALINE_CORAL = ITEMS.register("crystaline_coral", () -> new DeepWatersItem());
