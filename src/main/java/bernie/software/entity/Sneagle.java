@@ -1,9 +1,6 @@
 package bernie.software.entity;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.TurtleEntity;
@@ -14,13 +11,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class Sneagle extends CowEntity
+public class Sneagle extends AgeableEntity
 {
-	public Sneagle(EntityType<? extends CowEntity> type, World worldIn)
+	public Sneagle(EntityType<? extends AgeableEntity> type, World worldIn)
 	{
 		super(type, worldIn);
+	}
+
+	@Nullable
+	@Override
+	public AgeableEntity createChild(AgeableEntity ageable) {
+		return null;
 	}
 
 	@Override

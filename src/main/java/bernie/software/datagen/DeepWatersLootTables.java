@@ -78,6 +78,8 @@ public class DeepWatersLootTables extends LootTableProvider
 			dropSelf(DeepWatersBlocks.SUNKEN_WASTES_LAMP);
 			//dropSelf(DeepWatersBlocks.PORTAL_PILLAR);
 			dropSelf(DeepWatersBlocks.DEADWOOD_LOG);
+			dropSelf(DeepWatersBlocks.BUBBLE_MACHINE);
+			dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
 			dropSelf(DeepWatersBlocks.AQUA_FAN);
 			dropSelf(DeepWatersBlocks.SCRAP_LADDER);
 			dropSelf(DeepWatersBlocks.SCRAP_LANTERN);

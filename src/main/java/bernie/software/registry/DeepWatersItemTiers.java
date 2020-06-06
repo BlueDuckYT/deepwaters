@@ -1,11 +1,12 @@
 package bernie.software.registry;
 
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 
 public enum DeepWatersItemTiers implements IItemTier
 {
-	PRISMARINE(779, 7, 1.5F, 2, 12, Ingredient.fromItems(DeepWatersItems.PRISMARINE_INGOT.get()));
+	PRISMARINE(779, 7, 1.5F, 2, 12, DeepWatersItems.PRISMARINE_INGOT.get());
 
 
 	int maxUses;
@@ -14,14 +15,16 @@ public enum DeepWatersItemTiers implements IItemTier
 	int harvestLvl;
 	int enchantability;
 	Ingredient repairMaterial;
+	Item baseMaterial;
 
-	DeepWatersItemTiers(int uses, float efficiency, float damage, int harvest, int enchant, Ingredient material) {
+	DeepWatersItemTiers(int uses, float efficiency, float damage, int harvest, int enchant, Item material) {
 		maxUses = uses;
 		toolEfficiency = efficiency;
 		attackDamage = damage;
 		harvestLvl = harvest;
 		enchantability = enchant;
-		repairMaterial = material;
+		repairMaterial = Ingredient.fromItems(material);
+		baseMaterial = material;
 	}
 
 	@Override
@@ -59,5 +62,8 @@ public enum DeepWatersItemTiers implements IItemTier
 	{
 		return repairMaterial;
 	}
-
+	
+	public Item getBaseMaterial() {
+		return baseMaterial;
+	}
 }

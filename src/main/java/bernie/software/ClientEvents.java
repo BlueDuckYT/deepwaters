@@ -1,10 +1,15 @@
 package bernie.software;
 
+import bernie.software.block.aquastone.AquastoneFan;
+import bernie.software.client.renderer.tileentity.renderer.Aquafan;
 import bernie.software.registry.DeepWatersBlocks;
+import bernie.software.registry.DeepWatersTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.function.Supplier;
@@ -41,5 +46,9 @@ public class ClientEvents {
         render(DeepWatersBlocks.RED_FORGE_STONE, cutout);
         render(DeepWatersBlocks.YELLOW_FORGE_STONE, cutout);
 
+    }
+    
+    public static void registerTESRs() {
+        ClientRegistry.bindTileEntityRenderer(DeepWatersTileEntities.AQUASTONE_FAN.get(), Aquafan::new);
     }
 }

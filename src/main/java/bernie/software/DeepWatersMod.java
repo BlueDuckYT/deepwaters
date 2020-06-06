@@ -57,6 +57,7 @@ public class DeepWatersMod
 		DeepWatersWorldCarvers.WORLD_CARVERS.register(bus);
 		DeepWatersStructures.STRUCTURES.register(bus);
 		DeepWatersContainerTypes.CONTAINER_TYPES.register(bus);
+		DeepWatersTileEntities.TILE_ENTITIES.register(bus);
 
 	}
 
@@ -65,6 +66,7 @@ public class DeepWatersMod
 	{
 		Minecraft.getInstance().getBlockColors().register(new AquastoneColor(), DeepWatersBlocks.AQUA_STONE.get());
 		ClientEvents.registerBlockRenderers();
+		ClientEvents.registerTESRs();
 	}
 
 	private void setup(FMLCommonSetupEvent event)

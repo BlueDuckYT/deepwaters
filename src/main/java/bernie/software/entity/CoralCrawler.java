@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class CoralCrawler extends AnimalEntity
+public class CoralCrawler extends AgeableEntity
 {
-	public CoralCrawler(EntityType<? extends AnimalEntity> type, World worldIn)
+	public CoralCrawler(EntityType<? extends AgeableEntity> type, World worldIn)
 	{
 		super(type, worldIn);
 	}

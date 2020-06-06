@@ -12,10 +12,13 @@ import bernie.software.item.event.ShieldEvents;
 import bernie.software.item.tool.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.awt.*;
+import java.util.function.Function;
 
 public class DeepWatersItems
 {
@@ -24,7 +27,7 @@ public class DeepWatersItems
 
 	public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
-	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersIngotItem(779,5,1.6f, new Utils.ColorHelper(143, 195, 181).getRGB()));
+	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersIngotItem(779, 5, 1.6f, new Utils.ColorHelper(143, 195, 181).getRGB(), DeepWatersDamageFunctions.PRISMARINE_DAMGE,DeepWatersDamageFunctions.PRISMARINE_INVENTORY));
 	public static final RegistryObject<Item> AQUALITE_INGOT = ITEMS.register("aqualite_ingot", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PRISMARINE_NUGGET = ITEMS.register("prismarine_nugget", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> BLUFFERFISH = ITEMS.register("blufferfish", () -> new DeepWatersItem(DeepWatersFoods.BLUFFERFISH));
