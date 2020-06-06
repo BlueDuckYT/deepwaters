@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top_rh",
-    "textures": {
-        "bottom": "deepwaters:block/scrapmetal_door_bottom",
-        "top": "deepwaters:block/scrapmetal_door_top"
-    }
-}

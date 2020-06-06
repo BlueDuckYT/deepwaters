@@ -4,7 +4,6 @@ import bernie.software.DeepWatersMod;
 import bernie.software.registry.DeepWatersBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -61,16 +60,16 @@ public class PedestalBlock extends Block implements IWaterLoggable
 	}
 
 	public BlockState state(BlockState state,IBlockReader world,BlockPos pos) {
-		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.WEST,2)).getBlock() instanceof PortalPillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.WEST,2)).getBlock() instanceof PillarBlock) {
 			return state.with(ROTATION,Direction.SOUTH);
 		}
-		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.WEST,2)).getBlock() instanceof PortalPillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.WEST,2)).getBlock() instanceof PillarBlock) {
 			return state.with(ROTATION,Direction.EAST);
 		}
-		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.EAST,2)).getBlock() instanceof PortalPillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.EAST,2)).getBlock() instanceof PillarBlock) {
 			return state.with(ROTATION,Direction.WEST);
 		}
-		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.EAST,2)).getBlock() instanceof PortalPillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.EAST,2)).getBlock() instanceof PillarBlock) {
 			return state.with(ROTATION,Direction.NORTH);
 		}
 		return state;

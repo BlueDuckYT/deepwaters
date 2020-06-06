@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "deepwaters:block/prismarine_pillar_side",
+    "end": "deepwaters:block/prismarine_pillar_end"
+  }
+}

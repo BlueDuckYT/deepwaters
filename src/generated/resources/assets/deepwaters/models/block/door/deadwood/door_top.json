@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures": {
-        "bottom": "deepwaters:block/deadwood_door_bottom",
-        "top": "deepwaters:block/deadwood_door_top"
-    }
-}

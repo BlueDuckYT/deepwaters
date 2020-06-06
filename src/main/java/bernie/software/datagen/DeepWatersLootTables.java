@@ -1,5 +1,6 @@
 package bernie.software.datagen;
 
+import bernie.software.block.blockbase.DeepWatersBlock;
 import bernie.software.datagen.provider.DeepWatersBlockLootTableProvider;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersEntities;
@@ -76,9 +77,22 @@ public class DeepWatersLootTables extends LootTableProvider
 			dropSelf(DeepWatersBlocks.AQUA_TORCH_WALL);
 			dropSelf(DeepWatersBlocks.AQUA_STONE_BUTTON);
 			dropSelf(DeepWatersBlocks.SUNKEN_WASTES_LAMP);
-			dropSelf(DeepWatersBlocks.PORTAL_PILLAR);
+			//dropSelf(DeepWatersBlocks.PORTAL_PILLAR);
 			dropSelf(DeepWatersBlocks.DEADWOOD_LOG);
-			dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
+			dropSelf(DeepWatersBlocks.AQUA_FAN);
+			dropSelf(DeepWatersBlocks.SCRAP_LADDER);
+			dropSelf(DeepWatersBlocks.SCRAP_LANTERN);
+
+			dropSelf(DeepWatersBlocks.BLUE_FORGE_STONE);
+			dropSelf(DeepWatersBlocks.GREEN_FORGE_STONE);
+			dropSelf(DeepWatersBlocks.ORANGE_FORGE_STONE);
+			dropSelf(DeepWatersBlocks.YELLOW_FORGE_STONE);
+			dropSelf(DeepWatersBlocks.PURPLE_FORGE_STONE);
+			dropSelf(DeepWatersBlocks.RED_FORGE_STONE);
+
+
+			dropWithSilk(DeepWatersBlocks.AQUASTONE_ORE, DeepWatersBlocks.AQUA_STONE);
+			//dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
 
 			dropWithFortune(DeepWatersBlocks.SALT_ORE, DeepWatersItems.SALT_CRYSTAL);
 			dropWithFortune(DeepWatersBlocks.CRYSTALINE_CORAL, DeepWatersItems.CRYSTALINE_CORAL);
@@ -111,6 +125,15 @@ public class DeepWatersLootTables extends LootTableProvider
 			this.registerLootTable(DeepWatersEntities.DEEP_GLIDER.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.SKULL_FISH.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.JUNGLE_FISH.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.SEA_URCHIN.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.SEA_ANGEL.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.SHARK.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.SNEAGLE.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.SUNKEN_WANDERER.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.PHANTOM_STINGRAY.get(), LootTable.builder());
+			this.registerLootTable(DeepWatersEntities.JELLYFISH.get(), LootTable.builder());
+
+
 		}
 
 		@Override

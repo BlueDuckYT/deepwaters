@@ -1,6 +1,0 @@
-{
-    "parent": "deepwaters:block/aquastone_dust/dust_side",
-    "textures": {
-        "line": "deepwaters:block/aquastone_line"
-    }
-}

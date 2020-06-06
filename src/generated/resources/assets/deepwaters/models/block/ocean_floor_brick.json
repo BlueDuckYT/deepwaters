@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "deepwaters:block/ocean_floor_brick_side",
+    "end": "deepwaters:block/ocean_floor_brick_end"
+  }
+}

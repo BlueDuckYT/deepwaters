@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "deepwaters:block/prismarine_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "deepwaters:block/prismarine_pillar"
+    },
+    "axis=z": {
+      "model": "deepwaters:block/prismarine_pillar",
+      "x": 90
+    }
+  }
+}

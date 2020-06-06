@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "deepwaters:block/dark_prismarine_chiseled_side",
+    "end": "deepwaters:block/dark_prismarine_chiseled_end"
+  }
+}
