@@ -1,5 +1,6 @@
 package bernie.software.block;
 
+import bernie.software.block.aquastone.AquastoneFan;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.block.*;
@@ -42,7 +43,7 @@ public class EntityPusher extends BubbleSource {
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		super.fillStateContainer(builder);
-		builder.add(DropperBlock.FACING);
+		builder.add(DropperBlock.FACING, AquastoneFan.HAS_SOUL_SAND);
 	}
 	
 	@Override
@@ -60,9 +61,11 @@ public class EntityPusher extends BubbleSource {
 		if (!entityIn.isInWaterOrBubbleColumn()) {
 //			worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, SoundCategory.BLOCKS,new Random().nextFloat(),new Random().nextFloat(),false);
 		}
-		if (entityIn.getAir()<entityIn.getMaxAir()) {
-			if (((int)entityIn.getEyeHeight(entityIn.getPose())+entityIn.getPosY())==pos.getY()) {
-				entityIn.setAir(entityIn.getAir()+1);
+		if (state.get(AquastoneFan.HAS_SOUL_SAND)) {
+			if (entityIn.getAir()<entityIn.getMaxAir()) {
+				if (((int)entityIn.getEyeHeight(entityIn.getPose())+entityIn.getPosY())==pos.getY()) {
+					entityIn.setAir(entityIn.getAir()+1);
+				}
 			}
 		}
 		super.neighborChanged(state,worldIn,pos,state.getBlock(),pos,false);
@@ -80,6 +83,13 @@ public class EntityPusher extends BubbleSource {
 					worldIn.getBlockState(pos).get(DropperBlock.FACING).getYOffset()/1f,
 					worldIn.getBlockState(pos).get(DropperBlock.FACING).getZOffset()/1f
 			);
+			if (!stateIn.get(AquastoneFan.HAS_SOUL_SAND)) {
+				worldIn.addParticle(ParticleTypes.BUBBLE_POP, d0, d1, d2,
+						worldIn.getBlockState(pos).get(DropperBlock.FACING).getXOffset()/16f,
+						worldIn.getBlockState(pos).get(DropperBlock.FACING).getYOffset()/16f,
+						worldIn.getBlockState(pos).get(DropperBlock.FACING).getZOffset()/16f
+				);
+			}
 		}
 		worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT, SoundCategory.BLOCKS,rand.nextFloat(),rand.nextFloat(),false);
 		super.animateTick(stateIn, worldIn, pos, rand);

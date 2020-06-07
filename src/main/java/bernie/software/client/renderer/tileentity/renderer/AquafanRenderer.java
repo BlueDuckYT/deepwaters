@@ -9,8 +9,11 @@ import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -50,6 +53,14 @@ public class AquafanRenderer extends TileEntityRenderer<TileEntity> {
             AquafanModel mdl=new AquafanModel();
             mdl.setRotationAngles(null,0,0,((float)Math.toRadians(-(tileEntityIn.rotation+correction))*2),0,0);
             mdl.render(matrixStackIn,bufferIn.getBuffer(RenderType.getEntityTranslucent(new ResourceLocation("deepwaters:textures/model/tileentity/aquastone_fan.png"))),combinedLightIn,combinedOverlayIn,1,1,1,1);
+            if (tileEntityIn.hasWorld()) {
+                if (tileEntityIn.getBlockState().get(AquastoneFan.HAS_SOUL_SAND)) {
+                    matrixStackIn.rotate(new Quaternion(0,0,(tileEntityIn.rotation+correction)*-2,true));
+                    float scale=0.24f;
+                    matrixStackIn.scale(scale,scale,scale);
+                    Minecraft.getInstance().getItemRenderer().renderItem(new ItemStack(Items.SOUL_SAND), ItemCameraTransforms.TransformType.NONE,combinedLightIn,combinedOverlayIn,matrixStackIn,bufferIn);
+                }
+            }
         } catch (Exception err) {}
         matrixStackIn.pop();
     }
