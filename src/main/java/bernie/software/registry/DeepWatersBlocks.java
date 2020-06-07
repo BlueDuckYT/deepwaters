@@ -52,7 +52,7 @@ public class DeepWatersBlocks {
 
     //Portal
     public static final RegistryObject<Block> DEEPWATERSPORTAL = registerOnlyBlock("portal", () -> new DeepWatersPortalBlock(BlockProperties.UNBREAKABLE));
-    public static final RegistryObject<PedestalBlock> PEDESTAL = registerBlock("pedestal", () -> new PedestalBlock());
+    public static final RegistryObject<PedestalBlock> PEDESTAL = registerBlockAndItemNoDrops("pedestal", () -> new PedestalBlock());
     public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlockAndItem("portal_pillar", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE));
     public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR_END = registerBlockAndItem("portal_pillar_end", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE));
     public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlockAndItem("activated_portal_pillar", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE.lightValue(15)));
@@ -160,6 +160,13 @@ public class DeepWatersBlocks {
         DeepWatersItemModels.NormalItemBlocks.add((RegistryObject<Block>) registryObject);
         DeepWatersLootTables.NormalItemDropBlocks.add((RegistryObject<Block>) registryObject);
 
+        return registryObject;
+    }
+
+    private static <T extends Block> RegistryObject<T> registerBlockAndItemNoDrops(String name, Supplier<? extends Block> block) {
+        RegistryObject<T> registryObject = (RegistryObject<T>) baseRegister(name, block,
+                DeepWatersBlocks::registerBlockItem);
+        DeepWatersItemModels.NormalItemBlocks.add((RegistryObject<Block>) registryObject);
         return registryObject;
     }
 

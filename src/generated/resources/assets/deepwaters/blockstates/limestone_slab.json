@@ -7,7 +7,7 @@
       "model": "deepwaters:block/limestone_slab"
     },
     "type=double": {
-      "model": "deepwaters:block/limestone_slab"
+      "model": "deepwaters:block/limestone"
     }
   }
 }
