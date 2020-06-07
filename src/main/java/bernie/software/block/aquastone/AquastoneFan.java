@@ -49,9 +49,23 @@ public class AquastoneFan extends BubbleSource implements ITileEntityProvider {
         } else if (maxOffHorizontal<=Math.abs(context.getPlayer().getPosY()-context.getHitVec().getY())/divisor) {
             placementDir=Direction.UP;
         }
+        int sources=0;
+        if (context.getWorld().getBlockState(context.getPos().offset(Direction.EAST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+            sources++;
+        }
+        if (context.getWorld().getBlockState(context.getPos().offset(Direction.WEST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+            sources++;
+        }
+        if (context.getWorld().getBlockState(context.getPos().offset(Direction.SOUTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+            sources++;
+        }
+        if (context.getWorld().getBlockState(context.getPos().offset(Direction.NORTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+            sources++;
+        }
+        System.out.println(sources);
         BlockState newState=this.getDefaultState().with(DropperBlock.FACING,placementDir.getOpposite()).with(ACTIVE,context.getWorld().isBlockPowered(context.getPos()));
         context.getWorld().notifyBlockUpdate(context.getPos(),context.getWorld().getBlockState(context.getPos()),newState,0);
-        return newState;
+        return newState.with(StairsBlock.WATERLOGGED,sources>=2);
     }
     
     @Override

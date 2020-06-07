@@ -60,6 +60,11 @@ public class EntityPusher extends BubbleSource {
 		if (!entityIn.isInWaterOrBubbleColumn()) {
 //			worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE, SoundCategory.BLOCKS,new Random().nextFloat(),new Random().nextFloat(),false);
 		}
+		if (entityIn.getAir()<entityIn.getMaxAir()) {
+			if (((int)entityIn.getEyeHeight(entityIn.getPose())+entityIn.getPosY())==pos.getY()) {
+				entityIn.setAir(entityIn.getAir()+1);
+			}
+		}
 		super.neighborChanged(state,worldIn,pos,state.getBlock(),pos,false);
 		super.onEntityCollision(state, worldIn, pos, entityIn);
 	}

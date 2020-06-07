@@ -36,7 +36,8 @@ public class BubbleSource extends Block {
 			for (Direction dir:Direction.values()) {
 				BlockState state1=worldIn.getBlockState(pos.offset(dir));
 				if (state1.getBlock() instanceof BubbleSource) {
-					if (((BubbleSource)state1.getBlock()).isSource(dir.getOpposite(),worldIn,pos,state1)) {
+					if (((BubbleSource)state1.getBlock()).isSource(dir.getOpposite(),worldIn,pos,state1)
+						&&isSource(dir.getOpposite(),worldIn,pos,state)) {
 						hasSource=true;
 					}
 				}
@@ -44,6 +45,9 @@ public class BubbleSource extends Block {
 					if (isSource(dir,worldIn,pos,state)) {
 						if (worldIn.getBlockState(pos.offset(dir)).getFluidState().equals(getBubbleState(state).getFluidState())) {
 							if (worldIn.getBlockState(pos.offset(dir)).equals(Blocks.WATER.getDefaultState())) {
+								if (worldIn.getBlockState(pos.offset(dir,30)).getBlockState().equals(Blocks.WATER.getDefaultState())) {
+									worldIn.setBlockState(pos.offset(dir,30),Blocks.BUBBLE_COLUMN.getDefaultState());
+								}
 								worldIn.setBlockState(pos.offset(dir),getBubbleState(state));
 								worldIn.notifyNeighborsOfStateExcept(pos,getBubbleState(state).getBlock(),dir.getOpposite());
 							}
@@ -57,7 +61,7 @@ public class BubbleSource extends Block {
 					worldIn.notifyNeighbors(pos,Blocks.WATER.getBlock());
 				}
 			}
-		} catch (Exception err) {}
+		} catch (Throwable ignored) {}
 	}
 	
 	@Override
