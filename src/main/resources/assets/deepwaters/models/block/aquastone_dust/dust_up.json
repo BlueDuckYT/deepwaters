@@ -4,7 +4,7 @@
 	"textures": {
 		"1": "deepwaters:block/aquastone_line_overlay",
 		"2": "deepwaters:block/aquastone_line",
-		"3": "deepwaters:block/aquastone_dust",
+		"3": "deepwaters:block/aquastone_connector",
 		"particle": "deepwaters:block/aquastone_line_overlay"
 	},
 	"elements": [

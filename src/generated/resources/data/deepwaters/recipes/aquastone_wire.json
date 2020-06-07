@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "deepwaters:aquastone_dust"
+    },
+    {
+      "item": "deepwaters:aquastone_dust"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "deepwaters:aquastone",
+    "count": 6
+  }
+}

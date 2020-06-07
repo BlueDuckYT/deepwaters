@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "deepwaters:aquastone"
+    }
+  },
+  "result": {
+    "item": "deepwaters:iron_hatch"
+  }
+}

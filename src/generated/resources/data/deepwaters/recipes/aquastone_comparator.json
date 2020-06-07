@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    "TCT",
+    "LLL"
+  ],
+  "key": {
+    "T": {
+      "item": "deepwaters:aquastone_torch"
+    },
+    "C": {
+      "item": "deepwaters:crystaline_coral"
+    },
+    "L": {
+      "item": "deepwaters:limestone_smooth"
+    }
+  },
+  "result": {
+    "item": "deepwaters:aquastone_comparator"
+  }
+}

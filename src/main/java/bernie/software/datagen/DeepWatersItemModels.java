@@ -5,6 +5,7 @@ import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -20,6 +21,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 	}
 
 	public static List<RegistryObject<Block>> NormalItemBlocks = new ArrayList<>();
+	public static List<RegistryObject<Item>> NormalItems = new ArrayList<>();
 
 
 	@Override
@@ -33,6 +35,10 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 	{
 		for (RegistryObject<Block> block : NormalItemBlocks) {
 			itemBlock(block);
+		}
+
+		for (RegistryObject<Item> item : NormalItems) {
+			normalItem(item);
 		}
 		itemBlock(DeepWatersBlocks.PORTAL_PILLAR);
 		itemBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR);
@@ -55,11 +61,17 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		//normalItem(DeepWatersItems.AQUASTONE_TORCH);
 
 		toolItem(DeepWatersItems.PRISMARINE_SWORD);
-		toolItem(DeepWatersItems.AQUALITE_SWORD);
 		toolItem(DeepWatersItems.PRISMARINE_PICKAXE);
-		toolItem(DeepWatersItems.AQUALITE_PICKAXE);
 		toolItem(DeepWatersItems.PRISMARINE_AXE);
 		toolItem(DeepWatersItems.PRISMARINE_SHOVEL);
+
+		toolItem(DeepWatersItems.AQUALITE_SWORD);
+		toolItem(DeepWatersItems.AQUALITE_PICKAXE);
+		toolItem(DeepWatersItems.AQUALITE_AXE);
+		toolItem(DeepWatersItems.AQUALITE_SHOVEL);
+		toolItem(DeepWatersItems.AQUALITE_HOE);
+
+
 		toolItem(DeepWatersItems.PEARL_WAND);
 		//toolItem(DeepWatersItems.PRISMARINE_SHIELD);
 

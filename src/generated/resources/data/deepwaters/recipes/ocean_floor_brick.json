@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "deepwaters:ocean_floor"
+    }
+  },
+  "result": {
+    "item": "deepwaters:ocean_floor_brick",
+    "count": 4
+  }
+}

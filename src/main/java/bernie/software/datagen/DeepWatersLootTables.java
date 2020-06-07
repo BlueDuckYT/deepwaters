@@ -73,7 +73,7 @@ public class DeepWatersLootTables extends LootTableProvider
 			dropSelf(DeepWatersBlocks.IRON_HATCH_DOOR);
 			dropSelf(DeepWatersBlocks.IRON_HATCH);
 			dropSelf(DeepWatersBlocks.AQUA_STONE);
-			dropSelf(DeepWatersBlocks.AQUA_COMPARE);
+			dropSelf(DeepWatersBlocks.AQUA_COMPARATOR);
 			dropSelf(DeepWatersBlocks.AQUA_REPEATER);
 			dropSelf(DeepWatersBlocks.AQUA_BLOCK);
 			dropSelf(DeepWatersBlocks.AQUA_TORCH);
@@ -100,9 +100,7 @@ public class DeepWatersLootTables extends LootTableProvider
 			dropSelf(DeepWatersBlocks.RED_FORGE_STONE);
 
 
-			dropWithSilk(DeepWatersBlocks.AQUASTONE_ORE, DeepWatersBlocks.AQUA_STONE);
-			//dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
-
+			dropWithSilk(DeepWatersBlocks.AQUASTONE_ORE, DeepWatersItems.AQUASTONE_DUST);
 			dropWithFortune(DeepWatersBlocks.SALT_ORE, DeepWatersItems.SALT_CRYSTAL);
 			dropWithFortune(DeepWatersBlocks.CRYSTALINE_CORAL, DeepWatersItems.CRYSTALINE_CORAL);
 			dropWithFortune(DeepWatersBlocks.DEAD_CRYSTALINE_CORAL, DeepWatersItems.DEAD_CRYSTALINE_CORAL);

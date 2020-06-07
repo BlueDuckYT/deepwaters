@@ -1,5 +1,14 @@
 {
   "block.deepwaters.mossy_ocean_floor": "Mossy Cobbled Prismarine",
+  "block.deepwaters.ocean_floor_brick": "Cobbled Prismarine Brick",
+  "block.deepwaters.dark_prismarine_pillar": "Dark Prismarine Pillar",
+  "block.deepwaters.prismarine_pillar": "Prismarine Pillar",
+  "block.deepwaters.dark_prismarine_chiseled": "Chiseled Dark Prismarine",
+  "block.deepwaters.prismarine_chiseled": "Chiseled Prismarine",
+  "block.deepwaters.limestone_smooth": "Smooth Limestone",
+  "block.deepwaters.limestone_slab": "Limestone Slab",
+  "block.deepwaters.limestone_brick": "Limestone Brick",
+
   "block.deepwaters.ocean_floor": "Cobbled Prismarine",
   "block.deepwaters.sunken_gravel": "Sunken Gravel",
   "block.deepwaters.salt_ore": "Salt Crystal Ore",
@@ -78,6 +87,7 @@
   "item.deepwaters.pearl_wand": "Pearl Wand",
 
   "item.deepwaters.power_stone": "Power Stone",
+  "item.deepwaters.aquastone_dust": "Aquastone Dust",
 
   "item.deepwaters.prismarine_nugget": "Prismarine Crystal Nugget",
   "item.deepwaters.prismarine_ingot": "Prismarine Crystal Ingot",
@@ -95,6 +105,9 @@
   "item.deepwaters.aqualite_ingot": "Aqualite Ingot",
   "item.deepwaters.aqualite_sword": "Aqualite Sword",
   "item.deepwaters.aqualite_pickaxe": "Aqualite Pickaxe",
+  "item.deepwaters.aqualite_axe": "Aqualite Axe",
+  "item.deepwaters.aqualite_shovel": "Aqualite Shovel",
+  "item.deepwaters.aqualite_hoe": "Aqualite Hoe",
 
   "item.deepwaters.blufferfish": "Blufferfish",
   "item.deepwaters.cooked_blufferfish": "Cooked Blufferfish",
@@ -116,6 +129,13 @@
   "item.deepwaters.skull_fish_spawn_egg": "Skullfish Spawn Egg",
   "item.deepwaters.coral_crawler_spawn_egg": "Coral Crawler Spawn Egg",
   "item.deepwaters.jungle_fish_spawn_egg": "Jungle Fish Spawn Egg",
+  "item.deepwaters.jellyfish_spawn_egg": "Jellyfish Spawn Egg",
+  "item.deepwaters.shark_spawn_egg": "Shark Spawn Egg",
+  "item.deepwaters.sunken_wanderer_spawn_egg": "Sunken Wanderer Spawn Egg",
+  "item.deepwaters.sneagle_spawn_egg": "Sneagle Spawn Egg",
+  "item.deepwaters.phantom_stingray_spawn_egg": "Phantom Stingray Spawn Egg",
+  "item.deepwaters.jellyfish_spawn_egg": "Jellyfish Spawn Egg",
+  "item.deepwaters.sea_urchin_spawn_egg": "Sea Urchin Spawn Egg",
 
   "itemGroup.deepwaters_blocks": "Deep Waters Blocks",
   "itemGroup.deepwaters_items": "Deep Waters Items",
@@ -133,6 +153,13 @@
   "entity.deepwaters.colorfulfish": "Huefish",
   "entity.deepwaters.coralcrawler": "Coral Crawler",
   "entity.deepwaters.surgevehicle": "Surge",
+  "entity.deepwaters.jellyfish": "Jellyfish",
+  "entity.deepwaters.shark": "Shark Spawn",
+  "entity.deepwaters.sunken_wanderer": "Sunken Wanderer",
+  "entity.deepwaters.sneagle_spawn": "Sneagle Spawn",
+  "entity.deepwaters.phantom_stingray": "Phantom Stingray",
+  "entity.deepwaters.jellyfish": "Jellyfish",
+  "entity.deepwaters.sea_urchin": "Sea Urchin",
 
   "feature.deepwaters.deepwatersportal": "Deep Waters Portal",
 

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "S"
+  ],
+  "key": {
+    "A": {
+      "item": "deepwaters:aquastone_dust"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "deepwaters:aquastone_torch"
+  }
+}
