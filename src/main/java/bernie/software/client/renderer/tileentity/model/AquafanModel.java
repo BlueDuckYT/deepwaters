@@ -70,6 +70,7 @@ public class AquafanModel extends EntityModel<Entity> {
 	@Override
 	public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
 		//previously the render function, render code was moved to a method below
+		eye_rotation.rotateAngleZ=ageInTicks;
 	}
 
 	@Override

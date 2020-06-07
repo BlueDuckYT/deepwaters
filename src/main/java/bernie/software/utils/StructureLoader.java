@@ -69,7 +69,7 @@ public class StructureLoader {
         public blockHolder(ResourceLocation block, String state, BlockPos pos, float generateChance, Random rand) {
             this.block = Registry.BLOCK.getOrDefault(block);
             for (Object obj:this.block.getStateContainer().getValidStates().toArray()) {
-                if (obj.toString().equals(block+state)) {
+                if (obj.toString().equals(this.block.toString()+state)) {
                     this.state=((BlockState)obj);
                 }
             }
