@@ -1,7 +1,6 @@
 package bernie.software.client;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.client.renderer.tileentity.renderer.Aquafan;
 import bernie.software.client.renderer.tileentity.renderer.AquafanRenderer;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersTileEntities;
