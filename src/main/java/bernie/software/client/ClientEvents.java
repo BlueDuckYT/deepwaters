@@ -2,6 +2,7 @@ package bernie.software.client;
 
 import bernie.software.DeepWatersMod;
 import bernie.software.client.renderer.tileentity.renderer.Aquafan;
+import bernie.software.client.renderer.tileentity.renderer.AquafanRenderer;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersTileEntities;
 import net.minecraft.block.Block;
@@ -28,6 +29,8 @@ public class ClientEvents {
         RenderType translucent = RenderType.getTranslucent();
 
         render(DeepWatersBlocks.AQUA_STONE, cutout);
+        render(DeepWatersBlocks.AQUA_FAN, cutout);
+        render(DeepWatersBlocks.ENTITYPUSHER, cutout);
         render(DeepWatersBlocks.AQUA_TORCH, cutout);
         render(DeepWatersBlocks.AQUA_TORCH_WALL, cutout);
         render(DeepWatersBlocks.AQUA_REPEATER, cutout);
@@ -48,6 +51,6 @@ public class ClientEvents {
     }
     
     public static void registerTESRs() {
-        ClientRegistry.bindTileEntityRenderer(DeepWatersTileEntities.AQUASTONE_FAN.get(), Aquafan::new);
+        ClientRegistry.bindTileEntityRenderer(DeepWatersTileEntities.AQUASTONE_FAN.get(), AquafanRenderer::new);
     }
 }

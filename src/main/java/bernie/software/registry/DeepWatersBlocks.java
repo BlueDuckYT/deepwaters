@@ -4,12 +4,15 @@ import bernie.software.DeepWatersMod;
 import bernie.software.block.*;
 import bernie.software.block.aquastone.*;
 import bernie.software.block.blockbase.*;
+import bernie.software.client.renderer.tileentity.renderer.AquafanItemStackRenderer;
+import bernie.software.client.renderer.tileentity.renderer.AquafanRenderer;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ToolType;
@@ -18,6 +21,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -36,6 +40,7 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> AQUALITE_ORE = registerNormalBlock("aqualite_ore", () -> new DeepWatersOreBlock(2), true);
     public static final RegistryObject<Block> AQUASTONE_ORE = registerNormalBlock("aquastone_ore", () -> new DeepWatersOreBlock(1), false);
 
+    public static final RegistryObject<Block> ENTITYPUSHER = registerOnlyBlock("entity_pusher", () -> new EntityPusher());
 
     //Metallic Blocks
     public static final RegistryObject<Block> METALLIC_BLOCK_YELLOW = registerNormalBlock("metallic_block_yellow", () -> new Block(BlockProperties.METALLIC_BLOCK), true);
@@ -53,6 +58,12 @@ public class DeepWatersBlocks {
     public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlockAndItem("activated_portal_pillar", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE.lightValue(15)));
     public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR_END = registerBlockAndItem("activated_portal_pillar_end", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE.lightValue(15)));
 
+    public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
+    public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new AquastoneDust(Block.Properties.create(Material.ROCK).doesNotBlockMovement()));
+    public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new AquastoneComparator(Block.Properties.create(Material.ROCK)));
+    public static final RegistryObject<Block> AQUA_REPEATER = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(Block.Properties.create(Material.ROCK)));
+    public static final RegistryObject<Block> AQUA_FAN = registerBlock("aquastone_fan", () -> new AquastoneFan(Block.Properties.create(Material.ROCK)),()->AquafanItemStackRenderer::new);
+    public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new AquastoneBlock(Block.Properties.create(Material.ROCK)));
     //Dead Coral
     public static final RegistryObject<Block> DEAD_CORAL_BLOCK_ORANGE = registerNormalBlock("dead_coral_block_orange", () -> new Block(BlockProperties.DEAD_CORAL), true);
     public static final RegistryObject<Block> DEAD_CORAL_BLOCK_GREEN = registerNormalBlock("dead_coral_block_green", () -> new Block(BlockProperties.DEAD_CORAL), true);
@@ -143,6 +154,12 @@ public class DeepWatersBlocks {
         return (RegistryObject<T>) baseRegister(name, block, DeepWatersBlocks::registerBlockItem);
     }
 
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<? extends Block> block, Supplier<Callable<ItemStackTileEntityRenderer>> isterDoubleSupplier) {
+        RegistryObject<Block> registryObject=baseRegister(name,block);
+        DeepWatersItems.ITEMS.register(name,DeepWatersBlocks.registerBlockItem(registryObject,isterDoubleSupplier));
+        return (RegistryObject<T>) registryObject;
+    }
+
     private static <T extends Block> RegistryObject<T> registerBlockAndItem(String name, Supplier<? extends Block> block) {
         RegistryObject<T> registryObject = (RegistryObject<T>) baseRegister(name, block,
                 DeepWatersBlocks::registerBlockItem);
@@ -171,5 +188,10 @@ public class DeepWatersBlocks {
     private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block) {
         return () -> new BlockItem(Objects.requireNonNull(block.get()),
                 new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS));
+    }
+
+    private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block,Supplier<Callable<ItemStackTileEntityRenderer>> isterDoubleSupplier) {
+        return () -> new BlockItem(Objects.requireNonNull(block.get()),
+                new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS).setISTER(isterDoubleSupplier));
     }
 }

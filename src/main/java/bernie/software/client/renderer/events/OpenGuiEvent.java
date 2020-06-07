@@ -22,10 +22,10 @@ public class OpenGuiEvent {
 	@SubscribeEvent
 	public static void openGUI(GuiOpenEvent event) {
 		try {
-			DeepWatersMod.logger.log(Level.INFO,Minecraft.getInstance().player.dimension.getClass());
+//			DeepWatersMod.logger.log(Level.INFO,Minecraft.getInstance().player.dimension.getClass());
 			if (from.getRegistryName()==Minecraft.getInstance().player.world.dimension.getType().getRegistryName()||
 			Minecraft.getInstance().world.dimension instanceof DeepWatersDimension) {
-				DeepWatersMod.logger.log(Level.INFO,"h");
+//				DeepWatersMod.logger.log(Level.INFO,"h");
 				if (event.getGui() instanceof WorkingScreen) {
 					WorldLoadingScreen screen=new WorldLoadingScreen();
 					screen.resetProgressAndMessage(event.getGui().getTitle());

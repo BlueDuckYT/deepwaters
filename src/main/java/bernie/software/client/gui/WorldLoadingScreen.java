@@ -21,7 +21,7 @@ public class WorldLoadingScreen extends WorkingScreen {
 		Texture texture=this.minecraft.getTextureManager().getTexture(DEMO_BACKGROUND_LOCATION);
 		RenderSystem.pushMatrix();
 		RenderSystem.scalef(this.width,this.height,1);
-		blit(0,0,0,0,1250,703,this.width,this.height);
+		blit(0,0,0,0,1250,703,1,1);
 		RenderSystem.popMatrix();
 	}
 }

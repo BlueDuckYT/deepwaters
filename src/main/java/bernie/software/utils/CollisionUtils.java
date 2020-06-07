@@ -52,6 +52,28 @@ public class CollisionUtils {
                     double maxZ=box.maxX;
                     boxes.set(i,new Box(minX,minY,minZ,maxX,maxY,maxZ));
                 }
+            } else if (dir.equals(Direction.UP)) {
+                for (int i=0;i<boxes.size();i++) {
+                    Box box=boxes.get(i);
+                    double minX=box.minX;
+                    double minY=box.minZ;
+                    double minZ=box.minY;
+                    double maxX=box.maxX;
+                    double maxY=box.maxZ;
+                    double maxZ=box.maxY;
+                    boxes.set(i,new Box(minX,minY,minZ,maxX,maxY,maxZ));
+                }
+            } else if (dir.equals(Direction.DOWN)) {
+                for (int i=0;i<boxes.size();i++) {
+                    Box box=boxes.get(i);
+                    double minX=box.minX;
+                    double minY=16-box.maxZ;
+                    double minZ=16-box.maxY;
+                    double maxX=box.maxX;
+                    double maxY=16-box.minZ;
+                    double maxZ=16-box.minY;
+                    boxes.set(i,new Box(minX,minY,minZ,maxX,maxY,maxZ));
+                }
             }
             return this;
         }
