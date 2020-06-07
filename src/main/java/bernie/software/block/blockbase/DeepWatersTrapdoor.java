@@ -9,19 +9,16 @@ import net.minecraftforge.common.ToolType;
 
 public class DeepWatersTrapdoor extends TrapDoorBlock implements IWaterLoggable {
     public DeepWatersTrapdoor(Properties properties) {
-        super(properties);
+        super(properties.notSolid());
     }
     public DeepWatersTrapdoor(Material material, float hardness, float resist, SoundType sound, int harvestlvl, ToolType tool) {
         super(Properties.create(material)
                 .hardnessAndResistance(hardness,resist)
                 .sound(sound)
                 .harvestLevel(harvestlvl)
-                .harvestTool(tool)
+                .harvestTool(tool).notSolid()
         );
     }
 
-    @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return Block.makeCuboidShape(0,0,0,0,0,0);
-    }
+
 }

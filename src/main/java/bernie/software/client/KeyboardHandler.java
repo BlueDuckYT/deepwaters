@@ -1,4 +1,4 @@
-package bernie.software;
+package bernie.software.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;

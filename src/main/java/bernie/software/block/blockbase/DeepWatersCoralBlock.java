@@ -7,9 +7,9 @@ public class DeepWatersCoralBlock extends CoralBlock {
 
     private final Block deadBlock;
 
-    public DeepWatersCoralBlock(Block block, Properties properties) {
-        super(block, properties);
+    public DeepWatersCoralBlock(Block deadBlock, Properties properties) {
+        super(deadBlock, properties);
 
-        this.deadBlock = block;
+        this.deadBlock = deadBlock;
     }
 }

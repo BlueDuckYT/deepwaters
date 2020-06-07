@@ -60,7 +60,7 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		toolItem(DeepWatersItems.AQUALITE_PICKAXE);
 		toolItem(DeepWatersItems.PRISMARINE_AXE);
 		toolItem(DeepWatersItems.PRISMARINE_SHOVEL);
-		toolItem(DeepWatersItems.PEAL_WAND);
+		toolItem(DeepWatersItems.PEARL_WAND);
 		//toolItem(DeepWatersItems.PRISMARINE_SHIELD);
 
 		//normalItem(DeepWatersItems.POWER_STONE);
@@ -77,5 +77,12 @@ public class DeepWatersItemModels extends DeepWatersItemModelProvider
 		spawnEgg(DeepWatersItems.DONUT_FISH_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.CORAL_CRAWLER_SPAWN_EGG);
 		spawnEgg(DeepWatersItems.JUNGLE_FISH_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.SNEAGLE_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.SHARK_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.SUNKEN_WANDERER_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.SEA_ANGEL_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.SEA_URCHIN_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.JELLYFISH_SPAWN_EGG);
+		spawnEgg(DeepWatersItems.PHANTOM_STINGRAY_SPAWN_EGG);
 	}
 }

@@ -32,14 +32,10 @@ import java.util.Random;
 public class DeepWatersPortalBlock extends Block
 {
 
-	public DeepWatersPortalBlock(Material material, float hardness, float resist, SoundType sound)
+
+	public DeepWatersPortalBlock(Properties properties)
 	{
-		super(Properties.create(material)
-				.hardnessAndResistance(hardness, resist)
-				.sound(sound)
-				.doesNotBlockMovement()
-				.noDrops()
-		);
+		super(properties);
 	}
 
 	@Override

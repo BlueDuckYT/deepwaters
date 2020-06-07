@@ -15,24 +15,6 @@ public class DeepWatersHorizontalRotationalBlock extends Block {
         super(properties);
     }
 
-    public DeepWatersHorizontalRotationalBlock(Material material, float hardness, float resist, SoundType sound, int harvestlvl, ToolType tool) {
-        super(Properties.create(material)
-                .hardnessAndResistance(hardness,resist)
-                .sound(sound)
-                .harvestLevel(harvestlvl)
-                .harvestTool(tool)
-        );
-    }
-
-    public DeepWatersHorizontalRotationalBlock(Material material, float hardness, float resist, SoundType sound, int harvestlvl, ToolType tool, int light) {
-        super(Properties.create(material)
-                .hardnessAndResistance(hardness,resist)
-                .sound(sound)
-                .harvestLevel(harvestlvl)
-                .harvestTool(tool)
-                .lightValue(light)
-        );
-    }
 
     public static final EnumProperty ROTATION = BlockStateProperties.HORIZONTAL_FACING;
 

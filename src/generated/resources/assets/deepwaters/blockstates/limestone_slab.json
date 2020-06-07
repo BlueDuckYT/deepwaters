@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "deepwaters:block/limestone_slab_top"
+    },
+    "type=bottom": {
+      "model": "deepwaters:block/limestone_slab"
+    },
+    "type=double": {
+      "model": "deepwaters:block/limestone_slab"
+    }
+  }
+}
