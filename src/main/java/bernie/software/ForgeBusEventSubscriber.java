@@ -1,4 +1,4 @@
-package bernie.software.event;
+package bernie.software;
 
 import bernie.software.ModEventSubscriber;
 import bernie.software.commands.DeepWatersCommand;

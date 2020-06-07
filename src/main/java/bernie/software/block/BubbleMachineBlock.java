@@ -1,4 +1,4 @@
-package bernie.software.block.blockbase;
+package bernie.software.block;
 
 import bernie.software.registry.DeepWatersTileEntities;
 import net.minecraft.block.Block;
@@ -27,10 +27,10 @@ public class BubbleMachineBlock extends Block{
         return true;
     }
 
-    @Nullable
+    /*@Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return DeepWatersTileEntities.BUBBLE_MACHINE.get().create();
-    }
+    }*/
 
 }

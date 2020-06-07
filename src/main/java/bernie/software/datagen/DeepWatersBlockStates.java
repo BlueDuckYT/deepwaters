@@ -29,15 +29,17 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 	@Override
 	protected void registerStatesAndModels()
 	{
-		doorBlock(DeepWatersBlocks.SCRAP_DOOR.get(), modLoc("block/iron_hatch"), modLoc("block/iron_hatch"));
+		doorBlock(DeepWatersBlocks.IRON_HATCH_DOOR.get(), modLoc("block/iron_hatch"), modLoc("block/iron_hatch"));
 		doorBlock(DeepWatersBlocks.DEADWOOD_DOOR.get(), modLoc("block/deadwood_door_bottom"), modLoc("block/deadwood_door_top"));
 		grassBlock(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, "ocean_floor");
 		normalBlock(DeepWatersBlocks.SALT_ORE);
 		normalBlock(DeepWatersBlocks.DEEPWATERSPORTAL);
-		rotationalWithVerticle(DeepWatersBlocks.PORTAL_PILLAR_END,"portalpillaroff");
+		//rotationalWithVerticle(DeepWatersBlocks.PORTAL_PILLAR_END,"portalpillaroff");
 		logBlock(DeepWatersBlocks.DEADWOOD_LOG, "deadwood_log");
 		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR, "portal_pillar");
 		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, "activated_portal_pillar");
+		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR_END, "portal_pillar_end");
+		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END, "activated_portal_pillar_end");
 		rotational(DeepWatersBlocks.SUNKEN_WASTES_LAMP, "sunkenwastes_lamp");
 		rotational(DeepWatersBlocks.PEDESTAL, "pedestal");
 		//redstone(DeepWatersBlocks.AQUA_STONE, "aquastone_wire");
@@ -46,7 +48,7 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 		pillarBlock(DeepWatersBlocks.CHISELED_DARK_PRISMARINE, "dark_prismarine_chiseled");
 		pillarBlock(DeepWatersBlocks.CHISELED_PRISMARINE, "prismarine_chiseled");
 		pillarBlock(DeepWatersBlocks.OCEAN_FLOOR_BRICK, "ocean_floor_brick");
-
+		slabBlock(DeepWatersBlocks.LIMESTONE_SLAB.get(), textureLoc("limestone"), textureLoc("limestone"));
 		//(DeepWatersBlocks.OXYGENATOR, "oxygenator");
 		for (RegistryObject<Block> block : NormalBlocks) {
 			normalBlock(block);

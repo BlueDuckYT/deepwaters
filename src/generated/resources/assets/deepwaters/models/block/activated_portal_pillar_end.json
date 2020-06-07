@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "deepwaters:block/activated_portal_pillar_end_side",
+    "end": "deepwaters:block/activated_portal_pillar_end_end"
+  }
+}

@@ -29,7 +29,7 @@ public class BubbleMachineTileEntity extends TileEntity implements ITickableTile
 
 
     public BubbleMachineTileEntity() {
-        super(DeepWatersTileEntities.BUBBLE_MACHINE.get());
+        super(DeepWatersTileEntities.AQUASTONE_FAN.get());
     }
 
     @Override

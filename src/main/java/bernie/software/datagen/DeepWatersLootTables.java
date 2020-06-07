@@ -67,7 +67,11 @@ public class DeepWatersLootTables extends LootTableProvider
 			}
 			dropWithSilk(DeepWatersBlocks.MOSSY_OCEAN_FLOOR, DeepWatersBlocks.OCEAN_FLOOR);
 			dropSelf(DeepWatersBlocks.DEADWOOD_DOOR);
-			dropSelf(DeepWatersBlocks.SCRAP_DOOR);
+			dropSelf(DeepWatersBlocks.DEADWOOD_TRAPDOOR);
+			dropSelf(DeepWatersBlocks.LIMESTONE_SLAB);
+
+			dropSelf(DeepWatersBlocks.IRON_HATCH_DOOR);
+			dropSelf(DeepWatersBlocks.IRON_HATCH);
 			dropSelf(DeepWatersBlocks.AQUA_STONE);
 			dropSelf(DeepWatersBlocks.AQUA_COMPARE);
 			dropSelf(DeepWatersBlocks.AQUA_REPEATER);
@@ -76,13 +80,17 @@ public class DeepWatersLootTables extends LootTableProvider
 			dropSelf(DeepWatersBlocks.AQUA_TORCH_WALL);
 			dropSelf(DeepWatersBlocks.AQUA_STONE_BUTTON);
 			dropSelf(DeepWatersBlocks.SUNKEN_WASTES_LAMP);
-			//dropSelf(DeepWatersBlocks.PORTAL_PILLAR);
+			dropSelf(DeepWatersBlocks.PORTAL_PILLAR);
+			dropSelf(DeepWatersBlocks.PORTAL_PILLAR_END);
+			dropSelf(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END);
+
 			dropSelf(DeepWatersBlocks.DEADWOOD_LOG);
-			dropSelf(DeepWatersBlocks.BUBBLE_MACHINE);
+			//dropSelf(DeepWatersBlocks.BUBBLE_MACHINE);
 			dropWithSilk(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR, DeepWatersBlocks.PORTAL_PILLAR);
 			dropSelf(DeepWatersBlocks.AQUA_FAN);
 			dropSelf(DeepWatersBlocks.SCRAP_LADDER);
 			dropSelf(DeepWatersBlocks.SCRAP_LANTERN);
+			dropSelf(DeepWatersBlocks.DEEPWATERSPORTAL);
 
 			dropSelf(DeepWatersBlocks.BLUE_FORGE_STONE);
 			dropSelf(DeepWatersBlocks.GREEN_FORGE_STONE);
@@ -133,8 +141,6 @@ public class DeepWatersLootTables extends LootTableProvider
 			this.registerLootTable(DeepWatersEntities.SUNKEN_WANDERER.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.PHANTOM_STINGRAY.get(), LootTable.builder());
 			this.registerLootTable(DeepWatersEntities.JELLYFISH.get(), LootTable.builder());
-
-
 		}
 
 		@Override

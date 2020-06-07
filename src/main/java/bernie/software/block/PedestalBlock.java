@@ -60,16 +60,16 @@ public class PedestalBlock extends Block implements IWaterLoggable
 	}
 
 	public BlockState state(BlockState state,IBlockReader world,BlockPos pos) {
-		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.WEST,2)).getBlock() instanceof PillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.WEST,2)).getBlock() instanceof RotatedPillarBlock) {
 			return state.with(ROTATION,Direction.SOUTH);
 		}
-		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.WEST,2)).getBlock() instanceof PillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.WEST,2)).getBlock() instanceof RotatedPillarBlock) {
 			return state.with(ROTATION,Direction.EAST);
 		}
-		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.EAST,2)).getBlock() instanceof PillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.NORTH,2).offset(Direction.EAST,2)).getBlock() instanceof RotatedPillarBlock) {
 			return state.with(ROTATION,Direction.WEST);
 		}
-		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.EAST,2)).getBlock() instanceof PillarBlock) {
+		if (world.getBlockState(pos.offset(Direction.SOUTH,2).offset(Direction.EAST,2)).getBlock() instanceof RotatedPillarBlock) {
 			return state.with(ROTATION,Direction.NORTH);
 		}
 		return state;

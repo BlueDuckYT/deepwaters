@@ -1,7 +1,7 @@
 package bernie.software.entity;
 
 
-import bernie.software.KeyboardHandler;
+import bernie.software.client.KeyboardHandler;
 import bernie.software.gui.surge.SurgeContainer;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersItems;

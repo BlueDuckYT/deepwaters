@@ -1,6 +1,6 @@
 package bernie.software.commands;
 
-import bernie.software.event.ForgeBusEventSubscriber;
+import bernie.software.ForgeBusEventSubscriber;
 import bernie.software.registry.DeepWatersBiomes;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;

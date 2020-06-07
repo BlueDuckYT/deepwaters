@@ -1,5 +1,6 @@
-package bernie.software;
+package bernie.software.client;
 
+import bernie.software.DeepWatersMod;
 import bernie.software.client.renderer.tileentity.renderer.AquafanRenderer;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersTileEntities;
@@ -33,7 +34,7 @@ public class ClientEvents {
         render(DeepWatersBlocks.AQUA_TORCH_WALL, cutout);
         render(DeepWatersBlocks.AQUA_REPEATER, cutout);
         render(DeepWatersBlocks.AQUA_COMPARE, cutout);
-        render(DeepWatersBlocks.SCRAP_DOOR, cutout);
+        render(DeepWatersBlocks.IRON_HATCH_DOOR, cutout);
         render(DeepWatersBlocks.DEADWOOD_DOOR, cutout);
         render(DeepWatersBlocks.DEADWOOD_TRAPDOOR, cutout);
         render(DeepWatersBlocks.SCRAP_LADDER, cutout);

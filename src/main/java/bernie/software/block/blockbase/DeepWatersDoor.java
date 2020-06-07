@@ -21,9 +21,8 @@ import static net.minecraft.block.TrapDoorBlock.WATERLOGGED;
 
 public class DeepWatersDoor extends DoorBlock {
 
-
     public DeepWatersDoor(Properties builder) {
-        super(builder);
+        super(builder.notSolid());
     }
 
     @Override
@@ -59,19 +58,6 @@ public class DeepWatersDoor extends DoorBlock {
         }
     }
 
-    public DeepWatersDoor(Material material, float hardness, float resist, SoundType sound, int harvestlvl, ToolType tool) {
-        super(Properties.create(material)
-                .hardnessAndResistance(hardness,resist)
-                .sound(sound)
-                .harvestLevel(harvestlvl)
-                .harvestTool(tool)
-        );
-    }
-
-    @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return Block.makeCuboidShape(0,0,0,0,0,0);
-    }
 
     @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {

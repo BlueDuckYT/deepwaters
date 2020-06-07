@@ -1,7 +1,7 @@
 package bernie.software;
 
-import bernie.software.block.ThickKelpBlock;
 import bernie.software.block.aquastone.AquastoneColor;
+import bernie.software.client.ClientEvents;
 import bernie.software.datagen.DeepWatersBlockStates;
 import bernie.software.datagen.DeepWatersItemModels;
 import bernie.software.datagen.DeepWatersLootTables;
@@ -50,6 +50,7 @@ public class DeepWatersMod
 				bus.addListener(this::clientSetup);
 			}
 		} catch (Exception err) {}
+
 		DeepWatersBiomes.BIOMES.register(bus);
 		DeepWatersBlocks.BLOCKS.register(bus);
 		DeepWatersItems.ITEMS.register(bus);

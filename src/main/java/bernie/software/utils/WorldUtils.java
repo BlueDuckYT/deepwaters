@@ -1,20 +1,16 @@
 package bernie.software.utils;
 
-import bernie.software.event.ForgeBusEventSubscriber;
+import bernie.software.ForgeBusEventSubscriber;
 import bernie.software.block.blockbase.DeepWatersPortalPillarEnd;
 import bernie.software.registry.DeepWatersBlocks;
-import bernie.software.world.gen.DeepWatersChunkGenerator;
 import net.minecraft.block.Block;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class WorldUtils
 {
@@ -39,7 +35,7 @@ public class WorldUtils
 						pos.offset(dir, i).south(1)).getBlock();
 				Block block4 = world.getBlockState(
 						pos.offset(dir, i).north(1)).getBlock();
-				DeepWatersPortalPillarEnd pillarEnd = DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get();
+				RotatedPillarBlock pillarEnd = DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END.get();
 				if (block == pillarEnd)
 				{
 					return pos.offset(dir, i);
