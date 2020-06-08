@@ -74,6 +74,7 @@ public class DeepWatersMod
 	{
 		DeepWatersBiomes.addBiomeTypes();
 		DeepWatersEntities.spawnPlacements();
+
 	}
 
 

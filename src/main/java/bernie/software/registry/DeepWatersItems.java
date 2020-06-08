@@ -4,16 +4,17 @@ import bernie.software.DeepWatersMod;
 import bernie.software.block.aquastone.AquastoneTorch;
 import bernie.software.client.renderer.Utils;
 import bernie.software.datagen.DeepWatersItemModels;
-import bernie.software.item.DeepWatersAbstractRuneItem;
-import bernie.software.item.DeepWatersIngotItem;
-import bernie.software.item.DeepWatersItem;
-import bernie.software.item.ModdedSpawnEggItem;
+import bernie.software.entity.BlufferFish;
+import bernie.software.item.*;
 import bernie.software.item.armor.DeepWatersArmorItem;
 import bernie.software.item.event.ShieldEvents;
 import bernie.software.item.tool.*;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.util.NonNullLazy;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -76,6 +77,11 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> AQUASTONE_DUST = registerNormalItem("aquastone_dust", () -> new DeepWatersItem());
 
+	//Fish buckets
+
+
+
+
 	//Spawn eggs
 	public static final RegistryObject<Item> KILLER_WIGGLER_SPAWN_EGG = ITEMS.register("killer_wiggler_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.KILLER_WIGGLER, 2892056, 12337464));
@@ -101,7 +107,6 @@ public class DeepWatersItems
 			DeepWatersEntities.CORAL_CRAWLER, 3620433, 15482449));
 	public static final RegistryObject<Item> JUNGLE_FISH_SPAWN_EGG = ITEMS.register("jungle_fish_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.JUNGLE_FISH, 16716544, 16759552));
-
 	public static final RegistryObject<Item> JELLYFISH_SPAWN_EGG = ITEMS.register("jellyfish_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.JELLYFISH, 3093151, 3085179));
 	public static final RegistryObject<Item> SUNKEN_WANDERER_SPAWN_EGG = ITEMS.register("sunken_wanderer_spawn_egg", () -> new ModdedSpawnEggItem(
@@ -116,6 +121,7 @@ public class DeepWatersItems
 			DeepWatersEntities.PHANTOM_STINGRAY, 6716671, 6716566));
 	public static final RegistryObject<Item> SNEAGLE_SPAWN_EGG = ITEMS.register("sneagle_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.SNEAGLE, 1909247, 14971647));
+	public static final RegistryObject<Item> BLUFFERFISH_BUCKET = registerNormalItem("bucket_of_blufferfish", () -> new ModdedFishBucketItem(DeepWatersEntities.BLUFFERFISH));
 
 
 	public static <T extends Item> RegistryObject<T> registerNormalItem(String registryName, Supplier<? extends Item> item)
