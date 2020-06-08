@@ -8,6 +8,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.function.Consumer;
@@ -53,6 +55,9 @@ public class DeepWatersRecipes extends DeepWatersRecipeProvider
 
 		smeltingRecipe(DeepWatersItems.PRISMARINE_INGOT.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), .7F).build(consumer, name("smelt_prismarine_ore"));
 		blastingRecipe(DeepWatersItems.PRISMARINE_INGOT.get(), DeepWatersBlocks.PRISMARINE_CRYSTAL_ORE.get(), .7F).build(consumer, name("blast_prismarine_ore"));
+		smeltingRecipe(DeepWatersItems.AQUALITE_INGOT.get(), DeepWatersBlocks.AQUALITE_ORE.get(), .7F).build(consumer, name("smelt_aqualite_ore"));
+		blastingRecipe(DeepWatersItems.AQUALITE_INGOT.get(), DeepWatersBlocks.AQUALITE_ORE.get(), .7F).build(consumer, name("blast_aqualite_ore"));
+
 
 		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_SWORD.get(), .1F).build(consumer, name("smelt_prismarine_sword"));
 		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_SWORD.get(), .1F).build(consumer, name("blast_prismarine_sword"));
@@ -72,6 +77,9 @@ public class DeepWatersRecipes extends DeepWatersRecipeProvider
 		smeltingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_BOOTS.get(), .1F).build(consumer, name("smelt_prismarine_boots"));
 		blastingRecipe(DeepWatersItems.PRISMARINE_NUGGET.get(), DeepWatersItems.PRISMARINE_BOOTS.get(), .1F).build(consumer, name("blast_prismarine_boots"));
 
+		smeltingRecipe(DeepWatersBlocks.LIMESTONE_SMOOTH.get(), DeepWatersBlocks.LIMESTONE.get(), .1F).build(consumer, name("smelt_limestone"));
+		blastingRecipe(DeepWatersBlocks.LIMESTONE_SMOOTH.get(), DeepWatersBlocks.LIMESTONE.get(), .1F).build(consumer, name("blast_limestone"));
+
 		saltFood(DeepWatersItems.SALTED_BLUFFERFISH, DeepWatersItems.BLUFFERFISH).build(consumer);
 		saltFood(DeepWatersItems.SALTED_MUCK_GULPER, DeepWatersItems.MUCK_GULPER).build(consumer);
 
@@ -79,6 +87,153 @@ public class DeepWatersRecipes extends DeepWatersRecipeProvider
 		smokingRecipe(DeepWatersItems.COOKED_BLUFFERFISH.get(), DeepWatersItems.BLUFFERFISH.get(), .1F).build(consumer, name("smoke_blufferfish"));
 		smeltingRecipe(DeepWatersItems.COOKED_MUCK_GULPER.get(), DeepWatersItems.MUCK_GULPER.get(), .1F).build(consumer, name("smelt_muck_gulper"));
 		smokingRecipe(DeepWatersItems.COOKED_MUCK_GULPER.get(), DeepWatersItems.MUCK_GULPER.get(), .1F).build(consumer, name("smoke_muck_gulper"));
+
+
+		makePlanks(DeepWatersBlocks.DEADWOOD_PLANKS, DeepWatersBlocks.DEADWOOD_LOG).build(consumer, name("deadwood_planks"));
+		makeTrapdoor(DeepWatersBlocks.DEADWOOD_TRAPDOOR, DeepWatersBlocks.DEADWOOD_PLANKS).build(consumer, name("deadwood_trapdoor"));
+		makeDoor(DeepWatersBlocks.DEADWOOD_DOOR, DeepWatersBlocks.DEADWOOD_PLANKS).build(consumer, name("deadwood_door"));
+
+		makeBricks(DeepWatersBlocks.LIMESTONE_BRICK, DeepWatersBlocks.LIMESTONE_SMOOTH).build(consumer, name("limestone_brick"));
+		makeBricks(DeepWatersBlocks.OCEAN_FLOOR_BRICK, DeepWatersBlocks.OCEAN_FLOOR).build(consumer, name("ocean_floor_brick"));
+
+		makeSlab(DeepWatersBlocks.LIMESTONE_SLAB, DeepWatersBlocks.LIMESTONE).build(consumer, name("limestone_slab"));
+		makePillar(DeepWatersBlocks.DARK_PRISMARINE_PILLAR, () -> Blocks.DARK_PRISMARINE).build(consumer, "dark_prismarine_pillar");
+		makePillar(DeepWatersBlocks.CHISELED_DARK_PRISMARINE, () -> Blocks.DARK_PRISMARINE_SLAB).build(consumer, "dark_prismarine_chiseled");
+		makePillar(DeepWatersBlocks.PRISMARINE_PILLAR, () -> Blocks.PRISMARINE).build(consumer, "prismarine_pillar");
+		makePillar(DeepWatersBlocks.CHISELED_PRISMARINE, () -> Blocks.PRISMARINE_SLAB).build(consumer, "prismarine_chiseled");
+
+		makeIngotToBlock(DeepWatersBlocks.AQUA_BLOCK, DeepWatersItems.AQUASTONE_DUST).build(consumer, name("aqua_to_block"));
+
+		ShapelessRecipeBuilder.shapelessRecipe(DeepWatersBlocks.AQUA_STONE.get(), 6).addIngredient(DeepWatersItems.AQUASTONE_DUST.get(), 2).addIngredient(Items.IRON_INGOT, 1)
+				.addCriterion("has_" + DeepWatersItems.AQUASTONE_DUST.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUASTONE_DUST.get()))
+				.build(consumer, name("aquastone_wire"));
+		ShapelessRecipeBuilder.shapelessRecipe(DeepWatersBlocks.AQUA_STONE_BUTTON.get(), 2  ).addIngredient(DeepWatersItems.AQUASTONE_DUST.get(), 1).addIngredient(DeepWatersBlocks.OCEAN_FLOOR.get(), 1)
+				.addCriterion("has_" + DeepWatersItems.AQUASTONE_DUST.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUASTONE_DUST.get()))
+				.build(consumer, name("aquastone_button"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.SCRAP_LADDER.get(), 8)
+				.patternLine("D D")
+				.patternLine("DDD")
+				.patternLine("D D")
+				.key('D', DeepWatersBlocks.DEADWOOD_PLANKS.get())
+				.addCriterion("has_" + DeepWatersBlocks.DEADWOOD_PLANKS.get().getRegistryName().getPath(), hasItem(DeepWatersBlocks.DEADWOOD_PLANKS.get()))
+				.build(consumer, name("scrap_ladder"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.SCRAP_LANTERN.get(), 2)
+				.patternLine("DDD")
+				.patternLine("DTD")
+				.patternLine("DDD")
+				.key('D', DeepWatersBlocks.DEADWOOD_PLANKS.get())
+				.key('T', Blocks.TORCH)
+				.addCriterion("has_" + DeepWatersBlocks.DEADWOOD_PLANKS.get().getRegistryName().getPath(), hasItem(DeepWatersBlocks.DEADWOOD_PLANKS.get()))
+				.build(consumer, name("scrap_lantern"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.AQUALITE_SWORD.get(), 1)
+				.patternLine("AGA")
+				.patternLine(" A ")
+				.patternLine(" S ")
+				.key('A', DeepWatersItems.AQUALITE_INGOT.get())
+				.key('G', Items.GOLD_INGOT)
+				.key('S', Items.STICK)
+				.addCriterion("has_" + DeepWatersItems.AQUALITE_INGOT.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUALITE_INGOT.get()))
+				.build(consumer, name("aqualite_sword"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.AQUALITE_PICKAXE.get(), 1)
+				.patternLine("AAA")
+				.patternLine(" G ")
+				.patternLine(" S ")
+				.key('A', DeepWatersItems.AQUALITE_INGOT.get())
+				.key('G', Items.GOLD_INGOT)
+				.key('S', Items.STICK)
+				.addCriterion("has_" + DeepWatersItems.AQUALITE_INGOT.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUALITE_INGOT.get()))
+				.build(consumer, name("aqualite_pickaxe"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.AQUALITE_AXE.get(), 1)
+				.patternLine("GA ")
+				.patternLine("AS ")
+				.patternLine(" S ")
+				.key('A', DeepWatersItems.AQUALITE_INGOT.get())
+				.key('G', Items.GOLD_INGOT)
+				.key('S', Items.STICK)
+				.addCriterion("has_" + DeepWatersItems.AQUALITE_INGOT.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUALITE_INGOT.get()))
+				.build(consumer, name("aqualite_axe"));
+
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.AQUALITE_SHOVEL.get(), 1)
+				.patternLine(" A ")
+				.patternLine(" G ")
+				.patternLine(" S ")
+				.key('A', DeepWatersItems.AQUALITE_INGOT.get())
+				.key('G', Items.GOLD_INGOT)
+				.key('S', Items.STICK)
+				.addCriterion("has_" + DeepWatersItems.AQUALITE_INGOT.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUALITE_INGOT.get()))
+				.build(consumer, name("aqualite_shovel"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.AQUALITE_HOE.get(), 1)
+				.patternLine("GA ")
+				.patternLine(" S ")
+				.patternLine(" S ")
+				.key('A', DeepWatersItems.AQUALITE_INGOT.get())
+				.key('G', Items.GOLD_INGOT)
+				.key('S', Items.STICK)
+				.addCriterion("has_" + DeepWatersItems.AQUALITE_INGOT.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUALITE_INGOT.get()))
+				.build(consumer, name("aqualite_hoe"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.AQUA_FAN.get(), 1)
+				.patternLine("IAI")
+				.patternLine("AWA")
+				.patternLine("IAI")
+				.key('A', DeepWatersItems.AQUALITE_INGOT.get())
+				.key('I', Items.IRON_INGOT)
+				.key('W', DeepWatersBlocks.AQUA_STONE.get())
+				.addCriterion("has_" + DeepWatersItems.AQUALITE_INGOT.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUALITE_INGOT.get()))
+				.addCriterion("has_" + DeepWatersItems.AQUASTONE_DUST.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUASTONE_DUST.get()))
+				.build(consumer, name("aqua_fan"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.AQUA_COMPARATOR.get(), 1)
+				.patternLine(" T ")
+				.patternLine("TCT")
+				.patternLine("LLL")
+				.key('T', DeepWatersBlocks.AQUA_TORCH.get())
+				.key('C', DeepWatersItems.CRYSTALINE_CORAL.get())
+				.key('L', DeepWatersBlocks.LIMESTONE_SMOOTH.get())
+				.addCriterion("has_" + DeepWatersItems.AQUASTONE_DUST.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUASTONE_DUST.get()))
+				.build(consumer, name("aquastone_comparator"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.AQUA_REPEATER.get(), 1)
+				.patternLine("TAT")
+				.patternLine("LLL")
+				.key('T', DeepWatersBlocks.AQUA_TORCH.get())
+				.key('A', DeepWatersBlocks.AQUA_STONE.get())
+				.key('L', DeepWatersBlocks.LIMESTONE_SMOOTH.get())
+				.addCriterion("has_" + DeepWatersItems.AQUASTONE_DUST.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUASTONE_DUST.get()))
+				.build(consumer, name("aquastone_repeater"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.AQUA_TORCH.get(), 1)
+				.patternLine("A")
+				.patternLine("S")
+				.key('A', DeepWatersItems.AQUASTONE_DUST.get())
+				.key('S', Items.STICK)
+				.addCriterion("has_" + DeepWatersItems.AQUASTONE_DUST.get().getRegistryName().getPath(), hasItem(DeepWatersItems.AQUASTONE_DUST.get()))
+				.build(consumer, name("aqua_torch"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.IRON_HATCH.get(), 1)
+				.patternLine(" A ")
+				.patternLine("III")
+				.patternLine("III")
+				.key('I', Items.IRON_INGOT)
+				.key('A', DeepWatersBlocks.AQUA_STONE.get())
+				.addCriterion("has_" + DeepWatersBlocks.AQUA_STONE.get().getRegistryName().getPath(), hasItem(DeepWatersBlocks.AQUA_STONE.get()))
+				.build(consumer, name("iron_hatch"));
+
+		ShapedRecipeBuilder.shapedRecipe(DeepWatersBlocks.IRON_HATCH_DOOR.get(), 1)
+				.patternLine("I I")
+				.patternLine("IAI")
+				.patternLine("I I")
+				.key('I', Items.IRON_INGOT)
+				.key('A', DeepWatersBlocks.AQUA_STONE.get())
+				.addCriterion("has_" + DeepWatersBlocks.AQUA_STONE.get().getRegistryName().getPath(), hasItem(DeepWatersBlocks.AQUA_STONE.get()))
+				.build(consumer, name("iron_hatch_door"));
 
 		ShapedRecipeBuilder.shapedRecipe(DeepWatersItems.PRISMARINE_HELMET.get(), 1)
 				.patternLine("IBI")

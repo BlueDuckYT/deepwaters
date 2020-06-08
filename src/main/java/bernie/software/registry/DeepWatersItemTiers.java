@@ -6,7 +6,8 @@ import net.minecraft.item.crafting.Ingredient;
 
 public enum DeepWatersItemTiers implements IItemTier
 {
-	PRISMARINE(779, 7, 1.5F, 2, 12, DeepWatersItems.PRISMARINE_INGOT.get());
+	PRISMARINE(779, 7, 1.5F, 2, 12, DeepWatersItems.PRISMARINE_INGOT.get()),
+	AQUALITE(1150, 7, 3F, 3, 12, DeepWatersItems.PRISMARINE_INGOT.get());
 
 
 	int maxUses;

@@ -52,7 +52,7 @@ public class DeepWatersBlocks {
 
     //Portal
     public static final RegistryObject<Block> DEEPWATERSPORTAL = registerOnlyBlock("portal", () -> new DeepWatersPortalBlock(BlockProperties.UNBREAKABLE));
-    public static final RegistryObject<PedestalBlock> PEDESTAL = registerBlockAndItemNoDrops("pedestal", () -> new PedestalBlock());
+    public static final RegistryObject<PedestalBlock> PEDESTAL = registerBlock("pedestal", () -> new PedestalBlock());
     public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlockAndItem("portal_pillar", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE));
     public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR_END = registerBlockAndItem("portal_pillar_end", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE));
     public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlockAndItem("activated_portal_pillar", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE.lightValue(15)));
@@ -70,7 +70,7 @@ public class DeepWatersBlocks {
 
     //Aquastone
     public static final RegistryObject<Block> AQUA_STONE = registerBlock("aquastone", () -> new AquastoneDust(BlockProperties.ROCK.doesNotBlockMovement()));
-    public static final RegistryObject<Block> AQUA_COMPARE = registerBlock("aquastone_comparator", () -> new AquastoneComparator(BlockProperties.ROCK));
+    public static final RegistryObject<Block> AQUA_COMPARATOR = registerBlock("aquastone_comparator", () -> new AquastoneComparator(BlockProperties.ROCK));
     public static final RegistryObject<Block> AQUA_REPEATER = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(BlockProperties.ROCK));
     public static final RegistryObject<Block> AQUA_FAN = registerBlock("aquastone_fan", () -> new AquastoneFan(Block.Properties.create(Material.ROCK)),()->AquafanItemStackRenderer::new);
     public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new AquastoneBlock(BlockProperties.ROCK));
@@ -84,7 +84,7 @@ public class DeepWatersBlocks {
 
     //Scrap
     public static final RegistryObject<Block> SCRAP_LADDER = registerBlock("scrap_ladder", () -> new DeepWatersLadder(BlockProperties.SCRAP));
-    public static final RegistryObject<Block> SCRAP_LANTERN = registerBlock("scrap_lantern", () -> new DeepWatersLantern(BlockProperties.SCRAP.harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> SCRAP_LANTERN = registerBlock("scrap_lantern", () -> new DeepWatersLantern(BlockProperties.SCRAP.harvestTool(ToolType.PICKAXE).lightValue(8)));
 
     //Deadwood
     public static final RegistryObject<LogBlock> DEADWOOD_LOG = registerBlock("deadwood_log", () -> new DeepWatersLogBlock(MaterialColor.WHITE_TERRACOTTA));

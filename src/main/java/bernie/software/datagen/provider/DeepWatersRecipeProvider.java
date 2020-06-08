@@ -113,6 +113,57 @@ public class DeepWatersRecipeProvider extends ForgeRecipeProvider implements ICo
                 .setGroup("");
     }
 
+    public ShapelessRecipeBuilder makePlanks(Supplier<? extends Block> planks, Supplier<? extends Block> log)
+    {
+        return ShapelessRecipeBuilder.shapelessRecipe(planks.get(), 4).addIngredient(log.get()).addCriterion("has_" + log.get().getRegistryName().getPath(), hasItem(log.get()));
+    }
+
+    public ShapedRecipeBuilder makeTrapdoor(Supplier<? extends Block> trapDoorOut, Supplier<? extends Block> materialIn) {
+        return ShapedRecipeBuilder.shapedRecipe(trapDoorOut.get())
+                .patternLine("###")
+                .patternLine("###")
+                .key('#', materialIn.get())
+                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()))
+                .setGroup("");
+    }
+
+    public ShapedRecipeBuilder makeBricks(Supplier<? extends Block> brickOut, Supplier<? extends Block> materialIn) {
+        return ShapedRecipeBuilder.shapedRecipe(brickOut.get(), 4)
+                .patternLine("##")
+                .patternLine("##")
+                .key('#', materialIn.get())
+                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()))
+                .setGroup("");
+    }
+
+    public ShapedRecipeBuilder makeDoor(Supplier<? extends Block> doorOut, Supplier<? extends Block> materialIn) {
+        return ShapedRecipeBuilder.shapedRecipe(doorOut.get())
+                .patternLine("##")
+                .patternLine("##")
+                .patternLine("##")
+                .key('#', materialIn.get())
+                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()))
+                .setGroup("");
+    }
+
+
+    public ShapedRecipeBuilder makeSlab(Supplier<? extends Block> slabOut, Supplier<? extends Block> materialIn) {
+        return ShapedRecipeBuilder.shapedRecipe(slabOut.get(), 6)
+                .patternLine("###")
+                .key('#', materialIn.get())
+                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()))
+                .setGroup("");
+    }
+
+    public ShapedRecipeBuilder makePillar(Supplier<? extends Block> pillarOut, Supplier<? extends Block> materialIn) {
+        return ShapedRecipeBuilder.shapedRecipe(pillarOut.get(), 2)
+                .patternLine("#")
+                .patternLine("#")
+                .key('#', materialIn.get())
+                .addCriterion("has_" + materialIn.get().getRegistryName().getPath(), hasItem(materialIn.get()))
+                .setGroup("");
+    }
+
     public CookingRecipeBuilder smeltingRecipe(IItemProvider result, IItemProvider ingredient, float exp) {
         return smeltingRecipe(result, ingredient, exp, 1);
     }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:prismarine"
+    }
+  },
+  "result": {
+    "item": "deepwaters:prismarine_pillar",
+    "count": 2
+  }
+}

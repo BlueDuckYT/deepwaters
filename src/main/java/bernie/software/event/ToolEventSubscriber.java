@@ -60,7 +60,7 @@ public class ToolEventSubscriber
 			{
 				event.setNewSpeed(originalSpeed * 10);
 			}
-			else if (item == DeepWatersItems.AQUALITE_PICKAXE.get())
+			else if (item == DeepWatersItems.AQUALITE_PICKAXE.get() || item == DeepWatersItems.AQUALITE_AXE.get() || item == DeepWatersItems.AQUALITE_SHOVEL.get() || item == DeepWatersItems.AQUALITE_HOE.get())
 			{
 				event.setNewSpeed(originalSpeed * 20);
 			}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GA ",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "A": {
+      "item": "deepwaters:aqualite_ingot"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "deepwaters:aqualite_hoe"
+  }
+}

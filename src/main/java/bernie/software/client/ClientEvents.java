@@ -33,7 +33,7 @@ public class ClientEvents {
         render(DeepWatersBlocks.AQUA_TORCH, cutout);
         render(DeepWatersBlocks.AQUA_TORCH_WALL, cutout);
         render(DeepWatersBlocks.AQUA_REPEATER, cutout);
-        render(DeepWatersBlocks.AQUA_COMPARE, cutout);
+        render(DeepWatersBlocks.AQUA_COMPARATOR, cutout);
         render(DeepWatersBlocks.IRON_HATCH_DOOR, cutout);
         render(DeepWatersBlocks.DEADWOOD_DOOR, cutout);
         render(DeepWatersBlocks.DEADWOOD_TRAPDOOR, cutout);

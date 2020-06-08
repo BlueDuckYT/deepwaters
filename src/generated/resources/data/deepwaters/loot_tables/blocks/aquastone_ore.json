@@ -33,7 +33,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "deepwaters:aquastone"
+              "name": "deepwaters:aquastone_dust"
             }
           ]
         }

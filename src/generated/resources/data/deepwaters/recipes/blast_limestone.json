@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "deepwaters:limestone"
+  },
+  "result": "deepwaters:limestone_smooth",
+  "experience": 0.1,
+  "cookingtime": 100
+}

@@ -22,7 +22,9 @@ public class DeepWatersLadder extends LadderBlock {
                 .harvestLevel(harvestlvl)
                 .harvestTool(tool)
         );
+
     }
+
 
     @Override
     public VoxelShape getRenderShape(BlockState state, IBlockReader worldIn, BlockPos pos) {

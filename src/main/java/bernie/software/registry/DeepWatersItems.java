@@ -3,18 +3,23 @@ package bernie.software.registry;
 import bernie.software.DeepWatersMod;
 import bernie.software.block.aquastone.AquastoneTorch;
 import bernie.software.client.renderer.Utils;
-import bernie.software.item.DeepWatersAbstractRuneItem;
-import bernie.software.item.DeepWatersIngotItem;
-import bernie.software.item.DeepWatersItem;
-import bernie.software.item.ModdedSpawnEggItem;
+import bernie.software.datagen.DeepWatersItemModels;
+import bernie.software.entity.BlufferFish;
+import bernie.software.item.*;
 import bernie.software.item.armor.DeepWatersArmorItem;
 import bernie.software.item.event.ShieldEvents;
 import bernie.software.item.tool.*;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.util.NonNullLazy;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class DeepWatersItems
 {
@@ -39,7 +44,7 @@ public class DeepWatersItems
 
 	//Weapons
 	public static final RegistryObject<Item> PRISMARINE_SWORD = ITEMS.register("prismarine_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased damage underwater"));
-	public static final RegistryObject<Item> AQUALITE_SWORD = ITEMS.register("aqualite_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased damage underwater"));
+	public static final RegistryObject<Item> AQUALITE_SWORD = ITEMS.register("aqualite_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.AQUALITE).addToolTip("Increased damage underwater"));
 
 	//Shields
 	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new ShieldEvents.PrismarineShielfEvent().getClass()).addToolTip("Allows you to dash in water."));
@@ -49,7 +54,10 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_AXE = ITEMS.register("prismarine_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
 	public static final RegistryObject<Item> PRISMARINE_SHOVEL = ITEMS.register("prismarine_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased breaking speed underwater"));
-	public static final RegistryObject<Item> AQUALITE_PICKAXE = ITEMS.register("aqualite_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
+	public static final RegistryObject<Item> AQUALITE_PICKAXE = ITEMS.register("aqualite_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.AQUALITE).addToolTip("Increased mining speed underwater"));
+	public static final RegistryObject<Item> AQUALITE_AXE = ITEMS.register("aqualite_axe", () -> new DeepWatersAxeItem(DeepWatersItemTiers.AQUALITE).addToolTip("Increased breaking speed underwater"));
+	public static final RegistryObject<Item> AQUALITE_SHOVEL = ITEMS.register("aqualite_shovel", () -> new DeepWatersShovelItem(DeepWatersItemTiers.AQUALITE).addToolTip("Increased breaking speed underwater"));
+	public static final RegistryObject<Item> AQUALITE_HOE = ITEMS.register("aqualite_hoe", () -> new DeepWatersHoeItem(DeepWatersItemTiers.AQUALITE).addToolTip("Increased hoeing? speed underwater lol"));
 
 	//Armor
 	public static final RegistryObject<Item> PRISMARINE_HELMET = ITEMS.register("prismarine_helmet", () -> new DeepWatersArmorItem(DeepWatersArmorMaterials.PRISMARINE, EquipmentSlotType.HEAD));
@@ -67,6 +75,12 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> POWER_STONE = ITEMS.register("power_stone", () -> new DeepWatersAbstractRuneItem(new Item.Properties().maxStackSize(1).group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
 	public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", () -> new DeepWatersItem());
 	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> AQUASTONE_DUST = registerNormalItem("aquastone_dust", () -> new DeepWatersItem());
+
+	//Fish buckets
+
+
+
 
 	//Spawn eggs
 	public static final RegistryObject<Item> KILLER_WIGGLER_SPAWN_EGG = ITEMS.register("killer_wiggler_spawn_egg", () -> new ModdedSpawnEggItem(
@@ -93,7 +107,6 @@ public class DeepWatersItems
 			DeepWatersEntities.CORAL_CRAWLER, 3620433, 15482449));
 	public static final RegistryObject<Item> JUNGLE_FISH_SPAWN_EGG = ITEMS.register("jungle_fish_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.JUNGLE_FISH, 16716544, 16759552));
-
 	public static final RegistryObject<Item> JELLYFISH_SPAWN_EGG = ITEMS.register("jellyfish_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.JELLYFISH, 3093151, 3085179));
 	public static final RegistryObject<Item> SUNKEN_WANDERER_SPAWN_EGG = ITEMS.register("sunken_wanderer_spawn_egg", () -> new ModdedSpawnEggItem(
@@ -108,5 +121,14 @@ public class DeepWatersItems
 			DeepWatersEntities.PHANTOM_STINGRAY, 6716671, 6716566));
 	public static final RegistryObject<Item> SNEAGLE_SPAWN_EGG = ITEMS.register("sneagle_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.SNEAGLE, 1909247, 14971647));
+	public static final RegistryObject<Item> BLUFFERFISH_BUCKET = registerNormalItem("bucket_of_blufferfish", () -> new ModdedFishBucketItem(DeepWatersEntities.BLUFFERFISH));
+
+
+	public static <T extends Item> RegistryObject<T> registerNormalItem(String registryName, Supplier<? extends Item> item)
+	{
+		RegistryObject<? extends Item> registryObject = ITEMS.register(registryName, item);
+		DeepWatersItemModels.NormalItems.add((RegistryObject<Item>) registryObject);
+		return (RegistryObject<T>) registryObject;
+	}
 
 }

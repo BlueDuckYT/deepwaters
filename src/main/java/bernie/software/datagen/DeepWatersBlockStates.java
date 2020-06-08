@@ -41,7 +41,6 @@ public class DeepWatersBlockStates extends DeepWatersBlockStateProvider
 		pillarBlock(DeepWatersBlocks.PORTAL_PILLAR_END, "portal_pillar_end");
 		pillarBlock(DeepWatersBlocks.ACTIVATED_PORTAL_PILLAR_END, "activated_portal_pillar_end");
 		rotational(DeepWatersBlocks.SUNKEN_WASTES_LAMP, "sunkenwastes_lamp");
-		rotational(DeepWatersBlocks.PEDESTAL, "pedestal");
 		//redstone(DeepWatersBlocks.AQUA_STONE, "aquastone_wire");
 		pillarBlock(DeepWatersBlocks.DARK_PRISMARINE_PILLAR, "dark_prismarine_pillar");
 		pillarBlock(DeepWatersBlocks.PRISMARINE_PILLAR, "prismarine_pillar");

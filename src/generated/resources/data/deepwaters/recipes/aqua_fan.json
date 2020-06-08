@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IAI",
+    "AWA",
+    "IAI"
+  ],
+  "key": {
+    "A": {
+      "item": "deepwaters:aqualite_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "W": {
+      "item": "deepwaters:aquastone"
+    }
+  },
+  "result": {
+    "item": "deepwaters:aquastone_fan"
+  }
+}

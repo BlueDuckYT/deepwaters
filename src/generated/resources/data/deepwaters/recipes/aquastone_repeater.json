@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TAT",
+    "LLL"
+  ],
+  "key": {
+    "T": {
+      "item": "deepwaters:aquastone_torch"
+    },
+    "A": {
+      "item": "deepwaters:aquastone"
+    },
+    "L": {
+      "item": "deepwaters:limestone_smooth"
+    }
+  },
+  "result": {
+    "item": "deepwaters:aquastone_repeater"
+  }
+}

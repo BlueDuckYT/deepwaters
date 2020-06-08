@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D D",
+    "DDD",
+    "D D"
+  ],
+  "key": {
+    "D": {
+      "item": "deepwaters:deadwood_planks"
+    }
+  },
+  "result": {
+    "item": "deepwaters:scrap_ladder",
+    "count": 8
+  }
+}
