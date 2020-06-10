@@ -2,6 +2,7 @@ package bernie.software.client.renderer.tileentity.renderer;
 
 import bernie.software.block.aquastone.AquastoneFan;
 import bernie.software.client.renderer.tileentity.model.AquafanModel;
+import bernie.software.tileentity.TileEntityAquaFan;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.DropperBlock;
 import net.minecraft.client.Minecraft;
@@ -18,7 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
-public class AquafanRenderer extends TileEntityRenderer<TileEntity>
+public class AquafanRenderer extends TileEntityRenderer<TileEntityAquaFan>
 {
 
 	protected static AquafanRenderer INSTANCE;
@@ -30,10 +31,9 @@ public class AquafanRenderer extends TileEntityRenderer<TileEntity>
 	}
 
 	@Override
-	public void render(TileEntity TileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn)
+	public void render(TileEntityAquaFan tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn)
 	{
 		matrixStackIn.push();
-		AquastoneFan.TileEntity tileEntityIn = (AquastoneFan.TileEntity) TileEntityIn;
 		matrixStackIn.translate(0.5f, 0.5f, 0.5f);
 		if (tileEntityIn.hasWorld())
 		{
@@ -85,8 +85,4 @@ public class AquafanRenderer extends TileEntityRenderer<TileEntity>
 		}
 		matrixStackIn.pop();
 	}
-
-//    public Material getMaterial() {
-//        return new Material(new ResourceLocation("textures/atlas/chest.png"), new ResourceLocation("model/tileentity/aquastone_fan.png"));
-//    }
 }

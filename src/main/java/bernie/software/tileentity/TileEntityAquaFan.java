@@ -7,17 +7,10 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
-public class TileEntityAquaFan extends TileEntity implements ITickableTileEntity
-{
-
-	public TileEntityAquaFan()
-	{
+public class TileEntityAquaFan extends TileEntity {
+	public TileEntityAquaFan() {
 		super(DeepWatersTileEntities.AQUASTONE_FAN.get());
 	}
-
-	@Override
-	public void tick()
-	{
-
-	}
+	
+	public float rotation=0;
 }

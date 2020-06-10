@@ -3,6 +3,7 @@ package bernie.software.block.aquastone;
 import bernie.software.block.BubbleSource;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersTileEntities;
+import bernie.software.tileentity.TileEntityAquaFan;
 import bernie.software.utils.CollisionUtils;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.ItemEntity;
@@ -167,14 +168,6 @@ public class AquastoneFan extends BubbleSource implements ITileEntityProvider {
     @Nullable
     @Override
     public net.minecraft.tileentity.TileEntity createNewTileEntity(IBlockReader worldIn) {
-        return new TileEntity();
-    }
-    
-    public static class TileEntity extends net.minecraft.tileentity.TileEntity {
-        public TileEntity() {
-            super(DeepWatersTileEntities.AQUASTONE_FAN.get());
-        }
-
-        public float rotation=0;
+        return new TileEntityAquaFan();
     }
 }
