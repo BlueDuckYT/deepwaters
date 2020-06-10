@@ -51,31 +51,12 @@ public class AquastoneButton
 		{
 			builder.add(HORIZONTAL_FACING, POWERED, FACE, WATERLOGGED);
 		}
-
+		
 		@Override
 		public BlockState getStateForPlacement(BlockItemUseContext context)
 		{
-			try
-			{
-				int sources=0;
-				if (context.getWorld().getBlockState(context.getPos().offset(Direction.EAST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-					sources++;
-				}
-				if (context.getWorld().getBlockState(context.getPos().offset(Direction.WEST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-					sources++;
-				}
-				if (context.getWorld().getBlockState(context.getPos().offset(Direction.SOUTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-					sources++;
-				}
-				if (context.getWorld().getBlockState(context.getPos().offset(Direction.NORTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-					sources++;
-				}
-				return sources>=2 ? super.getStateForPlacement(context).with(WATERLOGGED, true) : super.getStateForPlacement(context).with(WATERLOGGED, false);
-			}
-			catch (Exception err)
-			{
-				return super.getStateForPlacement(context);
-			}
+			IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+			return super.getStateForPlacement(context).with(LadderBlock.WATERLOGGED,ifluidstate.getFluid() == Fluids.WATER);
 		}
 
 		public IFluidState getFluidState(BlockState state)

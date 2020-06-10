@@ -40,7 +40,8 @@ public class AquastoneTorch
         public BlockState getStateForPlacement(BlockItemUseContext context)
         {
             try {
-                return super.getStateForPlacement(context).with(WATERLOGGED,false);
+                IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+                return super.getStateForPlacement(context).with(WATERLOGGED,ifluidstate.getFluid()==Fluids.WATER);
             } catch (Exception err) {
                 return super.getStateForPlacement(context);
             }
