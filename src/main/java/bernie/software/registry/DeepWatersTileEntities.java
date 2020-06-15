@@ -1,7 +1,6 @@
 package bernie.software.registry;
 
 import bernie.software.DeepWatersMod;
-import bernie.software.tileentity.BubbleMachineTileEntity;
 import bernie.software.tileentity.TileEntityAquaFan;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;

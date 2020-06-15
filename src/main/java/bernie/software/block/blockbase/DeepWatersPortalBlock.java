@@ -18,6 +18,9 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
@@ -56,7 +59,13 @@ public class DeepWatersPortalBlock extends Block
 			worldIn.addParticle(ParticleTypes.BUBBLE_POP, d0, d1, d2, 0.0D, -0.04D, 0.0D);
 		}
 	}
-
+	
+	VoxelShape shape=VoxelShapes.create(0,0,0,0,0,0);
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+		return shape;
+	}
+	
 	@Override
 	public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state)
 	{

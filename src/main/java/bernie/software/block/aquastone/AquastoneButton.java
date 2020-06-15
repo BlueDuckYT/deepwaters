@@ -51,18 +51,12 @@ public class AquastoneButton
 		{
 			builder.add(HORIZONTAL_FACING, POWERED, FACE, WATERLOGGED);
 		}
-
+		
 		@Override
 		public BlockState getStateForPlacement(BlockItemUseContext context)
 		{
-			try
-			{
-				return super.getStateForPlacement(context).with(WATERLOGGED, false);
-			}
-			catch (Exception err)
-			{
-				return super.getStateForPlacement(context);
-			}
+			IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+			return super.getStateForPlacement(context).with(LadderBlock.WATERLOGGED,ifluidstate.getFluid() == Fluids.WATER);
 		}
 
 		public IFluidState getFluidState(BlockState state)

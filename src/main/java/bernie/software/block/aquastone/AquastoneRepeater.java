@@ -1,9 +1,6 @@
 package bernie.software.block.aquastone;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.RepeaterBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -11,6 +8,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
@@ -32,7 +30,8 @@ public class AquastoneRepeater extends RepeaterBlock implements IWaterLoggable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		return super.getStateForPlacement(context).with(WATERLOGGED, false);
+		IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+		return super.getStateForPlacement(context).with(WATERLOGGED, ifluidstate.getFluid()==Fluids.WATER);
 	}
 
 	public IFluidState getFluidState(BlockState state)

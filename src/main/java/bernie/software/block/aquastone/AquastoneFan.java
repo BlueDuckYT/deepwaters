@@ -3,6 +3,7 @@ package bernie.software.block.aquastone;
 import bernie.software.block.BubbleSource;
 import bernie.software.registry.DeepWatersBlocks;
 import bernie.software.registry.DeepWatersTileEntities;
+import bernie.software.tileentity.TileEntityAquaFan;
 import bernie.software.utils.CollisionUtils;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.ItemEntity;
@@ -55,23 +56,10 @@ public class AquastoneFan extends BubbleSource implements ITileEntityProvider {
         } else if (maxOffHorizontal<=Math.abs(context.getPlayer().getPosY()-context.getHitVec().getY())/divisor) {
             placementDir=Direction.UP;
         }
-        int sources=0;
-        if (context.getWorld().getBlockState(context.getPos().offset(Direction.EAST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-            sources++;
-        }
-        if (context.getWorld().getBlockState(context.getPos().offset(Direction.WEST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-            sources++;
-        }
-        if (context.getWorld().getBlockState(context.getPos().offset(Direction.SOUTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-            sources++;
-        }
-        if (context.getWorld().getBlockState(context.getPos().offset(Direction.NORTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
-            sources++;
-        }
-        System.out.println(sources);
         BlockState newState=this.getDefaultState().with(DropperBlock.FACING,placementDir.getOpposite()).with(ACTIVE,context.getWorld().isBlockPowered(context.getPos()));
         context.getWorld().notifyBlockUpdate(context.getPos(),context.getWorld().getBlockState(context.getPos()),newState,0);
-        return newState.with(StairsBlock.WATERLOGGED,sources>=2).with(HAS_SOUL_SAND,false);
+        IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+        return newState.with(LadderBlock.WATERLOGGED,ifluidstate.getFluid() == Fluids.WATER).with(HAS_SOUL_SAND,false);
     }
     
     @Override
@@ -167,14 +155,6 @@ public class AquastoneFan extends BubbleSource implements ITileEntityProvider {
     @Nullable
     @Override
     public net.minecraft.tileentity.TileEntity createNewTileEntity(IBlockReader worldIn) {
-        return new TileEntity();
-    }
-    
-    public static class TileEntity extends net.minecraft.tileentity.TileEntity {
-        public TileEntity() {
-            super(DeepWatersTileEntities.AQUASTONE_FAN.get());
-        }
-
-        public float rotation=0;
+        return new TileEntityAquaFan();
     }
 }

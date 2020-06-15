@@ -40,7 +40,8 @@ public class AquastoneTorch
         public BlockState getStateForPlacement(BlockItemUseContext context)
         {
             try {
-                return super.getStateForPlacement(context).with(WATERLOGGED,false);
+                IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+                return super.getStateForPlacement(context).with(WATERLOGGED,ifluidstate.getFluid()==Fluids.WATER);
             } catch (Exception err) {
                 return super.getStateForPlacement(context);
             }
@@ -80,8 +81,21 @@ public class AquastoneTorch
         @Override
         public BlockState getStateForPlacement(BlockItemUseContext context)
         {
+            int sources=0;
+            if (context.getWorld().getBlockState(context.getPos().offset(Direction.EAST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+                sources++;
+            }
+            if (context.getWorld().getBlockState(context.getPos().offset(Direction.WEST)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+                sources++;
+            }
+            if (context.getWorld().getBlockState(context.getPos().offset(Direction.SOUTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+                sources++;
+            }
+            if (context.getWorld().getBlockState(context.getPos().offset(Direction.NORTH)).getBlockState().getFluidState().equals(Blocks.WATER.getDefaultState().getFluidState())) {
+                sources++;
+            }
             try {
-                return super.getStateForPlacement(context).with(WATERLOGGED,false);
+                return sources>=2 ? super.getStateForPlacement(context).with(WATERLOGGED, true) : super.getStateForPlacement(context).with(WATERLOGGED, false);
             } catch (Exception err) {
                 return super.getStateForPlacement(context);
             }

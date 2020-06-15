@@ -107,30 +107,8 @@ public class AquastoneDust extends RedstoneWireBlock implements IWaterLoggable
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context)
 	{
-		World wo=context.getWorld();
-		BlockPos pos=context.getPos();
-		int level=0;
-		boolean logged=false;
-		logged=Blocks.COBBLESTONE_STAIRS.getStateForPlacement(context).get(WATERLOGGED);
-		for (Direction dir:Direction.values()) {
-			if (wo.getBlockState(pos.offset(dir)).getMaterial().isLiquid()) {
-				logged=true;
-				level=0;
-			}
-			try {
-				if (wo.getBlockState(pos.offset(dir)).get(WATERLOGGED)) {
-					logged=true;
-					if (wo.getBlockState(pos.offset(dir)).get(LEVEL)>=1) {
-						level=wo.getBlockState(pos.offset(dir)).get(LEVEL)-1;
-					}
-					if (level<=0) {
-						level=0;
-						logged=false;
-					}
-				}
-			} catch (Exception err) {}
-		}
-		return super.getStateForPlacement(context).with(WATERLOGGED, logged);
+		IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+		return super.getStateForPlacement(context).with(WATERLOGGED, ifluidstate.getFluid()==Fluids.WATER);
 	}
 
 	@Override

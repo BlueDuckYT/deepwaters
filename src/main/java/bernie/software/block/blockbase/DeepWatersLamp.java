@@ -3,8 +3,11 @@ package bernie.software.block.blockbase;
 import bernie.software.utils.CollisionUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LadderBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -14,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraftforge.common.ToolType;
 
 public class DeepWatersLamp extends Block {
@@ -64,10 +68,12 @@ public class DeepWatersLamp extends Block {
     public static final EnumProperty ROTATION = BlockStateProperties.HORIZONTAL_FACING;
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(ROTATION);
+        builder.add(ROTATION, LadderBlock.WATERLOGGED);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(ROTATION, context.getPlacementHorizontalFacing().getOpposite());
+        IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+        
+        return this.getDefaultState().with(ROTATION, context.getPlacementHorizontalFacing().getOpposite()).with(LadderBlock.WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
     }
 }
