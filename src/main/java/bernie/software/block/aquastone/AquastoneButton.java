@@ -102,9 +102,10 @@ public class AquastoneButton
 		@Deprecated
 		public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 			if (!stateIn.get(BlockStateProperties.WATERLOGGED)) {
-				this.receiveFluid(worldIn, currentPos, stateIn, Fluids.WATER.getStillFluidState(false));
+//				this.receiveFluid(worldIn, currentPos, stateIn, Fluids.WATER.getStillFluidState(false));
+			} else {
+				worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
 			}
-			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
 			return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 		}
 
