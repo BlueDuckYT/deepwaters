@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 import java.awt.*;
 
 @OnlyIn(Dist.CLIENT)
-public class AquastoneColor implements IBlockColor {
+public class AquastoneColor implements  IBlockColor {
     public int getColorAquastone(BlockState p_getColor_1_, @Nullable ILightReader p_getColor_2_, @Nullable BlockPos p_getColor_3_, int p_getColor_4_) {
         try
         {

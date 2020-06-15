@@ -207,8 +207,7 @@ public class PedestalBlock extends Block implements IWaterLoggable
 	                              Block portalBlockEnd)
 	{
 		worldIn.setBlockState(centerBottom,
-				portalBlockEnd.getDefaultState().with(FACING,
-						Direction.UP));
+				portalBlockEnd.getDefaultState());
 		worldIn.setBlockState(centerBottom.up(),
 				activePillar.getDefaultState());
 		worldIn.setBlockState(centerBottom.up(2),

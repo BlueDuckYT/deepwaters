@@ -63,6 +63,7 @@ public class DeepWatersPortalBlock extends Block
 		return ItemStack.EMPTY;
 	}
 
+	
 	@Override
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
 	{
