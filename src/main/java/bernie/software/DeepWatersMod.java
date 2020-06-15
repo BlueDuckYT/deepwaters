@@ -1,5 +1,6 @@
 package bernie.software;
 
+import bernie.software.IMC.DynamicWeaponry.ConfigIntegration;
 import bernie.software.block.aquastone.AquastoneColor;
 import bernie.software.client.ClientEvents;
 import bernie.software.datagen.DeepWatersBlockStates;
@@ -16,9 +17,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -26,17 +29,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+import java.io.File;
+
 @Mod(DeepWatersMod.ModID)
 public class DeepWatersMod
 {
 	public static Logger logger;
 	public static final String ModID = "deepwaters";
-	public static boolean noFogMod = false;
 
 	public static final SimpleChannel CHANNEL = new NetBuilder(new ResourceLocation(ModID, "main"))
 			.version(1).optionalServer().requiredClient()
 			.serverbound(OpenSurgeGuiPacket::new).consumer(() -> OpenSurgeGuiPacket::handle)
 			.build();
+
+	static File dynamicWeaponryConfigPath;
 
 	public DeepWatersMod()
 	{
@@ -46,11 +52,21 @@ public class DeepWatersMod
 
 		bus.addListener(this::setup);
 		bus.addListener(this::gatherData);
-		try {
-			if (Minecraft.getInstance()!=null) {
-				bus.addListener(this::clientSetup);
+		if (Minecraft.getInstance().gameDir!=null)
+		{
+			if (ModList.get().isLoaded("dynamic_weaponry"))
+			{
+				dynamicWeaponryConfigPath = new File(Minecraft.getInstance().gameDir + "\\config\\dynamic_weaponry");
+
 			}
-		} catch (Exception err) {}
+
+			bus.addListener(this::clientSetup);
+
+		} else
+		{
+			bus.addListener(this::serverSetup);
+
+		}
 
 		DeepWatersBiomes.BIOMES.register(bus);
 		DeepWatersBlocks.BLOCKS.register(bus);
@@ -61,6 +77,12 @@ public class DeepWatersMod
 		DeepWatersContainerTypes.CONTAINER_TYPES.register(bus);
 		DeepWatersTileEntities.TILE_ENTITIES.register(bus);
 
+		if (ModList.get().isLoaded("dynamic_weaponry"))
+		{
+			ConfigIntegration.Register(bus);
+
+		}
+		
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -69,6 +91,23 @@ public class DeepWatersMod
 		Minecraft.getInstance().getBlockColors().register(new AquastoneColor(), DeepWatersBlocks.AQUA_STONE.get());
 		ClientEvents.registerBlockRenderers();
 		ClientEvents.registerTESRs();
+		if (ModList.get().isLoaded("dynamic_weaponry"))
+		{
+			ConfigIntegration.GenConfig(dynamicWeaponryConfigPath);
+
+		}
+
+	}
+	
+	private void serverSetup(FMLDedicatedServerSetupEvent event)
+	{
+		if (ModList.get().isLoaded("dynamic_weaponry"))
+		{
+			dynamicWeaponryConfigPath = new File(event.getServerSupplier().get().getDataDirectory() + "\\config\\dynamic_weaponry");
+			ConfigIntegration.GenConfig(dynamicWeaponryConfigPath);
+
+		}
+
 	}
 
 	private void setup(FMLCommonSetupEvent event)
@@ -87,6 +126,7 @@ public class DeepWatersMod
 		generator.addProvider(new DeepWatersBlockStates(generator, event.getExistingFileHelper()));
 		generator.addProvider(new DeepWatersItemModels(generator, event.getExistingFileHelper()));
 		generator.addProvider(new DeepWatersLootTables(generator));
+
 	}
 
 }

@@ -10,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
@@ -46,7 +45,7 @@ public class DeepWatersShovelItem extends ShovelItem
 		if (material instanceof DeepWatersIngotItem)
 		{
 			
-			((DeepWatersIngotItem)material).InvTick.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
+			((DeepWatersIngotItem)material).InvTickMethod.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
 		}
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
 	}
@@ -63,7 +62,7 @@ public class DeepWatersShovelItem extends ShovelItem
 			if (material instanceof DeepWatersIngotItem)
 			{
 				
-				amt=((DeepWatersIngotItem)material).AttackBoost.apply(stack);
+				amt=((DeepWatersIngotItem)material).AttackBoostFunction.apply(stack);
 				AttributeModifier modifierAttack = new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", amt, AttributeModifier.Operation.ADDITION);
 				modifiers.clear();
 				modifiers.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), modifierAttack);

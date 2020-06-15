@@ -13,7 +13,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShovelItem;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -45,7 +44,7 @@ public class DeepWatersHoeItem extends HoeItem
 		if (material instanceof DeepWatersIngotItem)
 		{
 			
-			((DeepWatersIngotItem)material).InvTick.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
+			((DeepWatersIngotItem)material).InvTickMethod.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
 		}
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
 	}
@@ -62,7 +61,7 @@ public class DeepWatersHoeItem extends HoeItem
 			if (material instanceof DeepWatersIngotItem)
 			{
 				
-				amt=((DeepWatersIngotItem)material).AttackBoost.apply(stack);
+				amt=((DeepWatersIngotItem)material).AttackBoostFunction.apply(stack);
 				AttributeModifier modifierAttack = new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", amt, AttributeModifier.Operation.ADDITION);
 				modifiers.clear();
 				modifiers.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), modifierAttack);

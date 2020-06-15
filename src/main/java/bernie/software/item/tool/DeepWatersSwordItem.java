@@ -4,21 +4,15 @@ import bernie.software.item.DeepWatersIngotItem;
 import bernie.software.registry.DeepWatersItemGroups;
 import bernie.software.registry.DeepWatersItemTiers;
 import com.google.common.collect.Multimap;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -51,7 +45,7 @@ public class DeepWatersSwordItem extends SwordItem
 		if (material instanceof DeepWatersIngotItem)
 		{
 			
-			((DeepWatersIngotItem)material).InvTick.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
+			((DeepWatersIngotItem)material).InvTickMethod.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
 		}
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
 	}
@@ -68,11 +62,11 @@ public class DeepWatersSwordItem extends SwordItem
 			if (material instanceof DeepWatersIngotItem)
 			{
 				
-				amt=((DeepWatersIngotItem)material).AttackBoost.apply(stack);
+				amt=((DeepWatersIngotItem)material).AttackBoostFunction.apply(stack);
 				AttributeModifier modifierAttack = new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", amt, AttributeModifier.Operation.ADDITION);
 				modifiers.clear();
 				modifiers.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), modifierAttack);
-				modifiers.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).MatWeight, AttributeModifier.Operation.ADDITION));
+				modifiers.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).Weight, AttributeModifier.Operation.ADDITION));
 			}
 			return modifiers;
 		}
@@ -87,8 +81,8 @@ public class DeepWatersSwordItem extends SwordItem
 		if (equipmentSlot == EquipmentSlotType.MAINHAND)
 		{
 			
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).MatStrength, AttributeModifier.Operation.ADDITION));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).MatWeight, AttributeModifier.Operation.ADDITION));
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).Strength, AttributeModifier.Operation.ADDITION));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double) 5-((DeepWatersIngotItem) material).Weight, AttributeModifier.Operation.ADDITION));
 		}
 		return multimap;
 	}

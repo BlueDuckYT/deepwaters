@@ -1,25 +1,18 @@
 package bernie.software.item.tool;
 
 import bernie.software.item.DeepWatersIngotItem;
-import bernie.software.item.DeepWatersItem;
 import bernie.software.registry.DeepWatersItemGroups;
 import bernie.software.registry.DeepWatersItemTiers;
 import com.google.common.collect.Multimap;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -28,7 +21,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class DeepWatersAxeItem extends AxeItem
@@ -48,7 +40,7 @@ public class DeepWatersAxeItem extends AxeItem
 	@Override
 	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		if (material instanceof DeepWatersIngotItem) {
-			((DeepWatersIngotItem)material).InvTick.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
+			((DeepWatersIngotItem)material).InvTickMethod.accept(stack,(LivingEntity)entityIn,entityIn.canSwim()?1:0.5f);
 		}
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
 	}
@@ -59,7 +51,7 @@ public class DeepWatersAxeItem extends AxeItem
 			float amt=1;
 			Multimap<String,AttributeModifier> modifiers = this.getAttributeModifiers(EquipmentSlotType.MAINHAND);
 			if (material instanceof DeepWatersIngotItem) {
-				amt=((DeepWatersIngotItem)material).AttackBoost.apply(stack);
+				amt=((DeepWatersIngotItem)material).AttackBoostFunction.apply(stack);
 				AttributeModifier modifierAttack = new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", amt, AttributeModifier.Operation.ADDITION);
 				modifiers.clear();
 				modifiers.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), modifierAttack);
