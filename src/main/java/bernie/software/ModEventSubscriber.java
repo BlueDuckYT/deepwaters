@@ -37,7 +37,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = DeepWatersMod.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber
 {
 
@@ -47,8 +47,9 @@ public class ModEventSubscriber
 	@SubscribeEvent
 	public static void onDimensionRegistryEvent(final RegistryEvent.Register<ModDimension> event)
 	{
+		DeepWatersModDimension deepWatersModDimension = new DeepWatersModDimension();
 		event.getRegistry().register(
-				new DeepWatersModDimension().setRegistryName(GeneralUtils.Location("deepwatersdimension")));
+				deepWatersModDimension.setRegistryName(GeneralUtils.Location("deepwatersdimension")));
 	}
 
 

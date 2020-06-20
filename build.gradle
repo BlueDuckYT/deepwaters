@@ -21,6 +21,7 @@ apply plugin: "com.wynprice.cursemaven"
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
+
 def details = versionDetails()
 version = details.lastTag
 group = 'bernie.software.deepwaters' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -97,6 +98,9 @@ minecraft {
 sourceSets.main.resources {
     srcDir 'src/generated/resources'
 }
+repositories{
+    maven { url 'https://jitpack.io' }
+}
 
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
@@ -127,7 +131,7 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     //implementation 'com.github.bernie-g:geckolib:1.15-1.0.2'
-
+    //compile "curse.maven:immersive-portals-for-forge:2979709"}
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

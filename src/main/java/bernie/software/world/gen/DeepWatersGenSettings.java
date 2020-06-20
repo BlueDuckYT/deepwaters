@@ -28,7 +28,7 @@ public class DeepWatersGenSettings extends EndGenerationSettings
 	}
 
 	public int getBedrockFloorHeight() {
-		return 0;
+		return 128;
 	}
 
 }
