@@ -52,7 +52,7 @@ public class DeepWatersDamageFunctions {
 			double y2=entityIn.getPosY()+entityIn.getHeight();
 			for (float f=0;f<1;f+=0.1f) {
 				double y= MathHelper.lerp(f,y1,y2);
-				BlockPos pos=new BlockPos((int)entityIn.getPosX()-1,(int)y,(int)entityIn.getPosZ());
+				BlockPos pos=new BlockPos((int)entityIn.getPosX()-1,(int)y,(int)entityIn.getPosZ()-1);
 				if (pos.getY()<=worldIn.getMaxHeight()) {
 					if (worldIn.getFluidState(pos).getFluid().equals(Fluids.WATER)) {
 						percent+=1;
