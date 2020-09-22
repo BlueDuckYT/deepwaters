@@ -25,7 +25,7 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> PRISMARINE_INGOT = ITEMS.register("prismarine_ingot", () -> new DeepWatersIngotItem(779, 5.5f, 1.6f, new Utils.ColorHelper(143, 195, 181).getRGB(), DeepWatersDamageFunctions.AQUALITE_DAMGE,DeepWatersDamageFunctions.PRISMARINE_INVENTORY));
 
 	//Nuggets
-	public static final RegistryObject<Item> PRISMARINE_NUGGET = ITEMS.register("prismarine_nugget", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> PRISMARINE_NUGGET = ITEMS.register("prismarine_nugget", DeepWatersItem::new);
 
 	//Food
 	public static final RegistryObject<Item> BLUFFERFISH = ITEMS.register("blufferfish", () -> new DeepWatersItem(DeepWatersFoods.BLUFFERFISH));
@@ -42,8 +42,8 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> AQUALITE_SWORD = ITEMS.register("aqualite_sword", () -> new DeepWatersSwordItem(DeepWatersItemTiers.AQUALITE).addToolTip("Increased damage underwater"));
 
 	//Shields
-	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE,new ShieldEvents.PrismarineShielfEvent().getClass()).addToolTip("Allows you to dash in water."));
-	public static final RegistryObject<Item> DARK_PRISMARINE_SHIELD = ITEMS.register("dark_prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.DARKPRISMARINE,new ShieldEvents.DarkPrismarine().getClass()).addToolTip("Allows you to dash in water.\nHalf the cooldown of the prismarine shield.\nDouble the speed of the prismarine shield."));
+	public static final RegistryObject<Item> PRISMARINE_SHIELD = ITEMS.register("prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.PRISMARINE, ShieldEvents.PrismarineShielfEvent.class).addToolTip("Allows you to dash in water."));
+	public static final RegistryObject<Item> DARK_PRISMARINE_SHIELD = ITEMS.register("dark_prismarine_shield", () -> new DeepWatersShieldItem(DeepWatersShieldProperties.DARKPRISMARINE, ShieldEvents.DarkPrismarine.class).addToolTip("Allows you to dash in water.\nHalf the cooldown of the prismarine shield.\nDouble the speed of the prismarine shield."));
 
 	//Tools
 	public static final RegistryObject<Item> PRISMARINE_PICKAXE = ITEMS.register("prismarine_pickaxe", () -> new DeepWatersPickaxeItem(DeepWatersItemTiers.PRISMARINE).addToolTip("Increased mining speed underwater"));
@@ -63,19 +63,22 @@ public class DeepWatersItems
 	public static final RegistryObject<Item> AQUASTONE_TORCH = ITEMS.register("aquastone_torch", () -> new AquastoneTorch.Item(new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_BLOCKS)));
 
 	//Misc
-	public static final RegistryObject<Item> CRYSTALINE_CORAL = ITEMS.register("crystaline_coral", () -> new DeepWatersItem());
-	public static final RegistryObject<Item> DEAD_CRYSTALINE_CORAL = ITEMS.register("decayed_crystaline_coral", () -> new DeepWatersItem());
-	public static final RegistryObject<Item> SHARK_TOOTH = ITEMS.register("sharktooth", () -> new DeepWatersItem());
-	public static final RegistryObject<Item> PEARL_WAND = ITEMS.register("pearl_wand", () -> new DeepWatersItem()); //replace with PearlWandItem when the time comes
+	public static final RegistryObject<Item> CRYSTALINE_CORAL = ITEMS.register("crystaline_coral", DeepWatersItem::new);
+	public static final RegistryObject<Item> DEAD_CRYSTALINE_CORAL = ITEMS.register("decayed_crystaline_coral", DeepWatersItem::new);
+	public static final RegistryObject<Item> SHARK_TOOTH = ITEMS.register("sharktooth", DeepWatersItem::new);
+	public static final RegistryObject<Item> PEARL_WAND = ITEMS.register("pearl_wand", DeepWatersItem::new); //replace with PearlWandItem when the time comes
 	public static final RegistryObject<Item> POWER_STONE = ITEMS.register("power_stone", () -> new DeepWatersAbstractRuneItem(new Item.Properties().maxStackSize(1).group(DeepWatersItemGroups.DEEPWATERS_ITEMS)));
-	public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", () -> new DeepWatersItem());
-	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", () -> new DeepWatersItem());
-	public static final RegistryObject<Item> AQUASTONE_DUST = registerNormalItem("aquastone_dust", () -> new DeepWatersItem());
+	public static final RegistryObject<Item> SALT_CRYSTAL = ITEMS.register("salt_crystal", DeepWatersItem::new);
+	public static final RegistryObject<Item> PEARL = ITEMS.register("pearl", DeepWatersItem::new);
+	public static final RegistryObject<Item> AQUASTONE_DUST = registerNormalItem("aquastone_dust", DeepWatersItem::new);
 
 	//Fish buckets
-
-
-
+	public static final RegistryObject<Item> BLUFFERFISH_ITEM_BUCKET = ITEMS.register("blufferfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.BLUFFERFISH));
+	public static final RegistryObject<Item> COLORFULFISH_ITEM_BUCKET = ITEMS.register("colorfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.COLORFUL_FISH));
+	public static final RegistryObject<Item> DONUTFISH_ITEM_BUCKET = ITEMS.register("donutfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.DONUT_FISH));
+	public static final RegistryObject<Item> JUNGLEFISH_ITEM_BUCKET = ITEMS.register("junglefish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.JUNGLE_FISH));
+	public static final RegistryObject<Item> LEGFISH_ITEM_BUCKET = ITEMS.register("legfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.LEG_FISH));
+	public static final RegistryObject<Item> MUCKGULPER_ITEM_BUCKET = ITEMS.register("muckgulper_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.MUCK_GULPER));
 
 	//Spawn eggs
 	public static final RegistryObject<Item> KILLER_WIGGLER_SPAWN_EGG = ITEMS.register("killer_wiggler_spawn_egg", () -> new ModdedSpawnEggItem(

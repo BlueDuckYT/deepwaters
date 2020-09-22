@@ -1,5 +1,6 @@
 package blueduck.deepwaters.entity;
 
+import blueduck.deepwaters.registry.DeepWatersItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
@@ -22,7 +23,7 @@ public class LegFish extends AbstractFishEntity
 	@Override
 	protected ItemStack getFishBucket()
 	{
-		return null;
+		return new ItemStack(DeepWatersItems.LEGFISH_ITEM_BUCKET.get());
 	}
 
 	@Override

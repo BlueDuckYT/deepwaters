@@ -1,5 +1,6 @@
 package blueduck.deepwaters.entity;
 
+import blueduck.deepwaters.registry.DeepWatersItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
@@ -17,7 +18,7 @@ public class JungleFish extends AbstractGroupFishEntity
 	@Override
 	protected ItemStack getFishBucket()
 	{
-		return null;
+		return new ItemStack(DeepWatersItems.JUNGLEFISH_ITEM_BUCKET.get());
 	}
 
 	@Override
