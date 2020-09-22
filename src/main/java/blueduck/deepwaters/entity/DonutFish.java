@@ -1,5 +1,6 @@
 package blueduck.deepwaters.entity;
 
+import blueduck.deepwaters.registry.DeepWatersItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractGroupFishEntity;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,7 @@ public class DonutFish extends AbstractGroupFishEntity
 	@Override
 	protected ItemStack getFishBucket()
 	{
-		return null;
+		return new ItemStack(DeepWatersItems.DONUTFISH_ITEM_BUCKET.get());
 	}
 
 	@Override

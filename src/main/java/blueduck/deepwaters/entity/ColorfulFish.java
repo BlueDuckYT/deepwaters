@@ -1,5 +1,6 @@
 package blueduck.deepwaters.entity;
 
+import blueduck.deepwaters.registry.DeepWatersItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.fish.AbstractFishEntity;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class ColorfulFish extends AbstractFishEntity
 	@Override
 	protected ItemStack getFishBucket()
 	{
-		return null;
+		return new ItemStack(DeepWatersItems.COLORFULFISH_ITEM_BUCKET.get());
 	}
 
 	@Override

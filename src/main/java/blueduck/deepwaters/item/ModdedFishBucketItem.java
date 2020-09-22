@@ -1,5 +1,6 @@
 package blueduck.deepwaters.item;
 
+import blueduck.deepwaters.registry.DeepWatersItemGroups;
 import blueduck.deepwaters.utils.misc.Lazy;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluids;
@@ -16,8 +17,8 @@ public class ModdedFishBucketItem extends FishBucketItem
 
 	public ModdedFishBucketItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier)
 	{
-		super(null, Fluids.WATER, new Item.Properties());
-		this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
+		super(entityTypeSupplier, Fluids.WATER.delegate, new Item.Properties().group(DeepWatersItemGroups.DEEPWATERS_ITEMS));
+		this.entityTypeSupplier = Lazy.of(entityTypeSupplier);
 		UNADDED_EGGS.add(this);
 	}
 

@@ -116,6 +116,15 @@
   "item.deepwaters.cooked_muck_gulper": "Cooked Muck Gulper",
   "item.deepwaters.salted_muck_gulper": "Salted Muck Gulper",
 
+  "comment": "Fish buckets",
+
+  "item.deepwaters.blufferfish_bucket": "Blufferfish Bucket",
+  "item.deepwaters.colorfish_bucket": "Colorfish Bucket",
+  "item.deepwaters.donutfish_bucket": "Donutfish Bucket",
+  "item.deepwaters.junglefish_bucket": "Junglefish Bucket",
+  "item.deepwaters.legfish_bucket": "Legfish Bucket",
+  "item.deepwaters.muckgulper_bucket": "Muckgulper Bucket",
+
   "item.deepwaters.killer_wiggler_spawn_egg": "Killer Wiggler Spawn Egg",
   "item.deepwaters.blufferfish_spawn_egg": "Blufferfish Spawn Egg",
   "item.deepwaters.clam_spawn_egg": "Clam Spawn Egg",
@@ -134,7 +143,6 @@
   "item.deepwaters.sunken_wanderer_spawn_egg": "Sunken Wanderer Spawn Egg",
   "item.deepwaters.sneagle_spawn_egg": "Sneagle Spawn Egg",
   "item.deepwaters.phantom_stingray_spawn_egg": "Phantom Stingray Spawn Egg",
-  "item.deepwaters.jellyfish_spawn_egg": "Jellyfish Spawn Egg",
   "item.deepwaters.sea_urchin_spawn_egg": "Sea Urchin Spawn Egg",
 
   "itemGroup.deepwaters_blocks": "Deep Waters Blocks",
@@ -158,7 +166,6 @@
   "entity.deepwaters.sunken_wanderer": "Sunken Wanderer",
   "entity.deepwaters.sneagle_spawn": "Sneagle Spawn",
   "entity.deepwaters.phantom_stingray": "Phantom Stingray",
-  "entity.deepwaters.jellyfish": "Jellyfish",
   "entity.deepwaters.sea_urchin": "Sea Urchin",
 
   "feature.deepwaters.deepwatersportal": "Deep Waters Portal",
