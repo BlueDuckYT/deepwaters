@@ -24,7 +24,7 @@ apply plugin: 'maven-publish'
 
 def details = versionDetails()
 version = details.lastTag
-group = 'bernie.software.deepwaters' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'blueduck.deepwaters' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'deepwaters-1.15.2'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -140,11 +140,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "deepwaters",
-                "Specification-Vendor"    : "bernie.g",
+                "Specification-Vendor"    : "Blue Duck",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : "${version}",
-                "Implementation-Vendor"   : "bernie.g",
+                "Implementation-Vendor"   : "Blue Duck",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
