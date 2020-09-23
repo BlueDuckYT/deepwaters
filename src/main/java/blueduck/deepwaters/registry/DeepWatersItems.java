@@ -74,7 +74,7 @@ public class DeepWatersItems
 
 	//Fish buckets
 	public static final RegistryObject<Item> BLUFFERFISH_ITEM_BUCKET = ITEMS.register("blufferfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.BLUFFERFISH));
-	public static final RegistryObject<Item> COLORFULFISH_ITEM_BUCKET = ITEMS.register("colorfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.COLORFUL_FISH));
+	public static final RegistryObject<Item> COLORFULFISH_ITEM_BUCKET = ITEMS.register("colorfulfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.COLORFUL_FISH));
 	public static final RegistryObject<Item> DONUTFISH_ITEM_BUCKET = ITEMS.register("donutfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.DONUT_FISH));
 	public static final RegistryObject<Item> JUNGLEFISH_ITEM_BUCKET = ITEMS.register("junglefish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.JUNGLE_FISH));
 	public static final RegistryObject<Item> LEGFISH_ITEM_BUCKET = ITEMS.register("legfish_bucket", () -> new ModdedFishBucketItem(DeepWatersEntities.LEG_FISH));
@@ -119,7 +119,6 @@ public class DeepWatersItems
 			DeepWatersEntities.PHANTOM_STINGRAY, 6716671, 6716566));
 	public static final RegistryObject<Item> SNEAGLE_SPAWN_EGG = ITEMS.register("sneagle_spawn_egg", () -> new ModdedSpawnEggItem(
 			DeepWatersEntities.SNEAGLE, 1909247, 14971647));
-	public static final RegistryObject<Item> BLUFFERFISH_BUCKET = registerNormalItem("bucket_of_blufferfish", () -> new ModdedFishBucketItem(DeepWatersEntities.BLUFFERFISH));
 
 
 	public static <T extends Item> RegistryObject<T> registerNormalItem(String registryName, Supplier<? extends Item> item)

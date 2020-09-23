@@ -29,7 +29,7 @@ public class DeepWatersBlocks {
     public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, DeepWatersMod.ModID);
 
     //Ocean floor
-    public static final RegistryObject<Block> MOSSY_OCEAN_FLOOR = registerNormalBlock("mossy_ocean_floor", () -> new MossyOceanFloorBlock(), false);
+    public static final RegistryObject<Block> MOSSY_OCEAN_FLOOR = registerNormalBlock("mossy_ocean_floor", MossyOceanFloorBlock::new, false);
     public static final RegistryObject<Block> OCEAN_FLOOR = registerNormalBlock("ocean_floor", () -> new Block(BlockProperties.OCEAN_FLOOR), true);
     public static final RegistryObject<RotatedPillarBlock> OCEAN_FLOOR_BRICK = registerBlockAndItem("ocean_floor_brick", () -> new RotatedPillarBlock(BlockProperties.PRISMARINE_BLOCK));
 
@@ -39,7 +39,7 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> AQUALITE_ORE = registerNormalBlock("aqualite_ore", () -> new DeepWatersOreBlock(2), true);
     public static final RegistryObject<Block> AQUASTONE_ORE = registerNormalBlock("aquastone_ore", () -> new DeepWatersOreBlock(1), false);
 
-    public static final RegistryObject<Block> ENTITYPUSHER = registerOnlyBlock("entity_pusher", () -> new EntityPusher());
+    public static final RegistryObject<Block> ENTITYPUSHER = registerOnlyBlock("entity_pusher", EntityPusher::new);
 
     //Metallic Blocks
     public static final RegistryObject<Block> METALLIC_BLOCK_YELLOW = registerNormalBlock("metallic_block_yellow", () -> new Block(BlockProperties.METALLIC_BLOCK), true);
@@ -51,7 +51,7 @@ public class DeepWatersBlocks {
 
     //Portal
     public static final RegistryObject<Block> DEEPWATERSPORTAL = registerOnlyBlock("portal", () -> new DeepWatersPortalBlock(BlockProperties.UNBREAKABLE));
-    public static final RegistryObject<PedestalBlock> PEDESTAL = registerBlock("pedestal", () -> new PedestalBlock());
+    public static final RegistryObject<PedestalBlock> PEDESTAL = registerBlock("pedestal", PedestalBlock::new);
     public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR = registerBlockAndItem("portal_pillar", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE));
     public static final RegistryObject<RotatedPillarBlock> PORTAL_PILLAR_END = registerBlockAndItem("portal_pillar_end", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE));
     public static final RegistryObject<RotatedPillarBlock> ACTIVATED_PORTAL_PILLAR = registerBlockAndItem("activated_portal_pillar", () -> new RotatedPillarBlock(BlockProperties.UNBREAKABLE.lightValue(15)));
@@ -73,8 +73,8 @@ public class DeepWatersBlocks {
     public static final RegistryObject<Block> AQUA_REPEATER = registerBlock("aquastone_repeater", () -> new AquastoneRepeater(BlockProperties.ROCK));
     public static final RegistryObject<Block> AQUA_FAN = registerBlock("aquastone_fan", () -> new AquastoneFan(Block.Properties.create(Material.ROCK)),()->AquafanItemStackRenderer::new);
     public static final RegistryObject<Block> AQUA_BLOCK = registerBlock("aquastone_block", () -> new AquastoneBlock(BlockProperties.ROCK));
-    public static final RegistryObject<Block> AQUA_TORCH = registerOnlyBlock("aquastone_torch", () -> new AquastoneTorch.AquastoneTorchBlock());
-    public static final RegistryObject<Block> AQUA_TORCH_WALL = registerOnlyBlock("aquastone_walltorch", () -> new AquastoneTorch.AquastoneTorchWall());
+    public static final RegistryObject<Block> AQUA_TORCH = registerOnlyBlock("aquastone_torch", AquastoneTorch.AquastoneTorchBlock::new);
+    public static final RegistryObject<Block> AQUA_TORCH_WALL = registerOnlyBlock("aquastone_walltorch", AquastoneTorch.AquastoneTorchWall::new);
     public static final RegistryObject<Block> AQUA_STONE_BUTTON = registerBlock("aquastone_stone_button", () -> AquastoneButton.constructBlock((AbstractButtonBlock) Blocks.STONE_BUTTON));
 
     //Iron Hatch
@@ -124,8 +124,8 @@ public class DeepWatersBlocks {
     //Misc
     public static final RegistryObject<Block> PEARL_BLOCK = registerNormalBlock("pearl_block", () -> new Block(BlockProperties.PEARL_BLOCK), true);
     public static final RegistryObject<Block> SALT_BLOCK = registerNormalBlock("salt_block", () -> new Block(BlockProperties.SALT_BLOCK), true);
-    public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", () -> new DeepWatersLamp());
-    public static final RegistryObject<Block> SUNKEN_GRAVEL = registerNormalBlock("sunken_gravel", () -> new SunkenGravelBlock(), true);
+    public static final RegistryObject<Block> SUNKEN_WASTES_LAMP = registerBlock("sunkenwastes_lamp", DeepWatersLamp::new);
+    public static final RegistryObject<Block> SUNKEN_GRAVEL = registerNormalBlock("sunken_gravel", SunkenGravelBlock::new, true);
 
 
 
