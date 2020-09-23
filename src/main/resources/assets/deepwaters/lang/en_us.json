@@ -116,14 +116,14 @@
   "item.deepwaters.cooked_muck_gulper": "Cooked Muck Gulper",
   "item.deepwaters.salted_muck_gulper": "Salted Muck Gulper",
 
-  "comment": "Fish buckets",
+  "_comment": "Fish buckets",
 
-  "item.deepwaters.blufferfish_bucket": "Blufferfish Bucket",
-  "item.deepwaters.colorfish_bucket": "Colorfish Bucket",
-  "item.deepwaters.donutfish_bucket": "Donutfish Bucket",
-  "item.deepwaters.junglefish_bucket": "Junglefish Bucket",
-  "item.deepwaters.legfish_bucket": "Legfish Bucket",
-  "item.deepwaters.muckgulper_bucket": "Muckgulper Bucket",
+  "item.deepwaters.blufferfish_bucket": "Bucket of Blufferfish",
+  "item.deepwaters.colorfulfish_bucket": "Bucket of Colorfulfish",
+  "item.deepwaters.donutfish_bucket": "Bucket of Donutfish",
+  "item.deepwaters.junglefish_bucket": "Bucket of Junglefish",
+  "item.deepwaters.legfish_bucket": "Bucket of Legfish",
+  "item.deepwaters.muckgulper_bucket": "Bucket of Muckgulper",
 
   "item.deepwaters.killer_wiggler_spawn_egg": "Killer Wiggler Spawn Egg",
   "item.deepwaters.blufferfish_spawn_egg": "Blufferfish Spawn Egg",
