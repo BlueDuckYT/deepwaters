@@ -5,15 +5,16 @@
 
 
 Deep Waters is a twilight-forest style underwater dimension for Minecraft Forge inspired by Subnautica. 
-
+The mod is getting a rework for minecraft 1.18
 
 ## Installation
 
 Currently, the mod is in development and only prereleases are available. Keep in mind a majority of the content is not implemented yet, and most things are still very work in progress. If you'd still like to try out the mod, you can grab the most recent build in the discord or from the most recent passing [azure pipeline artifact.](https://tincrayon.visualstudio.com/DeepWaters/_build?definitionId=1&_a=summary)
 
 The mod is for Minecraft **1.15.2**, although older forge versions *might* work.
+1.15.2 version has stopped development, a reimagining for 1.18+ is now being worked on.
 
-## Features
+## Features (old)
 
 * Deep Waters dimension with new biomes, decorations, trees, coral, etc.
 * Dozens of custom fish, underwater creatures, and land creatures; all fully animated and modeled with care
